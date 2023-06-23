@@ -1,3 +1,5 @@
+import '../../index.css';
+
 import {React,  useState, useEffect } from 'react';
 import EmptyList from '../blog/EmptyList';
 import BlogList from '../blog/BlogList';

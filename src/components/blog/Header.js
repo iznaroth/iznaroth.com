@@ -6,7 +6,7 @@ const Header = () => (
       <span>"</span> EVIL THOUGHTS <span>"</span>
     </h1>
 
-    <p>Read it and weep, son ! (dead helionauts) </p>
+    <p>Read it and weep, son ! (lawl) </p>
 
   </header>
 );

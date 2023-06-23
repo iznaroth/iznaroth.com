@@ -44,6 +44,10 @@ export const QUERY_POSTLIST = gql`
         },
         headerImage {
           url
+        },
+        createdBy {
+            picture
+            name
         }
     }
 }`

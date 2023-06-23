@@ -38,21 +38,13 @@ function App() {
 
    
   return (
-    <main className="text-gray-400 bg-cover body-font" style={{'backgroundImage': 'url(./iz_bg_simple.png)', 'backgroundSize' : '1920px 1080px'}}>
+    <main className="text-gray-400 bg-cover body-font" style={{'backgroundImage': 'url(/iz_bg_simple.png)', 'backgroundSize' : '1920px 1080px'}}>
       {!posts ? (
           'Loading'
         ) : (
       <Routes>
           <Route path = "/" element={
           <Fragment>
-              <ul>
-                {posts.map(({ id, title, slug }) => (
-                  <li key={id}>
-                    <Link to={`/blog/${slug}`}>{title}</Link>
-                  </li>
-                ))}
-              </ul>
-
             <Logo />
             <Navbar />
             <Astropanel />

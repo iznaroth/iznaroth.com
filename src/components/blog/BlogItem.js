@@ -11,16 +11,15 @@ const BlogItem = ({blogContent, content}) => {
 
   }, [])
 
-  return null 
   return (
    <div className='blogItem-wrap' key={blogContent.title}>
       <img className='blogItem-cover' src={blogContent.headerImage.url} alt='cover' />
-      <Chip label={blogContent.relevantTags[0].name} />
+      <Chip label={blogContent.relevantTags[0]} />
       <h3>{blogContent.title}</h3>
       <p className='blogItem-desc'>{blogContent.subtitle}</p>
       <footer>
         <div className='blogItem-author'>
-          <img src={blogContent.createdBy.url} alt='avatar' />
+          <img src={blogContent.createdBy.picture} alt='avatar' />
           <div>
             <h6>{blogContent.createdBy.name}</h6>
             <p>{blogContent.timestamp}</p>

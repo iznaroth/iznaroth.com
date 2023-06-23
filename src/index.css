@@ -49,6 +49,8 @@ input {
   color: #a9a9a9;
   font-weight: 500;
   margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: 2rem;
   display: block;
 }
 .blog-wrap header {
@@ -139,6 +141,9 @@ input {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 3rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-top: 3rem;
 }
 @media (max-width: 768px) {
   .blogList-wrap {
