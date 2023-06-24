@@ -32,7 +32,7 @@ export const QUERY_SLUG_CATEGORIES = gql`
 
 export const QUERY_POSTLIST = gql`
 {
-    simplePosts(){
+    simplePosts(orderBy: publishedAt_DESC){
         id,
         timestamp,
         title,

@@ -136,7 +136,18 @@ input {
   color: #a9a9a9;
   font-weight: 500;
 }
-/* Blog List */
+
+/* Blog List Stubs */
+.blogList-stubs-wrap {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 1rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-top: 3rem;
+}
+
+/* Blog List Full */
 .blogList-wrap {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -155,6 +166,39 @@ input {
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
+/* Blog Shorthand */
+
+.blogShorthand-wrap {
+  display: flex;
+  flex-direction: row;
+}
+
+.blogShorthand-desc {
+  position: relative;
+  max-height: 50px;
+  overflow: hidden;
+  padding-right: 0.6rem;
+  font-size: 0.8rem;
+  color: #000000;
+  text-align: center;
+  align-self: center;
+}
+.blogShorthand-link {
+  text-decoration: none;
+  color: black;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+.blogShorthand-author {
+  display: flex;
+  align-items: center;
+  color: rgb(162, 253, 246);
+  font-size: 0.8rem;
+}
+
 /* Blog Item */
 .blogItem-wrap {
   display: flex;
@@ -229,7 +273,9 @@ input {
   padding: 0.3rem 0.5rem;
   border-radius: 5px;
   width: fit-content;
+  height: fit-content;
   text-transform: capitalize;
+  align-self: center;
 }
 
 /* Create content form */

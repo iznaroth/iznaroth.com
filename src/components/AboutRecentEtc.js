@@ -1,17 +1,21 @@
 // src/components/About.js
 
 import React from "react";
+import BlogShorthand from './blog/BlogShorthand.js';
 
-export default function About() {
+const About = ({ blogContent }) => {
   return (
    <section id="about">
-     <div className="container mx-auto flex px-10 py-20 md:flex-row flex-col items-center">
+    <div className="mx-50 px-24">
+      <img src="./ribbon-short.png"></img>
+    </div>
+     <div className="container mx-auto flex px-10 py-20 md:flex-row flex-col items-start bg-gray-400 rounded" style={{'borderImageSource': 'url(./text_banner_border.png)', 'borderImageSlice': '14%', 'borderWidth' : '33px', 'borderImageRepeat': 'repeat', 'borderStyle' : 'solid', 'imageRendering' : 'pixelated'}}>
        <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-         <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-white">
+         <h1 className="title-font sm:text-4xl text-3xl mb-4 px-8 font-medium text-black">
             What's all this, then?
            <br className="hidden lg:inline-block" />
          </h1>
-         <p className="mb-8 leading-relaxed">
+         <p className="mb-8 leading-relaxed px-8 text-black">
          This is a massive quasi-portfolio monolith concerning my work - the me in question being Jonas Bull, iznaroth or whatever name you know me by. 
          It’s more or less an organized storage locker for my brain. I put everything in here somewhere, and I try kind-of hard to make it logical for others to navigate. I built it to explore, so poke around! If you’re on desktop, try the Astral Catalogue for a more interesting format. 
          <br /><br />
@@ -26,27 +30,40 @@ export default function About() {
         <br /><br />
         – Jonas Bull (iznaroth in some places)
          </p>
-         <div className="flex justify-center">
+         <div className="flex justify-center pl-3">
            <a
              href="#contact"
              className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">
              Contact
            </a>
            <a
-             href="#projects"
+             href="https://www.patreon.com/iznaroth"
+             className="ml-4 inline-flex text-gray-400 bg-orange-800 border-0 py-2 px-6 focus:outline-none hover:bg-orange-700 hover:text-white rounded text-lg">
+             Patreon
+           </a>
+           <a
+             href="https://github.com/iznaroth/"
              className="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">
-             See My Projects
+             Github
            </a>
          </div>
        </div>
-       <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-         <img
-           className="object-cover object-center rounded"
-           alt="hero"
-           src="./me.png"
-         />
+       <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:text-right">
+          <div>
+            {/* Perhaps an image of myself and a little textbox? */}
+          </div>
+          <h1 className="title-font sm:text-4xl text-3xl mb-4 pr-8 font-medium text-black">
+            Recently Updated
+           <br className="hidden lg:inline-block" />
+         </h1>
+         <div className='blogList-stubs-wrap'>
+          {blogContent.map((blog) => (
+            <BlogShorthand blogContent={blog} />
+          ))}
+        </div>
        </div>
      </div>
    </section>
  );
-}
+};
+export default About;

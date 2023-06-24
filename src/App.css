@@ -37,6 +37,11 @@
   }
 }
 
+#about{
+  width: 1200px;
+  margin: auto;
+}
+
 /* Navbar container */
 .navbar {
   overflow: hidden;

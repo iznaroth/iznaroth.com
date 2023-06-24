@@ -5,7 +5,8 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
-        'hero-pattern': "url('/public/iz_bg_simple.png')"
+        'hero-pattern': "url('./iz_bg_simple.png')",
+        'greybox': "url('./iz_bg_simple.png')"
       }
     },
   },

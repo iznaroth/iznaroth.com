@@ -48,7 +48,7 @@ function App() {
             <Logo />
             <Navbar />
             <Astropanel />
-            <About />
+            <About blogContent={posts}/>
             <Contact />
           </Fragment>}>
 
