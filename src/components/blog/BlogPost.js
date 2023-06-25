@@ -19,11 +19,12 @@ const Blog = ({content}) => {
 
   return (
     <>
-      <Link className='blog-goBack' to='/'>
-        <span> &#8592;</span> <span>Go Back</span>
-      </Link>
+      
       {content ? (
         <div className='blog-wrap'>
+          <Link className='blog-goBack' to='/'>
+            <span> &#8592;</span> <span>Go Back</span>
+          </Link>
           <header>
             <p className='blog-date'>Published {post.timestamp}</p>
             <h1>{post.title}</h1>

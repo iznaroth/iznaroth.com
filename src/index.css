@@ -42,6 +42,7 @@ input {
 .blog-wrap {
   max-width: 700px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 .blog-goBack {
   text-decoration: none;
@@ -49,7 +50,7 @@ input {
   color: #a9a9a9;
   font-weight: 500;
   margin-bottom: 2rem;
-  margin-top: 2rem;
+  padding-top: 2rem;
   margin-left: 2rem;
   display: block;
 }
@@ -143,7 +144,7 @@ input {
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 1rem;
   margin-left: 3rem;
-  margin-right: 3rem;
+  margin-right: 0rem;
   margin-top: 3rem;
 }
 
@@ -172,6 +173,10 @@ input {
 .blogShorthand-wrap {
   display: flex;
   flex-direction: row;
+  border-radius: 5px;
+  background-color: #0000002d;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .blogShorthand-desc {
@@ -197,6 +202,7 @@ input {
   align-items: center;
   color: rgb(162, 253, 246);
   font-size: 0.8rem;
+  margin-right: 0.8rem;
 }
 
 /* Blog Item */
@@ -271,6 +277,7 @@ input {
   background: linear-gradient(to right, #6190e8, #a7bfe8);
   color: #fff;
   padding: 0.3rem 0.5rem;
+  margin-left: 0.5rem;
   border-radius: 5px;
   width: fit-content;
   height: fit-content;

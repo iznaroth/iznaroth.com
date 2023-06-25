@@ -10,7 +10,7 @@ const About = ({ blogContent }) => {
       <img src="./ribbon-short.png"></img>
     </div>
      <div className="container mx-auto flex px-10 py-20 md:flex-row flex-col items-start bg-gray-400 rounded" style={{'borderImageSource': 'url(./text_banner_border.png)', 'borderImageSlice': '14%', 'borderWidth' : '33px', 'borderImageRepeat': 'repeat', 'borderStyle' : 'solid', 'imageRendering' : 'pixelated'}}>
-       <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+       <div className="lg:flex-grow md:w-1/2 lg:pr-0 md:pr-0 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
          <h1 className="title-font sm:text-4xl text-3xl mb-4 px-8 font-medium text-black">
             What's all this, then?
            <br className="hidden lg:inline-block" />
