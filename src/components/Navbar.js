@@ -16,10 +16,6 @@ export default function Navbar() {
   return (
     <section id="navbar" className="">
       <div className="navbar">
-        <a href="blog">Blog</a>
-        <a href="#news">Devlogs</a>
-        <a href="#news">Reviews</a>
-        <a href="#news">Programming</a>
         <div className="dropdown">
           <button className="dropbtn">Projects
             <i className="fa fa-caret-down"></i>
@@ -31,10 +27,21 @@ export default function Navbar() {
             <a href="#">Manic Mechanics</a>
             <a href="#">Modem Highway</a>
             <a href="#">Debtshredder</a>
-            <a href="#">The Settler</a>
-            <a href="#">KOMMHAGOTIQ</a>
-            <a href="#">Intyriur</a>
             <a href="#">Other Stuff</a>
+          </div>
+        </div>
+        <a href="blog">Thoughts</a>
+        <a href="#news">Devlogs</a>
+        <a href="#news">Roadmaps</a>
+        <a href="#news">Physical Junk</a>
+        <div className="dropdown">
+          <button className="dropbtn">Socials
+            <i className="fa fa-caret-down"></i>
+          </button>
+          <div className="dropdown-content">
+            <a href="#">itch</a>
+            <a href="#">Github</a>
+            <a href="#">Twitter</a>
           </div>
         </div>
       </div>
