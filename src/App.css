@@ -38,7 +38,7 @@
 }
 
 #about{
-  width: 1200px;
+  max-width: 1200px;
   margin: auto;
 }
 
@@ -47,7 +47,7 @@
   overflow: hidden;
   background-color: #33333300;
   font-family: Arial;
-  width: 1200px;
+  max-width: 1200px;
   margin: auto;
 }
 
@@ -81,7 +81,7 @@
 
 /* Add a red background color to navbar links on hover */
 .navbar a:hover, .dropdown:hover .dropbtn {
-  background-color: red;
+  background-color: rgb(47, 211, 121);
 }
 
 /* Dropdown content (hidden by default) */

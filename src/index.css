@@ -38,12 +38,34 @@ input {
   margin: 0 auto;
   padding: 1rem 0;
 }
+
+
+/* Devlog */
+
+#devlogpost {
+  background-image: "url(../../devlog_bg.png)"
+}
+
 /* BlogPost */
-.blog-wrap {
-  max-width: 700px;
+
+.blog-bg {
+  max-width: 1200px;
+  background-color: black;
+  border-style: solid;
+  border-color:#1d1d1d;
+  border-width: 5px;
   margin: 0 auto;
   min-height: 100vh;
 }
+
+.blog-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+
+
 .blog-goBack {
   text-decoration: none;
   font-size: 0.8rem;
@@ -74,9 +96,11 @@ input {
 }
 .blog-content p{
   margin-top: 1.5rem;
+  padding: 1rem;
 }
 .blog-content h1, .blog-content h2, .blog-content h3, .blog-content h4, .blog-content h5, .blog-content h6 {
   margin-top: 1.5rem;
+  padding: 4em;
 }
 
 .blog-content img {
