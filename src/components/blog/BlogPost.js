@@ -51,6 +51,7 @@ const Blog = ({content}) => {
             <div className='blog-content' dangerouslySetInnerHTML={{__html: post.content.html}}></div>
           </div>
         </div>
+        <div className='blog-footer' />
       </section>
       ) : (
         <EmptyList />

@@ -22,14 +22,23 @@ const BlogLanding = ({blogContent}) => {
   }, [])
 
   return (
-    <div className='h-screen'>
+    <div className='min-h-screen'>
       {/* Page Header */}
+      <div  className="flex h-96">
+          <img
+              className="m-auto w-2/5"
+              alt="evil thoughts"
+              src="../../evil_thoughts.png"
+            />
+        </div>
       <Header />
       {/* Blog List & Empty View */}
 
       
       {!blogContent.length ? <EmptyList /> : <BlogList blogContent={blogContent}/>}
+      <div className='blog-footer' />
     </div>
+    
   );
 };
 export default BlogLanding;
