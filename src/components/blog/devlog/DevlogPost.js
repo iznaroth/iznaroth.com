@@ -5,7 +5,7 @@ import '../../index.css';
 import { Link } from 'react-router-dom';
 import { Routes, Route, useParams } from 'react-router-dom';
 
-const Blog = ({content}) => {
+const DevlogPost = ({content}) => {
 
   useEffect(() => {
 
@@ -22,7 +22,7 @@ const Blog = ({content}) => {
       
       {content ? (
         
-      <section id="blogpost">
+      <section id="devlogpost">
 
         <div  className="flex h-96">
           <img

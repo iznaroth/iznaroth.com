@@ -21,7 +21,7 @@ export default function Navbar() {
             <i className="fa fa-caret-down"></i>
           </button>
           <div className="dropdown-content">
-            <a href="#">Down the Worldwell</a>
+            <a href="dtww">Down the Worldwell</a>
             <a href="#">Brittle</a>
             <a href="#">Doloman Epoch</a>
             <a href="#">Manic Mechanics</a>

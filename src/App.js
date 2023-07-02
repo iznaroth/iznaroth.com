@@ -12,11 +12,15 @@ import BlogLanding from './components/blog/BlogLanding';
 import BlogPost from './components/blog/BlogPost';
 import About from './components/AboutRecentEtc';
 import Contact from './components/Contact';
+import WorldwellLanding from './components/dtww/WorldwellLanding';
 import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES } from './graphql/Queries';
+
+
 
 function App() {
   const [posts, setPosts] = useState(null);
   const [categories, setCategories] = useState(null);
+  const [bg, changeBg] = useState('')
 
   useEffect(() => {
 
@@ -87,9 +91,9 @@ function App() {
             </Fragment>
           }>
           </Route>
-          <Route path = "/itww" element = {
+          <Route path = "/dtww" element = {
             <Fragment>
-              <Contact />
+              <WorldwellLanding />
             </Fragment>
           }>
           </Route>
