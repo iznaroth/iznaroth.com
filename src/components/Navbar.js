@@ -15,18 +15,16 @@ const defaultOption = options[0];
 export default function Navbar() {
   return (
     <section id="navbar" className="">
-      <div className="navbar">
+      <div className="navbar hpnavbar">
         <div className="dropdown">
           <button className="dropbtn">Projects
             <i className="fa fa-caret-down"></i>
           </button>
           <div className="dropdown-content">
             <a href="dtww">Down the Worldwell</a>
+            <a href="#">Manic Mechanics</a>
             <a href="#">Brittle</a>
             <a href="#">Doloman Epoch</a>
-            <a href="#">Manic Mechanics</a>
-            <a href="#">Modem Highway</a>
-            <a href="#">Debtshredder</a>
             <a href="#">Other Stuff</a>
           </div>
         </div>

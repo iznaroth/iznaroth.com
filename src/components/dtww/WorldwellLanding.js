@@ -16,17 +16,25 @@ const BlogLanding = ({blogContent}) => {
 
   return (
     <div className='min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)'}}>
-      {/* Page Header */}
-      <div  className="flex h-96">
-          <img
-              className="m-auto w-2/5"
-              alt="Down the Worldwell"
-              src="../../dtww.png"
-            />
-        </div>
       {/* */}
+      <section id="logo" className="wwlogo">
+        <img
+            className="m-auto w-2/5"
+            alt="Down the Worldwell"
+            src="./dtww.png"
+            />
+      </section>
 
-      <div className="body dark-background">
+      <section id="navbar" className="">
+        <div className="navbar wwnavbar">
+            <a href="/dtww/system" class><img src="../../system.png"/></a>
+            <a href="/dtww/dornn"><img src="../../world.png"/></a>
+            <a href="/dtww/character-creation"><img src="../../char.png"/></a>
+            <a href="/dtww/assembly"><img src="../../assembly.png"/></a>
+        </div>
+      </section>
+
+      <div className="dark-background ">
          <div className="mid-border">
             <div className="inner-border">
               <img className="corner-decoration corner-left-top" src="../../corner-decoration.png"></img>
@@ -38,10 +46,10 @@ const BlogLanding = ({blogContent}) => {
 
 
               <div className="container">
-                <img className="mx-auto align-top opacity-30" src="../../simpleheader.png"></img>
+                <img className="mx-auto align-top opacity-30 pt-10" src="../../simpleheader.png"></img>
 
                 <p className='text-white m-auto text-center w-5/6 pb-20 block'>
-                <i className='opacity-30'>At the bottom, where rocks broke free and tumbled into open sky, it became clear I hadn't found my mark. Spells fizzle in the face of the new Divine, glaring eyes watch behind distant stars as I hurtle towards new dominion. Behind me, the mouth pinches into a line and fades away, spitting one last brick into open air. <br /><br /> Evensink, the Teeth of Ages, world-wound - the bedrock of the universe. No going back now...</i>
+                <i className='opacity-30'>At the bottom, where bits of the inverted well-rim broke free and tumbled into open sky, it became clear I hadn't found my mark. Spells fizzled in the face of the new Divine, glaring eyes watched behind distant stars as I hurtled towards new dominion. Behind me, the mouth pinched into a line and faded away, spitting one last brick into the cloudline. <br /><br /> Evensink, the Teeth of Ages, world-wound - the bedrock of the universe. No going back now...</i>
 
                 <br /> <br />  <br />  
                 
@@ -58,14 +66,11 @@ const BlogLanding = ({blogContent}) => {
                 on much the same path your players will find themselves. The frontier is everywhere, and nobody knows what's going on. 
 
                 
-                <br /><br /><br /><br />
+                <br /><br />
 
                 For an adventurer such as yourself, that's probably a good thing.
 
                 </p>
-                <img className="mx-auto align-top opacity-30" src="../../simpleheader.png"></img>
-                <img className="mx-auto align-top opacity-30" src="../../simpleheader.png"></img>
-                <div className='min-h-200' />
                </div>
             </div>
       </div>

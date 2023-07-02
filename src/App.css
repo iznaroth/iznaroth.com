@@ -7,6 +7,11 @@
   pointer-events: none;
 }
 
+.wwlogo{
+  height: 20em;
+  display: flex;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -51,6 +56,13 @@
   margin: auto;
 }
 
+.wwnavbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3.5em;
+}
+
 /* Links inside the navbar */
 .navbar a {
   float: left;
@@ -59,6 +71,14 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+
+}
+
+.navbar img {
+  height: 2.5em;
+  float: left;
+  margin-bottom: auto;
+
 }
 
 /* The dropdown container */
@@ -80,8 +100,13 @@
 }
 
 /* Add a red background color to navbar links on hover */
-.navbar a:hover, .dropdown:hover .dropbtn {
+.hpnavbar a:hover, .dropdown:hover .dropbtn {
   background-color: rgb(47, 211, 121);
+}
+
+/* Add a red background color to navbar links on hover */
+.wwnavbar a:hover, .dropdown:hover .dropbtn {
+  -webkit-filter: invert(50%);
 }
 
 /* Dropdown content (hidden by default) */
