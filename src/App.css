@@ -58,9 +58,10 @@
 
 .wwnavbar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 3.5em;
+
 }
 
 /* Links inside the navbar */
@@ -76,10 +77,16 @@
 
 .navbar img {
   max-height: 2.5em;
-  min-height: 1.5em;
+  min-height: 1em;
   float: left;
   margin-bottom: auto;
   object-fit: cover;
+}
+
+@media (max-width: 600px) {
+	.navbar img {
+		height: 2em;
+	}
 }
 
 /* The dropdown container */

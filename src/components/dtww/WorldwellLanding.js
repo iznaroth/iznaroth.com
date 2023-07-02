@@ -23,7 +23,7 @@ const BlogLanding = ({blogContent}) => {
 
       <section id="logo" className="wwlogo">
         <img
-            className="m-auto w-2/5"
+            className="m-auto lg:w-2/5 md:w-3/5 sm:w-4/5"
             alt="Down the Worldwell"
             src="./dtww.png"
             />
