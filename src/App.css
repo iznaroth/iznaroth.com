@@ -75,10 +75,11 @@
 }
 
 .navbar img {
-  height: 2.5em;
+  max-height: 2.5em;
+  min-height: 1.5em;
   float: left;
   margin-bottom: auto;
-
+  object-fit: cover;
 }
 
 /* The dropdown container */
@@ -155,4 +156,9 @@
   to {
     transform: rotate(359deg);
   }
+}
+
+#back-button {
+  max-width: 1200px;
+  margin: auto;
 }
