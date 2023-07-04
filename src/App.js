@@ -13,6 +13,7 @@ import BlogPost from './components/blog/BlogPost';
 import About from './components/AboutRecentEtc';
 import Contact from './components/Contact';
 import WorldwellLanding from './components/dtww/WorldwellLanding';
+import WorldwellSystem from './components/dtww/WorldwellSystem';
 import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES } from './graphql/Queries';
 
 
@@ -91,12 +92,26 @@ function App() {
             </Fragment>
           }>
           </Route>
+
+          {/* START OF WORLDWELL SUBSITE*/}
+          
           <Route path = "/dtww" element = {
             <Fragment>
               <WorldwellLanding />
             </Fragment>
           }>
           </Route>
+
+          <Route path = "/dtww/system" element = {
+            <Fragment>
+              <WorldwellSystem />
+            </Fragment>
+          }>
+          </Route>
+
+          {/* END OF WORLDWELL SUBSITE*/}
+
+          
           <Route path = "/brittle" element = {
             <Fragment>
               <Contact />

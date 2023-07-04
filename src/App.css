@@ -113,7 +113,7 @@
 }
 
 /* Add a red background color to navbar links on hover */
-.wwnavbar a:hover{
+.wwnavbar a:hover {
   -webkit-filter: invert(50%);
 }
 
