@@ -81,25 +81,39 @@ const Dornn = () => {
 
 
               <div className="container">
-                <img className="mx-auto align-top opacity-90 pt-16 w-1/4" src="../../systembanner.png"/>
+                <img className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../world_cover_scrappy.png"/>
                 
 
                 <p className='text-white m-auto text-center w-5/6 pb-20 block'>
+                Dornn is an old name. Some take the name for every cosmic thing; visiting foreigners claim it as the holiest of the Internal Spheres, others still say it’s nothing but a pile of rubble at the center of the Godsgarden’s oldest fountain. Regardless of your experiences, history converges on Dornn - and the records are never flattering. Host of the first, land of the Mortals, the true-and-only-Cradle. Once three great continents, shattered and beaten over by the ages.  Stumbling into the place is easy, as simple as crawling through the wrong crack in the back of an old keep, peeking too deep into a forested cave, taking home the wrong gemstone brooch. Getting out is another story, subject to the tumult of the universe’s sole pressure-point like a waterfall tide from every outward direction. It’s best to think of Dornn as a bottomless well - unfortunately for you, these lands are in deep.
+                <br /><br />
+These isles - the Midlands, as they're oft referred - have died more times than you will, seen catastrophes you’d struggle to picture, and played host to stranger creatures than you could ever aspire to be. Some brave few survive on the bones of this ancient place, rebuilding cities and repaving roadways that are always doomed to another eventual collapse. Others still linger in the far corners of the unlit realm, idly working away at the long-ladder to total ascendancy // divine interruption. In every recess, from the star-sworn spires of old-world war-lands to the time-dead depths of the cyclical-amnesiac underworld, the memories of a millennium realm take shape: ancient prizes, esoteric beasts, impossible fortresses, limitless power. As you may expect, this is where you come in. 
+<br /><br />
+There remains some semblance of the civilizations that held these isles in the days of yore, but they are weak and information is scarce. Failures in magical networking, aggressive paramilitary pressganging and stubborn political isolationism have caused a problem: the roads are overgrown, and most people aren’t talking. Old world infrastructure remains, so you can trace the shape of these undead nations with some ease, but you won’t find any help in the towns they connect. Ten paces beyond the town limits and you’re on your own. This in-of itself wouldn’t be as much of a problem, unfortunately, if the geography wasn’t so traitorous.
+<br /><br />
+By most estimations, Dornn has “died” six or seven times before you arrived. With each death, the geographies and metaphysics of the realm have been liberally reworked. Maps are rarely accurate, physical law is woefully inconsistent, politics are strained and fractured and always lousy with conspiracy. Some think that the whole of it is controlled by a roomful of quasi-Gods that have solved the Magical Answer, and they’ve long-since killed the old divines and taken their place. It isn’t an unreasonable belief to hold.
+<br /><br />
+Yet, if power were so easy, we wouldn’t still be fighting. Magic is a boon, but a fickle one. Absent gods leave strange systemics in their wake, local stability is always a step from disaster, and the Great Ladder corrupts and fortifies in equal measure. For each step you take towards ascendancy, you must lose something in return. Plenty of fools take the gamble. Plenty more are content to do the good work and keep their heads down. It’s up to you exactly where you fall on this axis. 
+<br /><br />
+We live, now, in the Seasons of Stagnation. Once stomped under the boot of the immortal Human Familial Empires, their grand migratory seclusion has left their cities and highways quite-nearly abandoned, and those they left behind are either too powerful to bother or already on the run. Their unconditional immortality has lost its appeal over the centuries, acting more as a torturous guarantee of eternal pain than a promise of dominating power. Never forget the laws of the Haze, and always have a plan to kill them again. 
+<br /><br />
+It was a mere seventy cycles ago when the Wireless Admonition God elected to change the law of signal, and so we continue to redraw maps and resurrect ancient routes in uneasy global silence. For us common mortals, this would be called a disaster. Others do not see it that way. Behind the curtain, grand wheels of fate and games of legendary cosmic warfare skew the realm’s future into dark uncertainties. The greater average of this tired plane may be frail, but there is no ceiling to this house, nor is there any shortage of maniac mana-drunk foes to challenge your climb. Wars are played at levels of scale; we’re always puppets to a higher rung. Maybe it’s better to start looking for the string. 
+<br /><br />
+---------------------
+<br /><br />
+The charted lands of Dornn are split into three "continents." The term is a holdover from a time when they were still whole. To the west is Dornnus, the Cradle, active host to about ninety percent of all living mortals.
+It is a vast realm, mostly characterized by perpetual squabbles between the parasite empires that live off the firmament of old-world ruins. The whole of it was brought to heel by the Five Human Families about a thousand years prior, but their grip 
+has been steadily weakening for several centuries. Immortality is no longer the boon it once was, as their attempts to stifle the progress of science and magic have been slowly overtaken. Still, the fight continues, and progress is glacially slow.
+<br /><br />
+In the center of the Sea of Dvirn are the forgotten realms of Ferveirn, the Golden Lands. Once the beating heart of the Dvirran empire, it has been ransacked and devoured many times since their failure to
+conquer the plane (and subsequent disappearance.) The Rhominite inheritors with the most legitimate claim to the realm hold primacy in the seats of Ilkair, the gilded capital, but Elvish holdouts have remained a stubborn
+factor for as long as the Dvirr have been missing. The eastern half of Ferveirn is under varying levels of quarantine - the old capital of Moz Haphora cannot be entered by any living soul,
+lest they volunteer their freewill to Alavaria, the King-under-Sky.
+<br /><br />
+To the east is the frost-wracked frontier wasteland of Jurdenogh. It was once a vibrant mirror to the cultural varieties of Dornnus, but the follies of the Glassblood youngest embroiled the continent itself
+in a metaphysical concept-superwar between ancient deities, freezing the whole thing ten times over. The poor sods that still live there are pretty much stuck--for a mortal, traversal is almost certain death. For a human, it's just a lot of consecutive certain deaths. There's surely a bounty of unclaimed treasure to be found
+in the mostly-untouched ruins that cover the continent, but it would be a costly trip in both coin and mental fortitude. 
 
-                <i className='text-slate-400'>Note - If you would prefer to have this site in PDF form, you can download it here: <br />- link - </i>
-                <br /><br />
-                The following segments will serve as a straightforward summary of Down the Worldwell's core systems, ordered in a manner that should roughly correlate to their relevance. We will begin
-                with the fundamentals of character representation, then interacting with the world through skills and dialogue, then combat and conflict, and finally through a variety of other
-                potential sub-systems like travel, camping, property ownership, intrigue and worship.
-                <br /><br />
-                Not all edge cases are covered in this document due to navigational concerns. This is intended as a method of rapid onboarding. For a holistic overview of the system, please download the PDF version. 
-                <br /><br />
-                ----------------------------------------------------
-                 <br /><br />
-                Down the Worldwell is a tabletop roleplaying game for any number of players and one Game Master (referred to as the GM from here on.) In it, the players will pilot characters
-                of their own making, reacting to a world the GM creates through narration and prompts. When conflicts arise in this world, if they cannot be mediated by the decisions the players make or the GM's discretion alone,
-                they will be decided using dice. The most common die you will use to interact with the world at large is the 20-sided die - a D20. 
-                
                 </p>
                </div>
             </div>
