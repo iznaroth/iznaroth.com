@@ -10,7 +10,7 @@ import { request } from 'graphql-request';
 
 
 
-const WorldwellSystem = () => {
+const Dornn = () => {
 
   // function to get selected blog content
 
@@ -40,14 +40,36 @@ const WorldwellSystem = () => {
                 src="../../back_button.png"
                 />
             </a>
-            <a href="/dtww/system"><img className='opacity-50' src="../../system.png"/></a>
-            <a href="/dtww/dornn"><img src="../../world.png"/></a>
+            <a href="/dtww/system"><img src="../../system.png"/></a>
+            <a href="/dtww/dornn"><img className='opacity-50' src="../../world.png"/></a>
             <a href="/dtww/character-creation"><img src="../../char.png"/></a>
             <a href="/dtww/assembly"><img src="../../assembly.png"/></a>
         </div>
       </section>
 
-      <div className="dark-background ">
+      <div className="map-spec">
+         <div className="mid-border-map">
+            <div className="inner-border">
+              <img className="corner-decoration corner-left-top" src="../../corner-decoration.png"></img>
+              <img className="corner-decoration corner-right-top" src="../../corner-decoration.png"></img>
+              <img className="corner-decoration corner-right-bottom" src="../../corner-decoration.png"></img>
+              <img className="corner-decoration corner-left-bottom" src="../../corner-decoration.png"></img>
+
+
+              <div className="">
+                
+                
+
+                <img className="w-1/2 m-auto pt-5" src="../../world_banner.png"/>
+                <img className="" src="../../whiteout-blank-site.png"/>
+               </div>
+            </div>
+      </div>
+    </div>
+
+    <div className='blog-footer' />
+
+    <div className="dark-background ">
          <div className="mid-border">
             <div className="inner-border">
               <img className="corner-decoration corner-left-top" src="../../corner-decoration.png"></img>
@@ -91,4 +113,4 @@ const WorldwellSystem = () => {
     
   );
 };
-export default WorldwellSystem;
+export default Dornn;

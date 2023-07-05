@@ -415,6 +415,27 @@ a:hover {
     margin: 0 auto;
 }
 
+.map-spec {
+  min-width: 95vh;
+  background-color: black;
+  margin: 0 auto;
+  padding: 1em;
+  min-height: auto;
+
+  border: 2px solid #ffffff;
+   	height: 99%;
+    width: 98%;
+    padding: 6px;
+    margin: 0 auto;
+}
+
+.mid-border-map {
+  border: 6px solid #ffffff;
+  width: 100%;
+  padding: 6px;
+  margin: auto;
+}
+
 
 .mid-border {
     min-height: 100vh;

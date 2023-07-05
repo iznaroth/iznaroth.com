@@ -10,12 +10,12 @@ import { request } from 'graphql-request';
 
 
 
-const BlogLanding = ({blogContent}) => {
+const WorldwellLanding = () => {
 
   // function to get selected blog content
 
   return (
-    <div className='min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)'}}>
+    <div className='worldwell min-h-screen cursor-drawnhand' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)'}}>
       {/* */}
 
       
@@ -126,4 +126,4 @@ const BlogLanding = ({blogContent}) => {
     
   );
 };
-export default BlogLanding;
+export default WorldwellLanding;
