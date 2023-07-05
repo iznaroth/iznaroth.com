@@ -67,15 +67,18 @@ const BlogLanding = ({blogContent}) => {
                 <i className='text-slate-400'>The following content is a full brekadown of DtWW's basic systems. It is split into chapters which can be navigated using the Table of Contents
                 on the left side. If you would prefer to have this site in PDF form, you can download it here: <br />- link - </i>
                 <br /><br />
-                Down the Worldwell is a tabletop roleplaying game for any number of players and one Game Master (referred to as the GM from here on.) In it, the players will pilot characters
-                of their own making, reacting to a world the GM creates through narration and prompts. When conflicts arise in this world, if they cannot be mediated by the decisions the players make or the GM's discretion alone,
-                they will be decided using dice. The most common die you will use to interact with the world at large is the 20-sided die - a D20. 
-                <br /><br />
                 The following segments will serve as a straightforward summary of Down the Worldwell's core systems, ordered in a manner that should roughly correlate to their relevance. We will begin
                 with the fundamentals of character representation, then interacting with the world through skills and dialogue, then combat and conflict, and finally through a variety of other
                 potential sub-systems like travel, camping, property ownership, intrigue and worship.
                 <br /><br />
                 Not all edge cases are covered in this document due to navigational concerns. This is intended as a method of rapid onboarding. For a holistic overview of the system, please download the PDF version. 
+                <br /><br />
+                ----------------------------------------------------
+                 <br /><br />
+                Down the Worldwell is a tabletop roleplaying game for any number of players and one Game Master (referred to as the GM from here on.) In it, the players will pilot characters
+                of their own making, reacting to a world the GM creates through narration and prompts. When conflicts arise in this world, if they cannot be mediated by the decisions the players make or the GM's discretion alone,
+                they will be decided using dice. The most common die you will use to interact with the world at large is the 20-sided die - a D20. 
+                
                 </p>
                </div>
             </div>
