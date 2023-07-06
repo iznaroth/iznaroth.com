@@ -1,24 +1,30 @@
 import '../../index.css';
 
-import {React,  useState, useEffect } from 'react';
+import {React,  useState, useEffect, useMemo } from 'react';
 import EmptyList from '../blog/EmptyList';
 import BlogList from '../blog/BlogList';
 import Header from '../blog/Header';
 import SearchBar from '../blog/SearchBar';
 import { blogList } from '../../config/Api';
 import { request } from 'graphql-request';
+import { MapContainer, ImageOverlay, Marker, Popup} from 'react-leaflet'
+import { CRS } from 'leaflet'
 
 
+
+const center = [51.505, -0.09]
+
+const outerBounds = [
+  [0, 0],
+  [511, 1068],
+]
 
 const Dornn = () => {
 
-  // function to get selected blog content
-
   return (
+    
     <div className='worldwell min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)'}}>
       {/* */}
-
-      
 
 
       <section id="logo" className="wwlogo">
@@ -50,18 +56,35 @@ const Dornn = () => {
       <div className="map-spec">
          <div className="mid-border-map">
             <div className="inner-border">
-              <img className="corner-decoration corner-left-top" src="../../corner-decoration.png"></img>
-              <img className="corner-decoration corner-right-top" src="../../corner-decoration.png"></img>
-              <img className="corner-decoration corner-right-bottom" src="../../corner-decoration.png"></img>
-              <img className="corner-decoration corner-left-bottom" src="../../corner-decoration.png"></img>
+              <img className="corner-decoration corner-left-top z-50" src="../../corner-decoration.png"></img>
+              <img className="corner-decoration corner-right-top z-50" src="../../corner-decoration.png"></img>
+              <img className="corner-decoration corner-right-bottom z-50" src="../../corner-decoration.png"></img>
+              <img className="corner-decoration corner-left-bottom z-50" src="../../corner-decoration.png"></img>
 
 
               <div className="">
                 
                 
 
-                <img className="w-1/2 m-auto pt-5" src="../../world_banner.png"/>
-                <img className="" src="../../whiteout-blank-site.png"/>
+                <img className="w-1/2 m-auto pt-5" src="../../world_banner.png" alt="The World - Also Known as The Measured Extent of the Dornnian Midlands"/>
+                {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
+                <map name="dornnmap">
+
+                </map>
+
+                <div id='map'>
+                  <MapContainer center={[256, 534]} zoom={0.5} minZoom={0.5} scrollWheelZoom={false} zoomControl={true} zoomSnap={0.1} zoomDelta={0.1} crs={CRS.Simple} maxBounds={outerBounds} maxBoundsViscosity={0.9}>
+                    <ImageOverlay 
+                      url="../../whiteout-blank-site.png" bounds={outerBounds}
+                    />
+                    <Marker position={[256, 534]}>
+                      <Popup>
+                        A pretty CSS3 popup. <br /> Easily customizable.
+                      </Popup>
+                    </Marker>
+                  </MapContainer>
+                </div>
+                
                </div>
             </div>
       </div>

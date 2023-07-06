@@ -178,3 +178,32 @@
   cursor: url('/public/tiny_clickable_hand.png'), auto;
 }
 
+.leaflet-container{
+  height: 100vh;
+  max-width: 192vh;
+  margin: auto;
+  background: none !important;
+  z-index: 0 !important;
+
+}
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: url('/public/tiny_cursor.png'), auto !important;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: url('/public/tiny_cursor.png'), auto !important;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: url('/public/tiny_cursor.png'), auto !important;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: url('/public/tiny_cursor.png'), auto !important;
+	}
+

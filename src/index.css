@@ -65,7 +65,7 @@ input {
 }
 
 .blog-footer {
-    min-height: 2.5em;
+    min-height: 3.5em;
     max-height: 10em;
 }
 
@@ -546,4 +546,10 @@ a:hover {
 	bottom: 0;
 	-webkit-transform: scaleY(-1);
   	transform: scaleY(-1);
+}
+
+#map {
+  max-height: 100vh;
+  background-color: transparent;
+  padding-bottom: 10;
 }
