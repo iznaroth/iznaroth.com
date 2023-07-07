@@ -416,7 +416,8 @@ a:hover {
 }
 
 .map-spec {
-  min-width: 95vh;
+  min-width: 80vw;
+  max-width: 90vw;
   background-color: black;
   margin: 0 auto;
   padding: 1em;

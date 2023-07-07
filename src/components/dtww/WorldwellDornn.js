@@ -7,17 +7,161 @@ import Header from '../blog/Header';
 import SearchBar from '../blog/SearchBar';
 import { blogList } from '../../config/Api';
 import { request } from 'graphql-request';
-import { MapContainer, ImageOverlay, Marker, Popup} from 'react-leaflet'
-import { CRS } from 'leaflet'
+import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, Rectangle } from 'react-leaflet'
+import { CRS, icon } from 'leaflet'
 
 
 
 const center = [51.505, -0.09]
 
-const outerBounds = [
+const screenBounds = [
   [0, 0],
   [511, 1068],
 ]
+
+
+const dolwynd = [
+  [441, 272],
+  [462, 284],
+  [484, 307],
+  [477, 332],
+  [450, 351],
+  [420, 333],
+  [393,328],
+  [369,337],
+  [344,328],
+  [308,291],
+  [303,260],
+  [298,242],
+  [314,227],
+  [324,226],
+  [341,246],
+  [353,250],
+  [357,259],
+  [370,263],
+  [379,252],
+  [390,248],
+  [405, 254],
+  [427, 256],
+  [437, 262],
+  [436, 265.6],
+  [435,269]
+
+]
+
+const multiPolygon = [
+  [
+    [400.51, 115.12],
+    [400.51, 115.13],
+    [400.53, 115.13],
+  ],
+  [
+    [400.51, 115.05],
+    [400.51, 115.07],
+    [400.53, 115.07],
+  ],
+]
+
+
+const rectangle = [
+  [51.49, 115.08],
+  [400.5, 115.06],
+]
+
+
+
+const fillBlueOptions = { fillColor: 'blue' }
+const blackOptions = { color: 'black', fillColor: 'black'}
+const limeOptions = { color: 'lime' }
+const purpleOptions = { color: 'purple' }
+const redOptions = { color: 'red' }
+
+const innerBounds = [
+  [108.505, 77.09],
+  [180.505, 82.09],
+]
+const outerBounds = [
+  [50.505, 10.09],
+  [105.505, 209.09],
+]
+
+const redColor = { color: 'red' }
+const whiteColor = { color: 'white' }
+const blackColor = { color: 'black' }
+
+function SetBoundsRectangles() {
+  const [bounds, setBounds] = useState(outerBounds)
+  const map = useMap()
+
+  const innerHandlers = useMemo(
+    () => ({
+      click() {
+        setBounds(innerBounds)
+        map.fitBounds(innerBounds)
+      },
+    }),
+    [map],
+  )
+  const outerHandlers = useMemo(
+    () => ({
+      click() {
+        setBounds(outerBounds)
+        map.fitBounds(outerBounds)
+      },
+    }),
+    [map],
+  )
+
+  return (
+    <>
+      <Rectangle
+        bounds={outerBounds}
+        eventHandlers={outerHandlers}
+        pathOptions={bounds === outerBounds ? whiteColor : blackColor}
+      />
+      <Rectangle
+        bounds={innerBounds}
+        eventHandlers={innerHandlers}
+        pathOptions={bounds === innerBounds ? whiteColor : blackColor }
+        fillOpacity={ bounds === screenBounds ? 1.0 : 0.0 }
+      />
+    </>
+  )
+}
+
+function SetBoundsPolygons() {
+  const [bounds, setBounds] = useState(screenBounds)
+  const map = useMap()
+
+  const dolwyndHandlers = useMemo(
+    () => ({
+      click() {
+        setBounds(dolwynd)
+        map.fitBounds(dolwynd)
+      },
+    }),
+    [map],
+  )
+
+  return (
+    <>
+      <Polygon
+        positions={dolwynd}
+        eventHandlers={dolwyndHandlers}
+        pathOptions={bounds === dolwynd ? redColor : whiteColor}
+      />
+    </>
+  )
+}
+
+var cantocIcon = icon({
+  iconUrl: '../../cantoc_test.png',
+
+  iconSize:     [140, 28], // size of the icon
+  iconAnchor:   [35, 7], // point of the icon which will correspond to marker's location
+  shadowAnchor: [4, 62],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
 
 const Dornn = () => {
 
@@ -73,15 +217,12 @@ const Dornn = () => {
                 </map>
 
                 <div id='map'>
-                  <MapContainer center={[256, 534]} zoom={0.5} minZoom={0.5} scrollWheelZoom={false} zoomControl={true} zoomSnap={0.1} zoomDelta={0.1} crs={CRS.Simple} maxBounds={outerBounds} maxBoundsViscosity={0.9}>
+                  <MapContainer center={[256, 534]} zoom={0.5} minZoom={0.5} scrollWheelZoom={true} zoomControl={true} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBounds} maxBoundsViscosity={0.9}>
                     <ImageOverlay 
-                      url="../../whiteout-blank-site.png" bounds={outerBounds}
+                      url="../../whiteout-blank-site.png" bounds={screenBounds}
                     />
-                    <Marker position={[256, 534]}>
-                      <Popup>
-                        A pretty CSS3 popup. <br /> Easily customizable.
-                      </Popup>
-                    </Marker>
+                    <SetBoundsRectangles />
+                    <SetBoundsPolygons />
                   </MapContainer>
                 </div>
                 
