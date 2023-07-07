@@ -1,6 +1,6 @@
 import '../../index.css';
 
-import {React,  useState, useEffect, useMemo } from 'react';
+import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import EmptyList from '../blog/EmptyList';
 import BlogList from '../blog/BlogList';
 import Header from '../blog/Header';
@@ -8,11 +8,8 @@ import SearchBar from '../blog/SearchBar';
 import { blogList } from '../../config/Api';
 import { request } from 'graphql-request';
 import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, Rectangle } from 'react-leaflet'
-import { CRS, icon } from 'leaflet'
-
-
-
-const center = [51.505, -0.09]
+import { CRS, icon, map } from 'leaflet'
+import { useResizeDetector } from 'react-resize-detector';
 
 const screenBounds = [
   [0, 0],
@@ -89,6 +86,8 @@ const redColor = { color: 'red' }
 const whiteColor = { color: 'white' }
 const blackColor = { color: 'black' }
 
+
+
 function SetBoundsRectangles() {
   const [bounds, setBounds] = useState(outerBounds)
   const map = useMap()
@@ -124,35 +123,12 @@ function SetBoundsRectangles() {
         eventHandlers={innerHandlers}
         pathOptions={bounds === innerBounds ? whiteColor : blackColor }
         fillOpacity={ bounds === screenBounds ? 1.0 : 0.0 }
+        opacity={ bounds === screenBounds ? 1.0 : 0.0 }
       />
     </>
   )
 }
 
-function SetBoundsPolygons() {
-  const [bounds, setBounds] = useState(screenBounds)
-  const map = useMap()
-
-  const dolwyndHandlers = useMemo(
-    () => ({
-      click() {
-        setBounds(dolwynd)
-        map.fitBounds(dolwynd)
-      },
-    }),
-    [map],
-  )
-
-  return (
-    <>
-      <Polygon
-        positions={dolwynd}
-        eventHandlers={dolwyndHandlers}
-        pathOptions={bounds === dolwynd ? redColor : whiteColor}
-      />
-    </>
-  )
-}
 
 var cantocIcon = icon({
   iconUrl: '../../cantoc_test.png',
@@ -163,7 +139,59 @@ var cantocIcon = icon({
   popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
 });
 
+
+
 const Dornn = () => {
+
+  const [focused, setFocused] = useState(false);
+  const [map, setMap] = useState(null);
+  const mapContainerRef = useRef(null);
+
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      if(map != null){ map.invalidateSize(); 
+      console.log("Resized.")}
+    });
+    
+    
+    resizeObserver.observe(mapContainerRef.current);
+  })
+  
+  function updateFocus(){
+     setFocused(false);
+     console.log("Returning to origin.")
+     map.flyToBounds(screenBounds)
+  }
+
+
+  function SetBoundsPolygons() {
+    const [bounds, setBounds] = useState(screenBounds)
+    const map = useMap()
+  
+    const dolwyndHandlers = useMemo(
+      () => ({
+        click() {
+          setBounds(dolwynd)
+          setFocused(true);
+          console.log(focused)
+          map.invalidateSize();
+          
+          map.flyToBounds(dolwynd, {duration: 2})
+        },
+      }),
+      [map],
+    )
+  
+    return (
+      <>
+        <Polygon
+          positions={dolwynd}
+          eventHandlers={dolwyndHandlers}
+          pathOptions={bounds === dolwynd ? redColor : whiteColor}
+        />
+      </>
+    )
+  }
 
   return (
     
@@ -205,28 +233,28 @@ const Dornn = () => {
               <img className="corner-decoration corner-right-bottom z-50" src="../../corner-decoration.png"></img>
               <img className="corner-decoration corner-left-bottom z-50" src="../../corner-decoration.png"></img>
 
-
-              <div className="">
-                
-                
-
+              <div id='content-main'>
                 <img className="w-1/2 m-auto pt-5" src="../../world_banner.png" alt="The World - Also Known as The Measured Extent of the Dornnian Midlands"/>
-                {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
-                <map name="dornnmap">
-
-                </map>
-
-                <div id='map'>
-                  <MapContainer center={[256, 534]} zoom={0.5} minZoom={0.5} scrollWheelZoom={true} zoomControl={true} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBounds} maxBoundsViscosity={0.9}>
-                    <ImageOverlay 
-                      url="../../whiteout-blank-site.png" bounds={screenBounds}
-                    />
-                    <SetBoundsRectangles />
-                    <SetBoundsPolygons />
-                  </MapContainer>
+                <div className="mapcontent">
+                  
+                  {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
+                  <div id='map' ref={mapContainerRef}>
+                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.5} minZoom={0.5} scrollWheelZoom={true} zoomControl={false} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBounds} maxBoundsViscosity={0.9}>
+                      <ImageOverlay 
+                        url="../../whiteout-blank-site.png" bounds={screenBounds} pagespeed_no_transform
+                      />
+                      <SetBoundsRectangles />
+                      <SetBoundsPolygons />
+                    </MapContainer>
+                  </div>
+                  { focused ? <div className="map-info">AAAAAAAH!!!
+                    
+                    Here's a button to go back -- <button onClick={updateFocus} >GO BACK</button>
+                    
+                    </div> :  null }
+                  
                 </div>
-                
-               </div>
+              </div>
             </div>
       </div>
     </div>
@@ -287,8 +315,9 @@ in the mostly-untouched ruins that cover the continent, but it would be a costly
       <div className='blog-footer' />
     </div>
 
-    
+
     
   );
 };
 export default Dornn;
+

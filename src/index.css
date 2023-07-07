@@ -551,6 +551,17 @@ a:hover {
 
 #map {
   max-height: 100vh;
+  min-height: 100vh;
   background-color: transparent;
   padding-bottom: 10;
+  flex: 1;
+
+}
+
+.mapcontent {
+  display:flex;
+}
+
+.map-info{
+  width: 40vw;
 }
