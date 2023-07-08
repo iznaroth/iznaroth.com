@@ -565,3 +565,14 @@ a:hover {
 .map-info{
   width: 40vw;
 }
+
+.map-info-header{
+  font-family: 'IM Fell DW Pica';
+  color: #58B585;
+}
+
+.map-info-content{
+  font-family: 'Times New Roman';
+  color: #dfdfdf;
+  font-size: 1.1rem;
+}

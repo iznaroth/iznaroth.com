@@ -179,7 +179,7 @@
 }
 
 .leaflet-container{
-  height: 90vh;
+  height: 100%;
   max-width: 192vh;
   margin: auto;
   background: none !important;
@@ -190,7 +190,7 @@
 
 .leaflet-interactive {
 	cursor: pointer;
-  opacity: 1 !important;
+  opacity: 0 !important;
 	}
 
 /* Add a red background color to navbar links on hover */

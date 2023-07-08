@@ -46,88 +46,40 @@ const dolwynd = [
 
 ]
 
-const multiPolygon = [
-  [
-    [400.51, 115.12],
-    [400.51, 115.13],
-    [400.53, 115.13],
-  ],
-  [
-    [400.51, 115.05],
-    [400.51, 115.07],
-    [400.53, 115.07],
-  ],
+
+const northsea = [
+  [337, 183],
+  [330, 196],
+  [326, 212],
+  [326, 224],
+
+  [333, 232],
+  [340, 239],
+  [348, 247],
+  [358, 254],
+
+  [368, 256],
+  [374, 250],
+  [385, 240],
+  [397, 248],
+
+  [412, 251],
+  [424, 251],
+  [413, 236],
+  [397, 227],
+
+  [372, 217],
+  [359, 202],
+  [350, 193]
 ]
 
-
-const rectangle = [
-  [51.49, 115.08],
-  [400.5, 115.06],
-]
+const zoneArray = [dolwynd, northsea]
 
 
-
-const fillBlueOptions = { fillColor: 'blue' }
-const blackOptions = { color: 'black', fillColor: 'black'}
-const limeOptions = { color: 'lime' }
-const purpleOptions = { color: 'purple' }
-const redOptions = { color: 'red' }
-
-const innerBounds = [
-  [108.505, 77.09],
-  [180.505, 82.09],
-]
-const outerBounds = [
-  [50.505, 10.09],
-  [105.505, 209.09],
-]
 
 const redColor = { color: 'red' }
 const whiteColor = { color: 'white' }
 const blackColor = { color: 'black' }
-
-
-
-function SetBoundsRectangles() {
-  const [bounds, setBounds] = useState(outerBounds)
-  const map = useMap()
-
-  const innerHandlers = useMemo(
-    () => ({
-      click() {
-        setBounds(innerBounds)
-        map.fitBounds(innerBounds)
-      },
-    }),
-    [map],
-  )
-  const outerHandlers = useMemo(
-    () => ({
-      click() {
-        setBounds(outerBounds)
-        map.fitBounds(outerBounds)
-      },
-    }),
-    [map],
-  )
-
-  return (
-    <>
-      <Rectangle
-        bounds={outerBounds}
-        eventHandlers={outerHandlers}
-        pathOptions={bounds === outerBounds ? whiteColor : blackColor}
-      />
-      <Rectangle
-        bounds={innerBounds}
-        eventHandlers={innerHandlers}
-        pathOptions={bounds === innerBounds ? whiteColor : blackColor }
-        fillOpacity={ bounds === screenBounds ? 1.0 : 0.0 }
-        opacity={ bounds === screenBounds ? 1.0 : 0.0 }
-      />
-    </>
-  )
-}
 
 
 var cantocIcon = icon({
@@ -147,6 +99,25 @@ const Dornn = () => {
   const [map, setMap] = useState(null);
   const mapContainerRef = useRef(null);
 
+  const [opacities, setOpacities] = useState([0.5, 0.5])
+
+  function setZoneOpacities(which){
+
+    var newOpacitiesArray = [0.5, 0.5];
+
+    for(let i = 0; i < zoneArray.length; i++){
+        if(which == screenBounds){
+          newOpacitiesArray[i] = 0.0; //reset bounds - disable blockers
+        }
+        else if(zoneArray[i] != which){
+          console.log(zoneArray[i]);
+          newOpacitiesArray[i] = 1.0; //When a zone is selected, all other zones crank their bg opacity to 100% and become invisible.
+        }
+    }
+
+    setOpacities(newOpacitiesArray);
+  }
+
   useEffect(() => {
     const resizeObserver = new ResizeObserver(() => {
       if(map != null){ map.invalidateSize(); 
@@ -161,6 +132,7 @@ const Dornn = () => {
      setFocused(false);
      console.log("Returning to origin.")
      map.flyToBounds(screenBounds)
+     
   }
 
 
@@ -171,12 +143,28 @@ const Dornn = () => {
     const dolwyndHandlers = useMemo(
       () => ({
         click() {
-          setBounds(dolwynd)
+          setBounds(dolwynd);
+          setZoneOpacities(dolwynd, true);
           setFocused(true);
-          console.log(focused)
+          console.log(focused);
           map.invalidateSize();
           
           map.flyToBounds(dolwynd, {duration: 2})
+        },
+      }),
+      [map],
+    )
+
+    const northseaHandlers = useMemo(
+      () => ({
+        click() {
+          setBounds(northsea);
+          setZoneOpacities(northsea, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(northsea, {duration: 2})
         },
       }),
       [map],
@@ -187,7 +175,15 @@ const Dornn = () => {
         <Polygon
           positions={dolwynd}
           eventHandlers={dolwyndHandlers}
-          pathOptions={bounds === dolwynd ? redColor : whiteColor}
+          pathOptions={bounds === dolwynd ? whiteColor : blackColor}
+          fillOpacity={opacities[0]}
+        />
+
+        <Polygon
+          positions={northsea}
+          eventHandlers={northseaHandlers}
+          pathOptions={bounds === northsea ? whiteColor : blackColor}
+          fillOpacity={opacities[1]}
         />
       </>
     )
@@ -239,17 +235,35 @@ const Dornn = () => {
                   
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
                   <div id='map' ref={mapContainerRef}>
-                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.5} minZoom={0.5} scrollWheelZoom={true} zoomControl={false} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBounds} maxBoundsViscosity={0.9}>
+                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.4} minZoom={0.4} scrollWheelZoom={true} zoomControl={false} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBounds} maxBoundsViscosity={0.9}>
                       <ImageOverlay 
                         url="../../whiteout-blank-site.png" bounds={screenBounds} pagespeed_no_transform
                       />
-                      <SetBoundsRectangles />
                       <SetBoundsPolygons />
                     </MapContainer>
                   </div>
-                  { focused ? <div className="map-info">AAAAAAAH!!!
-                    
-                    Here's a button to go back -- <button onClick={updateFocus} >GO BACK</button>
+                  { focused ? <div className="map-info text-center overflow-y-scroll">
+                    <h className="inline-block text-6xl pt-5 pb-5 map-info-header">DOLWYND</h>
+                    <p className='pb-2  px-5 text-slate-500'>
+                    - Temperate Grasslands | Droughted Deepwoods | Superheated Badlands | Frost-wreathed Crags -
+                    </p>
+                    <p>
+                     - 28% Northfolk | 33% Elves (Stonebound primacy) | 12% Mites | 21% Gnomes | 4% Halflings | 3% Unaccounted -
+                    </p>
+                    <p className="inline-block pt-5 pb-5  px-5 map-info-content">
+                    The northeastern reaches of Dornnus play host to the High King's disparate realms, a patchwork federation of mortal polities unified out of necessity and usually at war with their neighbors.
+                    Certainly the most rambunctious of the Midlands Council, rarely willing to comply with even the most reasonable request. Dolwynd itself is a scantly-settled place, split down the middle by an uncharacteristically-searing badland which separates the
+                    faelost quarry-plains of Vladisland from the hard-frozen extents of Tholri's territory--seat of High King Renestru-um IX's power. The roads are essentially an excuse, only maintained for the mercenaries to run their tax routes once every cycle.
+                    <br></br><br></br>
+                    Dolwynd is also the bleeding stem of the abandoned Dwarvenhold. When the Dwarves commanded their ken to retreat and descend, most followed the order. Dozens of cities were abandoned in hardly a month's time, left to rot under the 
+                    Lurch's sunless skies for a millenia before anyone would return to find them gone. These artisanal ur-ruins are places of a long-bygone age, policed by magics and machines that make little sense to common sensibility. Many a treasure-delver
+                    has attempted to pry coin from these surfaced culture-tombs, but most fail in one way or another. Entering the great Citadels themselves is another proposition entirely, one that would likely necessitate many hundreds of participants 
+                    and at least a cycle's worth of diligent planning.
+                    <br></br><br></br>
+                    Dolwynd has been marred by catastrophe since long before the Lurch rent it from its neighbors. Pockmarked by craters from cosmic visitation, drilled by dream-scorched pillars of Faewrath and Demon-meddling, 
+                    imposed upon by the noble seats of the Epitaxor Lords of the Valkngthm-Rhyn, the list goes on-and-on. The "Heartstone of the Seven Catastrophes," they call it - you don't have to walk far to run into a problem of some sort.
+                    </p>
+                    <button onClick={updateFocus}>GO BACK</button>
                     
                     </div> :  null }
                   
