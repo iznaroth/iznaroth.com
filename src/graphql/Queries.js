@@ -51,3 +51,17 @@ export const QUERY_POSTLIST = gql`
         }
     }
 }`
+
+export const QUERY_MAPENTRY = gql`
+{
+    mapInfos {
+        entryID
+        header
+        environs
+        populations
+        headerColor {
+          hex
+        }
+        body
+      }
+}`

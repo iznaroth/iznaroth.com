@@ -188,15 +188,6 @@
 
 }
 
-.leaflet-interactive {
-	cursor: pointer;
-  opacity: 0 !important;
-	}
-
-/* Add a red background color to navbar links on hover */
-.leaflet-interactive:hover {
-  opacity: 1 !important;
-}
 
 .leaflet-grab {
 	cursor: url('/public/tiny_cursor.png'), auto !important;

@@ -34,12 +34,7 @@ function App() {
     graphcms.request(QUERY_SLUG_CATEGORIES)
     .then(res => setCategories(res.categories))
 
-    graphcms.request(QUERY_POSTLIST)
-    .then(res => console.log(res))
-
-    graphcms.request(QUERY_SLUG_CATEGORIES)
-    .then(res => console.log(res))
-
+    
     console.log(posts)
     console.log(categories)
   }, [])
