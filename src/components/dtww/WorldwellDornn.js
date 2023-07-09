@@ -11,6 +11,7 @@ import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, R
 import { CRS, icon, map } from 'leaflet'
 import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY } from '../../graphql/Queries';
+import { dolwynd, anterros, northsea, argov, iorstav } from './DornnMapConstants';
 
 const screenBounds = [
   [0, 0],
@@ -23,112 +24,8 @@ const screenBoundsWiggle = [
 ]
 
 
-const dolwynd = [
-  [441, 272],
-  [462, 284],
-  [484, 307],
-  [477, 332],
-  [450, 351],
-  [420, 333],
-  [393,328],
-  [369,337],
-  [344,328],
-  [308,291],
-  [303,260],
-  [298,242],
-  [314,227],
-  [324,226],
-  [341,246],
-  [353,250],
-  [357,259],
-  [370,263],
-  [379,252],
-  [390,248],
-  [405, 254],
-  [427, 256],
-  [437, 262],
-  [436, 265.6],
-  [435,269]
 
-]
-
-
-const northsea = [
-  [337, 183],
-  [329, 196],
-  [326, 212],
-  [326, 224],
-
-  [333, 232],
-  [340, 239],
-  [348, 247],
-  [358, 256],
-
-  [368, 258],
-  [374, 252],
-  [385, 240],
-  [397, 248],
-
-  [412, 255],
-  [420, 255],
-  [425, 251],
-  [413, 236],
-  [397, 227],
-
-  [372, 217],
-  [359, 199],
-  [350, 193]
-]
-
-const anterros = [
-  [458, 276],
-  [446, 275],
-  [434, 264],
-  [423, 249],
-  [419, 236],
-  [410, 232],
-  [398, 225],
-  [392, 224],
-  [388, 221],
-  [383, 220],
-  [375, 216],
-  [369, 211],
-  [365, 206],
-  [363, 204],
-  [361, 199],
-  [357, 195],
-  [352, 182],
-  [348, 175],
-  [341, 173],
-  [341, 164],
-  [346, 156],
-  [349, 143],
-  [344, 141],
-  [337, 142],
-  [335, 137],
-  [334, 130],
-  [328, 124],
-  [326, 117],
-  [318, 109],
-  [314, 94],
-  [317, 85],
-  [313, 77],
-  [308, 68],
-  [302, 47],
-  [304, 32],
-  [312, 21],
-  [323, 13],
-  [336, 4],
-  [399, 8],
-  [452, 44],
-  [486, 95],
-  [495, 158],
-  [492, 220],
-  [478, 263]
-
-]
-
-const zoneArray = [dolwynd, northsea, anterros]
+const zoneArray = [dolwynd, northsea, anterros, argov, iorstav]
 
 
 
@@ -157,11 +54,11 @@ const Dornn = () => {
   const [selectedBody, setSelectedBody] = useState(null);
   const [mapControlState, setMapControlState] = useState([false, false]); //represents drag and zoom restrictions
 
-  const [opacities, setOpacities] = useState([0.0, 0.0, 0.0])
+  const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0])
 
   function setZoneOpacities(which){
 
-    var newOpacitiesArray = [0.0, 0.0, 0.0];
+    var newOpacitiesArray = [0.0, 0.0, 0.0, 0.0, 0.0];
 
     for(let i = 0; i < zoneArray.length; i++){
       console.log(which == screenBounds);
@@ -231,14 +128,14 @@ const Dornn = () => {
         mouseover(event) {
           console.log("dol over")
           if(!focused &&  event.target.options.fillOpacity != 0.5){
-            setOpacities([0.5, 0.0, 0.0]) //hacky. you can only hover one thing at a time, so just set everyone else to normal. 
+            setOpacities([0.5, 0.0, 0.0, 0.0, 0.0]) //hacky. you can only hover one thing at a time, so just set everyone else to normal. 
           }
         },
         mouseout(event) {
           console.log("dol OUT")
           console.log(event)
           if(!focused && event.target.options.fillOpacity != 0){
-            setOpacities([0.0, opacities[1], opacities[2]]) //the absolute hackiest way of doing this. gets grosser with every added region!
+            setOpacities([0.0, opacities[1], opacities[2], opacities[3], opacities[4]]) //the absolute hackiest way of doing this. gets grosser with every added region!
           }
         }
       }),
@@ -249,6 +146,8 @@ const Dornn = () => {
       () => ({
         click() {
           if(!focused){
+            const post = info.find((post) => post.entryID === "northsea")
+            setSelectedBody(post);
             setBounds(northsea);
             setZoneOpacities(northsea, true);
             setFocused(true);
@@ -262,14 +161,14 @@ const Dornn = () => {
         mouseover(event) {
           console.log("north over")
           if(!focused &&  event.target.options.fillOpacity != 0.5){
-            setOpacities([0.0, 0.5, 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
+            setOpacities([0.0, 0.5, 0.0, 0.0, 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
           }
         },
         mouseout(event) {
           console.log("north OUT")
           console.log(event)
           if(!focused && event.target.options.fillOpacity != 0){
-            setOpacities([opacities[0], 0.0, opacities[2]]) //the absolute hackiest way of doing this. gets grosser with every added region!
+            setOpacities([opacities[0], 0.0, opacities[2], opacities[3], opacities[4]]) //the absolute hackiest way of doing this. gets grosser with every added region!
           }
         }
         
@@ -281,6 +180,8 @@ const Dornn = () => {
         () => ({
           click() {
             if(!focused){
+              const post = info.find((post) => post.entryID === "anterros")
+              setSelectedBody(post);
               setBounds(anterros);
               setZoneOpacities(anterros, true);
               setFocused(true);
@@ -294,20 +195,82 @@ const Dornn = () => {
           mouseover(event) {
             console.log("north over")
             if(!focused &&  event.target.options.fillOpacity != 0.5){
-              setOpacities([0.0, 0.0, 0.5]) //the absolute hackiest way of doing this. gets grosser with every added region!
+              setOpacities([0.0, 0.0, 0.5, 0.0, 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
             }
           },
           mouseout(event) {
             console.log("north OUT")
             console.log(event)
             if(!focused && event.target.options.fillOpacity != 0){
-              setOpacities([opacities[0], opacities[1], 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
+              setOpacities([opacities[0], opacities[1], 0.0, opacities[3], opacities[4]]) //the absolute hackiest way of doing this. gets grosser with every added region!
             }
           }
           
         }),
         [map],
     )
+
+    const argovHandlers = useMemo(
+      () => ({
+        click() {
+          if(!focused){
+            const post = info.find((post) => post.entryID === "argov")
+            setSelectedBody(post);
+            setBounds(argov);
+            setZoneOpacities(argov, true);
+            setFocused(true);
+            console.log(focused);
+            map.invalidateSize();
+            
+            map.flyToBounds(argov, {duration: 2})
+          }
+        },
+        
+        mouseover(event) {
+          if(!focused &&  event.target.options.fillOpacity != 0.5){
+            setOpacities([0.0, 0.0, 0.0, 0.5, 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
+          }
+        },
+        mouseout(event) {
+          if(!focused && event.target.options.fillOpacity != 0){
+            setOpacities([opacities[0], opacities[1], opacities[2], 0.0, opacities[4]]) //the absolute hackiest way of doing this. gets grosser with every added region!
+          }
+        }
+        
+      }),
+      [map],
+  )
+
+  const iorstavHandlers = useMemo(
+    () => ({
+      click() {
+        if(!focused){
+          const post = info.find((post) => post.entryID === "iorstav")
+          setSelectedBody(post);
+          setBounds(iorstav);
+          setZoneOpacities(iorstav, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(iorstav, {duration: 2})
+        }
+      },
+      
+      mouseover(event) {
+        if(!focused &&  event.target.options.fillOpacity != 0.5){
+          setOpacities([0.0, 0.0, 0.0, 0.0, 0.5]) //the absolute hackiest way of doing this. gets grosser with every added region!
+        }
+      },
+      mouseout(event) {
+        if(!focused && event.target.options.fillOpacity != 0){
+          setOpacities([opacities[0], opacities[1], opacities[1], opacities[1], 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
+        }
+      }
+      
+    }),
+    [map],
+)
   
     return (
       <>
@@ -330,7 +293,21 @@ const Dornn = () => {
           eventHandlers={anterrosHandlers}
           pathOptions={bounds === anterros ? whiteColor : blackColor}
           fillOpacity={opacities[2]}
-        />    
+        />   
+
+        <Polygon
+          positions={argov}
+          eventHandlers={argovHandlers}
+          pathOptions={bounds === argov ? whiteColor : blackColor}
+          fillOpacity={opacities[3]}
+        /> 
+
+        <Polygon
+          positions={iorstav}
+          eventHandlers={iorstavHandlers}
+          pathOptions={bounds === iorstav ? whiteColor : blackColor}
+          fillOpacity={opacities[4]}
+        />  
       </>
     )
   }
