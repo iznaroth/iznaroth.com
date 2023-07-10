@@ -560,6 +560,7 @@ a:hover {
 
 .mapcontent {
   display:flex;
+  height: 95vh;
 }
 
 .map-info{
@@ -575,3 +576,11 @@ a:hover {
   color: #dfdfdf;
   font-size: 1.1rem;
 }
+
+.map-return{
+	font-family: 'IM Fell DW Pica';
+	font-size: 1.5rem;
+	color: #c4635c;
+}
+
+

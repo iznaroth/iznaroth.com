@@ -55,6 +55,7 @@ const Dornn = () => {
   const [mapControlState, setMapControlState] = useState([false, false]); //represents drag and zoom restrictions
 
   const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0])
+  const [runMonitor, setRunMonitor] = useState(false);
 
   function setZoneOpacities(which){
 
@@ -76,7 +77,10 @@ const Dornn = () => {
   }
 
   useEffect(() => {
-    if(info == null){
+    
+    if(info == null && !runMonitor){
+    console.log("rereq map info")
+      setRunMonitor(true);
       graphcms.request(QUERY_MAPENTRY)
       .then(res => setInfo(res.mapInfos))
       
@@ -97,7 +101,7 @@ const Dornn = () => {
      setFocused(false);
      console.log("Returning to origin.");
      setZoneOpacities(screenBounds);
-     map.flyTo([256, 534], 0.4);
+     map.flyTo([256, 534], 0.3);
      setSelectedBody(null);
      setMapControlState(true, true);
      
@@ -358,7 +362,7 @@ const Dornn = () => {
                   
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
                   <div id='map' ref={mapContainerRef}>
-                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.4} minZoom={0.4} dragging={mapControlState[0]} scrollWheelZoom={mapControlState[1]} zoomControl={false} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBoundsWiggle} maxBoundsViscosity={0.9}>
+                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.3} minZoom={0.3} dragging={mapControlState[0]} scrollWheelZoom={mapControlState[1]} zoomControl={false} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBoundsWiggle} maxBoundsViscosity={0.9}>
                       <ImageOverlay 
                         url="../../whiteout-blank-site.png" bounds={screenBounds} pagespeed_no_transform
                       />
@@ -373,9 +377,9 @@ const Dornn = () => {
                     <p>
                     {selectedBody.populations}
                     </p>
-                    <p className="inline-block pt-5 pb-5  px-5 map-info-content" dangerouslySetInnerHTML={{ __html: selectedBody.body }}>
+                    <p className="inline-block pt-5 pb-0  px-5 map-info-content" dangerouslySetInnerHTML={{ __html: selectedBody.body }}>
                     </p>
-                    <button className='py-5' onClick={updateFocus}>GO BACK</button>
+                    <button className='py-5 map-return' onClick={updateFocus}>GO BACK</button>
                     
                     </div> :  null }
                   

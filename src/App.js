@@ -27,12 +27,18 @@ function App() {
   
 
   useEffect(() => {
+    
+    if(posts == null){
+        console.log("call for blog")
+        graphcms.request(QUERY_POSTLIST)
+        .then(res => setPosts(res.simplePosts))
+    }
 
-    graphcms.request(QUERY_POSTLIST)
-    .then(res => setPosts(res.simplePosts))
-
-    graphcms.request(QUERY_SLUG_CATEGORIES)
-    .then(res => setCategories(res.categories))
+    if(categories == null){
+        console.log("call for categories")
+        graphcms.request(QUERY_SLUG_CATEGORIES)
+        .then(res => setCategories(res.categories))
+    }
 
     
     console.log(posts)

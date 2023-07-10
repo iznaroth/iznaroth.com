@@ -179,7 +179,7 @@
 }
 
 .leaflet-container{
-  height: 100%;
+  height: 95vh;
   max-width: 192vh;
   margin: auto;
   background: none !important;
