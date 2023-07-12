@@ -11,7 +11,7 @@ import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, R
 import { CRS, icon, map } from 'leaflet'
 import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY } from '../../graphql/Queries';
-import { dolwynd, anterros, northsea, argov, iorstav } from './DornnMapConstants';
+import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn } from './DornnMapConstants';
 
 const screenBounds = [
   [0, 0],
@@ -25,7 +25,7 @@ const screenBoundsWiggle = [
 
 
 
-const zoneArray = [dolwynd, northsea, anterros, argov, iorstav]
+const zoneArray = [dolwynd, northsea, anterros, argov, iorstav, dorrim, cantoc, molog]
 
 
 
@@ -54,12 +54,12 @@ const Dornn = () => {
   const [selectedBody, setSelectedBody] = useState(null);
   const [mapControlState, setMapControlState] = useState([false, false]); //represents drag and zoom restrictions
 
-  const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0])
+  const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
   const [runMonitor, setRunMonitor] = useState(false);
 
   function setZoneOpacities(which){
 
-    var newOpacitiesArray = [0.0, 0.0, 0.0, 0.0, 0.0];
+    var newOpacitiesArray = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 
     for(let i = 0; i < zoneArray.length; i++){
       console.log(which == screenBounds);
@@ -74,6 +74,20 @@ const Dornn = () => {
     }
 
     setOpacities(newOpacitiesArray);
+  }
+
+  function hoverToggleOpacs(which, sel){ //play on mouseevent. if sel is true, disable everything shadow this. otherwise flat restore + zero out
+    var setterArray = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    if(!sel){ //if unselect
+        for(let i = 0; i < setterArray.length; i++){
+            setterArray[i] = opacities[i];
+        }
+        setterArray[which] = 0.0
+    } else {
+        setterArray[which] = 0.5;
+    }
+
+    setOpacities(setterArray); //this function is primarily to wedge missed mouseover / mouseout collisions - instead of just wiping out it neutrals all entries on deselect just in case.
   }
 
   useEffect(() => {
@@ -120,27 +134,27 @@ const Dornn = () => {
             setSelectedBody(post);
             console.log(post);
             setBounds(dolwynd);
-            setZoneOpacities(dolwynd, true);
             setFocused(true);
             console.log(focused);
             map.invalidateSize();
             setMapControlState(false, false);
             
             map.flyToBounds(dolwynd, {duration: 2})
+            setZoneOpacities(dolwynd, true);
           }
         },
         mouseover(event) {
           console.log("dol over")
           if(!focused &&  event.target.options.fillOpacity != 0.5){
-            setOpacities([0.5, 0.0, 0.0, 0.0, 0.0]) //hacky. you can only hover one thing at a time, so just set everyone else to normal. 
+            hoverToggleOpacs(0, true) 
           }
         },
         mouseout(event) {
           console.log("dol OUT")
           console.log(event)
           if(!focused && event.target.options.fillOpacity != 0){
-            setOpacities([0.0, opacities[1], opacities[2], opacities[3], opacities[4]]) //the absolute hackiest way of doing this. gets grosser with every added region!
-          }
+            hoverToggleOpacs(0, false) 
+           }
         }
       }),
       [map],
@@ -165,14 +179,14 @@ const Dornn = () => {
         mouseover(event) {
           console.log("north over")
           if(!focused &&  event.target.options.fillOpacity != 0.5){
-            setOpacities([0.0, 0.5, 0.0, 0.0, 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
+            hoverToggleOpacs(1, true) 
           }
         },
         mouseout(event) {
           console.log("north OUT")
           console.log(event)
           if(!focused && event.target.options.fillOpacity != 0){
-            setOpacities([opacities[0], 0.0, opacities[2], opacities[3], opacities[4]]) //the absolute hackiest way of doing this. gets grosser with every added region!
+            hoverToggleOpacs(1, false) 
           }
         }
         
@@ -197,16 +211,13 @@ const Dornn = () => {
           },
           
           mouseover(event) {
-            console.log("north over")
             if(!focused &&  event.target.options.fillOpacity != 0.5){
-              setOpacities([0.0, 0.0, 0.5, 0.0, 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
+              hoverToggleOpacs(2, true) 
             }
           },
           mouseout(event) {
-            console.log("north OUT")
-            console.log(event)
             if(!focused && event.target.options.fillOpacity != 0){
-              setOpacities([opacities[0], opacities[1], 0.0, opacities[3], opacities[4]]) //the absolute hackiest way of doing this. gets grosser with every added region!
+              hoverToggleOpacs(2, false) 
             }
           }
           
@@ -232,12 +243,12 @@ const Dornn = () => {
         
         mouseover(event) {
           if(!focused &&  event.target.options.fillOpacity != 0.5){
-            setOpacities([0.0, 0.0, 0.0, 0.5, 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
+            hoverToggleOpacs(3, true) 
           }
         },
         mouseout(event) {
           if(!focused && event.target.options.fillOpacity != 0){
-            setOpacities([opacities[0], opacities[1], opacities[2], 0.0, opacities[4]]) //the absolute hackiest way of doing this. gets grosser with every added region!
+            hoverToggleOpacs(3, false) 
           }
         }
         
@@ -263,18 +274,111 @@ const Dornn = () => {
       
       mouseover(event) {
         if(!focused &&  event.target.options.fillOpacity != 0.5){
-          setOpacities([0.0, 0.0, 0.0, 0.0, 0.5]) //the absolute hackiest way of doing this. gets grosser with every added region!
+          hoverToggleOpacs(4, true) 
         }
       },
       mouseout(event) {
         if(!focused && event.target.options.fillOpacity != 0){
-          setOpacities([opacities[0], opacities[1], opacities[1], opacities[1], 0.0]) //the absolute hackiest way of doing this. gets grosser with every added region!
+          hoverToggleOpacs(4, false) 
         }
       }
       
     }),
     [map],
-)
+    )
+
+    const dorrimHandlers = useMemo(
+    () => ({
+      click() {
+        if(!focused){
+          const post = info.find((post) => post.entryID === "dorrim")
+          setSelectedBody(post);
+          setBounds(dorrim);
+          setZoneOpacities(dorrim, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(dorrim, {duration: 2})
+        }
+      },
+      
+      mouseover(event) {
+        if(!focused &&  event.target.options.fillOpacity != 0.5){
+          hoverToggleOpacs(5, true) 
+        }
+      },
+      mouseout(event) {
+        if(!focused && event.target.options.fillOpacity != 0){
+          hoverToggleOpacs(5, false) 
+        }
+      }
+      
+    }),
+    [map],
+    )
+
+    const cantocHandlers = useMemo(
+    () => ({
+      click() {
+        if(!focused){
+          const post = info.find((post) => post.entryID === "cantoc")
+          setSelectedBody(post);
+          setBounds(cantoc);
+          setZoneOpacities(cantoc, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(cantoc, {duration: 2})
+        }
+      },
+      
+      mouseover(event) {
+        if(!focused &&  event.target.options.fillOpacity != 0.5){
+          hoverToggleOpacs(6, true) 
+        }
+      },
+      mouseout(event) {
+        if(!focused && event.target.options.fillOpacity != 0){
+          hoverToggleOpacs(6, false) 
+        }
+      }
+      
+    }),
+    [map],
+    )
+
+    const mologHandlers = useMemo(
+    () => ({
+      click() {
+        if(!focused){
+          const post = info.find((post) => post.entryID === "molog")
+          setSelectedBody(post);
+          setBounds(molog);
+          setZoneOpacities(molog, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(molog, {duration: 2})
+        }
+      },
+      
+      mouseover(event) {
+        if(!focused &&  event.target.options.fillOpacity != 0.5){
+          hoverToggleOpacs(7, true) 
+        }
+      },
+      mouseout(event) {
+        if(!focused && event.target.options.fillOpacity != 0){
+          hoverToggleOpacs(7, false) 
+        }
+      }
+      
+    }),
+    [map],
+    )
   
     return (
       <>
@@ -312,6 +416,27 @@ const Dornn = () => {
           pathOptions={bounds === iorstav ? whiteColor : blackColor}
           fillOpacity={opacities[4]}
         />  
+
+        <Polygon
+          positions={dorrim}
+          eventHandlers={dorrimHandlers}
+          pathOptions={bounds === dorrim ? whiteColor : blackColor}
+          fillOpacity={opacities[5]}
+        />  
+
+        <Polygon
+          positions={cantoc}
+          eventHandlers={cantocHandlers}
+          pathOptions={bounds === cantoc ? whiteColor : blackColor}
+          fillOpacity={opacities[6]}
+        />  
+
+        <Polygon
+          positions={molog}
+          eventHandlers={mologHandlers}
+          pathOptions={bounds === molog ? whiteColor : blackColor}
+          fillOpacity={opacities[7]}
+        /> 
       </>
     )
   }
