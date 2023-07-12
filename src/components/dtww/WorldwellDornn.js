@@ -7,7 +7,7 @@ import Header from '../blog/Header';
 import SearchBar from '../blog/SearchBar';
 import { blogList } from '../../config/Api';
 import { request } from 'graphql-request';
-import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, Rectangle } from 'react-leaflet'
+import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, Rectangle, LayerGroup, LayersControl } from 'react-leaflet'
 import { CRS, icon, map } from 'leaflet'
 import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY } from '../../graphql/Queries';
@@ -32,6 +32,7 @@ const zoneArray = [dolwynd, northsea, anterros, argov, iorstav, dorrim, cantoc, 
 const redColor = { color: 'red' }
 const whiteColor = { color: 'white' }
 const blackColor = { color: 'black' }
+const borderColor = { color: 'black' }
 
 
 var cantocIcon = icon({
@@ -115,7 +116,7 @@ const Dornn = () => {
      setFocused(false);
      console.log("Returning to origin.");
      setZoneOpacities(screenBounds);
-     map.flyTo([256, 534], 0.3);
+     map.flyTo([256, 534], 0.4);
      setSelectedBody(null);
      setMapControlState(true, true);
      
@@ -386,6 +387,7 @@ const Dornn = () => {
           positions={dolwynd}
           eventHandlers={dolwyndHandlers}
           pathOptions={bounds === dolwynd ? whiteColor : blackColor}
+          opacity = {0}
           fillOpacity={opacities[0]}
         />
 
@@ -393,6 +395,7 @@ const Dornn = () => {
           positions={northsea}
           eventHandlers={northseaHandlers}
           pathOptions={bounds === northsea ? whiteColor : blackColor}
+          opacity = {0}
           fillOpacity={opacities[1]}
         />
 
@@ -400,6 +403,7 @@ const Dornn = () => {
           positions={anterros}
           eventHandlers={anterrosHandlers}
           pathOptions={bounds === anterros ? whiteColor : blackColor}
+          opacity = {0}
           fillOpacity={opacities[2]}
         />   
 
@@ -407,6 +411,7 @@ const Dornn = () => {
           positions={argov}
           eventHandlers={argovHandlers}
           pathOptions={bounds === argov ? whiteColor : blackColor}
+          opacity = {0}
           fillOpacity={opacities[3]}
         /> 
 
@@ -414,6 +419,7 @@ const Dornn = () => {
           positions={iorstav}
           eventHandlers={iorstavHandlers}
           pathOptions={bounds === iorstav ? whiteColor : blackColor}
+          opacity = {0}
           fillOpacity={opacities[4]}
         />  
 
@@ -421,6 +427,7 @@ const Dornn = () => {
           positions={dorrim}
           eventHandlers={dorrimHandlers}
           pathOptions={bounds === dorrim ? whiteColor : blackColor}
+          opacity = {0}
           fillOpacity={opacities[5]}
         />  
 
@@ -428,6 +435,7 @@ const Dornn = () => {
           positions={cantoc}
           eventHandlers={cantocHandlers}
           pathOptions={bounds === cantoc ? whiteColor : blackColor}
+          opacity = {0}
           fillOpacity={opacities[6]}
         />  
 
@@ -435,8 +443,11 @@ const Dornn = () => {
           positions={molog}
           eventHandlers={mologHandlers}
           pathOptions={bounds === molog ? whiteColor : blackColor}
+          opacity = {0}
           fillOpacity={opacities[7]}
         /> 
+
+
       </>
     )
   }
@@ -487,10 +498,19 @@ const Dornn = () => {
                   
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
                   <div id='map' ref={mapContainerRef}>
-                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.3} minZoom={0.3} dragging={mapControlState[0]} scrollWheelZoom={mapControlState[1]} zoomControl={false} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBoundsWiggle} maxBoundsViscosity={0.9}>
+                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.4} minZoom={0.4} dragging={mapControlState[0]} scrollWheelZoom={mapControlState[1]} zoomControl={false} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBoundsWiggle} maxBoundsViscosity={0.9}>
                       <ImageOverlay 
                         url="../../whiteout-blank-site.png" bounds={screenBounds} pagespeed_no_transform
                       />
+                      <LayersControl position="topright">
+                        <LayersControl.Overlay checked name="Regional Nameplates">
+                          <LayerGroup>
+                            <ImageOverlay 
+                            url="../../just_names.png" bounds={screenBounds} pagespeed_no_transform
+                            />
+                          </LayerGroup>
+                        </LayersControl.Overlay>
+                      </LayersControl>
                       <SetBoundsPolygons />
                     </MapContainer>
                   </div>
