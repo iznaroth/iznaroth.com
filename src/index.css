@@ -584,3 +584,37 @@ a:hover {
 }
 
 
+.bio-container img{
+  margin: auto;
+  vertical-align: top;
+}
+
+#realm-header{
+  padding-top: 4rem;
+  width: 40%
+}
+
+#realm-title{
+  width: 60%;
+}
+
+#what-header{
+  padding-top: 4rem;
+  width: 20%
+}
+
+#what-title{
+  width: 40%;
+  padding-bottom: 2rem;
+}
+
+.bio-container p{
+  color: white;
+  text-align: center;
+  width: 83.33333%;
+  margin: auto;
+  padding-bottom: 5rem; 
+  display: block;
+}
+
+

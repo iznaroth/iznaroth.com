@@ -40,7 +40,7 @@ function App() {
         .then(res => setCategories(res.categories))
     }
 
-    
+
     console.log(posts)
     console.log(categories)
   }, [])

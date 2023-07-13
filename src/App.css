@@ -57,11 +57,27 @@
 }
 
 .wwnavbar {
+  margin: auto;
+  max-width: 1200px;
+  overflow: hidden;
+  background-color: #33333300;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  font-family: 'IM Fell DW Pica';
+}
 
+.wwdnavbar {
+  margin: auto;
+  max-width: 1200px;
+  overflow: hidden;
+  background-color: #33333300;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: 'IM Fell DW Pica';
 }
 
 /* Links inside the navbar */
@@ -73,6 +89,16 @@
   padding: 14px 16px;
   text-decoration: none;
 
+}
+
+.wwdnavbar button {
+  float: left;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-family: 'IM Fell DW Pica';
 }
 
 .navbar img {
@@ -108,7 +134,7 @@
 }
 
 /* Add a red background color to navbar links on hover */
-.hpnavbar a:hover, .dropdown:hover .dropbtn {
+.hpnavbar .wwdnavbar a:hover, .dropdown:hover .dropbtn {
   background-color: rgb(47, 211, 121);
 }
 
