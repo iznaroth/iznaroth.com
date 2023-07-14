@@ -567,10 +567,6 @@ a:hover {
   width: 40vw;
 }
 
-.map-info-header{
-  font-family: 'IM Fell DW Pica';
-}
-
 .map-info-content{
   font-family: 'Times New Roman';
   color: #dfdfdf;
@@ -631,4 +627,17 @@ a:hover {
   display: block;
 }
 
-
+.my-node-enter {
+  opacity: 0;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 200ms;
+}

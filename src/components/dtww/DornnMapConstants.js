@@ -479,7 +479,7 @@ export const dolwynd = [
       [266, 871],
       [286, 895],
       [293, 897],
-      [300, 844],
+      [300, 884],
       [313, 859],
       [307, 844]
     ]
@@ -564,3 +564,89 @@ export const dolwynd = [
       [91, 1048],
       [149, 1057]
   ]
+
+  //bios
+
+ export const pagedesc = `
+
+  <img id="what-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../what_is_this.png"/>
+  <img id="what-title" className="mx-auto align-top opacity-90 w-3/5" src="../../what_bumper.png"/>
+
+  
+  <p id="descintro">
+  This is an interactive map-guidebook to Dornn, the setting associated with Down the Worldwell's rules and system. It is an abridgement of the full Dornn setting guide, which you can acquire ->here<-.
+  <br /> <br />
+   You can click on any region to get an overview of the population, culture,
+  geography and history of the local area. The pinned flags represent political powers that control that area--click on them to learn specifics about their size, relationships and general presence in the modern age.
+  Each of this panel's subpages elaborate on the broader aspects of the Dornnian Midlands:
+
+  <ul id="wwpagelist" className='text-left text-lime-200 list-disc px-10'>
+      <li>This page will introduce the setting with respect to Down the Worldwell and other TTRPGs.</li>
+      <li>The Realms will describe Dornn as a plane, its history, and the Midlands' place in it.</li>
+      <li>The Inhabitants will describe the 14-odd dominant "species" that control the Midlands.</li>
+      <li>The Polities will break-down the identities of all pinned political powers and their current standings.</li>
+      <li>The Histories will elaborate on the different Ages of Dornn's history, from  creation to the current day.</li>
+  </ul>
+  </p>
+  <p>
+  Dornn is a large, convoluted and foreign place. It's built on the bones of classic high fantasy (owing to its roots as a reworking of WoTC's D&D staples for homebrew's sake), but exposed to a lot of paranoid rethinking and
+  value drift. It's centered on the Midlands, three re-re-shattered continent-archipelago things that play host to a mess of magically-paralyzed politicking. A long history of divine convolution, depths-secreting, meddlesome intruders
+  and unexpected immortal super-expansionists has crushed and rewritten the realm into something that only scantly resembles the high-Modern familiars it pulls from. Dornn is big, overfull with confusing interests and predicated on a lot of
+  repeatedly-recalibrated world-law.
+  <br /> <br />
+  As an adventuring setting, Dornn is thematically between the extremes of "miserycrawl" high-consequence low-heroics adventures and "mad-magical superscience" romps in a world where you're always too close to the naked Truth. It is an old place, lousy with
+  history-rewriting disasters and incomprehensible meddlesome powers. Despite being a high-magic setting, the Strain system from Down the Worldwell is built to demonstrate why magic isn't very widespread or trusted in Dornn - being completely unpredictable
+  and very prone to error. This puts adventurers in a unique position - they can get a lot stronger, but their odds of doing so aren't as skewed as they may expect. It's a bumpy road to the summit. 
+  <br /> <br />
+  While the setting has many different time periods to work with, most everything is written for the <b>Seasons of Stagnation</b>, a time shortly after the immortal Human Empires have faltered in the face of rediscovered power and
+  unexpected failures in their so-called perfect immortality. This is a period following a long series of societal collapses and planar catastrophes, a time without well-maintained roadways or usable
+  long-distance communication. The empires of this age are weak and dependent on old-world tech that no longer functions how it used to (the Gods have changed their minds concerning some things), and the Human Empires
+  did not do a good job at rebuilding global communications or transport. In the wake of their gradual disappearance, everything has backslid into a bit of a frontier mindset - outside of the more established city-states and towns,
+  borders are ill-controlled and governments struggle to maintain a grasp on their citizenry. The majority of the plane is a ruin-washed wilderness, populated only by strange beasts and opportunistic sellswords. 
+  <br /> <br />
+  This page is not intended to fully describe Dornn, just to aid in creating characters that make sense and planning broader objectives as a party. As I publish more modules and content, the shape of Dornn will become clearer, and I may periodically
+  update this page to reflect changes and other useful information. If I do, this content will be delineated as "[X]-SPOILER", where [X] represents a particular piece of content you can filter for. Some questions will never be answered, though - if I did that,
+  there'd be no point in using the setting at all.  
+  <br /> <br />
+  Dornn is far too big to map comprehensively. There is always room to add your own stuff! Nestle towns in new areas, write new histories, change the fates of entire species if you want. The point of a fictional setting is in providing inspiration--this is about helping your mental garden flourish.
+  Steal what works and bin the rest. 
+
+  </p>`
+
+  export const realms = `
+  <img id="realm-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../world_cover_scrappy.png"/>
+  <img id="realm-title" className="mx-auto align-top opacity-90 w-3/5" src="../../world_bumper.png"/>
+
+  <p className='text-white m-auto text-center w-5/6 pb-20 block'>
+  <br /><br />
+  Dornn is an old name. To some, it's the common neologism for every foreign recess; visiting foreigners claim it as the holiest of the Internal Spheres, others still say it’s nothing but a pile of rubble at the center of the Godsgarden’s oldest fountain. Regardless of your experiences, history converges on Dornn - and the records are never flattering. Host of the first, land of the Mortals, the true-and-only-Cradle. Once three great continents, shattered and beaten over by the ages.  Stumbling into the place is easy, as simple as crawling through the wrong crack in the back of an old keep, peeking too deep into a forested cave, taking home the wrong gemstone brooch. Getting out is another story, subject to the tumult of the universe’s sole pressure-point like a waterfall tide from every outward direction. It’s best to think of Dornn as a bottomless well - unfortunately for you, these lands too deep to crawl from.
+  <br /><br />
+  These isles - the Midlands, as they're oft referred - have died more times than you will, seen catastrophes you’d struggle to picture, and played host to stranger creatures than you could ever aspire to be. Some brave few survive on the bones of this ancient place, rebuilding cities and repaving roadways that are always doomed to another eventual collapse. Others still linger in the far corners of the unlit realm, idly working away at the long-ladder to total ascendancy // divine interruption. In every recess, from the star-sworn spires of old-world war-lands to the time-dead depths of the cyclical-amnesiac underworld, the memories of a millennium realm take shape: ancient prizes, esoteric beasts, impossible fortresses, limitless power. As you may expect, this is where you come in. 
+  <br /><br />
+  There remains some semblance of the civilizations that held these isles in the days of yore, but they are weak and information is scarce. Failures in magical networking, aggressive paramilitary pressganging and stubborn political isolationism have caused a problem: the roads are overgrown, and most people aren’t talking. Old world infrastructure remains, so you can trace the shape of these undead nations with some ease, but you won’t find any help in the towns they connect. Ten paces beyond the town limits and you’re on your own. This in-of itself wouldn’t be as much of a problem, unfortunately, if the geography wasn’t so traitorous.
+  <br /><br />
+  By most estimations, Dornn has “died” six or seven times before you arrived. With each death, the geographies and metaphysics of the realm have been liberally reworked. Maps are rarely accurate, physical law is woefully inconsistent, politics are strained and fractured and always lousy with conspiracy. Some think that the whole of it is controlled by a roomful of quasi-Gods that have solved the Magical Answer, and they’ve long-since killed the old divines and taken their place. It isn’t an unreasonable belief to hold.
+  <br /><br />
+  Yet, if power were so easy, we wouldn’t still be fighting. Magic is a boon, but a fickle one. Absent gods leave strange systemics in their wake, local stability is always a step from disaster, and the Great Ladder corrupts and fortifies in equal measure. For each step you take towards ascendancy, you must lose something in return. Plenty of fools take the gamble. Plenty more are content to do the good work and keep their heads down. It’s up to you exactly where you fall on this axis. 
+  <br /><br />
+  We live, now, in the Seasons of Stagnation. Once stomped under the boot of the immortal Human Familial Empires, their grand migratory seclusion has left their cities and highways quite-nearly abandoned, and those they left behind are either too powerful to bother or already on the run. Their unconditional immortality has lost its appeal over the centuries, acting more as a torturous guarantee of eternal pain than a promise of dominating power. Never forget the laws of the Haze, and always have a plan to kill them again. 
+  <br /><br />
+  It was a mere seventy cycles ago when the Wireless Admonition God elected to change the law of signal, and so we continue to redraw maps and resurrect ancient routes in uneasy global silence. For us common mortals, this would be called a disaster. Others do not see it that way. Behind the curtain, grand wheels of fate and games of legendary cosmic warfare skew the realm’s future into dark uncertainties. The greater average of this tired plane may be frail, but there is no ceiling to this house, nor is there any shortage of maniac mana-drunk foes to challenge your climb. Wars are played at levels of scale; we’re always puppets to a higher rung. Maybe it’s better to start looking for the string. 
+  <br /><br />
+  ---------------------
+  <br /><br />
+  The charted lands of Dornn are split into three "continents." The term is a holdover from a time when they were still whole. To the west is Dornnus, the Cradle, active host to about ninety percent of all living mortals.
+  It is a vast realm, mostly characterized by perpetual squabbles between the parasite empires that live off the firmament of old-world ruins. The whole of it was brought to heel by the Five Human Families about a thousand years prior, but their grip 
+  has been steadily weakening for several centuries. Immortality is no longer the boon it once was, as their attempts to stifle the progress of science and magic have been slowly overtaken. Unfortunately, the preexisting betrayals of divine worldwork have made the recovery of old technology a slow and torturous process, so wars are still fought with steel, spells, fists and teeth.
+  <br /><br />
+  In the center of the Sea of Dvirn are the forgotten realms of Ferveirn, the Golden Lands. Once the beating heart of the Dvirran empire, it has been ransacked and devoured many times since their failure to
+  conquer the plane (and subsequent disappearance.) The Rhominite inheritors with the most legitimate claim to the realm currently control the seats of Ilkair, the gilded capital, but Elvish holdouts have remained a stubborn
+  factor for as long as the Dvirr have been missing. The eastern half of Ferveirn is under varying levels of quarantine - the old capital of Moz Haphora cannot be entered by any living soul,
+  lest they volunteer their freewill to Alavaria, the King-under-Sky.
+  <br /><br />
+  To the east is the frost-wracked frontier wasteland of Jurdenogh. It was once a vibrant mirror to the cultural varieties of Dornnus, but the follies of the Glassblood youngest embroiled the continent itself
+  in a metaphysical concept-superwar between ancient deities, freezing the whole thing ten times over. The poor sods that still live there are pretty much stuck--for a mortal, traversal is almost certain death. For a human, it's just a lot of consecutive certain deaths. There's surely a bounty of unclaimed treasure to be found
+  in the mostly-untouched ruins that cover the continent, but it would be a costly trip in both coin and mental fortitude. 
+  </p>
+  </div>
+`
