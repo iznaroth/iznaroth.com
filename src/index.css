@@ -608,6 +608,20 @@ a:hover {
   padding-bottom: 2rem;
 }
 
+#descintro{
+  color: rgb(194, 190, 190) !important;
+}
+
+#wwpagelist{
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  margin: auto;
+  list-style-type: disc;
+  text-align: left !important;
+  color: rgb(136, 177, 132);
+  width: 80%;
+}
+
 .bio-container p{
   color: white;
   text-align: center;

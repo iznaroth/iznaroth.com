@@ -11,7 +11,7 @@ import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, R
 import { CRS, icon, map } from 'leaflet'
 import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY } from '../../graphql/Queries';
-import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn } from './DornnMapConstants';
+import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic } from './DornnMapConstants';
 
 const screenBounds = [
   [0, 0],
@@ -25,7 +25,7 @@ const screenBoundsWiggle = [
 
 
 
-const zoneArray = [dolwynd, northsea, anterros, argov, iorstav, dorrim, cantoc, molog]
+const zoneArray = [dolwynd, northsea, anterros, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic]
 
 
 
@@ -55,7 +55,7 @@ const Dornn = () => {
   const [selectedBody, setSelectedBody] = useState(null);
   const [mapControlState, setMapControlState] = useState([false, false]); //represents drag and zoom restrictions
 
-  const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+  const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
   const [runMonitor, setRunMonitor] = useState(false);
 
   function wrapSetBio(bio){
@@ -69,36 +69,43 @@ const Dornn = () => {
   <img id="what-title" className="mx-auto align-top opacity-90 w-3/5" src="../../what_bumper.png"/>
 
   
-  <p>
-  This is an interactive map-guidebook to Dornn, the setting associated with Down the Worldwell's rules and system. You can click on any region to get an overview of the population, culture,
+  <p id="descintro">
+  This is an interactive map-guidebook to Dornn, the setting associated with Down the Worldwell's rules and system. It is an abridgement of the full Dornn setting guide, which you can acquire ->here<-.
+  <br /> <br />
+   You can click on any region to get an overview of the population, culture,
   geography and history of the local area. The pinned flags represent political powers that control that area--click on them to learn specifics about their size, relationships and general presence in the modern age.
-  Each of this panel's subpages elaborate on the broader aspects of the Dornnian Midlands - the region's territories, people and histories. 
-  <br /> <br />
-  Dornn is a large, convoluted and foreign place. It's built on the bones of classic high fantasy (owing to its roots as a reworking of WoTC's D&D staples for homebrew's sake), but baked under years of paranoid rethinking and
-  conceptual drift. It's centered on the Midlands, three re-re-shattered continent-archipelago things that play host to a mess of magically-paralyzed politicking. A long history of divine convolution, depths-secreting, meddlesome intruders
+  Each of this panel's subpages elaborate on the broader aspects of the Dornnian Midlands:
+
+  <ul id="wwpagelist" className='text-left text-lime-200 list-disc px-10'>
+      <li>This page will introduce the setting with respect to Down the Worldwell and other TTRPGs.</li>
+      <li>The Realms will describe Dornn as a plane, its history, and the Midlands' place in it.</li>
+      <li>The Inhabitants will describe the 14-odd dominant "species" that control the Midlands.</li>
+      <li>The Polities will break-down the identities of all pinned political powers and their current standings.</li>
+      <li>The Histories will elaborate on the different Ages of Dornn's history, from  creation to the current day.</li>
+  </ul>
+  </p>
+  <p>
+  Dornn is a large, convoluted and foreign place. It's built on the bones of classic high fantasy (owing to its roots as a reworking of WoTC's D&D staples for homebrew's sake), but exposed to a lot of paranoid rethinking and
+  value drift. It's centered on the Midlands, three re-re-shattered continent-archipelago things that play host to a mess of magically-paralyzed politicking. A long history of divine convolution, depths-secreting, meddlesome intruders
   and unexpected immortal super-expansionists has crushed and rewritten the realm into something that only scantly resembles the high-Modern familiars it pulls from. Dornn is big, overfull with confusing interests and predicated on a lot of
-  repeatedly-recalibrated principles.
+  repeatedly-recalibrated world-law.
   <br /> <br />
-  The systems of Down the Worldwell are built to adhere to Dornnian cosmology. There are a few quirks to this. Magic in Dornn is the result of an attempt at systemizing the unsystemizable. In layman's terms, it is
-  the programmatic cheating of fate and physics. It is reactive, prone to misfire, always unreliable and extremely dangerous. This is represented as Strain, a metered degradation of your character's mental fortitude as 
-  you continue to bend the rules that make up the world around you. As strain increases, your spells can fail in more and more spectacular ways - perhaps even to your benefit - but tipping the scale too far will induce a catastrophe that is all
-  but certain to kill you. 
+  As an adventuring setting, Dornn is thematically between the extremes of "miserycrawl" high-consequence low-heroics adventures and "mad-magical superscience" romps in a world where you're always too close to the naked Truth. It is an old place, lousy with
+  history-rewriting disasters and incomprehensible meddlesome powers. Despite being a high-magic setting, the Strain system from Down the Worldwell is built to demonstrate why magic isn't very widespread or trusted in Dornn - being completely unpredictable
+  and very prone to error. This puts adventurers in a unique position - they can get a lot stronger, but their odds of doing so aren't as skewed as they may expect. It's a bumpy road to the summit. 
   <br /> <br />
-  Combat is tuned to the unheroic kinetics of a Dornnian adventurer's life. It is excruciatingly difficult to stay competitive in the field - magic is hard to learn and always wont to fail in the worst of ways, 
-  but everybody has to use it to stay ahead. Everyone's a glass cannon, capable of performing absurdly volatile feats whilst constantly maintaining the mental calculus required to defend from lethal magics. This is why
-  you are more fragile than you may expect in DtWW - the setting it is built on is a bit of a meat-grinder.
+  While the setting has many different time periods to work with, most everything is written for the <b>Seasons of Stagnation</b>, a time shortly after the immortal Human Empires have faltered in the face of rediscovered power and
+  unexpected failures in their so-called perfect immortality. This is a period following a long series of societal collapses and planar catastrophes, a time without well-maintained roadways or usable
+  long-distance communication. The empires of this age are weak and dependent on old-world tech that no longer functions how it used to (the Gods have changed their minds concerning some things), and the Human Empires
+  did not do a good job at rebuilding global communications or transport. In the wake of their gradual disappearance, everything has backslid into a bit of a frontier mindset - outside of the more established city-states and towns,
+  borders are ill-controlled and governments struggle to maintain a grasp on their citizenry. The majority of the plane is a ruin-washed wilderness, populated only by strange beasts and opportunistic sellswords. 
   <br /> <br />
-  The inhabitants of Dornn have adopted their homeworld's strangeness in many ways. They are usually named for the races they were originally pulled from, but they won't always resemble them as one might expect.
-  It is also important to note that the "species" of Dornn can <i>sort-of</i> crossbreed freely. This means it isn't very likely that any one mortal will have a single point of species-heritage to work with, and the traits
-  they adopt will be partial composites. This can get extremely unusual with the severities of some species features, so it is probably easiest to use the /character-creation subpage to assist. Variant rules are included with DtWW to handle 
-  "Supertraits and Dominances", allowing you to freely customize your family tree without doing lots of trait homework.
+  This page is not intended to fully describe Dornn, just to aid in creating characters that make sense and planning broader objectives as a party. As I publish more modules and content, the shape of Dornn will become clearer, and I may periodically
+  update this page to reflect changes and other useful information. If I do, this content will be delineated as "[X]-SPOILER", where [X] represents a particular piece of content you can filter for. Some questions will never be answered, though - if I did that,
+  there'd be no point in using the setting at all.  
   <br /> <br />
-  Dornn doesn't have a strong analogue to 5e-style pantheons or alignments. There are thousands of named Gods vaguely correlated to the effects and responses of various prayers and rituals, with groups constantly squabbling over the exacts of
-  proper faith. Faith-oriented spellcasters are usually using shortcuts, strange artifacts, or convoluted processes of prayer and reaction to achieve their magics, and there is no clean way to describe moral alignment on the axis of the Divine. 
-  This means two things - you can feel free to leaf through the pages of named Divines included in the Dornnian sourcebook and pick your favorite, or just make up your own - the setting is made for that sort of thing. 
-  <br /> <br />
-  Dornn is far too big to map comprehensively. There is always room to add your own stuff! Nestle towns in new areas, write new histories, change the fates of entire species if you want. Like any good setting, this is about helping your mental garden flourish - 
-  steal what works and bin the rest. 
+  Dornn is far too big to map comprehensively. There is always room to add your own stuff! Nestle towns in new areas, write new histories, change the fates of entire species if you want. The point of a fictional setting is in providing inspiration--this is about helping your mental garden flourish.
+  Steal what works and bin the rest. 
 
   </p>`
 
@@ -108,7 +115,7 @@ const Dornn = () => {
 
   <p className='text-white m-auto text-center w-5/6 pb-20 block'>
   <br /><br />
-  Dornn is an old name. To some, it's the common neologism for every foreign recess; visiting foreigners claim it as the holiest of the Internal Spheres, others still say it’s nothing but a pile of rubble at the center of the Godsgarden’s oldest fountain. Regardless of your experiences, history converges on Dornn - and the records are never flattering. Host of the first, land of the Mortals, the true-and-only-Cradle. Once three great continents, shattered and beaten over by the ages.  Stumbling into the place is easy, as simple as crawling through the wrong crack in the back of an old keep, peeking too deep into a forested cave, taking home the wrong gemstone brooch. Getting out is another story, subject to the tumult of the universe’s sole pressure-point like a waterfall tide from every outward direction. It’s best to think of Dornn as a bottomless well - unfortunately for you, these lands are in deep.
+  Dornn is an old name. To some, it's the common neologism for every foreign recess; visiting foreigners claim it as the holiest of the Internal Spheres, others still say it’s nothing but a pile of rubble at the center of the Godsgarden’s oldest fountain. Regardless of your experiences, history converges on Dornn - and the records are never flattering. Host of the first, land of the Mortals, the true-and-only-Cradle. Once three great continents, shattered and beaten over by the ages.  Stumbling into the place is easy, as simple as crawling through the wrong crack in the back of an old keep, peeking too deep into a forested cave, taking home the wrong gemstone brooch. Getting out is another story, subject to the tumult of the universe’s sole pressure-point like a waterfall tide from every outward direction. It’s best to think of Dornn as a bottomless well - unfortunately for you, these lands too deep to crawl from.
   <br /><br />
   These isles - the Midlands, as they're oft referred - have died more times than you will, seen catastrophes you’d struggle to picture, and played host to stranger creatures than you could ever aspire to be. Some brave few survive on the bones of this ancient place, rebuilding cities and repaving roadways that are always doomed to another eventual collapse. Others still linger in the far corners of the unlit realm, idly working away at the long-ladder to total ascendancy // divine interruption. In every recess, from the star-sworn spires of old-world war-lands to the time-dead depths of the cyclical-amnesiac underworld, the memories of a millennium realm take shape: ancient prizes, esoteric beasts, impossible fortresses, limitless power. As you may expect, this is where you come in. 
   <br /><br />
@@ -129,7 +136,7 @@ const Dornn = () => {
   has been steadily weakening for several centuries. Immortality is no longer the boon it once was, as their attempts to stifle the progress of science and magic have been slowly overtaken. Unfortunately, the preexisting betrayals of divine worldwork have made the recovery of old technology a slow and torturous process, so wars are still fought with steel, spells, fists and teeth.
   <br /><br />
   In the center of the Sea of Dvirn are the forgotten realms of Ferveirn, the Golden Lands. Once the beating heart of the Dvirran empire, it has been ransacked and devoured many times since their failure to
-  conquer the plane (and subsequent disappearance.) The Rhominite inheritors with the most legitimate claim to the realm hold primacy in the seats of Ilkair, the gilded capital, but Elvish holdouts have remained a stubborn
+  conquer the plane (and subsequent disappearance.) The Rhominite inheritors with the most legitimate claim to the realm currently control the seats of Ilkair, the gilded capital, but Elvish holdouts have remained a stubborn
   factor for as long as the Dvirr have been missing. The eastern half of Ferveirn is under varying levels of quarantine - the old capital of Moz Haphora cannot be entered by any living soul,
   lest they volunteer their freewill to Alavaria, the King-under-Sky.
   <br /><br />
@@ -146,7 +153,7 @@ const [bio, setBio] = useState(pagedesc)
 
   function setZoneOpacities(which){
 
-    var newOpacitiesArray = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
+    var newOpacitiesArray = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 
     for(let i = 0; i < zoneArray.length; i++){
       console.log(which == screenBounds);
@@ -164,7 +171,7 @@ const [bio, setBio] = useState(pagedesc)
   }
 
   function hoverToggleOpacs(which, sel){ //play on mouseevent. if sel is true, disable everything shadow this. otherwise flat restore + zero out
-    var setterArray = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    var setterArray = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
     if(!sel){ //if unselect
         for(let i = 0; i < setterArray.length; i++){
             setterArray[i] = opacities[i];
@@ -466,6 +473,161 @@ const [bio, setBio] = useState(pagedesc)
     }),
     [map],
     )
+
+    const ferveirnHandlers = useMemo(
+    () => ({
+      click() {
+        if(!focused){
+          const post = info.find((post) => post.entryID === "ferveirn")
+          setSelectedBody(post);
+          setBounds(ferveirn);
+          setZoneOpacities(ferveirn, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(ferveirn, {duration: 2})
+        }
+      },
+      
+      mouseover(event) {
+        if(!focused &&  event.target.options.fillOpacity != 0.5){
+          hoverToggleOpacs(8, true) 
+        }
+      },
+      mouseout(event) {
+        if(!focused && event.target.options.fillOpacity != 0){
+          hoverToggleOpacs(8, false) 
+        }
+      }
+      
+    }),
+    [map],
+    )
+
+    const rhomiHandlers = useMemo(
+    () => ({
+      click() {
+        if(!focused){
+          const post = info.find((post) => post.entryID === "rhomi")
+          setSelectedBody(post);
+          setBounds(rhomi);
+          setZoneOpacities(rhomi, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(rhomi, {duration: 2})
+        }
+      },
+      
+      mouseover(event) {
+        if(!focused &&  event.target.options.fillOpacity != 0.5){
+          hoverToggleOpacs(9, true) 
+        }
+      },
+      mouseout(event) {
+        if(!focused && event.target.options.fillOpacity != 0){
+          hoverToggleOpacs(9, false) 
+        }
+      }
+      
+    }),
+    [map],
+    )
+
+  const lannochHandlers = useMemo(
+    () => ({
+      click() {
+        if(!focused){
+          const post = info.find((post) => post.entryID === "lannoch")
+          setSelectedBody(post);
+          setBounds(lannoch);
+          setZoneOpacities(lannoch, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(lannoch, {duration: 2})
+        }
+      },
+      
+      mouseover(event) {
+        if(!focused &&  event.target.options.fillOpacity != 0.5){
+          hoverToggleOpacs(10, true) 
+        }
+      },
+      mouseout(event) {
+        if(!focused && event.target.options.fillOpacity != 0){
+          hoverToggleOpacs(10, false) 
+        }
+      }
+      
+    }),
+    [map],
+    )
+
+    const mornaHandlers = useMemo(
+    () => ({
+      click() {
+        if(!focused){
+          const post = info.find((post) => post.entryID === "morna")
+          setSelectedBody(post);
+          setBounds(morna);
+          setZoneOpacities(morna, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(morna, {duration: 2})
+        }
+      },
+      
+      mouseover(event) {
+        if(!focused &&  event.target.options.fillOpacity != 0.5){
+          hoverToggleOpacs(11, true) 
+        }
+      },
+      mouseout(event) {
+        if(!focused && event.target.options.fillOpacity != 0){
+          hoverToggleOpacs(11, false) 
+        }
+      }
+      
+    }),
+    [map],
+    )
+
+    const vaicHandlers = useMemo(
+    () => ({
+      click() {
+        if(!focused){
+          const post = info.find((post) => post.entryID === "vaic")
+          setSelectedBody(post);
+          setBounds(vaic);
+          setZoneOpacities(vaic, true);
+          setFocused(true);
+          console.log(focused);
+          map.invalidateSize();
+          
+          map.flyToBounds(vaic, {duration: 2})
+        }
+      },
+      
+      mouseover(event) {
+        if(!focused &&  event.target.options.fillOpacity != 0.5){
+          hoverToggleOpacs(12, true) 
+        }
+      },
+      mouseout(event) {
+        if(!focused && event.target.options.fillOpacity != 0){
+          hoverToggleOpacs(12, false) 
+        }
+      }
+      
+    }),
+    [map],
+    )
   
     return (
       <>
@@ -531,6 +693,46 @@ const [bio, setBio] = useState(pagedesc)
           pathOptions={bounds === molog ? whiteColor : blackColor}
           opacity = {0}
           fillOpacity={opacities[7]}
+        /> 
+
+        <Polygon
+          positions={ferveirn}
+          eventHandlers={ferveirnHandlers}
+          pathOptions={bounds === ferveirn ? whiteColor : blackColor}
+          opacity = {0}
+          fillOpacity={opacities[8]}
+        /> 
+
+        <Polygon
+          positions={rhomi}
+          eventHandlers={rhomiHandlers}
+          pathOptions={bounds === rhomi ? whiteColor : blackColor}
+          opacity = {0}
+          fillOpacity={opacities[9]}
+        /> 
+
+        <Polygon
+          positions={lannoch}
+          eventHandlers={lannochHandlers}
+          pathOptions={bounds === lannoch ? whiteColor : blackColor}
+          opacity = {0}
+          fillOpacity={opacities[10]}
+        /> 
+
+        <Polygon
+          positions={morna}
+          eventHandlers={mornaHandlers}
+          pathOptions={bounds === morna ? whiteColor : blackColor}
+          opacity = {0}
+          fillOpacity={opacities[11]}
+        /> 
+
+        <Polygon
+          positions={vaic}
+          eventHandlers={vaicHandlers}
+          pathOptions={bounds === vaic ? whiteColor : blackColor}
+          opacity = {0}
+          fillOpacity={opacities[12]}
         /> 
 
 
