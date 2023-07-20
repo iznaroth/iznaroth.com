@@ -680,7 +680,13 @@ The Human lifecycle is a distorted mockery of natural existence, mimicking age b
 <div id="species-text">
 <h2>Ascendants</h2>
 <p>
-The Extended Other, those from higher rungs. As varied as one could imagine the mortal form to be - yet still imposed upon by the bipedal ghost. Anything and everything you could imagine, misplaced and thrown into Dornn without much warning. Lacking in agency and usually stuck under the boot of an Inheritor empire. </p>
+The Extended Other, those from higher rungs. As varied as one could imagine the mortal form to be - yet still imposed upon by the bipedal ghost. Anything and everything you could imagine, misplaced and thrown into Dornn without much warning. Lacking in agency and usually stuck under the boot of an Inheritor empire. 
+<br/><br/>
+There are an uncountable number of unidentified Visitors, but about 37 codified Ascendant species hold some territory in the Midlands. Certain groups of Ascendant have grown notorious enough to be granted their own category on the list - these are somewhat callously called the “descended”. 
+<br/><br/>
+Some of the most notorious descended are the Dragons and their progeny, star-crawling pseudo-reptiles from higher on the chitinous leg of the Outer Kosmos. They arrived in a prismatic bolt of dislodged theory long before the First Age, laying their brood wide and low in the recesses of the Earlyworld in wait; biding time for mortal bounties to proliferate and ripen.
+</p>
+
 </div>
 </div>
 
