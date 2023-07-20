@@ -11,7 +11,7 @@ import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, u
 import { CRS, icon, map } from 'leaflet'
 import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY } from '../../graphql/Queries';
-import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms } from './DornnMapConstants';
+import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants } from './DornnMapConstants';
 import { CSSTransition } from 'react-transition-group';
 
 const screenBounds = [
@@ -1108,7 +1108,7 @@ const [bio, setBio] = useState(pagedesc)
                       <SetBoundsPolygons />
                     </MapContainer>
                   </div>
-                  { focused ? <div className="map-info text-center overflow-y-scroll">
+                  { focused ? <div className="map-info text-center overflow-y-auto">
                     <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': selectedBody.headerColor.hex, 'fontFamily' : headerFont}}>{selectedBody.header}</h>
                     <p className='pb-2  px-5 text-slate-500'>
                     {selectedBody.environs}
@@ -1135,7 +1135,7 @@ const [bio, setBio] = useState(pagedesc)
         <div className="wwdnavbar">
             <button onClick={() => setBio(pagedesc)}>- What Is This? -</button>
             <button onClick={() => setBio(realms)}>- The Realms -</button>
-            <button onClick={() => setBio(realms)}>- The Inhabitants -</button>
+            <button onClick={() => setBio(inhabitants)}>- The Inhabitants -</button>
             <button onClick={() => setBio(realms)}>- The Polities -</button>
             <button onClick={() => setBio(realms)}>- The Histories -</button>
         </div>

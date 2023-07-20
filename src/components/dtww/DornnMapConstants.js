@@ -588,7 +588,7 @@ export const dolwynd = [
       <li>The Histories will elaborate on the different Ages of Dornn's history, from  creation to the current day.</li>
   </ul>
   </p>
-  <p>
+  <p id="text-center-83">
   Dornn is a large, convoluted and foreign place. It's built on the bones of classic high fantasy (owing to its roots as a reworking of WoTC's D&D staples for homebrew's sake), but exposed to a lot of paranoid rethinking and
   value drift. It's centered on the Midlands, three re-re-shattered continent-archipelago things that play host to a mess of magically-paralyzed politicking. A long history of divine convolution, depths-secreting, meddlesome intruders
   and unexpected immortal super-expansionists has crushed and rewritten the realm into something that only scantly resembles the high-Modern familiars it pulls from. Dornn is big, overfull with confusing interests and predicated on a lot of
@@ -617,7 +617,7 @@ export const dolwynd = [
   <img id="realm-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../world_cover_scrappy.png"/>
   <img id="realm-title" className="mx-auto align-top opacity-90 w-3/5" src="../../world_bumper.png"/>
 
-  <p className='text-white m-auto text-center w-5/6 pb-20 block'>
+  <p id="text-center-83" className='text-white m-auto text-center w-5/6 pb-20 block'>
   <br /><br />
   Dornn is an old name. To some, it's the common neologism for every foreign recess; visiting foreigners claim it as the holiest of the Internal Spheres, others still say it’s nothing but a pile of rubble at the center of the Godsgarden’s oldest fountain. Regardless of your experiences, history converges on Dornn - and the records are never flattering. Host of the first, land of the Mortals, the true-and-only-Cradle. Once three great continents, shattered and beaten over by the ages.  Stumbling into the place is easy, as simple as crawling through the wrong crack in the back of an old keep, peeking too deep into a forested cave, taking home the wrong gemstone brooch. Getting out is another story, subject to the tumult of the universe’s sole pressure-point like a waterfall tide from every outward direction. It’s best to think of Dornn as a bottomless well - unfortunately for you, these lands too deep to crawl from.
   <br /><br />
@@ -648,5 +648,40 @@ export const dolwynd = [
   in a metaphysical concept-superwar between ancient deities, freezing the whole thing ten times over. The poor sods that still live there are pretty much stuck--for a mortal, traversal is almost certain death. For a human, it's just a lot of consecutive certain deaths. There's surely a bounty of unclaimed treasure to be found
   in the mostly-untouched ruins that cover the continent, but it would be a costly trip in both coin and mental fortitude. 
   </p>
-  </div>
+`
+
+export const inhabitants = `
+<img id="med-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../inhabitants_I.png"/>
+<img id="what-title" className="mx-auto align-top opacity-90 w-3/5" src="../../inhab_label.png"/>
+
+<p id="text-center-83">
+A very long time ago (<i>long before any surviving records can accurately recount</i>), the great gestalt Diravol was born of raw Transcendence, and through their merciful intellect was the physical interstice of Dornn created. In Diravol’s bipedal image, a great many creatures were made to populate this land - we call them the Mortals. They are the foremost sapients of the realm - but they are not the only ones. The First Inheritors are followed by many; the Strangers, the Visitors - a wide arc. 
+<br /><br />
+These are the fourteen with the greatest primacy of control in the Seasons of Stagnation. 
+<br /><br />
+JUMP TO AN ENTRY:
+(Add links here...)
+</p>
+
+<div id="species-box" className="l">
+<img id="portrait" src="../../species_frame_II.png" />
+<div id="species-text">
+<h2>Humans</h2>
+<p>
+The Immortal Intruders, unfeatured primals. Arrived late to the cradle of Dornn, without the wit, wisdom or burdens of the Mortal Inheritors. Once cursed to a life of vagrancy and frequent slavery, their ancestors brokered a deal with an outsider and gained nigh-unconditional Immortality. Any injury suffered is revoked in a day’s time or less, no matter the severity. They are the isolationist governors of most of the Midlands. 
+<br/><br/>
+The Human lifecycle is a distorted mockery of natural existence, mimicking age by way of slowly permitting the divine frustration to loosen their shape. Given enough time, any Human will slowly degrade into a foggy ball of soul-lightning and emotionless memory, an indefinite repetition of pains and broken empathic links lacking any semblance of life, mobility, or speech.
+</p>
+</div>
+</div>
+
+<div id="species-box" className="r">
+<img id="portrait" src="../../species_frame_I.png" />
+<div id="species-text">
+<h2>Ascendants</h2>
+<p>
+The Extended Other, those from higher rungs. As varied as one could imagine the mortal form to be - yet still imposed upon by the bipedal ghost. Anything and everything you could imagine, misplaced and thrown into Dornn without much warning. Lacking in agency and usually stuck under the boot of an Inheritor empire. </p>
+</div>
+</div>
+
 `

@@ -406,7 +406,7 @@ a:hover {
   background-color: black;
   margin: 0 auto;
   padding: 1em;
-  min-height: 100vh;
+  min-height: auto;
 
   border: 2px solid #ffffff;
    	height: 99%;
@@ -449,7 +449,7 @@ a:hover {
 .inner-border {
 	position: relative;
 	border: 2px solid #ffffff;
-    height: 100%;
+    height: auto;
     width: 100%;
     margin: auto;
 }
@@ -604,8 +604,49 @@ a:hover {
   padding-bottom: 2rem;
 }
 
+#med-header{
+  padding-top: 4rem;
+  width: 30%
+}
+
+
+#species-box{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+}
+
+
+#species-box h2{
+  color: gray;
+  font-size: 3rem;
+  padding-left: 0rem;
+  font-family: "IM Fell DW Pica";
+}
+
+#species-box p{
+  text-align: left;
+  padding-right: 3rem;
+  
+}
+
+#species-text {
+  flex-basis: 70%;
+}
+
+#portrait {
+  width: 20%;
+
+}
+
 #descintro{
   color: rgb(194, 190, 190) !important;
+  width: 83.333333%
+}
+
+#break{
+  flex-basis: 100%;
+  height: 0;
 }
 
 #wwpagelist{
@@ -621,23 +662,29 @@ a:hover {
 .bio-container p{
   color: white;
   text-align: center;
-  width: 83.33333%;
+  
   margin: auto;
   padding-bottom: 5rem; 
   display: block;
+
+  height: auto;
 }
 
-.my-node-enter {
+#text-center-83{
+  width: 83.33333%;
+}
+
+.map-polygon {
   opacity: 0;
+  transition: opacity .5s;
 }
-.my-node-enter-active {
+
+.map-polygon:hover {
+  opacity: 0.5;
+}
+
+.polygon-hover
+{
   opacity: 1;
-  transition: opacity 200ms;
 }
-.my-node-exit {
-  opacity: 1;
-}
-.my-node-exit-active {
-  opacity: 0;
-  transition: opacity 200ms;
-}
+
