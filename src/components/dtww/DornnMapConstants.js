@@ -801,7 +801,7 @@ The Human lifecycle is a distorted mockery of natural existence, mimicking age b
 <hr class="double">
 
 <div id="spec-header-box">
-  <div id="The Strangers">
+  <div id="species-text">
     <h1 class="white">The Strangers</h1>
     <p>
     The oldest stressors of Divine Intent. These folks arrived unexpectedly, siphoned from realms above, below and beyond the limits of the Midlands proper. Life that does not adhere to the
@@ -868,6 +868,124 @@ Some of the most notorious descended are the Dragons and their progeny, star-cra
     </p>
   </div>
 </div>
+
+
+`
+
+export const polities = `
+<img id="huge-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../political_cover_alt.png"/>
+
+
+<p id="text-center-83">
+The Dornnian Midlands have changed hands about as many times as you’d expect, burdened by the spasms, expansions and contractions of mortal whim. In the Seasons of Stagnation, the receding Empires of Men have left room for old hands to resume their work; the shape of the map has begun to take on a familiar form.
+<br /> <br />
+Click on any individual faction header to select their capital on the map. 
+</p>
+
+
+<div id="spec-header-box">
+  <div id="species-text">
+    <h1 class="purple">The Five Human Families</h1>
+    <p id="padding-scrunch">
+    Though their power wanes in the face of Glassblood-prompted migratory operations and other late-lifecycle issues, the Human Families have not yet released their grip. 
+    They’ve been mostly batted out of the northern fringes, but their hold of the southlands remains as tight as it was half a millennium prior. They are:
+    </p>
+  </div>
+</div>
+
+  <div id="politic-box">
+    <div id="polwedge"></div>
+    <img id="banner" src="../../species_frame_I.png" />
+    <div id="majorpol-text">
+      <h2 class="blue force-vert-center">The Glassbloods</h2>
+    </div>
+  </div>
+
+  <div id="politic-box">
+  <div id="polwedge"></div>
+    <img id="banner" src="../../species_frame_I.png" />
+    <div id="majorpol-text">
+      <h2 class="white force-vert-center">The Crux</h2>
+    </div>
+  </div>
+
+  <div id="politic-box">
+    <div id="polwedge"></div>
+    <img id="banner" src="../../species_frame_I.png" />
+    <div id="majorpol-text">
+      <h2 class="red force-vert-center">The Britchoffs</h2>
+    </div>
+  </div>
+
+  <div id="politic-box">
+    <div id="polwedge"></div>
+    <img id="banner" src="../../species_frame_I.png" />
+    <div id="majorpol-text">
+      <h2 class="gold force-vert-center">The Drairinni</h2>
+    </div>
+  </div>
+
+  <div id="politic-box">
+  <div id="polwedge"></div>
+    <img id="banner" src="../../species_frame_I.png" />
+    <div id="majorpol-text">
+      <h2 class="orange force-vert-center">The Anterrosites</h2>
+    </div>
+  </div>
+
+  <div class='blog-footer'></div>
+
+  <hr class="double">
+
+
+  <div id="spec-header-box">
+  <div id="species-text">
+    <h1 class="green">The Midland Council (XII)</h1>
+    <p id="padding-scrunch">
+    Reformed many times in the wake of worldshaking disaster, the Midland Council is the soul and spine of Dornnian peacetime. Their existence is not a symbolic platitude - the Council 
+    is the fulcrum of all traditional politics, the mediator, and an armed force backed by the Sword-Saints that will frequently stamp out potential conflict. In a world where the 
+    threat a single rogue agent poses can be planar, the highest level of mortal organization must have the power to decisively prevent such catastrophes. This has, does, and will 
+    cause problems when they take action too hastily without full-body consultation.
+    <br /> <br />
+    The Human Families have tentatively agreed to hold seats at the Council in the years following Draid’s “final” incursion. Their representatives will attend any summit deemed sufficiently-severe, which has only happened
+    three times since - the fourth Antikosmic Referendum, the discovery of the Timekeeper's Vault in northern Anterros, and the arrival of named-one "Remus".
+    <br /><br />
+    </p>
+  </div>
+</div>
+
+<div id="poli-grid-box">
+  <a id="poligrid-link" href="/">Tholri's Domain</a>
+  <a id="poligrid-link" href="/">The Northfolk Enclave<br/><i id="subtitle-tiny">"Northern Jawbone"</i></a>
+  <a id="poligrid-link" href="/">Hezzar’s Pit</a>
+  <a id="poligrid-link" href="/">Wormking's Sea</a>
+
+  <a id="poligrid-link" href="/">Holger's Keep</a>
+  <a id="poligrid-link" href="/">The Elfholds<br/><i id="subtitle-tiny">"Ilvor-Ylvindal"</i></a>
+  <a id="poligrid-link" href="/">Northsea Confederacy</a>
+  <a id="poligrid-link" href="/">The Demonhunters<br/><i id="subtitle-tiny">(cursory)</i></a>
+
+  <a id="poligrid-link" href="/">Decryptor Houses</a>
+  <a id="poligrid-link" href="/">The Midlands Historical Archive</a>
+  <a id="poligrid-link" href="/">Isles of Security</a>
+  <a id="poligrid-link" href="/">Wahlrect</a>
+
+  <a id="poligrid-link" href="/">Ilkair</a>
+  <a id="poligrid-link" href="/">Deilān Federation</a>
+  <a id="poligrid-link" href="/">The Sword-Saints</a>
+  <a id="poligrid-link" href="/">The Faults</a>
+
+  <a id="poligrid-link" href="/">Beastguard</a>
+  <a id="poligrid-link" href="/">Denton's League</a>
+  <a id="poligrid-link" href="/">The Sixfold Star</a>
+  <a id="poligrid-link" href="/">Brassworks Fellowship</a>
+
+  <a id="poligrid-link" href="/">Ithuk's Initiates</a>
+  <a id="poligrid-link" href="/">Dreadpoint Forgesons</a>
+  <a id="poligrid-link" href="/">Schools of the Elementalist</a>
+
+</div>
+
 
 
 `

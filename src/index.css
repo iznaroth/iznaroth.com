@@ -585,6 +585,14 @@ a:hover {
   vertical-align: top;
 }
 
+/* DTWW WORLD SUBPAGE IMAGES */
+
+#huge-header{
+  padding-top: 4rem;
+  width: 50%;
+  padding-bottom: 4rem;
+}
+
 #realm-header{
   padding-top: 4rem;
   width: 40%
@@ -610,10 +618,37 @@ a:hover {
 }
 
 
+/* INHABITANTS PAGE  */
+
 #species-box{
   display: flex;
   flex-wrap: wrap;
   padding-bottom: 2rem;
+}
+
+#poli-grid-box{
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 2rem;
+  padding: 0rem 5rem;
+}
+
+#poligrid-link{
+  flex-basis: 25%;
+  font-family: "IM Fell DW Pica";
+  font-size: 1.5rem;
+  margin: auto;
+  text-align: center;
+  padding: 1.5rem 0;
+}
+
+#subtitle-tiny {
+  font-size: 1.0rem;
+}
+
+#politic-box{
+  display: flex;
+  flex-wrap: wrap;
 }
 
 
@@ -623,6 +658,18 @@ a:hover {
   padding-left: 0rem;
   font-family: "IM Fell DW Pica";
 }
+
+#politic-box h2{
+  color: gray;
+  font-size: 2.5rem;
+  padding-left: 2rem;
+  font-family: "IM Fell DW Pica";
+}
+
+#padding-scrunch{
+  padding-bottom: 1.5rem !important;
+}
+
 
 #spec-header-box h1{
   color: gray;
@@ -646,9 +693,27 @@ a:hover {
   flex-basis: 70%;
 }
 
+#majorpol-text{
+  flex-basis: 80%;
+}
+
 #portrait {
   width: 20%;
+}
 
+
+#banner {
+  width: 10%;
+}
+
+#polwedge {
+  flex-basis: 10%;
+}
+
+.force-vert-center {
+  vertical-align: center;
+  align-self: center;
+  padding: 4rem 0;
 }
 
 #descintro{
@@ -715,6 +780,8 @@ hr.default {
   padding-bottom: 3.5rem;
 }
 
+/*faux-tailwind for DangerouslySet inlines*/
+
 .red {
   color: rgb(207, 64, 64) !important;
 }
@@ -726,3 +793,20 @@ hr.default {
 .purple {
   color: rgb(156, 91, 156) !important;
 }
+
+.blue {
+  color: rgb(33, 136, 150) !important;
+}
+
+.gold {
+  color: rgb(204, 180, 72) !important;
+}
+
+.orange {
+  color: rgb(204, 136, 81) !important;
+}
+
+.green {
+  color: rgb(70, 173, 87) !important;
+}
+
