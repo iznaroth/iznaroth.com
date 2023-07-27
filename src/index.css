@@ -612,9 +612,9 @@ a:hover {
   padding-bottom: 2rem;
 }
 
-#med-header{
+#inhab-header{
   padding-top: 4rem;
-  width: 30%
+  width: 45%
 }
 
 
@@ -808,5 +808,9 @@ hr.default {
 
 .green {
   color: rgb(70, 173, 87) !important;
+}
+
+.grey{
+  color: grey;
 }
 

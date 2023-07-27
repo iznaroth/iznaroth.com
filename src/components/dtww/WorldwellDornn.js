@@ -11,7 +11,7 @@ import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, u
 import { CRS, icon, map } from 'leaflet'
 import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY } from '../../graphql/Queries';
-import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, polities } from './DornnMapConstants';
+import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, polities, history } from './DornnMapConstants';
 import { CSSTransition } from 'react-transition-group';
 
 const screenBounds = [
@@ -1137,7 +1137,7 @@ const [bio, setBio] = useState(pagedesc)
             <button onClick={() => setBio(realms)}>- The Realms -</button>
             <button onClick={() => setBio(inhabitants)}>- The Inhabitants -</button>
             <button onClick={() => setBio(polities)}>- The Polities -</button>
-            <button onClick={() => setBio(realms)}>- The Histories -</button>
+            <button onClick={() => setBio(history)}>- The Histories -</button>
         </div>
     </section>
     <div className="dark-background ">

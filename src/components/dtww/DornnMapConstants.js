@@ -614,8 +614,7 @@ export const dolwynd = [
   </p>`
 
   export const realms = `
-  <img id="realm-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../world_cover_scrappy.png"/>
-  <img id="realm-title" className="mx-auto align-top opacity-90 w-3/5" src="../../world_bumper.png"/>
+  <img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../world_cover_alt.png"/>
 
   <p id="text-center-83" className='text-white m-auto text-center w-5/6 pb-20 block'>
   <br /><br />
@@ -651,8 +650,8 @@ export const dolwynd = [
 `
 
 export const inhabitants = `
-<img id="med-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../inhabitants_I.png"/>
-<img id="what-title" className="mx-auto align-top opacity-90 w-3/5" src="../../inhab_label.png"/>
+<img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../inhabitants_alt.png"/>
+
 
 <p id="text-center-83">
 A very long time ago (<i>long before any surviving records can accurately recount</i>), the great gestalt Diravol was born of raw Transcendence, and through their merciful intellect was the physical interstice of Dornn created. In Diravol’s bipedal image, a great many creatures were made to populate this land - we call them the Mortals. They are the foremost sapients of the realm - but they are not the only ones. The First Inheritors are followed by many; the Strangers, the Visitors - a wide arc. 
@@ -963,7 +962,7 @@ Click on any individual faction header to select their capital on the map.
   <a id="poligrid-link" href="/">Holger's Keep</a>
   <a id="poligrid-link" href="/">The Elfholds<br/><i id="subtitle-tiny">"Ilvor-Ylvindal"</i></a>
   <a id="poligrid-link" href="/">Northsea Confederacy</a>
-  <a id="poligrid-link" href="/">The Demonhunters<br/><i id="subtitle-tiny">(cursory)</i></a>
+  <a id="poligrid-link" href="/">The Demonhunters<br/><i id="subtitle-tiny">(perfunctory)</i></a>
 
   <a id="poligrid-link" href="/">Decryptor Houses</a>
   <a id="poligrid-link" href="/">The Midlands Historical Archive</a>
@@ -983,9 +982,192 @@ Click on any individual faction header to select their capital on the map.
   <a id="poligrid-link" href="/">Ithuk's Initiates</a>
   <a id="poligrid-link" href="/">Dreadpoint Forgesons</a>
   <a id="poligrid-link" href="/">Schools of the Elementalist</a>
+  <a id="poligrid-link" href="/">Central Mint</a>
 
 </div>
 
+<div class='blog-footer'></div>
+
+<hr class="double">
+
+<div id="spec-header-box">
+  <div id="species-text">
+    <h1 class="orange">Free Agents</h1>
+    <p id="padding-scrunch">
+    Beyond the apocalyptic coalitions of the semi-mortal west, most polities are hacking it on their own. This is usually--not always, but usually--because they have 
+    slightly-askew value systems. The Free Agents of Dornn are not inherently dangerous, but something about them is a bit too unfriendly to make it to the diplomatic chambers. 
+    Their territories tend to be smaller than those of the Midland Council or the Human Empires, but they also employ exotic defenses and schemes of war to prevent further 
+    border-shoves.
+    </p>
+  </div>
+</div>
+
+<div id="poli-grid-box">
+  <a id="poligrid-link" href="/">The Theodryian Bridge</a>
+  <a id="poligrid-link" href="/">Salíran Dynasties</a>
+  <a id="poligrid-link" href="/">Kalamant</a>
+  <a id="poligrid-link" href="/">Deadlands Purging Company</a>
+
+  <a id="poligrid-link" href="/">Ordo Terra-néve<br /><i id="subtitle-tiny">"Twilit Order"</i></a>
+  <a id="poligrid-link" href="/">Argo's Riders</a>
+  <a id="poligrid-link" href="/">The Captain's Promise</a>
+  <a id="poligrid-link" href="/">Rogue Cosmologist Academies</a>
+
+  <a id="poligrid-link" href="/">The Encompassed</a>
+  <a id="poligrid-link" href="/">Northmount Calamity Concern</a>
+  <a id="poligrid-link" href="/">Statesmen</a>
+  <a id="poligrid-link" href="/">Tann's Lock</a>
+
+  <a id="poligrid-link" href="/">Dreamer's Rise</a>
+  <a id="poligrid-link" href="/">The Witchspine</a>
+  <a id="poligrid-link" href="/">Irwin's Council</a>
+  <a id="poligrid-link" href="/">The Golden Reach</a>
+
+  <a id="poligrid-link" href="/">Barod-Dām</a>
+  <a id="poligrid-link" href="/">Theodryia</a>
+  <a id="poligrid-link" href="/">Isles of Contentment</a>
+  <a id="poligrid-link" href="/">People of Krym</a>
+
+  <a id="poligrid-link" href="/">Collectors</a>
+  <a id="poligrid-link" href="/">Olcrid</a>
+  <a id="poligrid-link" href="/">Zaic-Zahl<br /><i id="subtitle-tiny">"Basalt Towers"</i></a>
+
+
+</div>
+
+<div class='blog-footer'></div>
+
+<hr class="double">
+
+<div id="spec-header-box">
+  <div id="species-text">
+    <h1 class="red">Threats</h1>
+    <p id="padding-scrunch">
+    Absolutely at war with all other groups, at all times. Lousy with exotic magic and unpredictable technique. Sequestered in strange and remote places beyond or beneath the limits
+    of Dornnian cartographies. That, or they are plainly-powerful enough to hold their ground amongst the Midlanders despite near-constant invasion and war. Neither is preferable for the average adventurer. 
+    Generally speaking, it is not advisable to confront representatives of these factions alone. 
+    <br /> <br /> 
+    This is what we know. Push beyond the limits of recorded knowledge and it shouldn't be hard to find worse. 
+    </p>
+  </div>
+</div>
+
+<div id="poli-grid-box">
+  <a id="poligrid-link" href="/">Draid</a>
+  <a id="poligrid-link" href="/">The Stone Unit</a>
+  <a id="poligrid-link" href="/">Rhômi's Hand</a>
+  <a id="poligrid-link" href="/">The Jawlord Lives!</a>
+
+  <a id="poligrid-link" href="/">Cosmolarian Visitors</a>
+  <a id="poligrid-link" href="/">Avaroth</a>
+  <a id="poligrid-link" href="/">Auditors</a>
+  <a id="poligrid-link" href="/">The Remaining Riders</a>
+
+  <a id="poligrid-link" href="/">Yardol</a>
+  <a id="poligrid-link" href="/">The Five Spines</a>
+  <a id="poligrid-link" href="/">Trawlers</a>
+  <a id="poligrid-link" href="/">Epitaxor-Lords</a>
+
+  <a id="poligrid-link" href="/">Woodsmen</a>
+  <a id="poligrid-link" href="/">Escian Relics</a>
+  <a id="poligrid-link" href="/">Antimortal Empires</a>
+  <a id="poligrid-link" href="/">Basilisks</a>
+
+  <a id="poligrid-link" href="/">House of Jai-Urn</a>
+  <a id="poligrid-link" href="/">Primal Vampirics</a>
+  <a id="poligrid-link" href="/">Coldbody Guardsmen</a>
+  <a id="poligrid-link" href="/">Atrophykos</a>
+
+  <a id="poligrid-link" href="/">Lilted Ones</a>
+  <a id="poligrid-link" href="/">The Scorched</a>
+  <a id="poligrid-link" href="/">The Rimed</a>
+  <a id="poligrid-link" href="/">Icons</a>
+
+  <a id="poligrid-link" href="/">Recluses</a>
+  <a id="poligrid-link" href="/">Deeper Echoes</a>
+  <a id="poligrid-link" href="/">Ysteria</a>
+  <a id="poligrid-link" href="/">Demons</a>
+
+
+</div>
+
+<div class='blog-footer'></div>
+
+
+
+`
+
+export const history=`
+
+<img id="realm-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../history.png"/>
+
+<p id="text-center-83">
+History is unkind to the Midlands. Most of it has been lost by way of catastrophe, be it cosmic or political, and that which remains paints a confused picture. Many wedges 
+block the way; modern inhabitants hardly resemble their old-world counterparts, the times when Gods and Mortals mingled and warred across the unscarred promise of the preludes. 
+What has instead lasted beyond records of their exploits, imprinted across the flesh and blood of their descendants, are the remnants of their worst mistakes.  Through body-law we 
+trace the truth of Dornnian history, and it is strange indeed.
+</p>
+
+
+<div id="spec-header-box">
+  <div id="species-text">
+    <h1 class="white">The Timeless Mandate</h1>
+    <p id="">
+    In time unmeasured, a million million years before and after, the Old Gods fought endlessly on battered planes of undecided matter. Their forms were perfect energies, maintained tantrums of Thought and Instrument. 
+    Their origins and intentions were not known, but from their perpetual orbit was born the Laws of Reality. It was a time of imprecision, indecision and lots of energy. 
+    <br /> <br />
+    Somewhere in that roiling sea of every-thought, an incidental clash gave birth to Diravol, the Tender. To abridge their many miracles, the great Patron would be the only "living" creature
+    to forge a meaningful relationship with the Old Gods, brokering the five primal Contracts required for Transcendence to mimic the shape of mortal-habitable reality. Life, death, time, space, reason and consequence.
+    </p>
+  </div>
+</div>
+
+
+<div id="spec-header-box">
+  <div id="species-text">
+    <h1 class="blue">First Age</h1>
+    <p id="">
+    <i class="grey">
+    They crawled from a million holes, some less-formed than others. The divine memory likens it to a “planting”, but they’ve been waiting for this for an unbearable amount of time. 
+    If anything, the introduction of the Patrons was more like an imposition on their natural development. A skew. One that caused a great many more problems than it solved, certainly…
+    </i>
+    <br /><br />
+    The long and convoluted rise of the Mortal Folk, the First Inheritors. A time marred by the confusions of a world learning to understand rules as they change underfoot. 
+    Patchy records recovered from only the deepest recesses build a frail picture; the First Age was a sequence of incomprehensible wars slowly building towards planar catastrophe.
+    The Inheritors struggled to build sensible relationships with their neurotic patrons, and the inextricable differences between them and their neighbors only served to worsen the attempt.
+    The only reason the world was stalled from ending at the outset was due to the arrival of a greater foe.
+    <br /><br />
+    </p>
+  </div>
+</div>
+
+<div id="spec-header-box">
+  <div id="species-text">
+    <h1 class="orange">Dvirran Age</h1>
+    <p id="">
+    <i class="grey">
+    Oridei had been seeing things for a time. It isn’t certain when or why the King-under-Sky selected him as proper vessel, only that it imposed on his mind for much of the First. Nonsense they may have been, but they haunted the
+    Dvirran patron all the same: A table in the throat of the heavens with the body of Diravol’s only son seated at one side. 
+    A million swords embedded in the windless plains of Moz Haphora’s rolling cradle. Dead titans crashing into manarotted grass. Grey-skinned limbs in ornate boxes. Stormshattered 
+    cities in the superstructural depths. A centipede of mortal arms clinging to a blackstone nail at the bottom of the world. The sky as a pastiche of wings and arms, 
+    returning home to lift the plane up and away from the growing dark. 
+    </i>
+    <br /> <br />
+    The prophecies remember it well; the turning of the age as a realization of one Divine's ceaseless nightmares. It was perhaps the only extensively documented part, the massive mental decline of Oridei of the Dvirr, the world's
+    only "sane" corporeal divine as he was beset by an outsider's hostile visions. When none would respect his calls to action, he took it upon himself to enact the will of Alavaria, the King-under-Sky, and declared war on the world. 
+    At first it was a brief and unremarkable string of assassinations and heists. Then, the wings came. A halo of words and light and feathered triumph descended from an overcast sky over Moz Haphora, crowning the Dvirran initiative with the blessing of the Other. 
+    Things got a lot worse after that.
+    <br /><br />
+    The Dvirran wars spanned an age and change, if the records are to be believed. It was the war to end all wars, one not even bested in the grand futures to come. Millions died at the hands of 
+    the hands of the great Dvirran war-engine, a wanton massacre that culled arbitrarily without reason or remorse. Those that were spared were not forced to work, but to convert--to adopt the will of the
+    outsider entity to which Oridei had promised the plane. In the times when they were not fighting (and they were usually fighting), the Dvirr would construct strange devices across the entirety of the Midlands,
+    many of which still stand today, uncounted millenia later. 
+    <br /><br />
+    The war's end was only found when Oridei's prophecy-addled hubris ran against a foe he could not topple, and he was killed in remarkably mortal fashion. 
+    His immortal patronly soul survived, but not fiercely enough to avoid eternal imprisonment. His remaining forces were abandoned by their new Godhead and stomped out in a meager decade. 
+    </p>
+  </div>
+</div>
 
 
 `
