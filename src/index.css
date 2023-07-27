@@ -624,6 +624,18 @@ a:hover {
   font-family: "IM Fell DW Pica";
 }
 
+#spec-header-box h1{
+  color: gray;
+  font-size: 3rem;
+  font-family: "IM Fell DW Pica";
+}
+
+#spec-header-box h1, #spec-header-box p{
+  padding-left: 4rem;
+  padding-right: 3rem;
+  text-align: left !important;
+}
+
 #species-box p{
   text-align: left;
   padding-right: 3rem;
@@ -688,3 +700,29 @@ a:hover {
   opacity: 1;
 }
 
+hr.double {
+  border-top: 8px double;
+  border-bottom: none;
+  width: 90%;
+  margin: auto;
+  padding-bottom: 3.5rem;
+}
+
+hr.default {
+  width: 80%;
+  opacity: 45%;
+  margin: auto;
+  padding-bottom: 3.5rem;
+}
+
+.red {
+  color: rgb(207, 64, 64) !important;
+}
+
+.white {
+  color: white !important;
+}
+
+.purple {
+  color: rgb(156, 91, 156) !important;
+}

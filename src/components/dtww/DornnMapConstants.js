@@ -663,6 +663,16 @@ JUMP TO AN ENTRY:
 (Add links here...)
 </p>
 
+<div id="spec-header-box">
+  <div id="species-text">
+    <h1 class="purple">The Problem</h1>
+    <p>
+    Who's at fault for the Seasons of Stagnation? Who is it that blitz-burnt the whole plane in a half-century, squashed every empire from east to west, slaughtered billions in opposition as they pried the plane apart?
+    Who then promptly ran from their sins as the pressures mounted, fleeing to their superstructural capitals in search of lethal egress? That's an easy question. It was the...
+    </p>
+  </div>
+</div>
+
 <div id="species-box">
 <img id="portrait" src="../../species_frame_II.png" />
 <div id="species-text">
@@ -673,6 +683,133 @@ The Immortal Intruders, unfeatured primals. Arrived late to the cradle of Dornn,
 The Human lifecycle is a distorted mockery of natural existence, mimicking age by way of slowly permitting the divine frustration to loosen their shape. Given enough time, any Human will slowly degrade into a foggy ball of soul-lightning and emotionless memory, an indefinite repetition of pains and broken empathic links lacking any semblance of life, mobility, or speech.
 </p>
 </div>
+</div>
+
+
+<hr class="double">
+
+<div id="spec-header-box">
+  <div id="species-text">
+    <h1 class="red">The Inheritors</h1>
+    <p>
+    The Great Project, all of Diravol's myriad mimics. Though their physiques vary, they have been forced to match the bipedal stature of the eldest Tender for reasons unknown. When each of their Earlyworld ancestors were gifted with the power of intellect,
+    they began to corporealize shards of Diravol's will into the earliest divines--the Patrons. In the Seasons, they scarcely resemble their oldest forms, having suffered the worst side-effects of Dornn's magical frustration. Overburdened by heritage-curses
+    and lost histories, the Inheritors continue to struggle against the lost convolutions of their old-world destinies as they beat back the borders of their Human neighbors. 
+    </p>
+  </div>
+</div>
+
+<div id="species-box">
+  <img id="portrait" src="../../species_frame_II.png" />
+  <div id="species-text">
+    <h2>Dvirr</h2>
+    <p>
+    The lost four-armed fanatics of the Golden Age. Lanky, tall-yet-hunched, distended faces sporting three-odd eyes wreathed by ornate masks. Once the miracle-machinists of the early-world, these slight and angular bipeds were enthralled by their patron, Oridei, into a world-scarring war that nearly killed off the entirety of Mortal existence. In the wake of their loss, those that were spared the guilt were slowly dragged back into the Alavarian incumbent by strange ripples from below the crust. They are almost entirely missing in the Seasons of Stagnation. 
+    </p>
+  </div>
+</div>
+
+<div id="species-box">
+  <img id="portrait" src="../../species_frame_I.png" />
+  <div id="species-text">
+    <h2>Dwarves</h2>
+    <p>
+    The vast and all-encompassing heart of the Midlands; an impossibly-varied group of subterranean beard-born bureaucrats and bellows-masters. Most often compared to ants; the Dwarves are split innumerably into variable castes of physical size, depth of living, sociocultural role, divine tendency and arbitrary judgements of appearance. From the triple-jointed jagged-shouldered Dhuroi of the deep-citadels to the waxy Ezym tallborn of the upper governmental circles, Dwarves were categorized less for their resemblances and more for their attitudes towards progress, industry and democracy. In deep-time, they emigrated to their vast subterranean citadels and disappeared entirely. They are not present in the Seasons of Stagnation. 
+    </p>
+  </div>
+</div>
+
+<div id="species-box">
+  <img id="portrait" src="../../species_frame_II.png" />
+  <div id="species-text">
+    <h2>Elves</h2>
+    <p>
+    The neurotic geometers of Eryulithas' endless surveying. In earlier times, they were identified by their tall and wiry frames, knife-shaped ears and pointed, almost sculpted features--they were often called Forest Giants. Now, in the long shadow of the Pointlords' disastrous reconfigurations, it’s pretty much just the ears. Elvish bodies are inextricably marked by strange polygonal scarworks, the inescapable reminder of their near-total informational ascent in the First Age. 
+    <br /><br />
+    Elves are everywhere, shattered-and-scattered as they were by the Elfwars of the early ages.  Elvish tribes can resemble anything from stony elementals to pallid pseudo-vampires--such is the nature of their chimerical past. They make up the bulk of most Mortal populations.
+    </p>
+  </div>
+</div>
+
+<hr class="default">
+
+<div id="spec-header-box">
+  <div id="species-text">
+    <h1>The Splitfolk</h1>
+    <p>
+    In the seedling days of yore when the Mortal Inheritors were first planted, there came to be a creature known as the Unsplit. It was a pluripotent superorganism, a wanting thing nearly-guaranteed to bring disaster to its peer-species. In a moment of wary prescience, Diravol deigned to take this advantage literally, and so they sliced the Unsplit in twain, making from it two distinct peoples. 
+    </p>
+  </div>
+</div>
+
+<div id="species-box">
+  <img id="portrait" src="../../species_frame_II.png" />
+  <div id="species-text">
+    <h2>Gnomes</h2>
+    <p>
+    The top half were the Gnomes, granted a mercy of quicksilver legs upon which to walk the earth. Despite the gift, they still stand at about a meter-and-change. Not all accepted this gift, taking their burden as a challenge, and thus was born their tendency to tinker. As heritors of the upper-body, the Gnomes were burdened with an unspent mind of early-world power and a monstrously-tough upper torso.  They used this unusual toolset to build grand sequesters of ornate construction in the deepwood mountains of the north, sickeningly-vertical jungle-gyms of silver and gold that wreathe the chasms of the old Krangsway. At some point, disaster ejected them from their homelands and burdened them with a curse of broken memory. 
+    </p>
+  </div>
+</div>
+
+<div id="species-box">
+  <img id="portrait" src="../../species_frame_I.png" />
+  <div id="species-text">
+    <h2>Halflings</h2>
+    <p>
+    The bottom half were the Halflings, granted a meager earthwork fitting over their soul-ember torsos. With the fires of ambition contained, they secreted their habits away in order to focus on family. They’re approximately as tall as their Splitfolk siblings, their  squat bodies of two complexions - the legs are briar-knotted, musclebound and gnarled relics of old-world power, while the torso is an intricate golem of swirling earthwork - crafted so flawlessly, they are nearly indistinguishable from common mortals.  Halflings are the Earthen-Kings of the southern mountain-lands, overly-accommodating and somehow in everyone’s good graces. You can find them pretty much everywhere. 
+    </p>
+  </div>
+</div>
+
+<hr class="default">
+
+<div id="species-box">
+  <img id="portrait" src="../../species_frame_I.png" />
+  <div id="species-text">
+    <h2>Northfolk</h2>
+    <p>
+    Perhaps the most diligent of the First Age’s Inheritors, the Northfolk are still, in fact, in the North. Broad-shouldered, hardy, vibrantly-colored and toothy bipeds that keep great academies and vast fortress networks in the northern wastes of Anterros and Dolwynd. In the first age, their consecutive loss of two patrons to the nighmare-desert of the Ruvallian has imposed upon their bodies a spiral lock-like scar; a promise to Tann that the debt will be repaid in time. If one of their teeth is embedded, they will die. This promise has split their kin into two subspecies - the Fireborn who hold the war-lines against would-be invaders, and the Unstoked that quell and contain their burning blood to keep themselves against the impossible cold of the far North, often sporting a coat of platinum fur. 
+    </p>
+  </div>
+</div>
+
+<div id="species-box">
+  <img id="portrait" src="../../species_frame_II.png" />
+  <div id="species-text">
+    <h2>Rhôminites</h2>
+    <p>
+    The hardy unions that make up all of Dornn’s sea-bound subspecies. Most-identifiable for their taller physiques, bone-like head fixtures (horns?) and unusually-colored sclera, the Rhôminites are otherwise more diverse of form than even the Dwarves were. They are an awkward unification of a host of isolated kingdoms and clans, forced into cooperation when their millionmind patron Kar-deil was killed to make room for their own futures (Rhôminite Summit Zero, it was called) and the subsequent falling-out led to the birth of the Hand of Rhômi, one of the two worst Demon-Cults of the modern age. They are still marked by the results of many prior falling-outs, including the amputation phantoms of post-Dvirran summits and the hole-scar that marks their promise: to fell the Hand by any means necessary. 
+
+
+    </p>
+  </div>
+</div>
+
+<div id="species-box">
+  <img id="portrait" src="../../species_frame_I.png" />
+  <div id="species-text">
+    <h2>Theodryians</h2>
+    <p>
+    The mythic cryptid namesakes of the Theodryian Sea, a tremendously isolationist nation of bifurcated superliminal colossi. The Theodryians were one of the eight Mortal Inheritors, but their First Age struggles isolated them before contact was made. Theodryians are about as tall as Rhôminites on average, have an ash-gray skin tone, and are usually hairless. Their features are blocky and squared-off and their heads terminate in unusually shaped ‘crownbones’ that are used to identify one-another (though some can still grow hair as well). 
+    <br /><br />
+    The Theodryian soul is split in two, an attempt at understanding the ramblings of their magic-obsessed patron that burned an irrevocable mark on all subsequent Theodryian souls. One is the physical host--the Materiosapience--whereas the other is the transcendent communicator, the Ethereosapience. This makes Theodryians outlandishly talented spellcasters, but also renders them distractible and inattentive. 
+    </p>
+  </div>
+</div>
+
+<hr class="double">
+
+<div id="spec-header-box">
+  <div id="The Strangers">
+    <h1 class="white">The Strangers</h1>
+    <p>
+    The oldest stressors of Divine Intent. These folks arrived unexpectedly, siphoned from realms above, below and beyond the limits of the Midlands proper. Life that does not adhere to the
+    standards of Diravol suffers unusual repercussions; mistakes in the worldweave that neglected the idea of non-Inheritor life. While Humans suffer the brunt of it, life is still difficult for the others beyond the
+    whims of the Tender's council--everything from magical misfire to cumbersome prophecy will haunt them for as long as they remain here, unless they falsify their transcendent identities entirely. Despite this, many remain in the Midlands their entire lives. Some due to stubbornness,
+    but usually it's just because nobody knows how to leave.
+    </p>
+  </div>
 </div>
 
 <div id="species-box">
@@ -711,38 +848,6 @@ Some of the most notorious descended are the Dragons and their progeny, star-cra
 </div>
 
 <div id="species-box">
-  <img id="portrait" src="../../species_frame_II.png" />
-  <div id="species-text">
-    <h2>Dvirr</h2>
-    <p>
-    The lost four-armed fanatics of the Golden Age. Lanky, tall-yet-hunched, distended faces sporting three-odd eyes wreathed by ornate masks. Once the miracle-machinists of the early-world, these slight and angular bipeds were enthralled by their patron, Oridei, into a world-scarring war that nearly killed off the entirety of Mortal existence. In the wake of their loss, those that were spared the guilt were slowly dragged back into the Alavarian incumbent by strange ripples from below the crust. They are almost entirely missing in the Seasons of Stagnation. 
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-    <h2>Dwarves</h2>
-    <p>
-    The vast and all-encompassing heart of the Midlands; an impossibly-varied group of subterranean beard-born bureaucrats and bellows-masters. Most often compared to ants; the Dwarves are split innumerably into variable castes of physical size, depth of living, sociocultural role, divine tendency and arbitrary judgements of appearance. From the triple-jointed jagged-shouldered Dhuroi of the deep-citadels to the waxy Ezym tallborn of the upper governmental circles, Dwarves were categorized less for their resemblances and more for their attitudes towards progress, industry and democracy. In deep-time, they emigrated to their vast subterranean citadels and disappeared entirely. They are not present in the Seasons of Stagnation. 
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_II.png" />
-  <div id="species-text">
-    <h2>Elves</h2>
-    <p>
-    The neurotic geometers of Eryulithas' endless surveying. In earlier times, they were identified by their tall and wiry frames, knife-shaped ears and pointed, almost sculpted features--they were often called Forest Giants. Now, in the long shadow of the Pointlords' disastrous reconfigurations, it’s pretty much just the ears. Elvish bodies are inextricably marked by strange polygonal scarworks, the inescapable reminder of their near-total informational ascent in the First Age. 
-    <br /><br />
-    Elves are everywhere, shattered-and-scattered as they were by the Elfwars of the early ages.  Elvish tribes can resemble anything from stony elementals to pallid pseudo-vampires--such is the nature of their chimerical past. They make up the bulk of most Mortal populations.
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
   <img id="portrait" src="../../species_frame_I.png" />
   <div id="species-text">
     <h2>Faelikes</h2>
@@ -755,74 +860,11 @@ Some of the most notorious descended are the Dragons and their progeny, star-cra
 </div>
 
 <div id="species-box">
-  <div id="species-text">
-    <h1>The Splitfolk</h1>
-    <p>
-    In the seedling days of yore when the Mortal Inheritors were first planted, there came to be a creature known as the Unsplit. It was a pluripotent superorganism, a wanting thing nearly-guaranteed to bring disaster to its peer-species. In a moment of wary prescience, Diravol deigned to take this advantage literally, and so they sliced the Unsplit in twain, making from it two distinct peoples. 
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_II.png" />
-  <div id="species-text">
-    <h2>Gnomes</h2>
-    <p>
-    The top half were the Gnomes, granted a mercy of quicksilver legs upon which to walk the earth. Despite the gift, they still stand at about a meter-and-change. Not all accepted this gift, taking their burden as a challenge, and thus was born their tendency to tinker. As heritors of the upper-body, the Gnomes were burdened with an unspent mind of early-world power and a monstrously-tough upper torso.  They used this unusual toolset to build grand sequesters of ornate construction in the deepwood mountains of the north, sickeningly-vertical jungle-gyms of silver and gold that wreathe the chasms of the old Krangsway. At some point, disaster ejected them from their homelands and burdened them with a curse of broken memory. 
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-    <h2>Halflings</h2>
-    <p>
-    The bottom half were the Halflings, granted a meager earthwork fitting over their soul-ember torsos. With the fires of ambition contained, they secreted their habits away in order to focus on family. They’re approximately as tall as their Splitfolk siblings, their  squat bodies of two complexions - the legs are briar-knotted, musclebound and gnarled relics of old-world power, while the torso is an intricate golem of swirling earthwork - crafted so flawlessly, they are nearly indistinguishable from common mortals.  Halflings are the Earthen-Kings of the southern mountain-lands, overly-accommodating and somehow in everyone’s good graces. You can find them pretty much everywhere. 
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
   <img id="portrait" src="../../species_frame_II.png" />
   <div id="species-text">
     <h2>Mites</h2>
     <p>
     Hezzar’s progeny; the chattering end. In the stubby interstitial plate that divides the Midlands from the unmeasured depths, a bounty of strange creatures have been granted a drop of the Mortal Sapience. The exact source of their ascension is contested. They are diverse of form, resembling all manner of insects - just a bit stonier in composition. They almost all hail from the great choke of Hezzar’s Pit, just under the centermost bruises of Dalumgrahd. This is a transitory post for their kin; most were born in deeper places that few Mortals would willingly venture to. 
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-    <h2>Northfolk</h2>
-    <p>
-    Perhaps the most diligent of the First Age’s Inheritors, the Northfolk are still, in fact, in the North. Broad-shouldered, hardy, vibrantly-colored and toothy bipeds that keep great academies and vast fortress networks in the northern wastes of Anterros and Dolwynd. In the first age, their consecutive loss of two patrons to the nighmare-desert of the Ruvallian has imposed upon their bodies a spiral lock-like scar; a promise to Tann that the debt will be repaid in time. If one of their teeth is embedded, they will die. This promise has split their kin into two subspecies - the Fireborn who hold the war-lines against would-be invaders, and the Unstoked that quell and contain their burning blood to keep themselves against the impossible cold of the far North, often sporting a coat of platinum fur. 
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_II.png" />
-  <div id="species-text">
-    <h2>Rhôminites</h2>
-    <p>
-    The hardy unions that make up all of Dornn’s sea-bound subspecies. Most-identifiable for their taller physiques, bone-like head fixtures (horns?) and unusually-colored sclera, the Rhôminites are otherwise more diverse of form than even the Dwarves were. They are an awkward unification of a host of isolated kingdoms and clans, forced into cooperation when their millionmind patron Kar-deil was killed to make room for their own futures (Rhôminite Summit Zero, it was called) and the subsequent falling-out led to the birth of the Hand of Rhômi, one of the two worst Demon-Cults of the modern age. They are still marked by the results of many prior falling-outs, including the amputation phantoms of post-Dvirran summits and the hole-scar that marks their promise: to fell the Hand by any means necessary. 
-
-
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-    <h2>Theodryians</h2>
-    <p>
-    The mythic cryptid namesakes of the Theodryian Sea, a tremendously isolationist nation of bifurcated superliminal colossi. The Theodryians were one of the eight Mortal Inheritors, but their First Age struggles isolated them before contact was made. Theodryians are about as tall as Rhôminites on average, have an ash-gray skin tone, and are usually hairless. Their features are blocky and squared-off and their heads terminate in unusually shaped ‘crownbones’ that are used to identify one-another (though some can still grow hair as well). 
-    <br /><br />
-    The Theodryian soul is split in two, an attempt at understanding the ramblings of their magic-obsessed patron that burned an irrevocable mark on all subsequent Theodryian souls. One is the physical host--the Materiosapience--whereas the other is the transcendent communicator, the Ethereosapience. This makes Theodryians outlandishly talented spellcasters, but also renders them distractible and inattentive. 
     </p>
   </div>
 </div>
