@@ -1,0 +1,204 @@
+[33mcommit 010652f43b0391482c18c66156112c8ecde82136[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Fri Jul 14 06:56:20 2023 -0500
+
+    fix map clipping
+
+[33mcommit f917f81773b5e3243fcf72e64f85154b2c676128[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Fri Jul 14 02:39:15 2023 -0500
+
+    zones done
+
+[33mcommit 3ec70556a957e9add11fe6a0a64563cdbed375c5[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Thu Jul 13 05:53:50 2023 -0500
+
+    dornn low-panel switch
+
+[33mcommit 093f1c193eb52f5348108593d3593990a2f47e14[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Wed Jul 12 06:15:53 2023 -0500
+
+    labels
+
+[33mcommit 09f1fa1f20e5d82c024ffdd20f4d21fb348a994a[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Wed Jul 12 03:16:23 2023 -0500
+
+    dornnus finish
+
+[33mcommit edc10e4253b0f877b14d8cde3f844d68ee424a7a[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sun Jul 9 21:50:13 2023 -0500
+
+    overflow fix
+
+[33mcommit 0dcabd455a238384ec3bc800a8634046898f9296[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sun Jul 9 15:33:00 2023 -0500
+
+    any
+
+[33mcommit 5525ec6a86373b03b03c9afc112cea6e4f3c3f18[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sun Jul 9 03:09:04 2023 -0500
+
+    load mapinfo from db
+
+[33mcommit 3bf9d18bbea0454624d84546ee159d5d89ced61f[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sat Jul 8 06:29:17 2023 -0500
+
+    infopane workable
+
+[33mcommit 9d853e24e2f9174137366f08e9831bee7e74dbee[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Fri Jul 7 03:18:28 2023 -0500
+
+    zoom lockon sidepane functional
+
+[33mcommit bce93d608c5dfe3065db63b369d378de735e0aee[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Thu Jul 6 23:40:26 2023 -0500
+
+    map snap part 1
+
+[33mcommit 9ca546786cec99cc7cbe5dc0d1428e29c685d1cd[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Thu Jul 6 05:30:04 2023 -0500
+
+    map viewer jank
+
+[33mcommit 4749b666cd3acbc98afc4ef6e7503f30dbf5c3b7[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Wed Jul 5 19:00:48 2023 -0500
+
+    more text
+
+[33mcommit 40bf87f0ec5d7df9c646bd1f23318c96f5c81630[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Wed Jul 5 08:09:41 2023 -0500
+
+    writing lol
+
+[33mcommit 2a6862db50fb42b166b81c78a201572ad819b739[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Wed Jul 5 07:21:53 2023 -0500
+
+    dornpage start (shudder)
+
+[33mcommit 97db67e3803b31a7fbb4187e24f86b9659c04a3d[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Tue Jul 4 21:24:23 2023 -0500
+
+    text up
+
+[33mcommit caeeea43dc88d474ec5233425dfafa64a795e034[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Mon Jul 3 23:19:07 2023 -0500
+
+    more dtww polishing
+
+[33mcommit 2ae8cba2809ed3138d8d9e7ccdbb26f297dfd059[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Mon Jul 3 02:05:43 2023 -0500
+
+    text update
+
+[33mcommit 09bbfdbb25cfdc33fca2d2731af2ca6e1690ce34[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Mon Jul 3 01:15:06 2023 -0500
+
+    i dont remember
+
+[33mcommit aab50bad9c52233264f08f751514e6e9cdf6fecb[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sun Jul 2 04:52:57 2023 -0500
+
+    navbar tweaks
+
+[33mcommit 7ce0b72842b5750962ae7f34f459c8b882260f38[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sun Jul 2 04:40:22 2023 -0500
+
+    anything?
+
+[33mcommit 36bd3c4fdc1f019a2c0ff7b613ba57f8dc71e7be[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sun Jul 2 04:13:22 2023 -0500
+
+    itww landing draft one done
+
+[33mcommit 4016d2c6f8df3f37615408f26758e2d23f7c9abf[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sun Jul 2 01:04:33 2023 -0500
+
+    dtww work
+
+[33mcommit de5b6b87010252249dfcf553005f81a3ea148fbc[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sat Jul 1 23:06:19 2023 -0500
+
+    dtww start
+
+[33mcommit 61397ce862be7e8a059827c51adefd375df8d372[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Mon Jun 26 18:11:48 2023 -0500
+
+    bg/css stuff zzrt
+
+[33mcommit 2c2aad0282d9f863db61b1662a4698971fecd397[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Mon Jun 26 09:31:25 2023 -0500
+
+    adjust style
+
+[33mcommit dbd7239b95daeb6cb029c89dde5dd070d043edfa[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sun Jun 25 22:26:01 2023 -0500
+
+    ???
+
+[33mcommit 254e8840544753bedeadedd37fec2d1c477e7eea[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sun Jun 25 09:27:17 2023 -0500
+
+    visual tweaks
+
+[33mcommit 7b87cb6d11a359e4ceaee238983b254f386c6c24[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Sat Jun 24 06:17:37 2023 -0500
+
+    landing blog list
+
+[33mcommit 90e1df6fe93f2355cc4ad566c1eb4adb76e7e35b[m
+Merge: e65fce1 24cc95b
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Fri Jun 23 06:38:41 2023 -0500
+
+    Merge branch 'main' of https://github.com/iznaroth/iznaroth.com
+
+[33mcommit e65fce1dc433437bc231a73984711efcb9b05b78[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Fri Jun 23 06:38:33 2023 -0500
+
+    blog basics done
+
+[33mcommit 24cc95b714bf786c20a7cd0ad73869f2260661d7[m
+Author: Jonas Bull <56083070+iznaroth@users.noreply.github.com>
+Date:   Fri Jun 23 05:50:21 2023 -0500
+
+    whoops!
+
+[33mcommit 996ae73005b26ab820d0826ccd2f35b46dc33ce8[m
+Author: Jonas Bull <56083070+iznaroth@users.noreply.github.com>
+Date:   Fri Jun 23 05:49:18 2023 -0500
+
+    Update README.md
+
+[33mcommit 18dffeb9d7ecc3cc34b562f6cdb4aa16c501ef09[m
+Author: iznaroth <iznaroth@gmail.com>
+Date:   Fri Jun 23 05:46:50 2023 -0500
+
+    initial commit

@@ -1147,8 +1147,7 @@ trace the truth of Dornnian history, and it is strange indeed.
     <p id="padding-scrunch" class="grey">est. 4553 - 6018</p>
     <p id="">
     <i class="grey">
-    Oridei had been seeing things for a time. It isn’t certain when or why the King-under-Sky selected him as proper vessel, only that it imposed on his mind for much of the First. Nonsense they may have been, but they haunted the
-    Dvirran patron all the same: A table in the throat of the heavens with the body of Diravol’s only son seated at one side. 
+    Oridei had been seeing things for a time. It isn’t certain when or why the King-under-Sky selected him as proper vessel, only that it imposed on his mind for much of the First. A lingering suite of repetitive nightmares: A table in the throat of the heavens with the body of Diravol’s only son seated at one side. 
     A million swords embedded in the windless plains of Moz Haphora’s rolling cradle. Dead titans crashing into manarotted grass. Grey-skinned limbs in ornate boxes. Stormshattered 
     cities in the superstructural depths. A centipede of mortal arms clinging to a blackstone nail at the bottom of the world. The sky as a pastiche of wings and arms, 
     returning home to lift the plane up and away from the growing dark. 
@@ -1159,10 +1158,10 @@ trace the truth of Dornnian history, and it is strange indeed.
     At first it was a brief and unremarkable string of assassinations and heists. Then, the wings came. A halo of words and light and feathered triumph descended from an overcast sky over Moz Haphora, crowning the Dvirran initiative with the blessing of the Other. 
     Things got a lot worse after that.
     <br /><br />
-    The Dvirran wars spanned an age and change, if the records are to be believed. It was the war to end all wars, one not even bested in the grand futures to come. Millions died at the hands of 
-    the hands of the great Dvirran war-engine, a wanton massacre that culled arbitrarily without reason or remorse. Those that were spared were not forced to work, but to convert--to adopt the will of the
+    The Dvirran wars spanned an age and change, if the records are to be believed. It was the war to end all wars, one not even bested in the grand futures to come. Millions died at the hands 
+    of the great Dvirran war-engine, a wanton massacre that culled arbitrarily without reason or remorse. Those that were spared were not forced to work, but to convert--to adopt the will of the
     outsider entity to which Oridei had promised the plane. In the times when they were not fighting (and they were usually fighting), the Dvirr would construct strange devices across the entirety of the Midlands,
-    many of which still stand today, uncounted millenia later. 
+    many of which still stand today, uncounted millenia later. The war calendar flexed and withered over the centuries, rebellions swelling into empires before the winged vanguard would return to collect. 
     <br /><br />
     The war's end was only found when Oridei's prophecy-addled hubris ran against a foe he could not topple, and he was killed in remarkably mortal fashion. 
     His immortal patronly soul survived, but not fiercely enough to avoid eternal imprisonment. His remaining forces were abandoned by their new Godhead and stomped out in a meager decade. 
@@ -1181,7 +1180,7 @@ trace the truth of Dornnian history, and it is strange indeed.
     <br /> <br />
     This highpoint in a post-patron world is long and fogged, the vast swathes of time wherein most every ruin was built and lost. The technological highs of the Golden Age were riding a wave of magical comprehension so absurd, we might as well be banging rocks together in comparison. Much of the knowledge is foreign to us, based on principles that are dysfunctional in the Seasons of Stagnation. More still was destroyed in the subsequent ages, so the narrow slice of understanding we have for the Golden Age is strange. It was something of a misnomer. 
     <br /> <br />
-    The shape of it is vague, a star-crawl to intellectual ascendance marred by consistent and unexpected disaster. The Dwarves built grand subterranean societies that dragged them deeper than they could handle, the Dvirr could not escape their patronly fate and vanished in exodus, the Gnomes met something old in the Krangsway and were scarred forever, the Northfolk were cursed by the death of their second god-chieftain,  the Halflings were shattered by the death of the Mountaincarver hosts, the Elves were fractured and tempted by fragments of their patron's neurotic theories, the Rhominites were devastated by constant internal warfare, and nobody really knows what was going on with the Theodryians. Some groups made it through less-distorted by this age of knowledges, as far as we can tell, but their records are no more complete than any others. There's little in the way of specifics for any of these narratives, only the broadest arcs that survived through legend and word-of-mouth.
+    The shape of it is vague, a star-crawl to intellectual ascendance marred by complicated and unexpected disaster. The Dwarves built grand subterranean societies that dragged them deeper than they could handle, the Dvirr could not escape their patronly fate and vanished in exodus, the Gnomes met something old in the Krangsway and were scarred forever, the Northfolk were cursed by the death of their second god-chieftain,  the Halflings were shattered by the death of the Mountaincarver hosts, the Elves were fractured and tempted by fragments of their patron's neurotic theories, the Rhominites were devastated by constant internal warfare, and nobody really knows what was going on with the Theodryians. Some groups made it through less-distorted by this age of knowledges, as far as we can tell, but their records are no more complete than any others. There's little in the way of specifics for any of these narratives, only the broadest arcs that survived through legend and word-of-mouth.
     <br /> <br />
     We call it the Golden Age because they managed to stop fighting one another quite as much, but they couldn't quell the internal strife. Apparently, the diplomatic stresses of this meteoric age nearly destroyed the world, if not for what burnt that fuse prematurely...
   </div>
