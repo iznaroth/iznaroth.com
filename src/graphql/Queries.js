@@ -54,7 +54,7 @@ export const QUERY_POSTLIST = gql`
 
 export const QUERY_MAPENTRY = gql`
 {
-    mapInfos {
+    mapInfos (first:100) {
         entryID
         header
         environs

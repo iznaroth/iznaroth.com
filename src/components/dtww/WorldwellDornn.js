@@ -123,6 +123,9 @@ const [bio, setBio] = useState(pagedesc)
       .then(res => setInfo(res.mapInfos))
       
     }
+
+    graphcms.request(QUERY_MAPENTRY)
+      .then(res => console.log(res)) //REMOVE ME!
   });
 
   useEffect(() => {

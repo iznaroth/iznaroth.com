@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\components"
+    "\\src\\components",
+    "\\src\\components\\dtww",
+    "\\src\\graphql"
   ],
-  "SelectedNode": "\\src\\App.js",
+  "SelectedNode": "\\src\\graphql\\Queries.js",
   "PreviewInSolutionExplorer": false
 }
