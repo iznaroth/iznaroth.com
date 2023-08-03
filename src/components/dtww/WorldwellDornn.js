@@ -114,6 +114,20 @@ const [bio, setBio] = useState(pagedesc)
     setOpacities(setterArray); //this function is primarily to wedge missed mouseover / mouseout collisions - instead of just wiping out it neutrals all entries on deselect just in case.
   }
 
+  function scrollOpenPopupRef(pid) {
+
+    mapContainerRef.current.scrollIntoView() //ping back to top
+
+    //toggle corresponding marker visibility
+    
+    //flyTo polizone? (late goal)
+
+    //display poli-zone? (late goal)
+
+    //safe open popup
+
+  }
+
   useEffect(() => {
     
     if(info == null && !runMonitor){
