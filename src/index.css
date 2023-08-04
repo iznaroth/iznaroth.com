@@ -567,6 +567,7 @@ a:hover {
   width: 40vw;
 }
 
+
 .map-info-content{
   font-family: 'Times New Roman';
   color: #dfdfdf;
@@ -579,6 +580,10 @@ a:hover {
 	color: #c4635c;
 }
 
+.settlement {
+  top: 45%;
+  left: 52%;
+}
 
 .bio-container img{
   margin: auto;

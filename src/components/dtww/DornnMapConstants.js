@@ -567,14 +567,14 @@ export const dolwynd = [
 
   //bios
 
- export const pagedesc = `
-
+ export const pagedesc = (
+  <>
   <img id="what-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../what_is_this.png"/>
   <img id="what-title" className="mx-auto align-top opacity-90 w-3/5" src="../../what_bumper.png"/>
 
   
   <p id="descintro">
-  This is an interactive map-guidebook to Dornn, the setting associated with Down the Worldwell's rules and system. It is an abridgement of the full Dornn setting guide, which you can acquire ->here<-.
+  This is an interactive map-guidebook to Dornn, the setting associated with Down the Worldwell's rules and system. It is an abridgement of the full Dornn setting guide, which you can acquire -here-.
   <br /> <br />
    You can click on any region to get an overview of the population, culture,
   geography and history of the local area. The pinned flags represent political powers that control that area--click on them to learn specifics about their size, relationships and general presence in the modern age.
@@ -611,9 +611,12 @@ export const dolwynd = [
   Dornn is far too big to map comprehensively. There is always room to add your own stuff! Nestle towns in new areas, write new histories, change the fates of entire species if you want. The point of a fictional setting is in providing inspiration--this is about helping your mental garden flourish.
   Steal what works and bin the rest. 
 
-  </p>`
+  </p>
+  </>
+  )
 
-  export const realms = `
+  export const realms = (
+  <>
   <img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../world_cover_alt.png"/>
 
   <p id="text-center-83" className='text-white m-auto text-center w-5/6 pb-20 block'>
@@ -647,231 +650,235 @@ export const dolwynd = [
   in a metaphysical concept-superwar between ancient deities, freezing the whole thing ten times over. The poor sods that still live there are pretty much stuck--for a mortal, traversal is almost certain death. For a human, it's just a lot of consecutive certain deaths. There's surely a bounty of unclaimed treasure to be found
   in the mostly-untouched ruins that cover the continent, but it would be a costly trip in both coin and mental fortitude. 
   </p>
-`
+  </>
+ )
 
-export const inhabitants = `
-<img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../inhabitants_alt.png"/>
+export const inhabitants = (
+  <>
+  <img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../inhabitants_alt.png"/>
+  
 
+  <p id="text-center-83">
+  A very long time ago (<i>long before any surviving records can accurately recount</i>), the great gestalt Diravol was born of raw Transcendence, and through their merciful intellect was the physical interstice of Dornn created. In Diravol’s bipedal image, a great many creatures were made to populate this land - we call them the Mortals. They are the foremost sapients of the realm - but they are not the only ones. The First Inheritors are followed by many; the Strangers, the Visitors - a wide arc. 
+  <br /><br />
+  These are the fourteen with the greatest primacy of control in the Seasons of Stagnation. 
+  <br /><br />
+  JUMP TO AN ENTRY:
+  (Add links here...)
+  </p>
 
-<p id="text-center-83">
-A very long time ago (<i>long before any surviving records can accurately recount</i>), the great gestalt Diravol was born of raw Transcendence, and through their merciful intellect was the physical interstice of Dornn created. In Diravol’s bipedal image, a great many creatures were made to populate this land - we call them the Mortals. They are the foremost sapients of the realm - but they are not the only ones. The First Inheritors are followed by many; the Strangers, the Visitors - a wide arc. 
-<br /><br />
-These are the fourteen with the greatest primacy of control in the Seasons of Stagnation. 
-<br /><br />
-JUMP TO AN ENTRY:
-(Add links here...)
-</p>
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="purple">The Problem</h1>
-    <p>
-    Who's at fault for the Seasons of Stagnation? Who is it that blitz-burnt the whole plane in a half-century, squashed every empire from east to west, slaughtered billions in opposition as they pried the plane apart?
-    Who then promptly ran from their sins as the pressures mounted, fleeing to their superstructural capitals in search of lethal egress? That's an easy question. It was the...
-    </p>
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="purple">The Problem</h1>
+      <p>
+      Who's at fault for the Seasons of Stagnation? Who is it that blitz-burnt the whole plane in a half-century, squashed every empire from east to west, slaughtered billions in opposition as they pried the plane apart?
+      Who then promptly ran from their sins as the pressures mounted, fleeing to their superstructural capitals in search of lethal egress? That's an easy question. It was the...
+      </p>
+    </div>
   </div>
-</div>
 
-<div id="species-box">
-<img id="portrait" src="../../species_frame_II.png" />
-<div id="species-text">
-<h2>Humans</h2>
-<p>
-The Immortal Intruders, unfeatured primals. Arrived late to the cradle of Dornn, without the wit, wisdom or burdens of the Mortal Inheritors. Once cursed to a life of vagrancy and frequent slavery, their ancestors brokered a deal with an outsider and gained nigh-unconditional Immortality. Any injury suffered is revoked in a day’s time or less, no matter the severity. They are the isolationist governors of most of the Midlands. 
-<br/><br/>
-The Human lifecycle is a distorted mockery of natural existence, mimicking age by way of slowly permitting the divine frustration to loosen their shape. Given enough time, any Human will slowly degrade into a foggy ball of soul-lightning and emotionless memory, an indefinite repetition of pains and broken empathic links lacking any semblance of life, mobility, or speech.
-</p>
-</div>
-</div>
-
-
-<hr class="double">
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="red">The Inheritors</h1>
-    <p>
-    The Great Project, all of Diravol's myriad mimics. Though their physiques vary, they have been forced to match the bipedal stature of the eldest Tender for reasons unknown. When each of their Earlyworld ancestors were gifted with the power of intellect,
-    they began to corporealize shards of Diravol's will into the earliest divines--the Patrons. In the Seasons, they scarcely resemble their oldest forms, having suffered the worst side-effects of Dornn's magical frustration. Overburdened by heritage-curses
-    and lost histories, the Inheritors continue to struggle against the lost convolutions of their old-world destinies as they beat back the borders of their Human neighbors. 
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
+  <div id="species-box">
   <img id="portrait" src="../../species_frame_II.png" />
   <div id="species-text">
-    <h2>Dvirr</h2>
-    <p>
-    The lost four-armed fanatics of the Golden Age. Lanky, tall-yet-hunched, distended faces sporting three-odd eyes wreathed by ornate masks. Once the miracle-machinists of the early-world, these slight and angular bipeds were enthralled by their patron, Oridei, into a world-scarring war that nearly killed off the entirety of Mortal existence. In the wake of their loss, those that were spared the guilt were slowly dragged back into the Alavarian incumbent by strange ripples from below the crust. They are almost entirely missing in the Seasons of Stagnation. 
-    </p>
+  <h2>Humans</h2>
+  <p>
+  The Immortal Intruders, unfeatured primals. Arrived late to the cradle of Dornn, without the wit, wisdom or burdens of the Mortal Inheritors. Once cursed to a life of vagrancy and frequent slavery, their ancestors brokered a deal with an outsider and gained nigh-unconditional Immortality. Any injury suffered is revoked in a day’s time or less, no matter the severity. They are the isolationist governors of most of the Midlands. 
+  <br/><br/>
+  The Human lifecycle is a distorted mockery of natural existence, mimicking age by way of slowly permitting the divine frustration to loosen their shape. Given enough time, any Human will slowly degrade into a foggy ball of soul-lightning and emotionless memory, an indefinite repetition of pains and broken empathic links lacking any semblance of life, mobility, or speech.
+  </p>
   </div>
-</div>
+  </div>
 
-<div id="species-box">
+
+  <h1 className="double"></h1>
+
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="red">The Inheritors</h1>
+      <p>
+      The Great Project, all of Diravol's myriad mimics. Though their physiques vary, they have been forced to match the bipedal stature of the eldest Tender for reasons unknown. When each of their Earlyworld ancestors were gifted with the power of intellect,
+      they began to corporealize shards of Diravol's will into the earliest divines--the Patrons. In the Seasons, they scarcely resemble their oldest forms, having suffered the worst side-effects of Dornn's magical frustration. Overburdened by heritage-curses
+      and lost histories, the Inheritors continue to struggle against the lost convolutions of their old-world destinies as they beat back the borders of their Human neighbors. 
+      </p>
+    </div>
+  </div>
+
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_II.png" />
+    <div id="species-text">
+      <h2>Dvirr</h2>
+      <p>
+      The lost four-armed fanatics of the Golden Age. Lanky, tall-yet-hunched, distended faces sporting three-odd eyes wreathed by ornate masks. Once the miracle-machinists of the early-world, these slight and angular bipeds were enthralled by their patron, Oridei, into a world-scarring war that nearly killed off the entirety of Mortal existence. In the wake of their loss, those that were spared the guilt were slowly dragged back into the Alavarian incumbent by strange ripples from below the crust. They are almost entirely missing in the Seasons of Stagnation. 
+      </p>
+    </div>
+  </div>
+
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_I.png" />
+    <div id="species-text">
+      <h2>Dwarves</h2>
+      <p>
+      The vast and all-encompassing heart of the Midlands; an impossibly-varied group of subterranean beard-born bureaucrats and bellows-masters. Most often compared to ants; the Dwarves are split innumerably into variable castes of physical size, depth of living, sociocultural role, divine tendency and arbitrary judgements of appearance. From the triple-jointed jagged-shouldered Dhuroi of the deep-citadels to the waxy Ezym tallborn of the upper governmental circles, Dwarves were categorized less for their resemblances and more for their attitudes towards progress, industry and democracy. In deep-time, they emigrated to their vast subterranean citadels and disappeared entirely. They are not present in the Seasons of Stagnation. 
+      </p>
+    </div>
+  </div>
+
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_II.png" />
+    <div id="species-text">
+      <h2>Elves</h2>
+      <p>
+      The neurotic geometers of Eryulithas' endless surveying. In earlier times, they were identified by their tall and wiry frames, knife-shaped ears and pointed, almost sculpted features--they were often called Forest Giants. Now, in the long shadow of the Pointlords' disastrous reconfigurations, it’s pretty much just the ears. Elvish bodies are inextricably marked by strange polygonal scarworks, the inescapable reminder of their near-total informational ascent in the First Age. 
+      <br /><br />
+      Elves are everywhere, shattered-and-scattered as they were by the Elfwars of the early ages.  Elvish tribes can resemble anything from stony elementals to pallid pseudo-vampires--such is the nature of their chimerical past. They make up the bulk of most Mortal populations.
+      </p>
+    </div>
+  </div>
+
+  <h1 className="default"></h1>
+
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1>The Splitfolk</h1>
+      <p>
+      In the seedling days of yore when the Mortal Inheritors were first planted, there came to be a creature known as the Unsplit. It was a pluripotent superorganism, a wanting thing nearly-guaranteed to bring disaster to its peer-species. In a moment of wary prescience, Diravol deigned to take this advantage literally, and so they sliced the Unsplit in twain, making from it two distinct peoples. 
+      </p>
+    </div>
+  </div>
+
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_II.png" />
+    <div id="species-text">
+      <h2>Gnomes</h2>
+      <p>
+      The top half were the Gnomes, granted a mercy of quicksilver legs upon which to walk the earth. Despite the gift, they still stand at about a meter-and-change. Not all accepted this gift, taking their burden as a challenge, and thus was born their tendency to tinker. As heritors of the upper-body, the Gnomes were burdened with an unspent mind of early-world power and a monstrously-tough upper torso.  They used this unusual toolset to build grand sequesters of ornate construction in the deepwood mountains of the north, sickeningly-vertical jungle-gyms of silver and gold that wreathe the chasms of the old Krangsway. At some point, disaster ejected them from their homelands and burdened them with a curse of broken memory. 
+      </p>
+    </div>
+  </div>
+
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_I.png" />
+    <div id="species-text">
+      <h2>Halflings</h2>
+      <p>
+      The bottom half were the Halflings, granted a meager earthwork fitting over their soul-ember torsos. With the fires of ambition contained, they secreted their habits away in order to focus on family. They’re approximately as tall as their Splitfolk siblings, their  squat bodies of two complexions - the legs are briar-knotted, musclebound and gnarled relics of old-world power, while the torso is an intricate golem of swirling earthwork - crafted so flawlessly, they are nearly indistinguishable from common mortals.  Halflings are the Earthen-Kings of the southern mountain-lands, overly-accommodating and somehow in everyone’s good graces. You can find them pretty much everywhere. 
+      </p>
+    </div>
+  </div>
+
+  <h1 className="default"></h1>
+
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_I.png" />
+    <div id="species-text">
+      <h2>Northfolk</h2>
+      <p>
+      Perhaps the most diligent of the First Age’s Inheritors, the Northfolk are still, in fact, in the North. Broad-shouldered, hardy, vibrantly-colored and toothy bipeds that keep great academies and vast fortress networks in the northern wastes of Anterros and Dolwynd. In the first age, their consecutive loss of two patrons to the nighmare-desert of the Ruvallian has imposed upon their bodies a spiral lock-like scar; a promise to Tann that the debt will be repaid in time. If one of their teeth is embedded, they will die. This promise has split their kin into two subspecies - the Fireborn who hold the war-lines against would-be invaders, and the Unstoked that quell and contain their burning blood to keep themselves against the impossible cold of the far North, often sporting a coat of platinum fur. 
+      </p>
+    </div>
+  </div>
+
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_II.png" />
+    <div id="species-text">
+      <h2>Rhôminites</h2>
+      <p>
+      The hardy unions that make up all of Dornn’s sea-bound subspecies. Most-identifiable for their taller physiques, bone-like head fixtures (horns?) and unusually-colored sclera, the Rhôminites are otherwise more diverse of form than even the Dwarves were. They are an awkward unification of a host of isolated kingdoms and clans, forced into cooperation when their millionmind patron Kar-deil was killed to make room for their own futures (Rhôminite Summit Zero, it was called) and the subsequent falling-out led to the birth of the Hand of Rhômi, one of the two worst Demon-Cults of the modern age. They are still marked by the results of many prior falling-outs, including the amputation phantoms of post-Dvirran summits and the hole-scar that marks their promise: to fell the Hand by any means necessary. 
+
+
+      </p>
+    </div>
+  </div>
+
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_I.png" />
+    <div id="species-text">
+      <h2>Theodryians</h2>
+      <p>
+      The mythic cryptid namesakes of the Theodryian Sea, a tremendously isolationist nation of bifurcated superliminal colossi. The Theodryians were one of the eight Mortal Inheritors, but their First Age struggles isolated them before contact was made. Theodryians are about as tall as Rhôminites on average, have an ash-gray skin tone, and are usually hairless. Their features are blocky and squared-off and their heads terminate in unusually shaped ‘crownbones’ that are used to identify one-another (though some can still grow hair as well). 
+      <br /><br />
+      The Theodryian soul is split in two, an attempt at understanding the ramblings of their magic-obsessed patron that burned an irrevocable mark on all subsequent Theodryian souls. One is the physical host--the Materiosapience--whereas the other is the transcendent communicator, the Ethereosapience. This makes Theodryians outlandishly talented spellcasters, but also renders them distractible and inattentive. 
+      </p>
+    </div>
+  </div>
+  
+  <h1 className="double"></h1>
+
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="white">The Strangers</h1>
+      <p>
+      The oldest stressors of Divine Intent. These folks arrived unexpectedly, siphoned from realms above, below and beyond the limits of the Midlands proper. Life that does not adhere to the
+      standards of Diravol suffers unusual repercussions; mistakes in the worldweave that neglected the idea of non-Inheritor life. While Humans suffer the brunt of it, life is still difficult for the others beyond the
+      whims of the Tender's council--everything from magical misfire to cumbersome prophecy will haunt them for as long as they remain here, unless they falsify their transcendent identities entirely. Despite this, many remain in the Midlands their entire lives. Some due to stubbornness,
+      but usually it's just because nobody knows how to leave.
+      </p>
+    </div>
+  </div>
+
+  <div id="species-box">
   <img id="portrait" src="../../species_frame_I.png" />
   <div id="species-text">
-    <h2>Dwarves</h2>
-    <p>
-    The vast and all-encompassing heart of the Midlands; an impossibly-varied group of subterranean beard-born bureaucrats and bellows-masters. Most often compared to ants; the Dwarves are split innumerably into variable castes of physical size, depth of living, sociocultural role, divine tendency and arbitrary judgements of appearance. From the triple-jointed jagged-shouldered Dhuroi of the deep-citadels to the waxy Ezym tallborn of the upper governmental circles, Dwarves were categorized less for their resemblances and more for their attitudes towards progress, industry and democracy. In deep-time, they emigrated to their vast subterranean citadels and disappeared entirely. They are not present in the Seasons of Stagnation. 
-    </p>
+  <h2>Ascendants</h2>
+  <p>
+  The Extended Other, those from higher rungs. As varied as one could imagine the mortal form to be - yet still imposed upon by the bipedal ghost. Anything and everything you could imagine, misplaced and thrown into Dornn without much warning. Lacking in agency and usually stuck under the boot of an Inheritor empire. 
+  <br/><br/>
+  There are an uncountable number of unidentified Visitors, but about 37 codified Ascendant species hold some territory in the Midlands. Certain groups of Ascendant have grown notorious enough to be granted their own category on the list - these are somewhat callously called the “descended”. 
+  <br/><br/>
+  Some of the most notorious descended are the Dragons and their progeny, star-crawling pseudo-reptiles from higher on the chitinous leg of the Outer Kosmos. They arrived in a prismatic bolt of dislodged theory long before the First Age, laying their brood wide and low in the recesses of the Earlyworld in wait; biding time for mortal bounties to proliferate and ripen.
+  </p>
+
   </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_II.png" />
-  <div id="species-text">
-    <h2>Elves</h2>
-    <p>
-    The neurotic geometers of Eryulithas' endless surveying. In earlier times, they were identified by their tall and wiry frames, knife-shaped ears and pointed, almost sculpted features--they were often called Forest Giants. Now, in the long shadow of the Pointlords' disastrous reconfigurations, it’s pretty much just the ears. Elvish bodies are inextricably marked by strange polygonal scarworks, the inescapable reminder of their near-total informational ascent in the First Age. 
-    <br /><br />
-    Elves are everywhere, shattered-and-scattered as they were by the Elfwars of the early ages.  Elvish tribes can resemble anything from stony elementals to pallid pseudo-vampires--such is the nature of their chimerical past. They make up the bulk of most Mortal populations.
-    </p>
   </div>
-</div>
 
-<hr class="default">
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1>The Splitfolk</h1>
-    <p>
-    In the seedling days of yore when the Mortal Inheritors were first planted, there came to be a creature known as the Unsplit. It was a pluripotent superorganism, a wanting thing nearly-guaranteed to bring disaster to its peer-species. In a moment of wary prescience, Diravol deigned to take this advantage literally, and so they sliced the Unsplit in twain, making from it two distinct peoples. 
-    </p>
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_II.png" />
+    <div id="species-text">
+      <h2>Constructs</h2>
+      <p>
+      Children of Balam Arts; the Artificial Mind. Creating a Mortal from the composite parts of the world surrounding. The art of Golemancy was so fundamentally satisfying to world-law, it ascended the creator to the next stage. Imparting a soul to inert matter is partaking in the sacred acts of the Patrons, of Diravol, of the first. Constructs are venerated for this proximity to the divine, but not widely advocated or understood due to their relative rarity.
+      </p>
+    </div>
   </div>
-</div>
 
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_II.png" />
-  <div id="species-text">
-    <h2>Gnomes</h2>
-    <p>
-    The top half were the Gnomes, granted a mercy of quicksilver legs upon which to walk the earth. Despite the gift, they still stand at about a meter-and-change. Not all accepted this gift, taking their burden as a challenge, and thus was born their tendency to tinker. As heritors of the upper-body, the Gnomes were burdened with an unspent mind of early-world power and a monstrously-tough upper torso.  They used this unusual toolset to build grand sequesters of ornate construction in the deepwood mountains of the north, sickeningly-vertical jungle-gyms of silver and gold that wreathe the chasms of the old Krangsway. At some point, disaster ejected them from their homelands and burdened them with a curse of broken memory. 
-    </p>
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_I.png" />
+    <div id="species-text">
+      <h2>Dragonborn</h2>
+      <p>
+      The oft-maligned descendants of Red-Eye, presiding arch-wyrm of the surviving Dragons. Miserable products of ethical failure; the magi-eugenic offspring of Kalamant’s empathic forges. The scaly form of the Wyrm bent into awkwardly bipedal, Mortal shape--illegitimate participants in the Inheritor’s game. Constantly searching for a method of felling their parriarchs and freeing themselves from the heritor’s curse. Powerfully resistant to all forms of attack, magic or otherwise, but also nearly all conventions of medicine and mend.
+      </p>
+    </div>
   </div>
-</div>
 
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-    <h2>Halflings</h2>
-    <p>
-    The bottom half were the Halflings, granted a meager earthwork fitting over their soul-ember torsos. With the fires of ambition contained, they secreted their habits away in order to focus on family. They’re approximately as tall as their Splitfolk siblings, their  squat bodies of two complexions - the legs are briar-knotted, musclebound and gnarled relics of old-world power, while the torso is an intricate golem of swirling earthwork - crafted so flawlessly, they are nearly indistinguishable from common mortals.  Halflings are the Earthen-Kings of the southern mountain-lands, overly-accommodating and somehow in everyone’s good graces. You can find them pretty much everywhere. 
-    </p>
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_I.png" />
+    <div id="species-text">
+      <h2>Faelikes</h2>
+      <p>
+      The abandoned compromise between the Fae-body purisms of energy and the more understated material composition of the Mortal form. Formally nonspecific--they can kind-of look however they want, if they have the time. The Fae are gone now, having fled the incessant incursions the Demons would wreak on their territory. Their children are not so lucky. Faelikes are the only mortals made partially out of magic - unlike any other mortal, if cut-off from Transcendent energies, they will die. Every part of a Faelike’s body is worth a king’s ransom, too--they’re either hiding or on the run, no matter what. 
+
+
+      </p>
+    </div>
   </div>
-</div>
 
-<hr class="default">
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-    <h2>Northfolk</h2>
-    <p>
-    Perhaps the most diligent of the First Age’s Inheritors, the Northfolk are still, in fact, in the North. Broad-shouldered, hardy, vibrantly-colored and toothy bipeds that keep great academies and vast fortress networks in the northern wastes of Anterros and Dolwynd. In the first age, their consecutive loss of two patrons to the nighmare-desert of the Ruvallian has imposed upon their bodies a spiral lock-like scar; a promise to Tann that the debt will be repaid in time. If one of their teeth is embedded, they will die. This promise has split their kin into two subspecies - the Fireborn who hold the war-lines against would-be invaders, and the Unstoked that quell and contain their burning blood to keep themselves against the impossible cold of the far North, often sporting a coat of platinum fur. 
-    </p>
+  <div id="species-box">
+    <img id="portrait" src="../../species_frame_II.png" />
+    <div id="species-text">
+      <h2>Mites</h2>
+      <p>
+      Hezzar’s progeny; the chattering end. In the stubby interstitial plate that divides the Midlands from the unmeasured depths, a bounty of strange creatures have been granted a drop of the Mortal Sapience. The exact source of their ascension is contested. They are diverse of form, resembling all manner of insects - just a bit stonier in composition. They almost all hail from the great choke of Hezzar’s Pit, just under the centermost bruises of Dalumgrahd. This is a transitory post for their kin; most were born in deeper places that few Mortals would willingly venture to. 
+      </p>
+    </div>
   </div>
-</div>
 
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_II.png" />
-  <div id="species-text">
-    <h2>Rhôminites</h2>
-    <p>
-    The hardy unions that make up all of Dornn’s sea-bound subspecies. Most-identifiable for their taller physiques, bone-like head fixtures (horns?) and unusually-colored sclera, the Rhôminites are otherwise more diverse of form than even the Dwarves were. They are an awkward unification of a host of isolated kingdoms and clans, forced into cooperation when their millionmind patron Kar-deil was killed to make room for their own futures (Rhôminite Summit Zero, it was called) and the subsequent falling-out led to the birth of the Hand of Rhômi, one of the two worst Demon-Cults of the modern age. They are still marked by the results of many prior falling-outs, including the amputation phantoms of post-Dvirran summits and the hole-scar that marks their promise: to fell the Hand by any means necessary. 
+</>
+)
 
+ const polities = (
 
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-    <h2>Theodryians</h2>
-    <p>
-    The mythic cryptid namesakes of the Theodryian Sea, a tremendously isolationist nation of bifurcated superliminal colossi. The Theodryians were one of the eight Mortal Inheritors, but their First Age struggles isolated them before contact was made. Theodryians are about as tall as Rhôminites on average, have an ash-gray skin tone, and are usually hairless. Their features are blocky and squared-off and their heads terminate in unusually shaped ‘crownbones’ that are used to identify one-another (though some can still grow hair as well). 
-    <br /><br />
-    The Theodryian soul is split in two, an attempt at understanding the ramblings of their magic-obsessed patron that burned an irrevocable mark on all subsequent Theodryian souls. One is the physical host--the Materiosapience--whereas the other is the transcendent communicator, the Ethereosapience. This makes Theodryians outlandishly talented spellcasters, but also renders them distractible and inattentive. 
-    </p>
-  </div>
-</div>
-
-<hr class="double">
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="white">The Strangers</h1>
-    <p>
-    The oldest stressors of Divine Intent. These folks arrived unexpectedly, siphoned from realms above, below and beyond the limits of the Midlands proper. Life that does not adhere to the
-    standards of Diravol suffers unusual repercussions; mistakes in the worldweave that neglected the idea of non-Inheritor life. While Humans suffer the brunt of it, life is still difficult for the others beyond the
-    whims of the Tender's council--everything from magical misfire to cumbersome prophecy will haunt them for as long as they remain here, unless they falsify their transcendent identities entirely. Despite this, many remain in the Midlands their entire lives. Some due to stubbornness,
-    but usually it's just because nobody knows how to leave.
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-<img id="portrait" src="../../species_frame_I.png" />
-<div id="species-text">
-<h2>Ascendants</h2>
-<p>
-The Extended Other, those from higher rungs. As varied as one could imagine the mortal form to be - yet still imposed upon by the bipedal ghost. Anything and everything you could imagine, misplaced and thrown into Dornn without much warning. Lacking in agency and usually stuck under the boot of an Inheritor empire. 
-<br/><br/>
-There are an uncountable number of unidentified Visitors, but about 37 codified Ascendant species hold some territory in the Midlands. Certain groups of Ascendant have grown notorious enough to be granted their own category on the list - these are somewhat callously called the “descended”. 
-<br/><br/>
-Some of the most notorious descended are the Dragons and their progeny, star-crawling pseudo-reptiles from higher on the chitinous leg of the Outer Kosmos. They arrived in a prismatic bolt of dislodged theory long before the First Age, laying their brood wide and low in the recesses of the Earlyworld in wait; biding time for mortal bounties to proliferate and ripen.
-</p>
-
-</div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_II.png" />
-  <div id="species-text">
-    <h2>Constructs</h2>
-    <p>
-    Children of Balam Arts; the Artificial Mind. Creating a Mortal from the composite parts of the world surrounding. The art of Golemancy was so fundamentally satisfying to world-law, it ascended the creator to the next stage. Imparting a soul to inert matter is partaking in the sacred acts of the Patrons, of Diravol, of the first. Constructs are venerated for this proximity to the divine, but not widely advocated or understood due to their relative rarity.
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-    <h2>Dragonborn</h2>
-    <p>
-    The oft-maligned descendants of Red-Eye, presiding arch-wyrm of the surviving Dragons. Miserable products of ethical failure; the magi-eugenic offspring of Kalamant’s empathic forges. The scaly form of the Wyrm bent into awkwardly bipedal, Mortal shape--illegitimate participants in the Inheritor’s game. Constantly searching for a method of felling their parriarchs and freeing themselves from the heritor’s curse. Powerfully resistant to all forms of attack, magic or otherwise, but also nearly all conventions of medicine and mend.
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-    <h2>Faelikes</h2>
-    <p>
-    The abandoned compromise between the Fae-body purisms of energy and the more understated material composition of the Mortal form. Formally nonspecific--they can kind-of look however they want, if they have the time. The Fae are gone now, having fled the incessant incursions the Demons would wreak on their territory. Their children are not so lucky. Faelikes are the only mortals made partially out of magic - unlike any other mortal, if cut-off from Transcendent energies, they will die. Every part of a Faelike’s body is worth a king’s ransom, too--they’re either hiding or on the run, no matter what. 
-
-
-    </p>
-  </div>
-</div>
-
-<div id="species-box">
-  <img id="portrait" src="../../species_frame_II.png" />
-  <div id="species-text">
-    <h2>Mites</h2>
-    <p>
-    Hezzar’s progeny; the chattering end. In the stubby interstitial plate that divides the Midlands from the unmeasured depths, a bounty of strange creatures have been granted a drop of the Mortal Sapience. The exact source of their ascension is contested. They are diverse of form, resembling all manner of insects - just a bit stonier in composition. They almost all hail from the great choke of Hezzar’s Pit, just under the centermost bruises of Dalumgrahd. This is a transitory post for their kin; most were born in deeper places that few Mortals would willingly venture to. 
-    </p>
-  </div>
-</div>
-
-
-`
-
-export const polities = `
+<>
 <img id="huge-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../political_cover_alt.png"/>
 
 
@@ -884,7 +891,7 @@ Click on any individual faction header to select their capital on the map.
 
 <div id="spec-header-box">
   <div id="species-text">
-    <h1 class="purple">The Five Human Families</h1>
+    <h1 className="purple">The Five Human Families</h1>
     <p id="padding-scrunch">
     Though their power wanes in the face of Glassblood-prompted migratory operations and other late-lifecycle issues, the Human Families have not yet released their grip. 
     They’ve been mostly batted out of the northern fringes, but their hold of the southlands remains as tight as it was half a millennium prior. They are:
@@ -896,7 +903,7 @@ Click on any individual faction header to select their capital on the map.
     <div id="polwedge"></div>
     <img id="banner" src="../../species_frame_I.png" />
     <div id="majorpol-text">
-      <h2 class="blue force-vert-center">The Glassbloods</h2>
+      <h2 className="blue force-vert-center">The Glassbloods</h2>
     </div>
   </div>
 
@@ -904,7 +911,7 @@ Click on any individual faction header to select their capital on the map.
   <div id="polwedge"></div>
     <img id="banner" src="../../species_frame_I.png" />
     <div id="majorpol-text">
-      <h2 class="white force-vert-center">The Crux</h2>
+      <h2 className="white force-vert-center">The Crux</h2>
     </div>
   </div>
 
@@ -912,7 +919,7 @@ Click on any individual faction header to select their capital on the map.
     <div id="polwedge"></div>
     <img id="banner" src="../../species_frame_I.png" />
     <div id="majorpol-text">
-      <h2 class="red force-vert-center">The Britchoffs</h2>
+      <h2 className="red force-vert-center">The Britchoffs</h2>
     </div>
   </div>
 
@@ -920,7 +927,7 @@ Click on any individual faction header to select their capital on the map.
     <div id="polwedge"></div>
     <img id="banner" src="../../species_frame_I.png" />
     <div id="majorpol-text">
-      <h2 class="gold force-vert-center">The Drairinni</h2>
+      <h2 className="gold force-vert-center">The Drairinni</h2>
     </div>
   </div>
 
@@ -928,18 +935,18 @@ Click on any individual faction header to select their capital on the map.
   <div id="polwedge"></div>
     <img id="banner" src="../../species_frame_I.png" />
     <div id="majorpol-text">
-      <h2 class="orange force-vert-center">The Anterrosites</h2>
+      <h2 className="orange force-vert-center">The Anterrosites</h2>
     </div>
   </div>
 
-  <div class='blog-footer'></div>
+  <div className='blog-footer'></div>
 
-  <hr class="double">
+  <h1 className="double"></h1>
 
 
   <div id="spec-header-box">
   <div id="species-text">
-    <h1 class="green">The Midland Council (XII)</h1>
+    <h1 className="green">The Midland Council (XII)</h1>
     <p id="padding-scrunch">
     Reformed many times in the wake of worldshaking disaster, the Midland Council is the soul and spine of Dornnian peacetime. Their existence is not a symbolic platitude - the Council 
     is the fulcrum of all traditional politics, the mediator, and an armed force backed by the Sword-Saints that will frequently stamp out potential conflict. In a world where the 
@@ -986,13 +993,13 @@ Click on any individual faction header to select their capital on the map.
 
 </div>
 
-<div class='blog-footer'></div>
+<div className='blog-footer'></div>
 
-<hr class="double">
+<h1 className="double"> </h1>
 
 <div id="spec-header-box">
   <div id="species-text">
-    <h1 class="orange">Free Agents</h1>
+    <h1 className="orange">Free Agents</h1>
     <p id="padding-scrunch">
     Beyond the apocalyptic coalitions of the semi-mortal west, most polities are hacking it on their own. This is usually--not always, but usually--because they have 
     slightly-askew value systems. The Free Agents of Dornn are not inherently dangerous, but something about them is a bit too unfriendly to make it to the diplomatic chambers. 
@@ -1003,44 +1010,44 @@ Click on any individual faction header to select their capital on the map.
 </div>
 
 <div id="poli-grid-box">
-  <a id="poligrid-link" href="/">The Theodryian Bridge</a>
-  <a id="poligrid-link" href="/">Salíran Dynasties</a>
-  <a id="poligrid-link" href="/">Kalamant</a>
-  <a id="poligrid-link" href="/">Deadlands Purging Company</a>
+  <button id="poligrid-link" >The Theodryian Bridge</button>
+  <button id="poligrid-link" >Salíran Dynasties</button>
+  <button id="poligrid-link" >Kalamant</button>
+  <button id="poligrid-link" >Deadlands Purging Company</button>
 
-  <a id="poligrid-link" href="/">Ordo Terra-néve<br /><i id="subtitle-tiny">"Twilit Order"</i></a>
-  <a id="poligrid-link" href="/">Argo's Riders</a>
-  <a id="poligrid-link" href="/">The Captain's Promise</a>
-  <a id="poligrid-link" href="/">Rogue Cosmologist Academies</a>
+  <button id="poligrid-link" >Ordo Terra-néve<br /><i id="subtitle-tiny">"Twilit Order"</i></button>
+  <button id="poligrid-link" >Argo's Riders</button>
+  <button id="poligrid-link" >The Captain's Promise</button>
+  <button id="poligrid-link" >Rogue Cosmologist Academies</button>
 
-  <a id="poligrid-link" href="/">The Encompassed</a>
-  <a id="poligrid-link" href="/">Northmount Calamity Concern</a>
-  <a id="poligrid-link" href="/">Statesmen</a>
-  <a id="poligrid-link" href="/">Tann's Lock</a>
+  <button id="poligrid-link" >The Encompassed</button>
+  <button id="poligrid-link" >Northmount Calamity Concern</button>
+  <button id="poligrid-link" >Statesmen</button>
+  <button id="poligrid-link" >Tann's Lock</button>
 
-  <a id="poligrid-link" href="/">Dreamer's Rise</a>
-  <a id="poligrid-link" href="/">The Witchspine</a>
-  <a id="poligrid-link" href="/">Irwin's Council</a>
-  <a id="poligrid-link" href="/">The Golden Reach</a>
+  <button id="poligrid-link" >Dreamer's Rise</button>
+  <button id="poligrid-link" >The Witchspine</button>
+  <button id="poligrid-link" >Irwin's Council</button>
+  <button id="poligrid-link" >The Golden Reach</button>
 
-  <a id="poligrid-link" href="/">Barod-Dām</a>
-  <a id="poligrid-link" href="/">Theodryia</a>
-  <a id="poligrid-link" href="/">Isles of Contentment</a>
-  <a id="poligrid-link" href="/">People of Krym</a>
+  <button id="poligrid-link" >Barod-Dām</button>
+  <button id="poligrid-link" >Theodryia</button>
+  <button id="poligrid-link" >Isles of Contentment</button>
+  <button id="poligrid-link" >People of Krym</button>
 
-  <a id="poligrid-link" href="/">Olcrid</a>
-  <a id="poligrid-link" href="/">Zaic-Zahl<br /><i id="subtitle-tiny">"Basalt Towers"</i></a>
+  <button id="poligrid-link" >Olcrid</button>
+  <button id="poligrid-link" >Zaic-Zahl<br /><i id="subtitle-tiny">"Basalt Towers"</i></button>
 
 
 </div>
 
-<div class='blog-footer'></div>
+<div className='blog-footer'></div>
 
-<hr class="double">
+<h1 className="double"></h1>
 
 <div id="spec-header-box">
   <div id="species-text">
-    <h1 class="red">Threats</h1>
+    <h1 className="red">Threats</h1>
     <p id="padding-scrunch">
     Absolutely at war with all other groups, at all times. Lousy with exotic magic and unpredictable technique. Sequestered in strange and remote places beyond or beneath the limits
     of Dornnian cartographies. That, or they are plainly-powerful enough to hold their ground amongst the Midlanders despite near-constant invasion and war. Neither is preferable for the average adventurer. 
@@ -1090,167 +1097,164 @@ Click on any individual faction header to select their capital on the map.
 
 </div>
 
-<div class='blog-footer'></div>
+<div className='blog-footer'></div>
 
 
+</>
+)
 
-`
+export const history=(
+<>
+  <img id="realm-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../history.png"/>
 
-export const history=`
-
-<img id="realm-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../history.png"/>
-
-<p id="text-center-83">
-History is unkind to the Midlands. Most of it has been lost by way of catastrophe, be it cosmic or political, and that which remains paints a confused picture. Many wedges 
-block the way; modern inhabitants hardly resemble their old-world counterparts, the times when Gods and Mortals mingled and warred across the unscarred promise of the preludes. 
-What has instead lasted beyond records of their exploits, imprinted across the flesh and blood of their descendants, are the remnants of their worst mistakes.  Through body-law we 
-trace the truth of Dornnian history, and it is strange indeed.
-</p>
-
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="white">The Timeless Mandate</h1>
-    <p id="">
-    In time unmeasured, a million million years before and after, the Old Gods fought endlessly on battered planes of undecided matter. Their forms were perfect energies, maintained tantrums of Thought and Instrument. 
-    Their origins and intentions were not known, but from their perpetual orbit was born the Laws of Reality. It was a time of imprecision, indecision and lots of energy. 
-    <br /> <br />
-    Somewhere in that roiling sea of every-thought, an incidental clash gave birth to Diravol, the Tender. To abridge their many miracles, the great Patron would be the only "living" creature
-    to forge a meaningful relationship with the Old Gods, brokering the five primal Contracts required for Transcendence to mimic the shape of mortal-habitable reality. Life, death, time, space, reason and consequence.
-    </p>
-  </div>
-</div>
+  <p id="text-center-83">
+  History is unkind to the Midlands. Most of it has been lost by way of catastrophe, be it cosmic or political, and that which remains paints a confused picture. Many wedges 
+  block the way; modern inhabitants hardly resemble their old-world counterparts, the times when Gods and Mortals mingled and warred across the unscarred promise of the preludes. 
+  What has instead lasted beyond records of their exploits, imprinted across the flesh and blood of their descendants, are the remnants of their worst mistakes.  Through body-law we 
+  trace the truth of Dornnian history, and it is strange indeed.
+  </p>
 
 
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="blue">First Age</h1>
-    <p id="padding-scrunch" class="grey">est. 0 - 4552</p>
-    <p id="">
-    <i class="grey">
-    They crawled from a million holes, some less-formed than others. The divine memory likens it to a “planting”, but they’ve been waiting for this for an unbearable amount of time. 
-    If anything, the introduction of the Patrons was more like an imposition on their natural development. A skew. One that caused a great many more problems than it solved, certainly…
-    </i>
-    <br /><br />
-    The long and convoluted rise of the Mortal Folk, the First Inheritors. A time marred by the confusions of a world learning to understand rules as they change underfoot. 
-    Patchy records recovered from only the deepest recesses build a frail picture; the First Age was a sequence of incomprehensible wars slowly building towards planar catastrophe.
-    The Inheritors struggled to build sensible relationships with their neurotic patrons, and the inextricable differences between them and their neighbors only served to worsen the attempt.
-    The only reason the world was stalled from ending at the outset was due to the arrival of a greater foe.
-    <br /><br />
-    </p>
-  </div>
-</div>
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="red">Dvirran Age</h1>
-    <p id="padding-scrunch" class="grey">est. 4553 - 6018</p>
-    <p id="">
-    <i class="grey">
-    Oridei had been seeing things for a time. It isn’t certain when or why the King-under-Sky selected him as proper vessel, only that it imposed on his mind for much of the First. A lingering suite of repetitive nightmares: A table in the throat of the heavens with the body of Diravol’s only son seated at one side. 
-    A million swords embedded in the windless plains of Moz Haphora’s rolling cradle. Dead titans crashing into manarotted grass. Grey-skinned limbs in ornate boxes. Stormshattered 
-    cities in the superstructural depths. A centipede of mortal arms clinging to a blackstone nail at the bottom of the world. The sky as a pastiche of wings and arms, 
-    returning home to lift the plane up and away from the growing dark. 
-    </i>
-    <br /> <br />
-    The prophecies remember it well; the turning of the age as a realization of one Divine's ceaseless nightmares. It was perhaps the only extensively documented part, the massive mental decline of Oridei of the Dvirr, the world's
-    only "sane" corporeal divine as he was beset by an outsider's hostile visions. When none would respect his calls to action, he took it upon himself to enact the will of Alavaria, the King-under-Sky, and declared war on the world. 
-    At first it was a brief and unremarkable string of assassinations and heists. Then, the wings came. A halo of words and light and feathered triumph descended from an overcast sky over Moz Haphora, crowning the Dvirran initiative with the blessing of the Other. 
-    Things got a lot worse after that.
-    <br /><br />
-    The Dvirran wars spanned an age and change, if the records are to be believed. It was the war to end all wars, one not even bested in the grand futures to come. Millions died at the hands 
-    of the great Dvirran war-engine, a wanton massacre that culled arbitrarily without reason or remorse. Those that were spared were not forced to work, but to convert--to adopt the will of the
-    outsider entity to which Oridei had promised the plane. In the times when they were not fighting (and they were usually fighting), the Dvirr would construct strange devices across the entirety of the Midlands,
-    many of which still stand today, uncounted millenia later. The war calendar flexed and withered over the centuries, rebellions swelling into empires before the winged vanguard would return to collect. 
-    <br /><br />
-    The war's end was only found when Oridei's prophecy-addled hubris ran against a foe he could not topple, and he was killed in remarkably mortal fashion. 
-    His immortal patronly soul survived, but not fiercely enough to avoid eternal imprisonment. His remaining forces were abandoned by their new Godhead and stomped out in a meager decade. 
-    </p>
-  </div>
-</div>
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="gold">Golden Age</h1>
-    <p id="padding-scrunch" class="grey">est. 6019 - 8003</p>
-    <p id="">
-    <i class="grey">
-    The record fails us. 
-    </i>
-    <br /> <br />
-    This highpoint in a post-patron world is long and fogged, the vast swathes of time wherein most every ruin was built and lost. The technological highs of the Golden Age were riding a wave of magical comprehension so absurd, we might as well be banging rocks together in comparison. Much of the knowledge is foreign to us, based on principles that are dysfunctional in the Seasons of Stagnation. More still was destroyed in the subsequent ages, so the narrow slice of understanding we have for the Golden Age is strange. It was something of a misnomer. 
-    <br /> <br />
-    The shape of it is vague, a star-crawl to intellectual ascendance marred by complicated and unexpected disaster. The Dwarves built grand subterranean societies that dragged them deeper than they could handle, the Dvirr could not escape their patronly fate and vanished in exodus, the Gnomes met something old in the Krangsway and were scarred forever, the Northfolk were cursed by the death of their second god-chieftain,  the Halflings were shattered by the death of the Mountaincarver hosts, the Elves were fractured and tempted by fragments of their patron's neurotic theories, the Rhominites were devastated by constant internal warfare, and nobody really knows what was going on with the Theodryians. Some groups made it through less-distorted by this age of knowledges, as far as we can tell, but their records are no more complete than any others. There's little in the way of specifics for any of these narratives, only the broadest arcs that survived through legend and word-of-mouth.
-    <br /> <br />
-    We call it the Golden Age because they managed to stop fighting one another quite as much, but they couldn't quell the internal strife. Apparently, the diplomatic stresses of this meteoric age nearly destroyed the world, if not for what burnt that fuse prematurely...
-  </div>
-</div>
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="white">Lurches</h1>
-    <p id="padding-scrunch" class="grey">????</p>
-    <p id="">
-    <i class="grey">
-    Bruise-to-puncture. Synchronicity is a strange thing; we are wont to accuse the Gods of manufacturing coincidence, when the truth is simpler--there's just a lot of stuff. Sometimes, a lot of one-in-a-trillion happenstances just so happen to line up nicely. A syzygy of catastrophics. Seven seasons of Armageddon. 
-    </i>
-    <br /> <br />
-    Inelegant failures of the Mortal Adherence. In the wake of divine abandonment and repeated patricide, the Inheritors have been abandoned by the faith. All the vectors of progress begin to lean inward--disaster looms. Every juncture meets in one narrow corridor. It could have been anything, from the folly of unchecked advancement to the widening gaps in planar coherence. Plenty of theories. Personally, I just think the poor thing just couldn't handle the pressure. Searing, blistering mana-blitzed static killed three quarters of the world in something akin to an instant. Tyrannical wars between the malcontents of the Upper Spheres carved at the planar crust, scarring landmasses with psychic trenches and phantasm-boundaries. The trillion hands of antimortal intent emerged from every corner of the realm to weigh this new advantage. Things fell apart. 
-    </div>
-</div>
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="white">Fallen Age / Seasons of Regression</h1>
-    <p id="padding-scrunch" class="grey">????</p>
-    <p id="">
-    <i class="grey">
-    The Exits.
-    </i>
-    <br /> <br />
-     Faith suffocated, the skies closed like a wound finally healed, and the Midlands were left to rot in blacksun silence; in dead time. The world was wreathed in a paralyzing darkness, lit intermittently by vast bolts of outsider energy that streaked across an empty sky in riverlike patterns. Worldlaw was brittle, time was inconsiderate, space was incoherent. The world grew dependent on the Confidences, narrow strips of land or sea that behaved with a semblance of predictability. Records estimate this Age lasting anywhere from fifteen to six thousand years, depending on the place. Histories were kept through word-of-mouth and the varieties of body-curse observed in corpses from the period--even text did not always work as expected. 
-     <br /> <br />
-      For most, this age was long and torturous, involving many attempts at reconstructing society that met with extreme opposition. Fresh-formed divinities rejected old magic, rendering nearly all technology useless. A host of new and foreign creatures had invaded the fractured plane, making transport and communication extremely difficult. Something was meddling with the recording and transfer of information, devastating the surviving libraries and storehouses. Most every political body larger than a single settlement died off. Something was lost in this age; separated from the boons of their work, the mortals changed over millennia to adapt to this hostile new paradigm. We only narrowly understand this change, having lost most recorded evidence of it, but it appears that modern mortals do not precisely resemble their old-world counterparts. 
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="white">The Timeless Mandate</h1>
+      <p id="">
+      In time unmeasured, a million million years before and after, the Old Gods fought endlessly on battered planes of undecided matter. Their forms were perfect energies, maintained tantrums of Thought and Instrument. 
+      Their origins and intentions were not known, but from their perpetual orbit was born the Laws of Reality. It was a time of imprecision, indecision and lots of energy. 
       <br /> <br />
-      Sometime, somewhere, the Humans arrive without warning. Dead-world paranoia seats them firmly at the bottom of the power-ladder, as the only mortal creatures without legacy or family to carry them through the dark ages. Their early history is muddled and confused, a foggy mess of subterranean migrations. Nobody recognizes them. 
+      Somewhere in that roiling sea of every-thought, an incidental clash gave birth to Diravol, the Tender. To abridge their many miracles, the great Patron would be the only "living" creature
+      to forge a meaningful relationship with the Old Gods, brokering the five primal Contracts required for Transcendence to mimic the shape of mortal-habitable reality. Life, death, time, space, reason and consequence.
+      </p>
+    </div>
+  </div>
+
+
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="blue">First Age</h1>
+      <p id="padding-scrunch" className="grey">est. 0 - 4552</p>
+      <p id="">
+      <i className="grey">
+      They crawled from a million holes, some less-formed than others. The divine memory likens it to a “planting”, but they’ve been waiting for this for an unbearable amount of time. 
+      If anything, the introduction of the Patrons was more like an imposition on their natural development. A skew. One that caused a great many more problems than it solved, certainly…
+      </i>
+      <br /><br />
+      The long and convoluted rise of the Mortal Folk, the First Inheritors. A time marred by the confusions of a world learning to understand rules as they change underfoot. 
+      Patchy records recovered from only the deepest recesses build a frail picture; the First Age was a sequence of incomprehensible wars slowly building towards planar catastrophe.
+      The Inheritors struggled to build sensible relationships with their neurotic patrons, and the inextricable differences between them and their neighbors only served to worsen the attempt.
+      The only reason the world was stalled from ending at the outset was due to the arrival of a greater foe.
+      <br /><br />
+      </p>
+    </div>
+  </div>
+
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="red">Dvirran Age</h1>
+      <p id="padding-scrunch" className="grey">est. 4553 - 6018</p>
+      <p id="">
+      <i className="grey">
+      Oridei had been seeing things for a time. It isn’t certain when or why the King-under-Sky selected him as proper vessel, only that it imposed on his mind for much of the First. A lingering suite of repetitive nightmares: A table in the throat of the heavens with the body of Diravol’s only son seated at one side. 
+      A million swords embedded in the windless plains of Moz Haphora’s rolling cradle. Dead titans crashing into manarotted grass. Grey-skinned limbs in ornate boxes. Stormshattered 
+      cities in the superstructural depths. A centipede of mortal arms clinging to a blackstone nail at the bottom of the world. The sky as a pastiche of wings and arms, 
+      returning home to lift the plane up and away from the growing dark. 
+      </i>
+      <br /> <br />
+      The prophecies remember it well; the turning of the age as a realization of one Divine's ceaseless nightmares. It was perhaps the only extensively documented part, the massive mental decline of Oridei of the Dvirr, the world's
+      only "sane" corporeal divine as he was beset by an outsider's hostile visions. When none would respect his calls to action, he took it upon himself to enact the will of Alavaria, the King-under-Sky, and declared war on the world. 
+      At first it was a brief and unremarkable string of assassinations and heists. Then, the wings came. A halo of words and light and feathered triumph descended from an overcast sky over Moz Haphora, crowning the Dvirran initiative with the blessing of the Other. 
+      Things got a lot worse after that.
+      <br /><br />
+      The Dvirran wars spanned an age and change, if the records are to be believed. It was the war to end all wars, one not even bested in the grand futures to come. Millions died at the hands 
+      of the great Dvirran war-engine, a wanton massacre that culled arbitrarily without reason or remorse. Those that were spared were not forced to work, but to convert--to adopt the will of the
+      outsider entity to which Oridei had promised the plane. In the times when they were not fighting (and they were usually fighting), the Dvirr would construct strange devices across the entirety of the Midlands,
+      many of which still stand today, uncounted millenia later. The war calendar flexed and withered over the centuries, rebellions swelling into empires before the winged vanguard would return to collect. 
+      <br /><br />
+      The war's end was only found when Oridei's prophecy-addled hubris ran against a foe he could not topple, and he was killed in remarkably mortal fashion. 
+      His immortal patronly soul survived, but not fiercely enough to avoid eternal imprisonment. His remaining forces were abandoned by their new Godhead and stomped out in a meager decade. 
+      </p>
+    </div>
+  </div>
+
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="gold">Golden Age</h1>
+      <p id="padding-scrunch" className="grey">est. 6019 - 8003</p>
+      <p id=""></p>
+      <i className="grey">
+      The record fails us. 
+      </i>
+      <br /> <br />
+      This highpoint in a post-patron world is long and fogged, the vast swathes of time wherein most every ruin was built and lost. The technological highs of the Golden Age were riding a wave of magical comprehension so absurd, we might as well be banging rocks together in comparison. Much of the knowledge is foreign to us, based on principles that are dysfunctional in the Seasons of Stagnation. More still was destroyed in the subsequent ages, so the narrow slice of understanding we have for the Golden Age is strange. It was something of a misnomer. 
+      <br /> <br />
+      The shape of it is vague, a star-crawl to intellectual ascendance marred by complicated and unexpected disaster. The Dwarves built grand subterranean societies that dragged them deeper than they could handle, the Dvirr could not escape their patronly fate and vanished in exodus, the Gnomes met something old in the Krangsway and were scarred forever, the Northfolk were cursed by the death of their second god-chieftain,  the Halflings were shattered by the death of the Mountaincarver hosts, the Elves were fractured and tempted by fragments of their patron's neurotic theories, the Rhominites were devastated by constant internal warfare, and nobody really knows what was going on with the Theodryians. Some groups made it through less-distorted by this age of knowledges, as far as we can tell, but their records are no more complete than any others. There's little in the way of specifics for any of these narratives, only the broadest arcs that survived through legend and word-of-mouth.
+      <br /> <br />
+      We call it the Golden Age because they managed to stop fighting one another quite as much, but they couldn't quell the internal strife. Apparently, the diplomatic stresses of this meteoric age nearly destroyed the world, if not for what burnt that fuse prematurely...
+    </div>
+  </div>
+
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="white">Lurches</h1>
+      <p id="padding-scrunch" className="grey">????</p>
+      <p id=""></p>
+      <i className="grey">
+      Bruise-to-puncture. Synchronicity is a strange thing; we are wont to accuse the Gods of manufacturing coincidence, when the truth is simpler--there's just a lot of stuff. Sometimes, a lot of one-in-a-trillion happenstances just so happen to line up nicely. A syzygy of catastrophics. Seven seasons of Armageddon. 
+      </i>
+      <br /> <br />
+      Inelegant failures of the Mortal Adherence. In the wake of divine abandonment and repeated patricide, the Inheritors have been abandoned by the faith. All the vectors of progress begin to lean inward--disaster looms. Every juncture meets in one narrow corridor. It could have been anything, from the folly of unchecked advancement to the widening gaps in planar coherence. Plenty of theories. Personally, I just think the poor thing just couldn't handle the pressure. Searing, blistering mana-blitzed static killed three quarters of the world in something akin to an instant. Tyrannical wars between the malcontents of the Upper Spheres carved at the planar crust, scarring landmasses with psychic trenches and phantasm-boundaries. The trillion hands of antimortal intent emerged from every corner of the realm to weigh this new advantage. Things fell apart. 
       </div>
   </div>
 
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="purple">Human Age / Age of Rhyl</h1>
-    <p id="padding-scrunch" class="grey">c.0 (nhc) - 996</p>
-    <p id="">
-    <i class="grey">
-    The plane is restored! All glory to the Human Empires!
-    </i>
-    <br /> <br />
-    The realization of Oridei's ambition through differing means. A deal was brokered between five Human visionaries and a nameless titan from the eastern isles, one that would both break the death-spell over the plane and free the Human enclaves from their reclusive masters. It was a bad deal, one even a fool ought to refuse--in exchange for their right to naturality, they would be granted "unconditional immortality." None of the familial parriarchs will comment on why they accepted the bargain.
-    <br /> <br />
-    While the Human populations were not of one mind regarding this newfound trait, it did not take long for enough of them to rally to their new leaders. In the confused and disorganized Seasons of Regression, no empire was nearly strong enough to fight at all, let alone against a wall of unkillable, vindictive foes. The plane was steamrolled in less than a century with minimal resistance. Sometime during the Invasions, the Old Gods managed to reclaim the celestials, and the shredded sky was restored to old form.
-    <br /> <br />
-    The Human Age is marred by the confusing political re-evaluations of a deathless empire. As the Humans became more acquainted with their new lifecycles (and the horrid strains it would place upon their bodies), waves of panic and confusion would repeatedly shake at their grasp. Many answers were proposed to solve the issues of overpopulation, mental degradation, divine imposition and magical conspiracy. None took, and the relations between the five human families began to degrade--an opportunity that would allow many of the Inheritors to reclaim some of their old glory. 
-  </div>
-</div>
-
-<div id="spec-header-box">
-  <div id="species-text">
-    <h1 class="orange">First Solar Age / Seasons of Stagnation</h1>
-    <p id="padding-scrunch" class="grey"> c.996 - present (1273)</p>
-    <p id="">
-    <i class="grey">
-    The long climb.
-    </i>
-    <br /> <br />
-    Many failures in organization have caused the Human Empires to shrink. The reports grow worse with each passing century; nervously recounting the gradual breakdowns of the Human body in the face of even this meager infinity. They may not die, but their options are unenviable--fall prey to the increasingly popular perpetual death-machines, have your capacity for emotion stolen by a Beast of Causality, or watch as your physical form glacially ages past the precipice of reasonable function, rendering you immobile and thought-strained for an ever-extending eternity. Most retreat in the face of this realization. About seventy-eight percent of all Humans emigrate to the superstructural city-peninsula of Dyrit, where the Sleeping-Halls entomb their consciousness in a kind of suspended animation for the rest of their lives (ergo, forever).
-    <br /> <br />
-  As the Human Empires slowly crumble under these existential winds, the Mortals begin to retake their old lands. The Humans did a mediocre job of fixing up the post-Armageddon landscapes, so much of the world is a stilted and disjointed array of repopulated ruins and devastated highways. Squabbles between Human holdouts and Mortal bannermen are frequent, but more common are the incursions met between surfacegoers and the newfound host of deranged, ancient Other--Demons, misaligned, and other such things.
-  <br /> <br />
-  The work ahead is long and difficult. Magic is once again foreign and mostly unknown, technology is traitorous and distrusted (policed, as well), faith is uneasy and based on confusing partial-history, and there are far too many unrecorded hostiles for anyone to contend with. While the massive shadow of Human settlement may have granted a semblance of inhabitability to the plane, it will be a while before the ruin-scarred reaches of Dornn are understood. 
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="white">Fallen Age / Seasons of Regression</h1>
+      <p id="padding-scrunch" className="grey">????</p>
+      <p id=""></p>
+      <i className="grey">
+      The Exits.
+      </i>
+      <br /> <br />
+      Faith suffocated, the skies closed like a wound finally healed, and the Midlands were left to rot in blacksun silence; in dead time. The world was wreathed in a paralyzing darkness, lit intermittently by vast bolts of outsider energy that streaked across an empty sky in riverlike patterns. Worldlaw was brittle, time was inconsiderate, space was incoherent. The world grew dependent on the Confidences, narrow strips of land or sea that behaved with a semblance of predictability. Records estimate this Age lasting anywhere from fifteen to six thousand years, depending on the place. Histories were kept through word-of-mouth and the varieties of body-curse observed in corpses from the period--even text did not always work as expected. 
+      <br /> <br />
+        For most, this age was long and torturous, involving many attempts at reconstructing society that met with extreme opposition. Fresh-formed divinities rejected old magic, rendering nearly all technology useless. A host of new and foreign creatures had invaded the fractured plane, making transport and communication extremely difficult. Something was meddling with the recording and transfer of information, devastating the surviving libraries and storehouses. Most every political body larger than a single settlement died off. Something was lost in this age; separated from the boons of their work, the mortals changed over millennia to adapt to this hostile new paradigm. We only narrowly understand this change, having lost most recorded evidence of it, but it appears that modern mortals do not precisely resemble their old-world counterparts. 
+        <br /> <br />
+        Sometime, somewhere, the Humans arrive without warning. Dead-world paranoia seats them firmly at the bottom of the power-ladder, as the only mortal creatures without legacy or family to carry them through the dark ages. Their early history is muddled and confused, a foggy mess of subterranean migrations. Nobody recognizes them. 
+        </div>
     </div>
-</div>
 
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="purple">Human Age / Age of Rhyl</h1>
+      <p id="padding-scrunch" className="grey">c.0 (nhc) - 996</p>
+      <p id=""></p>
+      <i className="grey">
+      The plane is restored! All glory to the Human Empires!
+      </i>
+      <br /> <br />
+      The realization of Oridei's ambition through differing means. A deal was brokered between five Human visionaries and a nameless titan from the eastern isles, one that would both break the death-spell over the plane and free the Human enclaves from their reclusive masters. It was a bad deal, one even a fool ought to refuse--in exchange for their right to naturality, they would be granted "unconditional immortality." None of the familial parriarchs will comment on why they accepted the bargain.
+      <br /> <br />
+      While the Human populations were not of one mind regarding this newfound trait, it did not take long for enough of them to rally to their new leaders. In the confused and disorganized Seasons of Regression, no empire was nearly strong enough to fight at all, let alone against a wall of unkillable, vindictive foes. The plane was steamrolled in less than a century with minimal resistance. Sometime during the Invasions, the Old Gods managed to reclaim the celestials, and the shredded sky was restored to old form.
+      <br /> <br />
+      The Human Age is marred by the confusing political re-evaluations of a deathless empire. As the Humans became more acquainted with their new lifecycles (and the horrid strains it would place upon their bodies), waves of panic and confusion would repeatedly shake at their grasp. Many answers were proposed to solve the issues of overpopulation, mental degradation, divine imposition and magical conspiracy. None took, and the relations between the five human families began to degrade--an opportunity that would allow many of the Inheritors to reclaim some of their old glory. 
+    </div>
+  </div>
 
-
-
-`
+  <div id="spec-header-box">
+    <div id="species-text">
+      <h1 className="orange">First Solar Age / Seasons of Stagnation</h1>
+      <p id="padding-scrunch" className="grey"> c.996 - present (1273)</p>
+      <p id=""></p>
+      <i className="grey">
+      The long climb.
+      </i>
+      <br /> <br />
+      Many failures in organization have caused the Human Empires to shrink. The reports grow worse with each passing century; nervously recounting the gradual breakdowns of the Human body in the face of even this meager infinity. They may not die, but their options are unenviable--fall prey to the increasingly popular perpetual death-machines, have your capacity for emotion stolen by a Beast of Causality, or watch as your physical form glacially ages past the precipice of reasonable function, rendering you immobile and thought-strained for an ever-extending eternity. Most retreat in the face of this realization. About seventy-eight percent of all Humans emigrate to the superstructural city-peninsula of Dyrit, where the Sleeping-Halls entomb their consciousness in a kind of suspended animation for the rest of their lives (ergo, forever).
+      <br /> <br />
+    As the Human Empires slowly crumble under these existential winds, the Mortals begin to retake their old lands. The Humans did a mediocre job of fixing up the post-Armageddon landscapes, so much of the world is a stilted and disjointed array of repopulated ruins and devastated highways. Squabbles between Human holdouts and Mortal bannermen are frequent, but more common are the incursions met between surfacegoers and the newfound host of deranged, ancient Other--Demons, misaligned, and other such things.
+    <br /> <br />
+    The work ahead is long and difficult. Magic is once again foreign and mostly unknown, technology is traitorous and distrusted (policed, as well), faith is uneasy and based on confusing partial-history, and there are far too many unrecorded hostiles for anyone to contend with. While the massive shadow of Human settlement may have granted a semblance of inhabitability to the plane, it will be a while before the ruin-scarred reaches of Dornn are understood. 
+      </div>
+  </div>
+</>
+)

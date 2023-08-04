@@ -65,3 +65,15 @@ export const QUERY_MAPENTRY = gql`
         body
       }
 }`
+
+export const QUERY_SETTLEMENTENTRY = gql`
+{
+    settlementInfos (first:100) {
+        name
+        nameColor {
+            hex
+          }
+        subtitle
+        content
+      }
+}`
