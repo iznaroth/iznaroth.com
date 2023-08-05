@@ -1104,15 +1104,15 @@ const Dornn = () => {
   //list of const - 
   const ss = useRef();
   const ss_position = [218, 188]
-  const dyrit = useRef();
-  const dyrit_position = [149, 311] //ALL POSITIONS ARE OFFSET BY ~10 X
+  const gbkeep = useRef();
+  const gbkeep_position = [149, 311] //ALL POSITIONS ARE OFFSET BY ~10 X
 
-  const settlement_handles_ordered = ["Seventh Spear", "Dyrit"]
+  const settlement_handles_ordered = ["Seventh Spear", "The Glassblood Keep"]
 
 
   useEffect(() => {
-    setMarkerList([ss, dyrit])
-    setMarkerPositions([ss_position, dyrit_position])
+    setMarkerList([ss, gbkeep])
+    setMarkerPositions([ss_position, gbkeep_position])
 
     
   }, [])
@@ -1125,7 +1125,7 @@ const Dornn = () => {
         <Marker ref={ss} position={ss_position}>
         </Marker>
 
-        <Marker ref={dyrit} position={dyrit_position}>
+        <Marker ref={gbkeep} position={gbkeep_position}>
         </Marker>
       </>
 
@@ -1149,7 +1149,7 @@ const Dornn = () => {
       setMarkerFocused(true)
 
 
-      const position = [markerPositions[which][0], markerPositions[which][1] + 10] //offset for setup. TODO pick box disp side based on proximity to edge
+      const position = [markerPositions[which][0], markerPositions[which][1] + 15] //offset for setup. TODO pick box disp side based on proximity to edge
 
       map.flyTo(position, 3)
     
@@ -1182,7 +1182,9 @@ const Dornn = () => {
         <div id="polwedge"></div>
         <img id="banner" src="../../species_frame_I.png" />
         <div id="majorpol-text">
+         <button onClick={() => selectPoligridPin(1)}>
           <h2 className="blue force-vert-center">The Glassbloods</h2>
+         </button>
         </div>
       </div>
     
@@ -1198,7 +1200,9 @@ const Dornn = () => {
         <div id="polwedge"></div>
         <img id="banner" src="../../species_frame_I.png" />
         <div id="majorpol-text">
-          <h2 className="red force-vert-center">The Britchoffs</h2>
+           <button onClick={() => selectPoligridPin(0)}>
+            <h2 className="red force-vert-center">The Britchoffs</h2>
+           </button>
         </div>
       </div>
     
@@ -1428,7 +1432,7 @@ const Dornn = () => {
 
               <div id='content-main'>
                 <img className="w-1/2 m-auto pt-5" src="../../world_banner.png" alt="The World - Also Known as The Measured Extent of the Dornnian Midlands"/>
-                <div className="mapcontent">
+                <div className="mapcontent relative">
                   
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
                   <div id='map' ref={mapContainerRef}>
@@ -1466,7 +1470,7 @@ const Dornn = () => {
                     <button className='py-5 map-return' onClick={updateFocus}>GO BACK</button>
                     </div> :  null }
 
-                    { (markerFocused && !focused) ? <div className="settlement bg-black border-4 border-gray absolute h-fit w-1/3 map-info text-center">
+                    { (markerFocused && !focused) ? <div className="settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto">
                     <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': selectedSettlement.nameColor.hex, 'fontFamily' : headerFont}}>{selectedSettlement.name}</h>
                     <p>
                       <i>
