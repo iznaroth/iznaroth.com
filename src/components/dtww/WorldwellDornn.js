@@ -1106,13 +1106,17 @@ const Dornn = () => {
   const ss_position = [218, 188]
   const gbkeep = useRef();
   const gbkeep_position = [149, 311] //ALL POSITIONS ARE OFFSET BY ~10 X
+  const hfsd = useRef();
+  const hfsd_position = [180, 234]
+  const daol = useRef()
+  const daol_position = [171, 125]
 
-  const settlement_handles_ordered = ["Seventh Spear", "The Glassblood Keep"]
+  const settlement_handles_ordered = ["Seventh Spear", "The Glassblood Keep", "Halfstad", "Daol"]
 
 
   useEffect(() => {
-    setMarkerList([ss, gbkeep])
-    setMarkerPositions([ss_position, gbkeep_position])
+    setMarkerList([ss, gbkeep, hfsd, daol])
+    setMarkerPositions([ss_position, gbkeep_position, hfsd_position, daol_position])
 
     
   }, [])
@@ -1126,6 +1130,12 @@ const Dornn = () => {
         </Marker>
 
         <Marker ref={gbkeep} position={gbkeep_position}>
+        </Marker>
+
+        <Marker ref={hfsd} position={hfsd_position}>
+        </Marker>
+
+        <Marker ref={daol} position={daol_position}>
         </Marker>
       </>
 
@@ -1192,7 +1202,9 @@ const Dornn = () => {
       <div id="polwedge"></div>
         <img id="banner" src="../../species_frame_I.png" />
         <div id="majorpol-text">
-          <h2 className="white force-vert-center">The Crux</h2>
+          <button onClick={() => selectPoligridPin(2)}>
+            <h2 className="white force-vert-center">The Crux</h2>
+          </button>
         </div>
       </div>
     
@@ -1200,7 +1212,7 @@ const Dornn = () => {
         <div id="polwedge"></div>
         <img id="banner" src="../../species_frame_I.png" />
         <div id="majorpol-text">
-           <button onClick={() => selectPoligridPin(0)}>
+           <button onClick={() => selectPoligridPin(3)}>
             <h2 className="red force-vert-center">The Britchoffs</h2>
            </button>
         </div>

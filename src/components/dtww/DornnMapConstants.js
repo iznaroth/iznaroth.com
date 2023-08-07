@@ -1180,7 +1180,7 @@ export const history=(
     <div id="species-text">
       <h1 className="gold">Golden Age</h1>
       <p id="padding-scrunch" className="grey">est. 6019 - 8003</p>
-      <p id=""></p>
+      <p id="">
       <i className="grey">
       The record fails us. 
       </i>
@@ -1190,6 +1190,7 @@ export const history=(
       The shape of it is vague, a star-crawl to intellectual ascendance marred by complicated and unexpected disaster. The Dwarves built grand subterranean societies that dragged them deeper than they could handle, the Dvirr could not escape their patronly fate and vanished in exodus, the Gnomes met something old in the Krangsway and were scarred forever, the Northfolk were cursed by the death of their second god-chieftain,  the Halflings were shattered by the death of the Mountaincarver hosts, the Elves were fractured and tempted by fragments of their patron's neurotic theories, the Rhominites were devastated by constant internal warfare, and nobody really knows what was going on with the Theodryians. Some groups made it through less-distorted by this age of knowledges, as far as we can tell, but their records are no more complete than any others. There's little in the way of specifics for any of these narratives, only the broadest arcs that survived through legend and word-of-mouth.
       <br /> <br />
       We call it the Golden Age because they managed to stop fighting one another quite as much, but they couldn't quell the internal strife. Apparently, the diplomatic stresses of this meteoric age nearly destroyed the world, if not for what burnt that fuse prematurely...
+      </p>
     </div>
   </div>
 
@@ -1197,12 +1198,13 @@ export const history=(
     <div id="species-text">
       <h1 className="white">Lurches</h1>
       <p id="padding-scrunch" className="grey">????</p>
-      <p id=""></p>
+      <p id="">
       <i className="grey">
       Bruise-to-puncture. Synchronicity is a strange thing; we are wont to accuse the Gods of manufacturing coincidence, when the truth is simpler--there's just a lot of stuff. Sometimes, a lot of one-in-a-trillion happenstances just so happen to line up nicely. A syzygy of catastrophics. Seven seasons of Armageddon. 
       </i>
       <br /> <br />
       Inelegant failures of the Mortal Adherence. In the wake of divine abandonment and repeated patricide, the Inheritors have been abandoned by the faith. All the vectors of progress begin to lean inward--disaster looms. Every juncture meets in one narrow corridor. It could have been anything, from the folly of unchecked advancement to the widening gaps in planar coherence. Plenty of theories. Personally, I just think the poor thing just couldn't handle the pressure. Searing, blistering mana-blitzed static killed three quarters of the world in something akin to an instant. Tyrannical wars between the malcontents of the Upper Spheres carved at the planar crust, scarring landmasses with psychic trenches and phantasm-boundaries. The trillion hands of antimortal intent emerged from every corner of the realm to weigh this new advantage. Things fell apart. 
+      </p>
       </div>
   </div>
 
@@ -1210,7 +1212,7 @@ export const history=(
     <div id="species-text">
       <h1 className="white">Fallen Age / Seasons of Regression</h1>
       <p id="padding-scrunch" className="grey">????</p>
-      <p id=""></p>
+      <p id="">
       <i className="grey">
       The Exits.
       </i>
@@ -1220,6 +1222,7 @@ export const history=(
         For most, this age was long and torturous, involving many attempts at reconstructing society that met with extreme opposition. Fresh-formed divinities rejected old magic, rendering nearly all technology useless. A host of new and foreign creatures had invaded the fractured plane, making transport and communication extremely difficult. Something was meddling with the recording and transfer of information, devastating the surviving libraries and storehouses. Most every political body larger than a single settlement died off. Something was lost in this age; separated from the boons of their work, the mortals changed over millennia to adapt to this hostile new paradigm. We only narrowly understand this change, having lost most recorded evidence of it, but it appears that modern mortals do not precisely resemble their old-world counterparts. 
         <br /> <br />
         Sometime, somewhere, the Humans arrive without warning. Dead-world paranoia seats them firmly at the bottom of the power-ladder, as the only mortal creatures without legacy or family to carry them through the dark ages. Their early history is muddled and confused, a foggy mess of subterranean migrations. Nobody recognizes them. 
+        </p>
         </div>
     </div>
 
@@ -1227,7 +1230,7 @@ export const history=(
     <div id="species-text">
       <h1 className="purple">Human Age / Age of Rhyl</h1>
       <p id="padding-scrunch" className="grey">c.0 (nhc) - 996</p>
-      <p id=""></p>
+      <p id="">
       <i className="grey">
       The plane is restored! All glory to the Human Empires!
       </i>
@@ -1237,6 +1240,7 @@ export const history=(
       While the Human populations were not of one mind regarding this newfound trait, it did not take long for enough of them to rally to their new leaders. In the confused and disorganized Seasons of Regression, no empire was nearly strong enough to fight at all, let alone against a wall of unkillable, vindictive foes. The plane was steamrolled in less than a century with minimal resistance. Sometime during the Invasions, the Old Gods managed to reclaim the celestials, and the shredded sky was restored to old form.
       <br /> <br />
       The Human Age is marred by the confusing political re-evaluations of a deathless empire. As the Humans became more acquainted with their new lifecycles (and the horrid strains it would place upon their bodies), waves of panic and confusion would repeatedly shake at their grasp. Many answers were proposed to solve the issues of overpopulation, mental degradation, divine imposition and magical conspiracy. None took, and the relations between the five human families began to degrade--an opportunity that would allow many of the Inheritors to reclaim some of their old glory. 
+      </p>
     </div>
   </div>
 
@@ -1244,7 +1248,7 @@ export const history=(
     <div id="species-text">
       <h1 className="orange">First Solar Age / Seasons of Stagnation</h1>
       <p id="padding-scrunch" className="grey"> c.996 - present (1273)</p>
-      <p id=""></p>
+      <p id="">
       <i className="grey">
       The long climb.
       </i>
@@ -1254,6 +1258,7 @@ export const history=(
     As the Human Empires slowly crumble under these existential winds, the Mortals begin to retake their old lands. The Humans did a mediocre job of fixing up the post-Armageddon landscapes, so much of the world is a stilted and disjointed array of repopulated ruins and devastated highways. Squabbles between Human holdouts and Mortal bannermen are frequent, but more common are the incursions met between surfacegoers and the newfound host of deranged, ancient Other--Demons, misaligned, and other such things.
     <br /> <br />
     The work ahead is long and difficult. Magic is once again foreign and mostly unknown, technology is traitorous and distrusted (policed, as well), faith is uneasy and based on confusing partial-history, and there are far too many unrecorded hostiles for anyone to contend with. While the massive shadow of Human settlement may have granted a semblance of inhabitability to the plane, it will be a while before the ruin-scarred reaches of Dornn are understood. 
+    </p>
       </div>
   </div>
 </>

@@ -23,15 +23,11 @@ export default function Navbar() {
           <div className="dropdown-content">
             <a href="dtww">Down the Worldwell</a>
             <a href="#">Manic Mechanics</a>
-            <a href="#">Brittle</a>
-            <a href="#">Doloman Epoch</a>
             <a href="#">Other Stuff</a>
           </div>
         </div>
         <a href="blog">Thoughts</a>
         <a href="#news">Devlogs</a>
-        <a href="#news">Roadmaps</a>
-        <a href="#news">Physical Junk</a>
         <div className="dropdown">
           <button className="dropbtn">Socials
             <i className="fa fa-caret-down"></i>
