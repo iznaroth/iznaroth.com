@@ -775,7 +775,7 @@ a:hover {
   opacity: 1;
 }
 
-hr.double {
+h1.double {
   border-top: 8px double;
   border-bottom: none;
   width: 90%;
@@ -783,7 +783,8 @@ hr.double {
   padding-bottom: 3.5rem;
 }
 
-hr.default {
+h1.default {
+  border-top-width: 4px;
   width: 80%;
   opacity: 45%;
   margin: auto;

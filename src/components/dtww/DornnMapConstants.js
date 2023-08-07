@@ -578,15 +578,12 @@ export const dolwynd = [
   <br /> <br />
    You can click on any region to get an overview of the population, culture,
   geography and history of the local area. The pinned flags represent political powers that control that area--click on them to learn specifics about their size, relationships and general presence in the modern age.
-  Each of this panel's subpages elaborate on the broader aspects of the Dornnian Midlands:
+  Each of this panel's subpages elaborate on the broader aspects of the Dornnian Midlands--places, people, history and memory.
+  <br/><br/>
 
-  <ul id="wwpagelist" className='text-left text-lime-200 list-disc px-10'>
-      <li>This page will introduce the setting with respect to Down the Worldwell and other TTRPGs.</li>
-      <li>The Realms will describe Dornn as a plane, its history, and the Midlands' place in it.</li>
-      <li>The Inhabitants will describe the 14-odd dominant "species" that control the Midlands.</li>
-      <li>The Polities will break-down the identities of all pinned political powers and their current standings.</li>
-      <li>The Histories will elaborate on the different Ages of Dornn's history, from  creation to the current day.</li>
-  </ul>
+  <b className="red">All of the content on this page could be described in-world as "common knowledge" -- the stuff you'd hear back if you ask a stranger about a place, time, or group of people.
+  Despite this, there is a lot of information in here that may be better experienced in game. <u>Read at your own risk!</u></b>
+
   </p>
   <p id="text-center-83">
   Dornn is a large, convoluted and foreign place. It's built on the bones of classic high fantasy (owing to its roots as a reworking of WoTC's D&D staples for homebrew's sake), but exposed to a lot of paranoid rethinking and

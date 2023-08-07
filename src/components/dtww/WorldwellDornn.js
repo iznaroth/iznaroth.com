@@ -1174,7 +1174,7 @@ const Dornn = () => {
     <p id="text-center-83">
     The Dornnian Midlands have changed hands about as many times as you’d expect, burdened by the spasms, expansions and contractions of mortal whim. In the Seasons of Stagnation, the receding Empires of Men have left room for old hands to resume their work; the shape of the map has begun to take on a familiar form.
     <br /> <br />
-    Click on any individual faction header to select their capital on the map. 
+    <b className='green'><u>Click on any individual faction header to select their capital on the map. </u></b>
     </p>
     
     
