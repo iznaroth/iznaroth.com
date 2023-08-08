@@ -101,12 +101,20 @@
   font-family: 'IM Fell DW Pica';
 }
 
-.navbar img {
+.wwnavbar img {
   max-height: 2.5em;
   min-height: 1em;
   float: left;
   margin-bottom: auto;
   object-fit: cover;
+}
+
+.hpnavbar {
+  height: 100px !important;
+}
+
+.rootpic {
+  padding: 0 !important;
 }
 
 @media (max-width: 600px) {
@@ -124,6 +132,7 @@
 /* Dropdown button */
 .dropdown .dropbtn {
   font-size: 16px;
+  height: 100px;
   border: none;
   outline: none;
   color: white;
@@ -131,6 +140,24 @@
   background-color: inherit;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
+}
+
+.dropdown { 
+  height: 100px;
+}
+
+
+
+.picbar {
+  height: 100px;
+  width: 200px;
+  display: block;
+}
+
+.picbar-img {
+  height: 100px !important;
+  width: 100%;
+  display: block;
 }
 
 /* Add a red background color to navbar links on hover */

@@ -1334,7 +1334,7 @@ const Dornn = () => {
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)} >The Theodryian Bridge</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)} >Salíran Dynasties</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)} >Kalamant</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)} onClick={() => selectPoligridPin(0)}>Deadlands Purging Company</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(0)} >Deadlands Purging Company</button>
     
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)} >Ordo Terra-néve<br /><i id="subtitle-tiny">"Twilit Order"</i></button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)} >Argo's Riders</button>

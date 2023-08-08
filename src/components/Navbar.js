@@ -17,8 +17,10 @@ export default function Navbar() {
     <section id="navbar" className="">
       <div className="navbar hpnavbar">
         <div className="dropdown">
-          <button className="dropbtn">Projects
+          <button className="picbar">
+           <img src = "./navbar(proj).png"/>
             <i className="fa fa-caret-down"></i>
+            
           </button>
           <div className="dropdown-content">
             <a href="dtww">Down the Worldwell</a>
@@ -26,10 +28,15 @@ export default function Navbar() {
             <a href="#">Other Stuff</a>
           </div>
         </div>
-        <a href="blog">Thoughts</a>
-        <a href="#news">Devlogs</a>
+        <a className="rootpic" href="blog">
+        <img className = "picbar-img" src = "./navbar(blog).png"/>
+        </a>
+        <a className="rootpic"  href="#news">
+        <img className = "picbar-img" src = "./navbar(devlog).png"/>
+        </a>
         <div className="dropdown">
-          <button className="dropbtn">Socials
+          <button className="picbar">
+          <img className = "picbar-img" src = "./navbar(socials).png"/>
             <i className="fa fa-caret-down"></i>
           </button>
           <div className="dropdown-content">
