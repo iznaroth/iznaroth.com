@@ -58,7 +58,7 @@ const About = ({ blogContent }) => {
          </h1>
          <div className='blogList-stubs-wrap'>
           {blogContent.map((blog) => (
-            <BlogShorthand blogContent={blog} />
+            <BlogShorthand blogContent={blog} postOrDevlog={true}  />
           ))}
         </div>
        </div>

@@ -5,7 +5,7 @@ import '../../index.css';
 import { Link } from 'react-router-dom';
 import { Routes, Route, useParams } from 'react-router-dom';
 
-const Blog = ({content}) => {
+const BlogPost = ({content, postOrDevlog}) => {
 
   useEffect(() => {
 
@@ -25,11 +25,26 @@ const Blog = ({content}) => {
       <section id="blogpost">
 
         <div  className="flex h-96">
+          
+          {postOrDevlog ? (
+
+
           <img
               className="m-auto w-2/5"
               alt="evil thoughts"
               src="../../evil_thoughts.png"
             />
+          ) : (
+
+            <img
+              className="m-auto w-2/5"
+              alt="evil thoughts"
+              src="../../devlogs.png"
+            />
+
+          )
+
+          }
         </div>
         <div className='blog-bg'>
           <div className='blog-wrap'>
@@ -59,4 +74,4 @@ const Blog = ({content}) => {
     </>
   );
 };
-export default Blog;
+export default BlogPost;

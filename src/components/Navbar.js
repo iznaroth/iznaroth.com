@@ -40,9 +40,9 @@ export default function Navbar() {
             <i className="fa fa-caret-down"></i>
           </button>
           <div className="dropdown-content">
-            <a href="#">itch</a>
-            <a href="#">Github</a>
-            <a href="#">Twitter</a>
+            <a href="https://iznaroth.itch.io/" target="_blank">itch</a>
+            <a href="https://github.com/iznaroth/" target="_blank">Github</a>
+            <a href="">I do not use social media, LOL</a>
           </div>
         </div>
       </div>

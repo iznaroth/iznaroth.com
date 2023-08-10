@@ -16,9 +16,9 @@ const DevlogLanding = ({devlogContent}) => {
   const dolom_entries = useRef();
   
 
-  useEffect((devlogContent) => {
+  useEffect(() => {
 
-    console.log("At dLANDING, we have  ")
+    console.log("INSIDE DEVLOG LANDING:")
     console.log(devlogContent)
 
     dtww_entries.current = devlogContent.filter((log) => log.relevantTags.includes("dtww"))
@@ -26,13 +26,14 @@ const DevlogLanding = ({devlogContent}) => {
     brittle_entries.current = devlogContent.filter((log) => log.relevantTags.includes("brittle"))
     dolom_entries.current = devlogContent.filter((log) => log.relevantTags.includes("doloman"))
 
+
+
     console.log(dtww_entries)
 
     //there is almost certainly a better way of doing this, so fix it!
   }, [])
-
-  if(dtww_entries.current == undefined || m4_entries.current == undefined || brittle_entries.current == undefined || dolom_entries.current == undefined ){
-    console.log(dtww_entries.current + "AAAAAAAAAAAAAAH!")
+  
+  if(dtww_entries.current == null || m4_entries.current == null || brittle_entries.current == null || dolom_entries.current == null ){
     return (<div>LOADING!</div>)
   }
 
@@ -75,8 +76,8 @@ const DevlogLanding = ({devlogContent}) => {
             <br className="hidden lg:inline-block" />
           </h1>
           <div className='blogList-stubs-wrap'>
-            {dtww_entries.map((blog) => (
-              <BlogShorthand blogContent={blog} />
+            {dtww_entries.current.map((blog) => (
+              <BlogShorthand blogContent={blog} postOrDevlog={false} />
             ))}
           </div>
         </div>
@@ -87,8 +88,8 @@ const DevlogLanding = ({devlogContent}) => {
             <br className="hidden lg:inline-block" />
           </h1>
           <div className='blogList-stubs-wrap'>
-            {m4_entries.map((blog) => (
-              <BlogShorthand blogContent={blog} />
+            {m4_entries.current.map((blog) => (
+              <BlogShorthand blogContent={blog} postOrDevlog={false}  />
             ))}
           </div>
         </div>
@@ -99,8 +100,8 @@ const DevlogLanding = ({devlogContent}) => {
             <br className="hidden lg:inline-block" />
           </h1>
           <div className='blogList-stubs-wrap'>
-            {brittle_entries.map((blog) => (
-              <BlogShorthand blogContent={blog} />
+            {brittle_entries.current.map((blog) => (
+              <BlogShorthand blogContent={blog} postOrDevlog={false}  />
             ))}
           </div>
         </div>
@@ -111,8 +112,8 @@ const DevlogLanding = ({devlogContent}) => {
             <br className="hidden lg:inline-block" />
           </h1>
           <div className='blogList-stubs-wrap'>
-            {dolom_entries.map((blog) => (
-              <BlogShorthand blogContent={blog} />
+            {dolom_entries.current.map((blog) => (
+              <BlogShorthand blogContent={blog} postOrDevlog={false}  />
             ))}
           </div>
         </div>

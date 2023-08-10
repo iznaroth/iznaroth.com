@@ -64,7 +64,7 @@ function App() {
     <main className="text-gray-400 bg-cover body-font" style={{'backgroundImage': 'url(/iz_bg_simple.png)', 'backgroundSize' : '1920px 1080px'}}>
 
 
-      {!posts ? (
+      {(!posts || !devlogs) ? (
           'Loading'
         ) : (
       <Routes>
@@ -96,20 +96,12 @@ function App() {
           </Route>
           <Route path = "/devlogs" element = {
             <Fragment>
-              <DevlogLanding devlogContent={posts} />
+              <DevlogLanding devlogContent={devlogs} />
             </Fragment>
           }>
           </Route>
-          <Route path = "/tech" element = {
-            <Fragment>
-              <Contact />
-            </Fragment>
-          }>
-          </Route>
-          <Route path = "/writing" element = {
-            <Fragment>
-              <Contact />
-            </Fragment>
+          <Route path = "/devlogs/:slug" element = {
+              <BlogPost content={devlogs}/>
           }>
           </Route>
 

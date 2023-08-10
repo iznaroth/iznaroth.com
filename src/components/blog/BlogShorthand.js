@@ -2,7 +2,7 @@ import {React,  useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Chip from './Chip';
 import '../../index.css';
-const BlogItem = ({blogContent, content}) => {
+const BlogShorthand = ({blogContent, content, postOrDevlog}) => {
 
   useEffect(() => {
 
@@ -14,7 +14,7 @@ const BlogItem = ({blogContent, content}) => {
   return (
    <div className='blogShorthand-wrap' key={blogContent.title}>
       <Chip label={blogContent.relevantTags != null ? blogContent.relevantTags[0] : "No Tags"} />
-      <Link className='blogShorthand-link' to={`/blog/${blogContent.slug}`} onClick={()=>{content(blogContent)}}>
+      <Link className='blogShorthand-link' to={postOrDevlog ? `/blog/${blogContent.slug}` : `/devlogs/${blogContent.slug}` } onClick={()=>{content(blogContent)}}>
           {blogContent.title}
         </Link>
       <footer>
@@ -28,4 +28,4 @@ const BlogItem = ({blogContent, content}) => {
     </div>
   );
 };
-export default BlogItem;
+export default BlogShorthand;
