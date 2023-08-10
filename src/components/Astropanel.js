@@ -9,7 +9,7 @@ export default function Astropanel() {
      <img
             className="m-auto"
             alt="A flat element mimicking a retro CRT screen. The words INITIATE ASTRONOMIC CATALOGUE? are displayed in the center, with a YES and NO option. The options are selectable buttons."
-            src="./astrocomm_pane.png"
+            src="./astrocomm-gif-enter.png"
           />
      </div>
    </section>

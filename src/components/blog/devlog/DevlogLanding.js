@@ -34,6 +34,10 @@ const DevlogLanding = ({devlogContent}) => {
   }, [])
   
   if(dtww_entries.current == null || m4_entries.current == null || brittle_entries.current == null || dolom_entries.current == null ){
+    console.log(dtww_entries.current)
+    console.log(m4_entries.current)
+    console.log(brittle_entries.current)
+    console.log(dolom_entries.current)
     return (<div>LOADING!</div>)
   }
 
