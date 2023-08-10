@@ -13,7 +13,7 @@ const BlogItem = ({blogContent, content}) => {
 
   return (
    <div className='blogShorthand-wrap' key={blogContent.title}>
-      <Chip label={blogContent.relevantTags[0]} />
+      <Chip label={blogContent.relevantTags != null ? blogContent.relevantTags[0] : "No Tags"} />
       <Link className='blogShorthand-link' to={`/blog/${blogContent.slug}`} onClick={()=>{content(blogContent)}}>
           {blogContent.title}
         </Link>

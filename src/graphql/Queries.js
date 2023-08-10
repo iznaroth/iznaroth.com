@@ -30,9 +30,32 @@ export const QUERY_SLUG_CATEGORIES = gql`
     }
 }`
 
+//All blog-posts NOT INCLUDING DEVLOGS.
 export const QUERY_POSTLIST = gql`
 {
-    simplePosts(orderBy: publishedAt_DESC){
+    simplePosts(orderBy: publishedAt_DESC, where: {relevantTags_contains_none: devlog}){
+        id,
+        timestamp,
+        title,
+        subtitle,
+        slug,
+        relevantTags,
+        content {
+          html
+        },
+        headerImage {
+          url
+        },
+        createdBy {
+            picture
+            name
+        }
+    }
+}`
+
+export const QUERY_DEVLOG = gql`
+{
+    simplePosts(orderBy: publishedAt_DESC, where: {relevantTags_contains_all: devlog}){
         id,
         timestamp,
         title,

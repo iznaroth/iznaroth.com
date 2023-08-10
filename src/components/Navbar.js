@@ -31,7 +31,7 @@ export default function Navbar() {
         <a className="rootpic" href="blog">
         <img className = "picbar-img" src = "./navbar(blog).png"/>
         </a>
-        <a className="rootpic"  href="#news">
+        <a className="rootpic"  href="devlogs">
         <img className = "picbar-img" src = "./navbar(devlog).png"/>
         </a>
         <div className="dropdown">

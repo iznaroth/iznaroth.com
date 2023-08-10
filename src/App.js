@@ -10,13 +10,14 @@ import Navbar from './components/Navbar';
 import Astropanel from './components/Astropanel';
 import BlogLanding from './components/blog/BlogLanding';
 import BlogPost from './components/blog/BlogPost';
+import DevlogLanding from './components/blog/devlog/DevlogLanding';
 import About from './components/AboutRecentEtc';
 import Contact from './components/Contact';
 import WorldwellLanding from './components/dtww/WorldwellLanding';
 import WorldwellSystem from './components/dtww/WorldwellSystem';
 import WorldwellDornn from './components/dtww/WorldwellDornn';
 import WorldwellRK from './components/dtww/WorldwellRK'
-import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES } from './graphql/Queries';
+import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES, QUERY_DEVLOG } from './graphql/Queries';
 import WorldwellCharacters from './components/dtww/WorldwellCharacters';
 
 
@@ -24,6 +25,7 @@ import WorldwellCharacters from './components/dtww/WorldwellCharacters';
 function App() {
   const [posts, setPosts] = useState(null);
   const [categories, setCategories] = useState(null);
+  const [devlogs, setDevlogs] = useState(null);
   const [bg, changeBg] = useState('')
 
   
@@ -34,6 +36,9 @@ function App() {
         console.log("call for blog")
         graphcms.request(QUERY_POSTLIST)
         .then(res => setPosts(res.simplePosts))
+
+        graphcms.request(QUERY_POSTLIST)
+        .then(res => console.log(res.simplePosts))
     }
 
     if(categories == null){
@@ -42,9 +47,16 @@ function App() {
         .then(res => setCategories(res.categories))
     }
 
+    if(devlogs == null){
+      console.log("call for devlogs")
+      graphcms.request(QUERY_DEVLOG)
+      .then(res => setDevlogs(res.simplePosts))
 
-    console.log(posts)
-    console.log(categories)
+      graphcms.request(QUERY_DEVLOG)
+      .then(res => console.log(res.simplePosts))
+    
+    }
+    
   }, [])
 
    
@@ -82,9 +94,9 @@ function App() {
               <BlogPost content={posts}/>
           }>
           </Route>
-          <Route path = "/devlog" element = {
+          <Route path = "/devlogs" element = {
             <Fragment>
-              <Contact />
+              <DevlogLanding devlogContent={posts} />
             </Fragment>
           }>
           </Route>
