@@ -1116,17 +1116,28 @@ const Dornn = () => {
   const ir_pos = [231, 171]
   const hk = useRef();
   const hk_pos = [416, 95]
+  const tholri = useRef();
+  const tholri_pos = [416, 292]
+  const bers = useRef();
+  const bers_pos = [400, 186]
+  const varc = useRef();
+  const varc_pos = [407, 188]
+  const hzpt = useRef();
+  const hzpt_pos = [314, 146]
+  const dystd = useRef();
+  const dystd_pos = [274, 231]
+
 
 
   const ss = useRef();
   const ss_position = [218, 188]
 
-  const settlement_handles_ordered = ["No Record", "The Glassblood Keep", "Halfstad", "Daol", "Ir", "High Kiln"]
+  const settlement_handles_ordered = ["No Record", "The Glassblood Keep", "Halfstad", "Daol", "Ir", "High Kiln", "Tholri", "Berasithus & Varičula", "Hezzar's Pit", "Daystride"]
 
 
   useEffect(() => {
-    setMarkerList([def, ss, gbkeep, hfsd, daol, ir, hk])
-    setMarkerPositions([def_position, gbkeep_position, hfsd_position, daol_position, ir_pos, hk_pos])
+    setMarkerList([def, ss, gbkeep, hfsd, daol, ir, hk, tholri, bers, hzpt, dystd])
+    setMarkerPositions([def_position, gbkeep_position, hfsd_position, daol_position, ir_pos, hk_pos, tholri_pos, bers_pos, hzpt_pos, dystd_pos])
 
     
   }, [])
@@ -1156,6 +1167,18 @@ const Dornn = () => {
         </Marker>
 
         <Marker ref={hk} position={hk_pos}>
+        </Marker>
+
+        <Marker ref={tholri} position={tholri_pos}>
+        </Marker>
+        
+        <Marker ref={bers} position={bers_pos}>
+        </Marker>
+
+        <Marker ref={varc} position={varc_pos}>
+        </Marker>
+
+        <Marker ref={hzpt} position={hzpt_pos}>
         </Marker>
       </>
 
@@ -1282,10 +1305,10 @@ const Dornn = () => {
     </div>
     
     <div id="poli-grid-box">
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Tholri's Domain</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>The Northfolk Enclave<br/><i id="subtitle-tiny">"Northern Jawbone"</i></button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Hezzar’s Pit</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Wormking's Sea</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(6)}>Tholri's Domain</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(7)}>The Northfolk Enclave<br/><i id="subtitle-tiny">"Northern Jawbone"</i></button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(8)}>Hezzar’s Pit</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(9)}>Wormking's Sea</button>
                                          
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Holger's Keep</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>The Elfholds<br/><i id="subtitle-tiny">"Ilvor-Ylvindal"</i></button>
