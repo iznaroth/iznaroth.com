@@ -1101,44 +1101,44 @@ const Dornn = () => {
   const [markerList, setMarkerList] = useState([]) 
   const [markerPositions, setMarkerPositions] = useState([]) 
 
-  //list of const - 
+  //list of const - move to const file and export array.
   
-  const def = useRef();
   const def_position = [-50, 500]
 
-  const gbkeep = useRef();
   const gbkeep_position = [149, 311] //ALL POSITIONS ARE OFFSET BY ~10 X
-  const hfsd = useRef();
   const hfsd_position = [180, 234]
-  const daol = useRef()
   const daol_position = [171, 125]
-  const ir = useRef();
   const ir_pos = [231, 171]
-  const hk = useRef();
   const hk_pos = [416, 95]
-  const tholri = useRef();
   const tholri_pos = [416, 292]
-  const bers = useRef();
   const bers_pos = [400, 186]
-  const varc = useRef();
-  const varc_pos = [407, 188]
-  const hzpt = useRef();
+  const varc_pos = [407, 188] //HAS NO POST, INCLUDED IN BERS ^
   const hzpt_pos = [314, 146]
-  const dystd = useRef();
   const dystd_pos = [274, 231]
+  const krst_pos = [301, 197]
+  const dely_pos = [340, 209]
+  const bodilse_pos = [360, 226]
+  const milton_pos = [198, 250]
+  const carg_pos = [100, 178]
+  const font_pos = [320, 289]
+  const heg_pos = [323,  176]
+  const manc_pos = [288, 113]
 
-
-
-  const ss = useRef();
   const ss_position = [218, 188]
 
-  const settlement_handles_ordered = ["No Record", "The Glassblood Keep", "Halfstad", "Daol", "Ir", "High Kiln", "Tholri", "Berasithus & Varičula", "Hezzar's Pit", "Daystride"]
+  const settlement_handles_ordered = ["No Record", "The Glassblood Keep", "Halfstad", "Daol", "Ir", "High Kiln", 
+  "Tholri", "Berasithus & Varičula", "Hezzar's Pit", "Daystride", 
+  "Karlestal", "The Delyrian Ayre", "Bodilse", "Milton's Terminus", 
+  "Caraggah (Mes-vis)", "Font of Triumph", "Hégenol", "Mancer's Wall",
+  "Ilkair", "Raka-Khommora", "Hall of the Founders", "Akeldar",
+  "Blasterstein", "Sapphire Ark", "Fulcrum", "Donri",
+  "Maathi", "Dreadpoint", "Radial Ascent", "Black Tower", 
+  "Marble Citadel", "Drumbone", "Kalamant", "Seventh Spear", //FREE AGENTS
+  "The Tyrant", "Argo's Post", "Shipton Ruins", "Mirrorweave"]
 
 
   useEffect(() => {
-    setMarkerList([def, ss, gbkeep, hfsd, daol, ir, hk, tholri, bers, hzpt, dystd])
-    setMarkerPositions([def_position, gbkeep_position, hfsd_position, daol_position, ir_pos, hk_pos, tholri_pos, bers_pos, hzpt_pos, dystd_pos])
-
+    setMarkerPositions([def_position, gbkeep_position, hfsd_position, daol_position, ir_pos, hk_pos, tholri_pos, bers_pos, hzpt_pos, dystd_pos, krst_pos, dely_pos, bodilse_pos, milton_pos])
     
   }, [])
   
@@ -1148,38 +1148,53 @@ const Dornn = () => {
     return (
       <>
 
-        <Marker ref={def} position={def_position}>
+        <Marker position={def_position}>
         </Marker>  
 
-        <Marker ref={ss} position={ss_position}>
+        <Marker position={gbkeep_position}>
         </Marker>
 
-        <Marker ref={gbkeep} position={gbkeep_position}>
+        <Marker position={hfsd_position}>
         </Marker>
 
-        <Marker ref={hfsd} position={hfsd_position}>
+        <Marker position={daol_position}>
         </Marker>
 
-        <Marker ref={daol} position={daol_position}>
+        <Marker position={ir_pos}>
         </Marker>
 
-        <Marker ref={ir} position={ir_pos}>
+        <Marker position={hk_pos}>
         </Marker>
 
-        <Marker ref={hk} position={hk_pos}>
-        </Marker>
-
-        <Marker ref={tholri} position={tholri_pos}>
+        <Marker position={tholri_pos}>
         </Marker>
         
-        <Marker ref={bers} position={bers_pos}>
+        <Marker position={bers_pos}>
         </Marker>
 
-        <Marker ref={varc} position={varc_pos}>
+        <Marker position={varc_pos}>
         </Marker>
 
-        <Marker ref={hzpt} position={hzpt_pos}>
+        <Marker position={hzpt_pos}>
         </Marker>
+
+        <Marker position={krst_pos}>
+        </Marker>
+        
+        <Marker position={dely_pos}>
+        </Marker>
+
+        <Marker position={bodilse_pos}>
+        </Marker>
+
+        <Marker position={milton_pos}>
+        </Marker>
+
+
+
+        <Marker position={ss_position}>
+        </Marker>
+
       </>
 
     )
@@ -1187,25 +1202,16 @@ const Dornn = () => {
   }
 
   async function selectPoligridPin(which) {
-    console.log("SELECT MARKER " + which)
-
-    const marker = markerList[which].current
-
-    console.log(settlement_handles_ordered[which])
-
+    
     const post = settlements.find((post) => post.name === settlement_handles_ordered[which])
-    console.log("SETTLEMENT SEARCH:")
-    console.log(post)
+    
     setSelectedSettlement(post);
 
     if(marker)
       mapContainerRef.current.scrollIntoView()
 
-      setMarkerFocused(true)
-
-
+      setMarkerFocused(true);
       const position = [markerPositions[which][0], markerPositions[which][1] + 15] //offset for setup. TODO pick box disp side based on proximity to edge
-
       map.flyTo(position, 3)
     
   }
@@ -1310,10 +1316,10 @@ const Dornn = () => {
       <button id="poligrid-link" onClick={() => selectPoligridPin(8)}>Hezzar’s Pit</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(9)}>Wormking's Sea</button>
                                          
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Holger's Keep</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>The Elfholds<br/><i id="subtitle-tiny">"Ilvor-Ylvindal"</i></button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Northsea Confederacy</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>The Demonhunters<br/><i id="subtitle-tiny">(perfunctory)</i></button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(10)}>Holger's Keep</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(11)}>The Elfholds<br/><i id="subtitle-tiny">"Ilvor-Ylvindal"</i></button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(12)}>Northsea Confederacy</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(13)}>The Demonhunters<br/><i id="subtitle-tiny">(perfunctory)</i></button>
                                          
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Decryptor Houses</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>The Midlands Historical Archive</button>
