@@ -1321,7 +1321,7 @@ const Dornn = () => {
       <button id="poligrid-link" onClick={() => selectPoligridPin(12)}>Northsea Confederacy</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(13)}>The Demonhunters<br/><i id="subtitle-tiny">(perfunctory)</i></button>
                                          
-      <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Decryptor Houses</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(14)}>Decryptor Houses</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>The Midlands Historical Archive</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Isles of Security</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(0)}>Wahlrect<br/><i id="subtitle-tiny">House of the Blood Tyrants</i></button>

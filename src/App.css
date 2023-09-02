@@ -111,6 +111,8 @@
 
 .hpnavbar {
   height: 100px !important;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .rootpic {
