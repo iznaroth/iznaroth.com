@@ -77,6 +77,12 @@ input {
     max-height: 10em;
 }
 
+.blog-footer.copynotice {
+  margin: auto;
+  text-align: center;
+  color: white;
+}
+
 .blog-wrap {
   max-width: 1000px;
   margin: 0 auto;

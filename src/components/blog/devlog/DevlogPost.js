@@ -51,6 +51,9 @@ const DevlogPost = ({content}) => {
             <div className='blog-content' dangerouslySetInnerHTML={{__html: post.content.html}}></div>
           </div>
         </div>
+        <div className='blog-footer' />
+        <div className='blog-footer copynotice' >©2022 - 2023 Jonas Bull | All Rights Reserved</div>
+        <div className='blog-footer' />
       </section>
       ) : (
         <EmptyList />

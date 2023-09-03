@@ -13,9 +13,13 @@ const BlogItem = ({blogContent, content}) => {
 
   return (
    <div className='blogItem-wrap' key={blogContent.title}>
-      <img className='blogItem-cover' src={blogContent.headerImage.url} alt='cover' />
+      <Link className='blogItem-link' to={`/blog/${blogContent.slug}`} onClick={()=>{content(blogContent)}}>
+        <img className='blogItem-cover' src={blogContent.headerImage.url} alt='cover' />
+      </Link>
       <Chip label={blogContent.relevantTags[0]} />
-      <h3>{blogContent.title}</h3>
+      <Link className='blogItem-link' to={`/blog/${blogContent.slug}`} onClick={()=>{content(blogContent)}}>
+        <h3>{blogContent.title}</h3>
+      </Link>
       <p className='blogItem-desc'>{blogContent.subtitle}</p>
       <footer>
         <div className='blogItem-author'>
