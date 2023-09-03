@@ -7,7 +7,7 @@ export default function Logo() {
    <section id="logo" className="flex h-96">
 
      <img
-            className="m-auto w-2/5"
+            className="m-auto md:w-2/5 sm:w-3/5 logo-img"
             alt="IZNAROTH"
             src="./iz_logo_over.png"
           />

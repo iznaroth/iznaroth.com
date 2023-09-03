@@ -110,9 +110,9 @@
 }
 
 .hpnavbar {
-  height: 100px !important;
+  min-height: 60px !important;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
 }
 
 .rootpic {
@@ -120,9 +120,14 @@
 }
 
 @media (max-width: 600px) {
-	.navbar img {
-		height: 2em;
+	.logo-img{
+		width: 100%;
+    height: 50%;
 	}
+
+  .cartoon-sun{
+    display: none !important;
+  }
 }
 
 /* The dropdown container */
@@ -134,7 +139,6 @@
 /* Dropdown button */
 .dropdown .dropbtn {
   font-size: 16px;
-  height: 100px;
   border: none;
   outline: none;
   color: white;
@@ -145,22 +149,23 @@
 }
 
 .dropdown { 
-  height: 100px;
+  height: 100%;
 }
 
 
 
 .picbar {
-  height: 100px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
   display: block;
 }
 
 .picbar-img {
-  height: 100px !important;
+  height: 100%;
   width: 100%;
   display: block;
 }
+
 
 /* Add a red background color to navbar links on hover */
 .hpnavbar .wwdnavbar a:hover, .dropdown:hover .dropbtn {
@@ -209,6 +214,12 @@
   top: 80px;
   right: 70px;
   animation: rotation 240s infinite linear;
+}
+
+@media (max-width: 600px) {
+	.cartoon-sun{
+		width: 15%;
+	}
 }
 
 @keyframes rotation {
