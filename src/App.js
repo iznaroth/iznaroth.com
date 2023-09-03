@@ -2,7 +2,6 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { request } from 'graphql-request';
 
-import { Alert, Collapse, IconButton } from '@mui/material';
 
 import './App.css';
 
@@ -29,7 +28,6 @@ function App() {
   const [categories, setCategories] = useState(null);
   const [devlogs, setDevlogs] = useState(null);
   const [bg, changeBg] = useState('');
-  const [open, setOpen] = React.useState(true);
 
   
 
@@ -66,24 +64,7 @@ function App() {
   return (
     <main className="text-gray-400 bg-cover body-font" style={{'backgroundImage': 'url(/iz_bg_simple.png)', 'backgroundSize' : '1920px 1080px'}}>
 
-      <Collapse in={open}>
-        <Alert severity="warning"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              CLOSE
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-        >Hey! This site is not currently optimized for mobile--if used on small screens, you will encounter visual errors. Check back soon!
-        </Alert>
-      </Collapse>
+      
 
       {(!posts || !devlogs) ? (
           'Loading'

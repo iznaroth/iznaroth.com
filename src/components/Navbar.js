@@ -24,8 +24,6 @@ export default function Navbar() {
           </button>
           <div className="dropdown-content">
             <a href="dtww">Down the Worldwell</a>
-            <a href="#">Manic Mechanics</a>
-            <a href="#">Other Stuff</a>
           </div>
         </div>
         <a className="rootpic" href="blog">

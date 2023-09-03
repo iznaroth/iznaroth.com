@@ -73,10 +73,11 @@ const WorldwellSystem = () => {
                 Not all edge cases are covered in this document due to navigational concerns. This is intended as a method of rapid onboarding. For a holistic overview of the system, please download the PDF version. 
                 <br /><br />
                 ----------------------------------------------------
-                 <br /><br />
-                Down the Worldwell is a tabletop roleplaying game for any number of players and one Game Master (referred to as the GM from here on.) In it, the players will pilot characters
-                of their own making, reacting to a world the GM creates through narration and prompts. When conflicts arise in this world, if they cannot be mediated by the decisions the players make or the GM's discretion alone,
-                they will be decided using dice. The most common die you will use to interact with the world at large is the 20-sided die - a D20. 
+                <br /><br />
+                <b>Edit Status: Incomplete. First Draft coming soon!</b>
+                <br /><br />
+                <i>- Sorry !! - </i>
+                
                 
                 </p>
                </div>

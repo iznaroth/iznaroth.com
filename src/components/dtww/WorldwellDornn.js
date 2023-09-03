@@ -13,6 +13,8 @@ import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY, QUERY_SETTLEMENTENTRY } from '../../graphql/Queries';
 import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, history } from './DornnMapConstants';
 import { CSSTransition } from 'react-transition-group';
+import { Alert, Collapse, IconButton } from '@mui/material';
+
 
 const screenBounds = [
   [0, 0],
@@ -1456,11 +1458,33 @@ const Dornn = () => {
   const [inProp, setInProp] = useState(false);
   const nodeRef = useRef(null);
 
+  const [open, setOpen] = useState(true);
+
   return (
     
     <div className='worldwell min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)'}}>
       {/* */}
 
+      <Collapse in={open}>
+        <Alert severity="warning"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              CLOSE
+            </IconButton>
+          }
+          sx={{ mb: 2 }}
+        >Hey! This specific page is not currently optimized for mobile--if used on small screens, you will encounter visual errors and the information may not be legible. Check back soon!
+        </Alert>
+      </Collapse>
+
+      
       
 
       <section id="logo" className="wwlogo">
