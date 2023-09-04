@@ -614,25 +614,10 @@ export const dolwynd = [
 
   export const realms = (
   <>
-  <img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../world_cover_alt.png"/>
+  <img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-full sm:w-2/5" src="../../world_cover_alt.png"/>
 
-  <p id="text-center-83" className='text-white m-auto text-center w-5/6 pb-20 block'>
-  <br /><br />
-  Dornn is an old name. To some, it's the common neologism for every foreign recess; visiting foreigners claim it as the holiest of the Internal Spheres, others still say it’s nothing but a pile of rubble at the center of the Godsgarden’s oldest fountain. Regardless of your experiences, history converges on Dornn - and the records are never flattering. Host of the first, land of the Mortals, the true-and-only-Cradle. Once three great continents, shattered and beaten over by the ages.  Stumbling into the place is easy, as simple as crawling through the wrong crack in the back of an old keep, peeking too deep into a forested cave, taking home the wrong gemstone brooch. Getting out is another story, subject to the tumult of the universe’s sole pressure-point like a waterfall tide from every outward direction. It’s best to think of Dornn as a bottomless well - unfortunately for you, these lands too deep to crawl from.
-  <br /><br />
-  These isles - the Midlands, as they're oft referred - have died more times than you will, seen catastrophes you’d struggle to picture, and played host to stranger creatures than you could ever aspire to be. Some brave few survive on the bones of this ancient place, rebuilding cities and repaving roadways that are always doomed to another eventual collapse. Others still linger in the far corners of the unlit realm, idly working away at the long-ladder to total ascendancy // divine interruption. In every recess, from the star-sworn spires of old-world war-lands to the time-dead depths of the cyclical-amnesiac underworld, the memories of a millennium realm take shape: ancient prizes, esoteric beasts, impossible fortresses, limitless power. As you may expect, this is where you come in. 
-  <br /><br />
-  There remains some semblance of the civilizations that held these isles in the days of yore, but they are weak and information is scarce. Failures in magical networking, aggressive paramilitary pressganging and stubborn political isolationism have caused a problem: the roads are overgrown, and most people aren’t talking. Old world infrastructure remains, so you can trace the shape of these undead nations with some ease, but you won’t find any help in the towns they connect. Ten paces beyond the town limits and you’re on your own. This in-of itself wouldn’t be as much of a problem, unfortunately, if the geography wasn’t so traitorous.
-  <br /><br />
-  By most estimations, Dornn has “died” six or seven times before you arrived. With each death, the geographies and metaphysics of the realm have been liberally reworked. Maps are rarely accurate, physical law is woefully inconsistent, politics are strained and fractured and always lousy with conspiracy. Some think that the whole of it is controlled by a roomful of quasi-Gods that have solved the Magical Answer, and they’ve long-since killed the old divines and taken their place. It isn’t an unreasonable belief to hold.
-  <br /><br />
-  Yet, if power were so easy, we wouldn’t still be fighting. Magic is a boon, but a fickle one. Absent gods leave strange systemics in their wake, local stability is always a step from disaster, and the Great Ladder corrupts and fortifies in equal measure. For each step you take towards ascendancy, you must lose something in return. Plenty of fools take the gamble. Plenty more are content to do the good work and keep their heads down. It’s up to you exactly where you fall on this axis. 
-  <br /><br />
-  We live, now, in the Seasons of Stagnation. Once stomped under the boot of the immortal Human Familial Empires, their grand migratory seclusion has left their cities and highways quite-nearly abandoned, and those they left behind are either too powerful to bother or already on the run. Their unconditional immortality has lost its appeal over the centuries, acting more as a torturous guarantee of eternal pain than a promise of dominating power. Never forget the laws of the Haze, and always have a plan to kill them again. 
-  <br /><br />
-  It was a mere seventy cycles ago when the Wireless Admonition God elected to change the law of signal, and so we continue to redraw maps and resurrect ancient routes in uneasy global silence. For us common mortals, this would be called a disaster. Others do not see it that way. Behind the curtain, grand wheels of fate and games of legendary cosmic warfare skew the realm’s future into dark uncertainties. The greater average of this tired plane may be frail, but there is no ceiling to this house, nor is there any shortage of maniac mana-drunk foes to challenge your climb. Wars are played at levels of scale; we’re always puppets to a higher rung. Maybe it’s better to start looking for the string. 
-  <br /><br />
-  ---------------------
+  <p id="" className='text-white m-auto text-center w-5/6 pb-20 block'>
+
   <br /><br />
   The charted lands of Dornn are split into three "continents." The term is a holdover from a time when they were still whole. To the west is Dornnus, the Cradle, active host to about ninety percent of all living mortals.
   It is a vast realm, mostly characterized by perpetual squabbles between the parasite empires that live off the firmament of old-world ruins. The whole of it was brought to heel by the Five Human Families about a thousand years prior, but their grip 
@@ -641,12 +626,106 @@ export const dolwynd = [
   In the center of the Sea of Dvirn are the forgotten realms of Ferveirn, the Golden Lands. Once the beating heart of the Dvirran empire, it has been ransacked and devoured many times since their failure to
   conquer the plane (and subsequent disappearance.) The Rhominite inheritors with the most legitimate claim to the realm currently control the seats of Ilkair, the gilded capital, but Elvish holdouts have remained a stubborn
   factor for as long as the Dvirr have been missing. The eastern half of Ferveirn is under varying levels of quarantine - the old capital of Moz Haphora cannot be entered by any living soul,
-  lest they volunteer their freewill to Alavaria, the King-under-Sky.
+  lest they volunteer their freewill to Alavaria, the King-under-Sky. The surrounding sea is a perpetual frontline between the federated clans of Deilān and their cult-warped ancestors, the Hand of Rhômi.  
   <br /><br />
   To the east is the frost-wracked frontier wasteland of Jurdenogh. It was once a vibrant mirror to the cultural varieties of Dornnus, but the follies of the Glassblood youngest embroiled the continent itself
   in a metaphysical concept-superwar between ancient deities, freezing the whole thing ten times over. The poor sods that still live there are pretty much stuck--for a mortal, traversal is almost certain death. For a human, it's just a lot of consecutive certain deaths. There's surely a bounty of unclaimed treasure to be found
   in the mostly-untouched ruins that cover the continent, but it would be a costly trip in both coin and mental fortitude. 
+  <br /><br />
+  The specifics of Dornnian lands and life are constrained by many strange rules and reactions. The details are trapped in the inconsistencies of the land, its natural inhabitants, 
+  and the strange principles that stabilize and govern their existence--at least, as we understand them.
   </p>
+  <p id="" className='text-white m-auto !text-left w-5/6 pb-20 block'>
+  <div className="wwheader text-left">
+    <h1 className="green">Geographic Confusions</h1>
+  </div>
+  The lands of Dornn are strange and uncooperative; the cartographer's vocation is one of many redrafts and no small amount of risk. Nobody really agrees on how it's all held together--from theories of 
+  semisapient tectonics to incomprehensibly precise magical contract, the only real certainty is the stuff that everything's made of. Where it is, and whether it will be there tomorrow? That's up for debate. 
+  The root of these confusions lie in how space misbehaves; mountainlinks and burrows.
+  <br /><br />
+  Most agree that the mountains are all (or mostly) bodies--dead titans, worms and other earlyworld artifacts. A hazy fog of nostalgia still hangs over their compressed-and-interleaved selves,
+  intermittently linking and swapping passes and chambers without any mortal-comprehensible purpose. This can make crossing unreinforced passes anything from a hassle to a disaster.
+  <br /><br />
+  The forests, on the other hand, are the recursive self-loathing territory of the absent Fae, and in the wake of their abandonment the trees have grown irate. Reliable methods of navigation
+  through the deepwoods of Dornn are worth a nation's vault if you can prove they work. Otherwise, you're either working with very old infrastructure or rolling the dice.
+  <br /><br />
+  The seas are vast, open, and unshielded; prime territory for outer meddling. There isn't a body of water in all the Midlands that remains unwatched and unpopulated--it may make
+  for faster traversals, but you're a lot more likely to run into something along the way, for better or for worse. Pinches, tide-titans, mad Reflektors and constricted channels can reroute
+  and divert seemingly-locked-on voyages in almost no time at all. Let us not forget the source of the great channels that divide the masses apart; sources of the divine wars of the Exits, the congealed rages of Astra Alumbarré, Mholdûr,
+  and the million competing fragments of their cascading collapses. 
+  <br /><br />
+  While the remainder of the realm's major biomes are less prone to disastrous reconfiguration, that's not a promise--the realm is lousy with megastructural ruins and uncharted reaches, still shifting
+  under millenia of uncounted curses, wards, and other convolutions of transcendent stability. That, too, is excepting the worst of it--we are seated upon a thin table of stone defaced by vaults and chasms,
+  gateways to the mad meander of the Underworld--a realm unmapped and unsettled even in the heights of the old-world Golden Ages, save a meager handful of gentle, shallow caverns and venerated magical vaults.
+
+
+  <br /><br />
+  <br /><br />
+  <div className="wwheader text-left">
+    <h1 className="purple">Ecological Patterns</h1>
+  </div>
+  Attempts at classifying the creatures of Dornn and the regions they inhabit is something of a fool's errand. Some literature has been recovered from prior ages, documenting more considerable and
+  consistent efforts at the task, but in the wake of nearly eleven thousand years of magical disaster and environmental decimation, a disappoinging amount of it is useless. 
+  <br /><br />
+  The problem is with manipulation: no creatures can be reliably related to one another when the transcendent static always threatens to manipulate their bases. Instead, Dornnians have broadly
+  classified creatures based on their relation to the Transcendence; to what degree is the creature made from organics, inerts, transcendent composites, or raw energy. Further categories have bee created out of necessity--
+  there are still outliers.
+  <br /><br />
+  In the Seasons, the academics prefer a modified form of the Marclight Conventions for Ecological Delineation:
+  <br /><br />
+  <ul className='text-left text-lime-200 list-disc px-10'>
+    <li><b>Animalia:</b> Concerning creatures of fully-organic composure, intermittently capable of interfacing with the Transcendence. </li>
+    <li><b>Plantae / Partemplantae:</b> Concerning sedentary organics and their transcedentally-infused counterparts. </li>
+    <li><b>Minisculae: </b> Concerning hypothetical organics that exceed the minimum size of possible observation. </li>
+    <li><b>Lithoid:</b> Concerning creatures predominately composed of stone and other minerals, with no clear transcendent link. </li>
+    <li><b>Partemfungi:</b> The most extensive technical subfamily of Partemplantae--sapient, usually-mobile fungi with convoluted transcendent relationships. </li>
+    <li><b>Inframagi:</b> Concerning creatures with a nonzero ratio between biological physiology and transcendent physiology. </li>
+    <li><b>Magi:</b> Concerning creatures unilaterally composed of transcendent energies. </li>
+    <li><b>Incognitas:</b> Ill-understood creatures that fall between Inframagi and some other axis; composed of exotic or unknown energies and materials. Generally hostile to Mortal life. </li>
+    <li><b>Conscientia:</b> Concerning a narrow family of creatures composed entirely of physical memory. </li>
+    <li><b>Intorsum:</b> Concerning the broader groups of creatures that manifest as extensions of collective thought. </li>
+    <li><b>Memoria:</b> Concerning creatures with physiologies that were rendered incompatible during the Exits or prior disasters, persisting through unknown means. </li>
+    <li><b>Cosmolaria:</b> Creatures that hail from the skies beyond the Dornnian table, which fail to obey even the general laws of Dornnian physics. </li>
+  </ul>
+  <br /><br />
+  Most ecologists have given up, leaving this system unrefined and prone to crossover. It is still traditionally used to identify and categorize new creatures for hunts and travel strategy.
+  <br /><br />
+  Concerning environs, there is no consistent resource, as Dornn's climate and regional structure is in a massively-unstable state. Consensus holds that the 
+  heat is a gift from Era, the cold from the Forgotten, and all other principles of the natural world are confusions of these old gifts--superstitious, but there isn't much else
+  to go on. It is adivsed that you consult the above materials, map and  outlines to gain an understanding of the various biospheres of the Midlands, and do extensive research before planning any expeditions.
+
+  <br /><br />
+  <br /><br />
+  <div className="wwheader text-left">
+    <h1 className="red">Physics and Transcendence</h1>
+  </div>
+  Magic is the long-and-short of it. Nobody agrees on what it is--bartering in confused speculation and primeval legend, the frail handful that have survived from
+  the mouth of the maester-patron Diravol at the dawn of the mortal world. It is at least understood that any sapient being can "access" the Transcendence and directly manipulate
+  any principles of reality so long as they can sufficiently articulate their intent. To do so requires a lot of janky shortcutting, as no single mortal could actually, ever sufficiently
+  articulate their intent to the incomprehensible wailing of the full-body Transcendence.
+  <br /><br />
+  These shortcuts are unreliable, built off of millenia of trial-and-error, transcribing certain effects into symbolics, prayers, somatics and behaviors. Most of them rely in some way on 
+  the Gods; even less-understood gestalts that seem to preside over the natural world in unpredictable ways. There are an uncounted number of names and symbolics for the Divines of Dornn, representing the
+  mad melting-pot of species and cultures that the Seasons of Stagnation is. Unlike the frail corporeals of the pre-Exits world, modern divines are akin to spirits--distant, uncooperative, annoyingly cryptic. Thus,
+  the process of rediscovering their transcendent methods is a strenuous one. Some may provide physical agents to aide in the process (the Icons), but these creatures usually end up causing massive natural disasters
+  rather than furthering any pursuits of knowledge. If you haven't picked up on it, religion is not a supremely-consistent or widespread practice in the realms of Dornn--it can be rather risky, and the Divines don't seem to 
+  punish the unfaithful unless directly provoked.
+  <br /><br />
+  Understanding this poses a dangerous question: what <i>can't</i> be screwed up by magic? The answer is nothing. To live in Dornn is to trust nothing. It is a mercy, then, that the risks tend to contain themselves.
+  Whatever fundamental rules govern this reality, they resist the fallout that transcendent manipulation can incur--while local reality will suffer <i>Gedt Cascades</i> and other destabilizations as people overuse magic, 
+  strange and ineffable processes conspire to repair the firmament wherever it is broken--usually after the offending casters are dead and gone. A minor mercy. 
+  <br /><br />
+  For the Dornnian everyman, this means that magic is the most imposing of double-edged swords. It's possible for just about anybody to put in the work (though natural talent and the strange proximities
+  of various cursed heritages can shift this meter), but even the slightest misuse of magic can be devastating for the caster, and dealing a lot of collateral damage without just killing yourself first is hard. It keeps itself in line,
+  to some degree, and so most folks don't mingle much with the transcendent realm, only seeking the supernatural as it suits the subtleties of their day-to-day. Innovation and automation of magic is a common ambition amongst structured societies,
+  as indicated by many a Golden Age utopian super-ruin, but frequent misfires and the vast swathes of magical ruleshift suffered in the Exits has made technology something of a pipe-dream, for now. Sometimes it's best to keep yr. head down.
+  
+  
+
+  </p>
+  
+
+
   </>
  )
 
@@ -660,8 +739,6 @@ export const inhabitants = (
   <br /><br />
   These are the fourteen with the greatest primacy of control in the Seasons of Stagnation. 
   <br /><br />
-  JUMP TO AN ENTRY:
-  (Add links here...)
   </p>
 
   <div id="spec-header-box">

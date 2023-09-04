@@ -704,6 +704,11 @@ a:hover {
   padding-bottom: 1.5rem !important;
 }
 
+.wwheader h1{
+  font-size: 3rem;
+  font-family: "IM Fell DW Pica";
+}
+
 
 #spec-header-box h1{
   color: gray;

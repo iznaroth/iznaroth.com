@@ -115,9 +115,7 @@
   flex-wrap: wrap-reverse;
 }
 
-.rootpic {
-  padding: 0 !important;
-}
+
 
 @media (max-width: 600px) {
 	.logo-img{
@@ -134,8 +132,14 @@
 .dropdown {
   float: left;
   overflow: hidden;
-  
+  flex-basis: 40%; 
 }
+
+.rootpic {
+  padding: 0 !important;
+  flex-basis: 40%;
+}
+
 
 /* Dropdown button */
 .dropdown .dropbtn {
@@ -150,7 +154,13 @@
 }
 
 @media (min-width: 625px) {
-	
+	.dropdown {
+    flex-basis: auto;
+  }
+  
+  .rootpic {
+    flex-basis: auto;
+  }
 }
 
 
@@ -166,7 +176,6 @@
   
   .picbar-img {
     height: 100%;
-    width: 75%;
     display: block;
   }
 
