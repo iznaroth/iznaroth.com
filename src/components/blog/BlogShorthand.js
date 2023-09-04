@@ -16,15 +16,13 @@ const BlogShorthand = ({blogContent, content, postOrDevlog}) => {
       <Chip label={blogContent.relevantTags != null ? blogContent.relevantTags[0] : "No Tags"} />
       <Link className='blogShorthand-link' to={postOrDevlog ? `/blog/${blogContent.slug}` : `/devlogs/${blogContent.slug}` } onClick={()=>{content(blogContent)}}>
           {blogContent.title}
-        </Link>
-      <footer>
+      </Link>
+      
         <div className='blogShorthand-author'>
-          <div>
             <p>{blogContent.timestamp}</p>
-          </div>
         </div>
         
-      </footer>
+      
     </div>
   );
 };

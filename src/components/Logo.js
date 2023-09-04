@@ -4,10 +4,10 @@ import React from "react";
 
 export default function Logo() {
   return (
-   <section id="logo" className="flex h-96">
+   <section id="logo" className="flex h-full py-10 sm:py-20">
 
      <img
-            className="m-auto md:w-2/5 sm:w-3/5 logo-img"
+            className="m-auto w-full sm:w-2/5 "
             alt="IZNAROTH"
             src="./iz_logo_over.png"
           />

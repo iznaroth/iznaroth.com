@@ -18,7 +18,7 @@ export default function Navbar() {
       <div className="navbar hpnavbar">
         <div className="dropdown">
           <button className="picbar">
-           <img src = "./navbar(proj).png"/>
+           <img className = "picbar-img" src = "./navbar(proj).png"/>
             <i className="fa fa-caret-down"></i>
             
           </button>

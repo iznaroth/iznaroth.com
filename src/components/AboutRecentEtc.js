@@ -9,13 +9,13 @@ const About = ({ blogContent }) => {
     <div className="mx-50 px-24">
       <img src="./ribbon-short.png"></img>
     </div>
-     <div className="container mx-auto flex px-10 py-10 md:flex-row flex-col items-start min-w-none bg-gray-400 rounded" style={{'borderImageSource': 'url(./text_banner_border.png)', 'borderImageSlice': '14%', 'borderWidth' : '33px', 'borderImageRepeat': 'repeat', 'borderStyle' : 'solid', 'imageRendering' : 'pixelated'}}>
-       <div className="lg:flex-grow md:w-1/2 lg:pr-0 md:pr-0 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-         <h1 className="title-font sm:text-4xl text-3xl mb-4 px-8 font-medium text-black">
+     <div className="container !mx-0 md:mx-auto flex lg:px-10 py-10 md:flex-row flex-col items-center sm:items-start max-w-full bg-gray-400 rounded" style={{'borderImageSource': 'url(./text_banner_border.png)', 'borderImageSlice': '14%', 'borderWidth' : '33px', 'borderImageRepeat': 'repeat', 'borderStyle' : 'solid', 'imageRendering' : 'pixelated'}}>
+       <div className="lg:flex-grow m-0 md:w-1/2 lg:pr-0 md:pr-0 md:text-left mb-16 md:mb-0 text-center">
+         <h1 className="title-font sm:text-4xl text-3xl mb-4 lg:px-8 font-medium text-black">
             What's all this, then?
            <br className="hidden lg:inline-block" />
          </h1>
-         <p className="mb-8 leading-relaxed px-8 text-black">
+         <p className="mb-8 leading-relaxed lg:px-8 text-black">
          This is a massive quasi-portfolio monolith concerning my work - the me in question being Jonas Bull, iznaroth or whatever name you know me by. 
          It’s more or less an organized storage locker for my brain. I put everything in here somewhere, and I try kind-of hard to make it logical for others to navigate. I built it to explore, so poke around! If you’re on desktop, try the Astral Catalogue for a more interesting format. 
          <br /><br />
@@ -30,29 +30,26 @@ const About = ({ blogContent }) => {
         <br /><br />
         – Jonas Bull (iznaroth in some places)
          </p>
-         <div className="flex justify-center pl-3">
+         <div className="flex flex-wrap justify-center pl-3  ">
            <a
              href="#contact"
-             className="inline-flex text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">
+             className="inline-flex text-white bg-green-500 mb-2 sm:mb-0 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">
              Contact
            </a>
            <a
              href="https://www.patreon.com/iznaroth"
-             className="ml-4 inline-flex text-gray-400 bg-orange-800 border-0 py-2 px-6 focus:outline-none hover:bg-orange-700 hover:text-white rounded text-lg">
+             className="ml-4 inline-flex text-gray-400 bg-orange-800 mb-2 sm:mb-0  border-0 py-2 px-6 focus:outline-none hover:bg-orange-700 hover:text-white rounded text-lg">
              Patreon
            </a>
            <a
              href="https://github.com/iznaroth/"
-             className="ml-4 inline-flex text-gray-400 bg-gray-800 border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">
+             className="sm:ml-4 inline-flex text-gray-400 bg-gray-800 mb-2 sm:mb-0  border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">
              Github
            </a>
          </div>
        </div>
-       <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 md:text-right">
-          <div>
-            {/* Perhaps an image of myself and a little textbox? */}
-          </div>
-          <h1 className="title-font sm:text-4xl text-3xl mb-4 pr-8 font-medium text-black">
+       <div className="lg:max-w-lg lg:w-full md:w-1/2  md:text-right">
+          <h1 className="text-black text-center sm:text-4xl text-3xl">
             Recently Updated
            <br className="hidden lg:inline-block" />
          </h1>

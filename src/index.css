@@ -196,9 +196,14 @@ input {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
   grid-gap: 1rem;
-  margin-left: 3rem;
-  margin-right: 0rem;
-  margin-top: 3rem;
+  margin: auto;
+  margin-top: 1rem;
+}
+
+@media (min-width: 640px) {
+  .blogList-stubs-wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /* Blog List Full */
@@ -225,18 +230,22 @@ input {
 
 .blogShorthand-wrap {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   border-radius: 5px;
   background-color: #0000002d;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+  max-width: 100%;
 }
+
+
 
 .blogShorthand-desc {
   position: relative;
   max-height: 50px;
   overflow: hidden;
   padding-right: 0.6rem;
+  padding-bottom: 0.2rem;
   font-size: 0.8rem;
   color: #000000;
   text-align: center;
@@ -248,14 +257,15 @@ input {
   text-align: center;
   padding-left: 1em;
   padding-right: 1em;
+  padding-bottom: 0.2rem;
 }
 
 .blogShorthand-author {
-  display: flex;
+
   align-items: center;
   color: rgb(162, 253, 246);
   font-size: 0.8rem;
-  margin-right: 0.8rem;
+  margin: auto;
 }
 
 /* Blog Item */

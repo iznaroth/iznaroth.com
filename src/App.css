@@ -134,6 +134,7 @@
 .dropdown {
   float: left;
   overflow: hidden;
+  
 }
 
 /* Dropdown button */
@@ -148,23 +149,35 @@
   margin: 0; /* Important for vertical align on mobile phones */
 }
 
-.dropdown { 
-  height: 100%;
+@media (min-width: 625px) {
+	
 }
 
 
 
-.picbar {
-  height: 100%;
-  width: 100%;
-  display: block;
-}
 
-.picbar-img {
-  height: 100%;
-  width: 100%;
-  display: block;
-}
+
+	.picbar {
+    height: 100%;
+    width: 100%;
+    display: block;
+    margin: 0;
+  }
+  
+  .picbar-img {
+    height: 100%;
+    width: 75%;
+    display: block;
+  }
+
+  @media (min-width: 640px) {
+    .picbar-img {
+
+      width: 100%;
+
+    }
+  }
+
 
 
 /* Add a red background color to navbar links on hover */
@@ -243,6 +256,7 @@
 .worldwell a:hover {
   cursor: url('/public/tiny_clickable_hand.png'), auto;
 }
+
 
 .leaflet-container{
   height: 95vh;
