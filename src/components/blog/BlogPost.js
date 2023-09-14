@@ -26,25 +26,12 @@ const BlogPost = ({content, postOrDevlog}) => {
 
         <div  className="flex h-96">
           
-          {postOrDevlog ? (
-
-
           <img
               className="m-auto w-2/5"
               alt="evil thoughts"
               src="../../evil_thoughts.png"
             />
-          ) : (
-
-            <img
-              className="m-auto w-2/5"
-              alt="evil thoughts"
-              src="../../devlogs.png"
-            />
-
-          )
-
-          }
+            
         </div>
         <div className='blog-bg'>
           <div className='blog-wrap'>

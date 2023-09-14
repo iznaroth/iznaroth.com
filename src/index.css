@@ -790,6 +790,11 @@ a:hover {
   width: 83.33333%;
 }
 
+.text-left-83 {
+  width: 83.33333%;
+  text-align: left !important;
+}
+
 .map-polygon {
   opacity: 0;
   transition: opacity .5s;

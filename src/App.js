@@ -11,6 +11,7 @@ import Navbar from './components/Navbar';
 import Astropanel from './components/Astropanel';
 import BlogLanding from './components/blog/BlogLanding';
 import BlogPost from './components/blog/BlogPost';
+import DevlogPost from './components/blog/devlog/DevlogPost';
 import DevlogLanding from './components/blog/devlog/DevlogLanding';
 import About from './components/AboutRecentEtc';
 import Contact from './components/Contact';
@@ -104,7 +105,7 @@ function App() {
           }>
           </Route>
           <Route path = "/devlogs/:slug" element = {
-              <BlogPost content={devlogs}/>
+              <DevlogPost content={devlogs}/>
           }>
           </Route>
 
