@@ -31,11 +31,11 @@ const BlogPost = ({content, postOrDevlog}) => {
               alt="evil thoughts"
               src="../../evil_thoughts.png"
             />
-            
+
         </div>
         <div className='blog-bg'>
           <div className='blog-wrap'>
-            <Link className='blog-goBack' to='/'>
+            <Link className='blog-goBack' to='/blog'>
               <span> &#8592;</span> <span>Go Back</span>
             </Link>
             <header>

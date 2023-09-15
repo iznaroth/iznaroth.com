@@ -14,6 +14,8 @@ const DevlogLanding = ({devlogContent}) => {
   const m4_entries = useRef();
   const brittle_entries = useRef();
   const dolom_entries = useRef();
+
+  const [failRetrieval, setFailRetrieval] = useState(true);
   
 
   useEffect(() => {
@@ -27,29 +29,32 @@ const DevlogLanding = ({devlogContent}) => {
     dolom_entries.current = devlogContent.filter((log) => log.relevantTags.includes("doloman"))
 
 
+    if(dtww_entries.current == null || m4_entries.current == null || brittle_entries.current == null || dolom_entries.current == null ){
+      console.log(dtww_entries.current)
+      console.log(m4_entries.current)
+      console.log(brittle_entries.current)
+      console.log(dolom_entries.current)
+      
+    } else {
+      setFailRetrieval(false); //passed content check
+    }
 
     console.log(dtww_entries)
 
     //there is almost certainly a better way of doing this, so fix it!
   }, [])
   
-  if(dtww_entries.current == null || m4_entries.current == null || brittle_entries.current == null || dolom_entries.current == null ){
-    console.log(dtww_entries.current)
-    console.log(m4_entries.current)
-    console.log(brittle_entries.current)
-    console.log(dolom_entries.current)
-    return (<div>LOADING!</div>)
-  }
+  
 
   console.log("----------------ONLY ACCESSIBLE ON LEGAL ENTRY--------------------s")
 
   return (
     
     <div className='min-h-screen'>
-      {!devlogContent ? (
-      'Loading'
-    ) : ( <div /> )}
-      {/* Page Header */}
+      {!devlogContent || failRetrieval ? (
+        'Loading'
+       ) : ( 
+      <>
       <div  className="flex h-full py-10">
           <img
               className="m-auto w-full sm:w-2/5"
@@ -127,13 +132,10 @@ const DevlogLanding = ({devlogContent}) => {
       <div className='blog-footer' />
       <div className='blog-footer copynotice' >©2022 - 2023 Jonas Bull | All Rights Reserved</div>
       <div className='blog-footer' />
+      </>
+    )}
 
-    
     </div>
-
-
-    
-    
   );
 };
 export default DevlogLanding;
