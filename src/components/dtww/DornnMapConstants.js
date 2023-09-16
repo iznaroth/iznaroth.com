@@ -1,5 +1,7 @@
 //dornnus
 
+import L from 'leaflet';
+
 export const dolwynd = [
     [441, 272],
     [462, 284],
@@ -1217,7 +1219,7 @@ export const history=(
     <div id="species-text">
       <h1 className="white">The Timeless Mandate</h1>
       <p id="">
-      In time unmeasured, a million million years before and after, the Old Gods fought endlessly on battered planes of undecided matter. Their forms were perfect energies, maintained tantrums of thought and instrument. 
+      In time unmeasured, a trillion years before and after, the Old Gods fought endlessly on battered planes of undecided matter. Their forms were perfect energies, maintained tantrums of thought and instrument. 
       Their origins and intentions were not known, but from their perpetual orbit was born the Laws of Reality. It was a time of imprecision, indecision and lots of energy. 
       <br /> <br />
       Somewhere in that roiling sea of every-thought, an incidental clash gave birth to Diravol, the Tender. To abridge their many miracles, the great Patron would be the only "living" creature
@@ -1266,10 +1268,10 @@ export const history=(
       The Dvirran wars spanned an age and change, if the records are to be believed. It was the war to end all wars, one not even bested in the grand futures to come. Millions died at the hands 
       of the great Dvirran war-engine, a wanton massacre that culled arbitrarily without reason or remorse. Those that were spared were not forced to work, but to convert--to adopt the will of the
       outsider entity to which Oridei had promised the plane. In the times when they were not fighting (<i>and they were usually fighting</i>), the Dvirr would expend vast quantities of wealth and construct strange devices across the whole of the Midlands,
-      many of which still stand today, uncounted millenia later. The war calendar flexed and withered over the centuries, rebellions swelling into empires before the winged vanguard would return to collect. 
+      many of which still stand today, uncounted millennia later. The war calendar flexed and withered over the centuries, rebellions swelling into empires before the winged vanguard would return to collect. 
       <br /><br />
       The war's end was only found when Oridei's prophecy-addled hubris ran against a foe he could not topple, and he was killed in remarkably mortal fashion. 
-      His immortal patronly soul survived, rattling madly in his corpse-cage, but not fiercely enough to avoid recovery and imprisonmen. His remaining forces were abandoned by their new Godhead and stomped out in a meager decade. 
+      His immortal patronly soul survived, rattling madly in his corpse-cage, but not fiercely enough to avoid recovery and imprisonment. His remaining forces were abandoned by their new Godhead and stomped out in a meager decade. 
       </p>
     </div>
   </div>
@@ -1395,3 +1397,121 @@ export const history=(
   </div>
 </>
 )
+
+export const councilFort = L.icon({
+  iconUrl: '../../ally_fort.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const freeFort = L.icon({
+  iconUrl: '../../free_fort.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const threatFort = L.icon({
+  iconUrl: '../../threat_fort.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const councilCity = L.icon({
+  iconUrl: '../../ally_city.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const freeCity = L.icon({
+  iconUrl: '../../free_city.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const threatCity = L.icon({
+  iconUrl: '../../threat_city.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const councilSettlement = L.icon({
+  iconUrl: '../../ally_settlement.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const freeSettlement = L.icon({
+  iconUrl: '../../free_settlement.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const threatSettlement = L.icon({
+  iconUrl: '../../threat_settlement.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const councilHold = L.icon({
+  iconUrl: '../../ally_location.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const freeHold = L.icon({
+  iconUrl: '../../free_location.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const threatHold = L.icon({
+  iconUrl: '../../threat_location.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+
+export const humanCapital = L.icon({
+  iconUrl: '../../human_capital.png',
+
+  iconSize:     [45, 45], // size of the icon
+  iconAnchor:   [22, 40], // point of the icon which will correspond to marker's location
+  shadowAnchor: [10, 10],  // the same for the shadow
+  popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
+});
+

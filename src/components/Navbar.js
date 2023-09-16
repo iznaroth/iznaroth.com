@@ -40,7 +40,8 @@ export default function Navbar() {
           <div className="dropdown-content">
             <a href="https://iznaroth.itch.io/" target="_blank">itch</a>
             <a href="https://github.com/iznaroth/" target="_blank">Github</a>
-            <a href="">I do not use social media, LOL</a>
+            <a href="https://backloggd.com/u/iznaroth/">Backloggd</a>
+            <a href="https://www.patreon.com/iznaroth/">Patreon</a>
           </div>
         </div>
       </div>
