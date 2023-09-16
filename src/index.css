@@ -432,43 +432,68 @@ a:hover {
   padding: 1em;
   min-height: auto;
 
-  border: 2px solid #ffffff;
+  border: 6px solid #ffffff;
    	height: 99%;
     width: 98%;
     padding: 6px;
     margin: 0 auto;
 }
 
+@media (min-width: 625px) {
+
+  .dark-background {
+    border: 2px solid #ffffff;
+   	height: 99%;
+    width: 98%;
+    padding: 6px;
+    margin: 0 auto;
+  }
+}
+
 .map-spec {
-  min-width: 80vw;
-  max-width: 90vw;
+  width: 100vw;
   background-color: black;
   margin: 0 auto;
   padding: 1em;
   min-height: auto;
 
-  border: 2px solid #ffffff;
-   	height: 99%;
-    width: 98%;
+  border: 6px solid #ffffff;
+   	height: 100%;
+    width: 100%;
     padding: 6px;
     margin: 0 auto;
 }
 
-.mid-border-map {
-  border: 6px solid #ffffff;
-  width: 100%;
-  padding: 6px;
-  margin: auto;
+@media (min-width: 625px) {
+	.map-spec {
+    min-width: 80vw;
+    max-width: 90vw;
+
+    border: 2px solid #ffffff;
+      height: 99%;
+      width: 98%;
+      padding: 6px;
+      margin: 0 auto;
+  }
 }
 
+@media (min-width: 625px) {
+	.mid-border-map {
+    border: 6px solid #ffffff;
+    width: 100%;
+    padding: 6px;
+    margin: auto;
+  }
 
-.mid-border {
+  .mid-border {
     min-height: 100vh;
     border: 6px solid #ffffff;
     width: 100%;
     padding: 6px;
     margin: auto;
 }
+}
+
 
 .inner-border {
 	position: relative;
@@ -575,20 +600,34 @@ a:hover {
 
 #map {
   max-height: 100vh;
-  min-height: 100vh;
+  min-height: auto;
   background-color: transparent;
-  padding-bottom: 10;
-  flex: 1;
 
+  flex: 1;
 }
 
 .mapcontent {
-  display:flex;
-  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+@media (min-width: 625px) {
+	.mapcontent {
+    display:flex;
+    flex-direction: row;
+    height: 95vh;
+  }
 }
 
 .map-info{
-  width: 40vw;
+  width: 92vw;
+}
+
+@media (min-width: 625px) {
+	.map-info{
+    width: 40vw;
+  }
 }
 
 
@@ -604,14 +643,26 @@ a:hover {
 	color: #c4635c;
 }
 
+
+
 .settlement {
-  top: 0;
-  vertical-align: middle;
-  top: 10%;
-  left: 49%;
-  max-width: 60%;
-  max-height: 85%;
-  
+  vertical-align: bottom;
+  bottom: 0%;
+  max-width: 100%;
+  max-height: 60%;
+}
+
+@media (min-width: 625px) {
+  .settlement {
+    top: 0;
+    vertical-align: middle;
+    top: 10%;
+    left: 49%;
+    max-width: 60%;
+    max-height: 85%;
+    bottom: auto;
+    
+  }
 }
 
 .bio-container img{
@@ -622,14 +673,12 @@ a:hover {
 /* DTWW WORLD SUBPAGE IMAGES */
 
 #huge-header{
-  padding-top: 4rem;
-  width: 50%;
-  padding-bottom: 4rem;
+  padding: 2rem;
+  width: 100%;
 }
 
 #realm-header{
-  padding-top: 4rem;
-  width: 40%
+  padding: 2rem;
 }
 
 #realm-title{
@@ -637,18 +686,44 @@ a:hover {
 }
 
 #what-header{
-  padding-top: 4rem;
-  width: 20%
+  padding: 2rem;
 }
 
 #what-title{
-  width: 40%;
   padding-bottom: 2rem;
 }
 
+
 #inhab-header{
-  padding-top: 4rem;
-  width: 45%
+  padding: 2rem;
+}
+
+@media (min-width: 625px) {
+  #huge-header{
+    padding-top: 4rem;
+    width: 50%;
+    padding-bottom: 4rem;
+  }
+
+  #what-header{
+    padding-top: 4rem;
+    width: 20%
+  }
+
+  #what-title{
+    width: 40%;
+    padding-bottom: 2rem;
+  }
+
+  #inhab-header{
+    padding-top: 4rem;
+    width: 45%
+  }
+
+  #realm-header{
+    padding-top: 4rem;
+    width: 40%
+  }
 }
 
 
@@ -663,12 +738,13 @@ a:hover {
 #poli-grid-box{
   display: flex;
   flex-wrap: wrap;
-  padding-bottom: 2rem;
-  padding: 0rem 5rem;
+  padding: 0rem 1rem;
 }
 
+
+
 #poligrid-link{
-  flex-basis: 25%;
+  flex-basis: 50%;
   font-family: "IM Fell DW Pica";
   font-size: 1.5rem;
   margin: auto;
@@ -683,6 +759,19 @@ a:hover {
 #politic-box{
   display: flex;
   flex-wrap: wrap;
+}
+
+@media (min-width: 625px) {
+  #poli-grid-box{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+    padding: 0rem 5rem;
+  }
+
+  #poligrid-link{
+    flex-basis: 25%;
+  }
 }
 
 
@@ -717,9 +806,19 @@ a:hover {
 }
 
 #spec-header-box h1, #spec-header-box p{
-  padding-left: 4rem;
-  padding-right: 3rem;
+  padding-left: 2rem;
+  padding-right: 1rem;
   text-align: left !important;
+}
+
+@media (min-width: 625px) {
+
+  #spec-header-box h1, #spec-header-box p{
+    padding-left: 4rem;
+    padding-right: 3rem;
+    text-align: left !important;
+  }
+
 }
 
 #species-box p{
@@ -732,8 +831,10 @@ a:hover {
   flex-basis: 70%;
 }
 
-#majorpol-text{
-  flex-basis: 80%;
+@media (min-width: 625px) {
+  #majorpol-text{
+    flex-basis: 80%;
+  }
 }
 
 #portrait {
@@ -742,17 +843,37 @@ a:hover {
 
 
 #banner {
-  width: 10%;
+  display: none;
 }
+
+@media (min-width: 625px) {
+  #banner {
+    width: 10%;
+    display: block;
+  }
+}
+
 
 #polwedge {
   flex-basis: 10%;
+  display: none;
 }
 
 .force-vert-center {
-  vertical-align: center;
-  align-self: center;
-  padding: 4rem 0;
+  padding: 2rem;
+}
+
+@media (min-width: 625px) {
+  .force-vert-center {
+    vertical-align: center;
+    align-self: center;
+    padding: 4rem 0;
+  }
+
+  #polwedge {
+    flex-basis: 10%;
+    display: block;
+  }
 }
 
 #descintro{

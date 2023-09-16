@@ -569,8 +569,8 @@ export const dolwynd = [
 
  export const pagedesc = (
   <>
-  <img id="what-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../what_is_this.png"/>
-  <img id="what-title" className="mx-auto align-top opacity-90 w-3/5" src="../../what_bumper.png"/>
+  <img id="what-header" className="" src="../../what_is_this.png"/>
+  <img id="what-title" className="" src="../../what_bumper.png"/>
   <p id="descintro">
   This is an interactive map-guidebook to Dornn, the setting associated with Down the Worldwell's rules and system. It is an abridgement of the full Dornn setting guide, 
   which you can acquire -here-.
@@ -626,7 +626,7 @@ export const dolwynd = [
 
   export const realms = (
   <>
-  <img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-full sm:w-2/5" src="../../world_cover_alt.png"/>
+  <img id="inhab-header" className="mx-auto align-top opacity-90 pt-8 w-full sm:w-2/5" src="../../world_cover_alt.png"/>
   <p id="" className='text-white m-auto text-center w-5/6 pb-20 block'>
   <br /><br />
   The charted lands of Dornn are split into three "continents." The term is a holdover from a time when they were still whole. 
@@ -734,7 +734,7 @@ export const dolwynd = [
 
 export const inhabitants = (
   <>
-  <img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../inhabitants_alt.png"/>
+  <img id="inhab-header" className="mx-auto align-top opacity-90 pt-16 w-full sm:w-2/5" src="../../inhabitants_alt.png"/>
   
 
   <p id="text-center-83">
@@ -977,7 +977,7 @@ export const inhabitants = (
  const polities = (
 
 <>
-<img id="huge-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../political_cover_alt.png"/>
+<img id="huge-header" className="mx-auto align-top opacity-90 pt-16 w-full sm:w-2/5" src="../../political_cover_alt.png"/>
 
 
 <p id="text-center-83">
@@ -999,7 +999,7 @@ Click on any individual faction header to select their capital on the map.
 
   <div id="politic-box">
     <div id="polwedge"></div>
-    <img id="banner" src="../../species_frame_I.png" />
+    <img className="hidden sm:auto" id="banner" src="../../species_frame_I.png" />
     <div id="majorpol-text">
       <h2 className="blue force-vert-center">The Glassbloods</h2>
     </div>
@@ -1203,7 +1203,7 @@ Click on any individual faction header to select their capital on the map.
 
 export const history=(
 <>
-  <img id="realm-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../history.png"/>
+  <img id="realm-header" className="mx-auto align-top opacity-90 pt-16 w-full sm:w-2/5" src="../../history.png"/>
 
   <p id="text-center-83">
   History is unkind to the Midlands. Most of it has been lost by way of catastrophe, be it cosmic or political, and that which remains paints a confused picture. Many wedges 

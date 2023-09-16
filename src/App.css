@@ -7,10 +7,21 @@
   pointer-events: none;
 }
 
+
+
 .wwlogo{
-  height: 20em;
+  height: 10em;
   display: flex;
 }
+
+@media (min-width: 625px) {
+  .wwlogo{
+    height: 20em;
+    display: flex;
+  }
+}
+
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -268,13 +279,20 @@
 
 
 .leaflet-container{
-  height: 95vh;
+  height: 70vh;
   max-width: 192vh;
   margin: auto;
   background: none !important;
   z-index: 0 !important;
   flex: 1;
 
+}
+
+
+@media (min-width: 625px) {
+  .leaflet-container{
+    height: 95vh;
+  }
 }
 
 

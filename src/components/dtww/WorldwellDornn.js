@@ -21,9 +21,14 @@ const screenBounds = [
   [511, 1068],
 ]
 
-const screenBoundsWiggle = [
+const st = [
   [-500, -500],
   [1011, 1568],
+]
+
+const screenBoundsWiggle = [
+  [-125, -125],
+  [611, 1168],
 ]
 
 
@@ -74,8 +79,34 @@ const Dornn = () => {
   const [markerFocused, setMarkerFocused] = useState(false)
 
 
+
+
   function timeout(delay) {
     return new Promise( res => setTimeout(res, delay) );
+  }
+
+
+  function getWindowDimensions() {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  }
+
+  function useWindowDimensions() {
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
+
+    useEffect(() => {
+      function handleResize() {
+        setWindowDimensions(getWindowDimensions());
+      }
+
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    return windowDimensions;
   }
 
   function wrapSetBio(bio){
@@ -1192,8 +1223,6 @@ const Dornn = () => {
         <Marker position={milton_pos}>
         </Marker>
 
-
-
         <Marker position={ss_position}>
         </Marker>
 
@@ -1206,14 +1235,26 @@ const Dornn = () => {
   async function selectPoligridPin(which) {
     
     const post = settlements.find((post) => post.name === settlement_handles_ordered[which])
+
     
     setSelectedSettlement(post);
 
     if(marker)
       mapContainerRef.current.scrollIntoView()
 
+      var ssOffsetX
+      var ssOffsetY
+
+      if(window.innerWidth > 625){
+        ssOffsetX = 15
+        ssOffsetY = 0
+      } else {
+        ssOffsetX = 0
+        ssOffsetY = -15
+      }
+
       setMarkerFocused(true);
-      const position = [markerPositions[which][0], markerPositions[which][1] + 15] //offset for setup. TODO pick box disp side based on proximity to edge
+      const position = [markerPositions[which][0] + ssOffsetY, markerPositions[which][1] + ssOffsetX] //offset for setup. TODO pick box disp side based on proximity to edge
       map.flyTo(position, 3)
     
   }
@@ -1527,7 +1568,7 @@ const Dornn = () => {
                   
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
                   <div id='map' ref={mapContainerRef}>
-                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.4} minZoom={0.4} dragging={mapControlState[0]} scrollWheelZoom={mapControlState[1]} zoomControl={false} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBoundsWiggle} maxBoundsViscosity={0.9} tap={false} closePopupOnClick={false}>
+                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.4} minZoom={0.4} dragging={true} scrollWheelZoom={mapControlState[1]} zoomControl={true} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBoundsWiggle} maxBoundsViscosity={0.9} tap={false} closePopupOnClick={false}>
                       <ImageOverlay 
                         url="../../whiteout-blank-site.png" bounds={screenBounds} pagespeed_no_transform
                       />
@@ -1548,7 +1589,7 @@ const Dornn = () => {
                       <SetBoundsPolygons />
                     </MapContainer>
                   </div>
-                  { focused ? <div className="map-info text-center overflow-y-auto">
+                  { focused && !markerFocused ? <div className="map-info text-center overflow-y-auto">
                     <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': selectedBody.headerColor.hex, 'fontFamily' : headerFont}}>{selectedBody.header}</h>
                     <p className='pb-2  px-5 text-slate-500'>
                     {selectedBody.environs}
@@ -1561,7 +1602,7 @@ const Dornn = () => {
                     <button className='py-5 map-return' onClick={updateFocus}>GO BACK</button>
                     </div> :  null }
 
-                    { (markerFocused && !focused) ? <div className="settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto">
+                  { (markerFocused && !focused) ? <div className="settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto">
                     <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': selectedSettlement.nameColor.hex, 'fontFamily' : headerFont}}>{selectedSettlement.name}</h>
                     <p>
                       <i>
