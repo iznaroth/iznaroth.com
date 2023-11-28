@@ -686,7 +686,8 @@ a:hover {
 }
 
 #what-header{
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
+  width: 70%
 }
 
 #what-title{
@@ -707,7 +708,7 @@ a:hover {
 
   #what-header{
     padding-top: 4rem;
-    width: 40%
+    width: 40% !important;
   }
 
   #what-title{
@@ -750,6 +751,7 @@ a:hover {
   margin: auto;
   text-align: center;
   padding: 1.5rem 0;
+  flex-grow: 0;
 }
 
 #subtitle-tiny {
@@ -762,6 +764,19 @@ a:hover {
 }
 
 @media (min-width: 625px) {
+  #poli-grid-box{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+    padding: 0rem 5rem;
+  }
+
+  #poligrid-link{
+    flex-basis: 33.3333333%;
+  }
+}
+
+@media (min-width: 1000px) {
   #poli-grid-box{
     display: flex;
     flex-wrap: wrap;

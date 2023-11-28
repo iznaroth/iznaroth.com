@@ -66,12 +66,24 @@ const WorldwellLanding = () => {
                 nothing but miles of cold air either way. Behind me, the suspended well-mouth pinched into a line and faded away, spitting one last brick into the clouds. <br /><br /> 
                 Evensink, the Teeth of Ages, world-wound - the bedrock of the universe. No going back now...</i>
                 <br /> <br /><br />  
-                <i>Down the Worldwell</i> is a rules-medium tabletop roleplaying game built around the strains, stresses and disorders of a high-magic world. 
-                Combat is fast, devastating and unpredictable. Characters are defined by the knowledge they have and the time they've spent with it. Creatures are strange, powerful and poorly-understood.
-                Death comes swiftly and injury is difficult to rectify. There is no logical limit to power, but that's not a promise of safety. How far can you push it before you've gone too deep?
+                <i>Down the Worldwell</i> is a game about broken places and the timid folk that claim to own them. It is about the strains, stresses and disorders
+                of an old, unpredictable world at the bottom of the universe, the <i>last stop</i> on every limb of the outer cosmos. The homesteaders call it Dornn--the Broken Lands--
+                so frequently visited by catastrophe the ground itself can no longer properly hold shape. Held and lost for millenia by the vaunted legions of the old world, stolen by the temperamental
+                shoves of the immortal Human Empires, desperately protected by the surviving Inheritors, it is a knotted sprawl of superstructural ruin and discordant anti-nature.  In these suffocated lands, now governed only
+                by recluses, immortalesques and deranged ideologues, where no map nor road can reliably lead you where you wish to go, it falls to the <b>Travellers</b> to keep the world alive.
+                <br/><br/>
+                In Down the Worldwell, your players will pilot Travellers, the bold-or-foolish few who forsake the paranoid comfort of ruin-state life to hunt for fame, money, history, truth and purpose across Dornn's ever-shifting frontiers.
+                Life is a challenge in the Dornnian wilds, where disaster-warped creatures of unknown intent stalk the realm, world-law is fickle, the gods are unresponsive and magic is terribly unstable. 
+                <br/><br/>
+                Taking inspiration from both OSR-style high-stakes fantasy a.la Lamentations of the Flame Princess and Cairn and ultra-high-magic nonsense beyond even D&D's scope, Down the Worldwell's system is a medium-weight TTRPG about 
+                strange abilities and strategic sacrifice. Travellers can freely acquire abilities across the <i>arcs</i> of different Tactical Occupations as they accumulate different forms of experience. Be wary--combat is highly lethal, injury is difficult to rectify, and everything hinges on
+                the delicate balance of magically-induced <i>strain</i> on the stability of the real.
                 <br /><br />
-                The system is reminiscent of industry monoliths like Dungeons & Dragons or Pathfinder, but attitude-skewed closer to OSR classics like Into the Odd and LotFP. DtWW mixes mainstream conventions like a simple set of base stats
-                with a level-less "techtree" progression, dice-pool resolutions, a flexible skill creation system, and a unique style of spellcasting that is more about strategic sacrifice than resource management. If you choose to use the setting guide (when it is released), you also get this stuff:
+                <img className="m-auto opacity-40" src="../../split_1.png"/>
+                <br/>
+
+                Though the setting guide for Down the Worldwell is not yet complete, this site will always contain the essential information for players to create characters and GMs to acquaint themselves with the setting.
+                Eventually, if you're willing to wait it out, I might just publish a full-meat system and setting guide. In that strange far-future world, the guide may even include stuff like this:
                 <br /><br />
                 <ul className='text-left text-lime-200 list-disc px-10'>
                     <li>13 playable ancestries with a lot of weird history and bonuses</li>
@@ -83,21 +95,9 @@ const WorldwellLanding = () => {
                     <li>Hundreds of pages of gibberish lore, locations, relationships and systems to use as idea fodder.</li>
                     <li>A long timeline upon which you can etch your campaign stories anywhere. </li>
                 </ul>
-                <br /><br />
-                This is a game about people adventuring in a world with unclear rules and meek rulers, where magic is overabundant and poorly-understood. Gods are distant 
-                and ineffable, information is scant and inconsistent, and the world is imposingly unfamiliar. It is feasible for any random shmuck to become a walking Godhead, 
-                but it's a trillion times more likely that they'll tear themselves apart on the way. 
-                
-                <br /><br />
-                
-                Social order is weak and unstable - countries are better described as outposts connected by loosely-maintained highways. Everything is built on the bones 
-                of older failed states, ancient civilizations who bungled the test and burnt themselves to the ground chasing the same truths you inevitably will. The frontier is 
-                everywhere, and nobody knows what's going on. 
-                <br /><br />
-                For an adventurer, that's probably a good thing.
-                <br /><br />
-                --------------------------
-                <br /><br />
+                <br />
+                <img className="m-auto opacity-40" src="../../split_1.png"/>
+                <br/>
                 The links at the top will take you through the basics of the system. <b>The System</b> will teach you the rules, <b>The World</b> will give you way too much 
                 information about the legendary realms of Dornn, <b>Character Creation</b> will help automate some of the fiddlier aspects of making a new PC, and 
                 <b>The Assembly</b> is for my West Marches players only, for now. There are no physical materials for Down the Worldwell (yet!), and much of this site is currently under construction.
