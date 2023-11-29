@@ -603,8 +603,8 @@ export const dolwynd = [
   completely unpredictable and very prone to error. This puts adventurers in a unique position--they can get a lot stronger, but their odds of doing so aren't as 
   skewed as they may expect. It's a bumpy road to the summit. 
   <br /> <br />
-  &emsp;&emsp;While the setting has many different time periods to work with, most everything is written for the <b>Seasons of Stagnation</b>, a time shortly after the immortal 
-  Human Empires have faltered in the face of simmering tensions, constant rebellion and unexpected failures in their so-called perfect immortality. This is a period following a long 
+  &emsp;&emsp;While the setting has many different time periods to work with, most everything is written for the <b>Seasons of Stagnation</b>, so named for the faltering pace of 
+  Human invasion in the face of simmering tensions, constant rebellion and unexpected failures in their so-called perfect immortality. The Seasons follow a long 
   series of societal collapses and planar catastrophes, a time without well-maintained roadways or usable long-distance communication. The empires of this age are 
   weak and dependent on old-world tech that no longer functions how it used to (the Gods have changed their minds concerning some things), and the Human Empires
   did not do a good job at rebuilding global communications or transport. In the wake of their gradual disappearance, everything has backslid into a bit of a 
@@ -643,7 +643,7 @@ export const dolwynd = [
   lest they volunteer their freewill to Alavaria, the King-under-Sky. The surrounding sea is a perpetual frontline between the federated clans of Deilān and their cult-warped ancestors, the Hand of Rhômi.  
   <br /><br />
   To the east is the frost-wracked frontier wasteland of <b className="blue">Jurdenogh.</b> It was once a vibrant mirror to the cultural varieties of Dornnus, but the follies of the Glassblood youngest embroiled the continent itself
-  in a metaphysical concept-superwar between ancient deities, freezing the whole thing ten times over. The poor sods that still live there are pretty much stuck--for a mortal, traversal is almost certain death. For a human, it's just a lot of consecutive certain deaths. There's surely a bounty of unclaimed treasure to be found
+  in a metaphysical concept-superwar between ancient deities, freezing the whole thing ten times over. The folks that still live there are pretty much stuck--for a mortal, traversal is almost certain death. For a human, it's just a lot of consecutive certain deaths. There's surely a bounty of unclaimed treasure to be found
   in the mostly-untouched ruins that cover the continent, but it would be a costly trip in both coin and mental fortitude. 
   <br /><br />
   The specifics of Dornnian lands and life are constrained by many strange rules and reactions. The details are trapped in the inconsistencies of the land, its natural inhabitants, 
@@ -664,7 +664,7 @@ export const dolwynd = [
   through the deepwoods of Dornn are worth a nation's vault if you can prove they work. Otherwise, you're either navigating through very old infrastructure or rolling the dice.
   <br /><br />
   &emsp;&emsp;The seas are vast, open, and unshielded; prime territory for outer meddling. There isn't a body of water in all the Midlands that remains unwatched and unscathed--it may make
-  for faster traversals, but you're a lot more likely to run into something along the way, for better or for worse. Pinches, tide-titans, reflection-skating geists and constricted channels can reroute
+  for faster traversals, but you're a lot more likely to run into something along the way, for better or for worse. Pinches, tideweavers, reflection-skating geists and constricted channels can reroute
   and divert seemingly-locked-on voyages in almost no time at all. Let us not forget the source of the great channels that divide the masses apart; fulcrum-spirits of the divine wars of the Exits: the congealed rages of Astra Alumbarré, Mholdûr,
   and the million competing fragments of their identity-decay ages.
   <br /><br />
@@ -1345,7 +1345,7 @@ export const history=(
   <div id="spec-header-box">
     <div id="species-text">
       <h1 className="purple">Human Age / Age of Rhyl</h1>
-      <p id="padding-scrunch" className="grey">c.0 (nhc) - 996</p>
+      <p id="padding-scrunch" className="grey">c.0 (nhc) - 429</p>
       <p id="">
       <i className="grey">
       The plane is restored! All glory to the Human Empires!
@@ -1356,22 +1356,23 @@ export const history=(
       for their right to naturality, they would be granted "unconditional immortality." None of the familial parriarchs will comment on why they accepted the bargain.
       <br /> <br />
       While the Human populations were not of one mind regarding this newfound trait, it did not take long for enough of them to rally to their new leaders. In the confused 
-      and disorganized Seasons of Regression, no empire was nearly strong enough to fight at all, let alone against a wall of unkillable, vindictive foes. The plane was 
-      steamrolled in less than a century with minimal resistance. Sometime during the Invasions, the Old Gods managed to reclaim the celestials, and the shredded sky 
-      was restored to old form.
+      and disorganized Seasons of Regression, no empire was nearly strong enough to fight at all, let alone against a wall of unkillable, vindictive foes. The war was exacerbated on
+      both sides by the tumult of the Exits not entirely dispelled; infamous <i>ambush towns</i> appearing deep in enemy lines after centuries of apocalypse, disrupting offenses and defenses both.
+      The age was a roil of confusion, one where cities would trade hands thrice before being marked on any map. Supply and communication lines broke constantly, transforming the conflict into a paranoid mess
+      of isolated fronts that would disconnect and reconfigure with little oversight from the increasingly-distant and ever-strange familial patrons. 
       <br /> <br />
       The Human Age is marred by the confusing political re-evaluations of a deathless empire. As the Humans became more acquainted with their new lifecycles 
       (<i>and the horrid strains it would place upon their bodies</i>), waves of panic and confusion would repeatedly shake at their grasp. Many answers were 
       proposed to solve the issues of overpopulation, mental degradation, divine imposition and magical conspiracy. None took, and the relations between the 
-      five human families began to degrade--an opportunity that would allow many of the Inheritors to reclaim some of their old glory. 
+      five human families began to degrade--the prelude to a gradual restructuring of the Mortal alliances. 
       </p>
     </div>
   </div>
 
   <div id="spec-header-box">
     <div id="species-text">
-      <h1 className="orange">First Solar Age / Seasons of Stagnation</h1>
-      <p id="padding-scrunch" className="grey"> c.996 - present (1273)</p>
+      <h1 className="orange"> Solar Age / Seasons of Stagnation</h1>
+      <p id="padding-scrunch" className="grey"> c.429 - present (???)</p>
       <p id="">
       <i className="grey">
       The long climb.
@@ -1385,7 +1386,8 @@ export const history=(
       the rest of their lives (<i>ergo, forever</i>).
       <br /> <br />
       As the Human Empires slowly crumble under these existential winds, the Mortals begin to retake their old lands. The Humans did a mediocre job of fixing up
-       the post-Armageddon landscapes, so much of the world is a stilted and disjointed array of repopulated ruins and devastated highways. Squabbles 
+       the post-Armageddon landscapes, so much of the world is a stilted and disjointed array of repopulated ruins and devastated highways. A tentative alliance forms between
+       the surviving Mortal empires of the North--a reformation of the vaunted Midland Council--and work begins to finally take in the shape of their shattered realm. Squabbles 
        between Human holdouts and Mortal bannermen are frequent, but more common are the incursions met between surfacegoers and the newfound host of deranged, 
        ancient Other--Demons, misaligned, and other such things.
       <br /> <br />

@@ -76,8 +76,9 @@ const WorldwellLanding = () => {
                 Life is a challenge in the Dornnian wilds, where disaster-warped creatures of unknown intent stalk the realm, world-law is fickle, the gods are unresponsive and magic is terribly unstable. 
                 <br/><br/>
                 Taking inspiration from both OSR-style high-stakes fantasy a.la Lamentations of the Flame Princess and Cairn and ultra-high-magic nonsense beyond even D&D's scope, Down the Worldwell's system is a medium-weight TTRPG about 
-                strange abilities and strategic sacrifice. Travellers can freely acquire abilities across the <i>arcs</i> of different Tactical Occupations as they accumulate different forms of experience. Be wary--combat is highly lethal, injury is difficult to rectify, and everything hinges on
-                the delicate balance of magically-induced <i>strain</i> on the stability of the real.
+                strange abilities and strategic sacrifice. A traveller's prowess and experience will be measured by the versatility of their <i>skills</i> and the myriad magical <i>spells and abilities</i> they learn, pulled from
+                from the <i>arc charts</i> and <i>spellbooks</i> of Dornn's many <b>Tactical Occupations.</b> Be wary, however--combat is highly lethal, injury is difficult to rectify, and everything hinges on
+                the delicate balance of magically-induced <i>strain</i> on the stability of the real. Sometimes, the answer lies elsewhere...
                 <br /><br />
                 <img className="m-auto opacity-40" src="../../split_1.png"/>
                 <br/>
@@ -90,7 +91,7 @@ const WorldwellLanding = () => {
                     <li>15 "tactical occupations", extended power trees that describe different combat pursuits.</li>
                     <li>More than 100 occupation-agnostic abilities you can throw at your players. </li>
                     <li>Hundreds of strange items, where they came from, and who wants them.</li>
-                    <li>Loads of foreign and dangerous creatures to throw at your players.</li>
+                    <li>Many accounts of the warped and cruel creatures inhabiting Broken Lands.</li>
                     <li>A positively stupid amount of tables for generating people, places and things.</li>
                     <li>Hundreds of pages of gibberish lore, locations, relationships and systems to use as idea fodder.</li>
                     <li>A long timeline upon which you can etch your campaign stories anywhere. </li>
