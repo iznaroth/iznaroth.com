@@ -58,25 +58,26 @@ const WorldwellLanding = () => {
 
               <div className="container">
                 <img className="mx-auto align-top opacity-90 pt-16 w-1/6" src="../../well.png"/>
-                <img className="mx-auto align-top opacity-30 pt-0" src="../../simpleheader.png"></img>
+                <img className="mx-auto align-top opacity-90 pt-0" src="../../simpleheader_green.png"></img>
 
                 <p className='text-white m-auto text-center w-5/6 pb-20 block'>
-                <i className='opacity-30'>At the bottom, where bits of the inverted well-rim broke free and tumbled into open sky, it became clear I hadn't found my mark. One 
-                shotty knot - that, or something cut the rope - and I was set to confront it directly. Unfamiliar lands stretched out beneath, foreign stars glared from on high, 
-                nothing but miles of cold air either way. Behind me, the suspended well-mouth pinched into a line and faded away, spitting one last brick into the clouds. <br /><br /> 
-                Evensink, the Teeth of Ages, world-wound - the bedrock of the universe. No going back now...</i>
+                <i className='opacity-60'>Beyond the bottom and looking straight up, where bits of the inverted well-rim broke free and tumbled into open sky, it became clear I hadn't found my mark. One shotty knot - that, or something cut the rope - and I was set to confront it directly. Unfamiliar lands stretched out beneath, foreign stars glared from on high, nothing but cold air in the interim. Behind me, the suspended well-mouth pinched into a line and faded, spitting one last brick into the clouds.
+                <br/><br/>
+                Have you read the stories? Along the ever-twisting bristles of the Outer Kosmos, there is a lowest-layer, where the chitinous legs of the Carrier coil like a knot around a perfect pinhole. Rumor and legend obey the same thesis—here, amidst a torrid sea of unmarried truths, there is a common end, the Last Stop. Terminus. 
+                Evensink, the Teeth of Ages, world-wound - the bedrock of the universe. No going back now...
+                </i>
                 <br /> <br /><br />  
                 <i>Down the Worldwell</i> is a game about broken places and the timid folk that claim to own them. It is about the strains, stresses and disorders
-                of an old, unpredictable world at the bottom of the universe, the <i>last stop</i> on every limb of the outer cosmos. The homesteaders call it Dornn--the Broken Lands--
-                so frequently visited by catastrophe the ground itself can no longer properly hold shape. Held and lost for millenia by the vaunted legions of the old world, stolen by the temperamental
-                shoves of the immortal Human Empires, desperately protected by the surviving Inheritors, it is a knotted sprawl of superstructural ruin and discordant anti-nature.  In these suffocated lands, now governed only
-                by recluses, immortalesques and deranged ideologues, where no map nor road can reliably lead you where you wish to go, it falls to the <b>Travellers</b> to keep the world alive.
+                of an old, unpredictable world at the bottom of the universe, the <i>last stop</i> on every limb of the outer kosmos. The homesteaders call it Dornn--the Broken Lands--
+                so frequently visited by catastrophe the ground itself can no longer properly hold shape without falling prey to broken worldlaw and magic malpractice. Held and burned for millenia by the vaunted legions of the old world, stolen by the temperamental
+                shoves of the immortal Human Empires, desperately protected by the surviving Inheritors, it is a knotted sprawl of superstructural ruin and discordant anti-nature.  
+                <br/><br/>In these suffocated lands, now governed only by recluses, immortalesques and deranged ideologues, where no map nor road can reliably lead you where you wish to go, it falls to the <b>Travellers</b> to keep the world alive.
                 <br/><br/>
-                In Down the Worldwell, your players will pilot Travellers, the bold-or-foolish few who forsake the paranoid comfort of ruin-state life to hunt for fame, money, history, truth and purpose across Dornn's ever-shifting frontiers.
+                In Down the Worldwell, your players will pilot these Travellers, the bold-or-foolish few who forsake the paranoid comfort of ruin-state life to hunt for fame, money, history, truth and purpose across Dornn's ever-shifting frontiers.
                 Life is a challenge in the Dornnian wilds, where disaster-warped creatures of unknown intent stalk the realm, world-law is fickle, the gods are unresponsive and magic is terribly unstable. 
                 <br/><br/>
-                Taking inspiration from both OSR-style high-stakes fantasy a.la Lamentations of the Flame Princess and Cairn and ultra-high-magic nonsense beyond even D&D's scope, Down the Worldwell's system is a medium-weight TTRPG about 
-                strange abilities and strategic sacrifice. A traveller's prowess and experience will be measured by the versatility of their <i>skills</i> and the myriad magical <i>spells and abilities</i> they learn, pulled from
+                Taking inspiration from both OSR-style high-stakes low-fantasy <i>and</i> ultra-high-magic nonsense beyond even D&D's scope, Down the Worldwell's system is a medium-weight TTRPG about 
+                strange abilities and strategic sacrifice. A traveller's prowess and experience will be measured by the versatility of their <i>skills</i> and the myriad manipulative <i>spells and abilities</i> they learn, pulled from
                 from the <i>arc charts</i> and <i>spellbooks</i> of Dornn's many <b>Tactical Occupations.</b> Be wary, however--combat is highly lethal, injury is difficult to rectify, and everything hinges on
                 the delicate balance of magically-induced <i>strain</i> on the stability of the real. Sometimes, the answer lies elsewhere...
                 <br /><br />

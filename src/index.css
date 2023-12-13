@@ -708,7 +708,7 @@ a:hover {
 
   #what-header{
     padding-top: 4rem;
-    width: 40% !important;
+    width: 30% !important;
   }
 
   #what-title{
@@ -962,6 +962,10 @@ h1.default {
 }
 
 /*faux-tailwind for DangerouslySet inlines*/
+
+.brand-text { 
+  color: rgb(88, 181, 133) !important;
+}
 
 .red {
   color: rgb(207, 64, 64) !important;

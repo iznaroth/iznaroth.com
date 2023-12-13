@@ -591,20 +591,19 @@ export const dolwynd = [
   <div className="wwheader text-left">
     <h1 className="orange">What's the Pitch?</h1>
   </div>
-  &emsp;&emsp;Dornn is a large, convoluted and foreign place. It's built on the bones of classic high fantasy and RPG cliche, 
-  but exposed to several years of redraft and elaboration. It's centered on the Midlands, three re-re-shattered continent-archipelago-amalgams that play host to a mess of 
+  &emsp;&emsp;Dornn is a large, convoluted and unnatural place. It's built on the bones of classic high fantasy and RPG cliche, just without any editorial oversight (nobody is allowed to say no to me!) It's centered on the Midlands, three re-re-shattered continent-archipelago-amalgams that play host to a mess of 
   magically-paralyzed politicking. A long history of divine convolution, depths-secreting, meddlesome intrusion and unexpected immortalesque manifest destiny has crushed and
-   rewritten the realm into something that only scantly resembles the high-Modern familiars it pulls from. Dornn is big, overfull with confusing interests and predicated on 
+   rewritten the realm into something that only scantly resembles the high-Modern familiars it pulls from. Dornn is overfull with confusing interests and predicated on 
    a lot of repeatedly-recalibrated world-law.
   <br /> <br />
   &emsp;&emsp;As an adventuring setting, Dornn is thematically between the extremes of "miserycrawl" high-consequence low-heroics adventures and "mad-magical superscience" romps 
-  in a world where you're always too close to the naked Truth. It is an old place, lousy with history-rewriting disasters and incomprehensible meddlesome powers. 
+  in a world where you're always too close to the naked Truth. It is an old place, lousy with history-rewriting disasters and incomprehensible meddlesome outsiders. 
   Despite being a high-magic setting, the Strain system from Down the Worldwell is built to demonstrate why magic isn't very widespread or trusted in Dornn--being almost
-  completely unpredictable and very prone to error. This puts adventurers in a unique position--they can get a lot stronger, but their odds of doing so aren't as 
+  completely unpredictable and very prone to lethal failure. This puts adventurers in a unique position--they can get a lot stronger, but their odds of doing so aren't as 
   skewed as they may expect. It's a bumpy road to the summit. 
   <br /> <br />
   &emsp;&emsp;While the setting has many different time periods to work with, most everything is written for the <b>Seasons of Stagnation</b>, so named for the faltering pace of 
-  Human invasion in the face of simmering tensions, constant rebellion and unexpected failures in their so-called perfect immortality. The Seasons follow a long 
+  Human invasion in the face of simmering tensions, constant rebellion and unexpected failures in their once-thought-perfect immortality. The Seasons follow a long 
   series of societal collapses and planar catastrophes, a time without well-maintained roadways or usable long-distance communication. The empires of this age are 
   weak and dependent on old-world tech that no longer functions how it used to (the Gods have changed their minds concerning some things), and the Human Empires
   did not do a good job at rebuilding global communications or transport. In the wake of their gradual disappearance, everything has backslid into a bit of a 
@@ -633,12 +632,12 @@ export const dolwynd = [
   <br /><br />
   The charted lands of Dornn are split into three "continents." The term is a holdover from a time when they were still whole. 
   <br /><br />
-  To the west is <b className="green">Dornnus, the Cradle</b>, active host to about ninety percent of all living mortals.
-  It is a vast realm, mostly characterized by perpetual squabbles between the parasite empires that live off the firmament of old-world ruins. The whole of it was brought to heel by the Five Human Families about a thousand years prior, but their grip 
-  has been steadily weakening for several centuries. Immortality is no longer the boon it once was, as their attempts to stifle the progress of science and magic have been slowly overtaken. Unfortunately, the preexisting betrayals of divine worldwork have made the recovery of old technology a slow and torturous process, so wars are still fought with steel, spells, fists and teeth.
+  To the west is <b className="green">Dornnus, the Cradle</b>, the Known Lands (a misnomer).
+  It is a vast realm, mostly characterized by perpetual squabbles between the parasite empires that live off the firmament of old-world ruins. Much of it was brought to heel by the Five Human Families about two centuries prior (the <i>Dirges</i> of the Human Age), but their grip 
+  has been steadily weakening for several decades. Immortality is no longer the boon it once was, as their attempts to stifle the progress of science and magic have been slowly overtaken. Unfortunately, the preexisting betrayals of divine worldwork have made the recovery of old technology a slow and torturous process, so wars are mostly fought with steel, spells, fists and teeth.
   <br /><br />
   In the center is the <b className="orange">Sea of Dvirn</b>, crowned by the forgotten realms of <b className="gold">Ferveirn, the Golden Lands</b>. Once the beating heart of the Dvirran empire, it has been ransacked and devoured many times since their failure to
-  conquer the plane (<i>and subsequent disappearance.</i>) The Rhominite inheritors with the most legitimate claim to the realm currently control the seats of Ilkair, the gilded capital, but Elvish holdouts have remained a stubborn
+  conquer the plane (<i>and subsequent disappearance.</i>) The Rhominite inheritors have retaken the spires of Ilkair, the gilded capital, but Elvish holdouts have remained a stubborn
   factor for as long as the Dvirr have been missing. The eastern half of Ferveirn is under varying levels of quarantine--the old capital of Moz Haphora cannot be entered by any living soul,
   lest they volunteer their freewill to Alavaria, the King-under-Sky. The surrounding sea is a perpetual frontline between the federated clans of Deilān and their cult-warped ancestors, the Hand of Rhômi.  
   <br /><br />
@@ -655,18 +654,18 @@ export const dolwynd = [
   </div>
   The Dornnian mantle is strange and uncooperative; the cartographer's vocation is one of many redrafts and no small amount of risk. Nobody really agrees on how it's all held together--from theories of 
   semisapient tectonics to incomprehensibly precise magical contract, the only real certainty is the stuff that everything's made of. Where it is, and whether it will be there tomorrow? That's up for debate. 
-  The root of these confusions lies in how space misbehaves; mountainlinks and burrows.
+  The root of these confusions lies in how space misbehaves: mountainlinks and burrows.
   <br /><br />
-  &emsp;&emsp;Most agree that the mountains are all (<i>or mostly</i>) bodies--dead titans, worms and other earlyworld artifacts. A hazy fog of nostalgia still hangs over their compressed-and-interleaved selves,
+  &emsp;&emsp;Most agree that the mountains are all (<i>or mostly</i>) bodies--dead Mountaincarvers, the composite megafauna of the preludes. A hazy fog of nostalgia still hangs over their compressed-and-interleaved selves,
   intermittently linking and swapping highmountain passes and other such chambers without any mortal-comprehensible purpose. This can make crossing unreinforced passes anything from a hassle to a disaster.
   <br /><br />
   &emsp;&emsp;The forests, on the other hand, are the recursive self-loathing territory of the absent Fae, and in the wake of their abandonment, the trees have grown irate. Reliable methods of navigation
   through the deepwoods of Dornn are worth a nation's vault if you can prove they work. Otherwise, you're either navigating through very old infrastructure or rolling the dice.
   <br /><br />
   &emsp;&emsp;The seas are vast, open, and unshielded; prime territory for outer meddling. There isn't a body of water in all the Midlands that remains unwatched and unscathed--it may make
-  for faster traversals, but you're a lot more likely to run into something along the way, for better or for worse. Pinches, tideweavers, reflection-skating geists and constricted channels can reroute
-  and divert seemingly-locked-on voyages in almost no time at all. Let us not forget the source of the great channels that divide the masses apart; fulcrum-spirits of the divine wars of the Exits: the congealed rages of Astra Alumbarré, Mholdûr,
-  and the million competing fragments of their identity-decay ages.
+  for faster traversals, but you're a lot more likely to run into something along the way, for better or for worse. Pinches, wave-walkers, reflection-skating mirror-ghosts; there is no shortage of mishaps that can reroute
+  and divert seemingly-locked-on voyages in almost no time at all. Let us not forget the source of the great channels that divide the masses apart; those fulcrum-spirits of the divine wars of the Exits: the congealed rages of Astra Alumbarré, Mholdûr,
+  and the million competing fragments of the resulting identity-decay ages.
   <br /><br />
   &emsp;&emsp;While the remainder of the realm's major biomes are less prone to disastrous reconfiguration, that's not a promise--the realm is lousy with bottomless ruins and uncharted reaches, still shifting
   under millennia of accumulated curses, wards, and other convolutions of transcendent stability. That, too, is excepting the worst of it--we are seated upon a thin table of stone defaced by vaults and chasms,
@@ -711,9 +710,9 @@ export const dolwynd = [
     <h1 className="red">Physics and Transcendence</h1>
   </div>
   Magic is the long-and-short of it. Nobody agrees on what it is--most folks trade in confused speculation and primeval legend, particularly the frail handful that have survived from
-  the mouth of the maester-patron Diravol at the dawn of the mortal world. It is at least understood that any sapient being can "access" the Transcendence and directly manipulate
+  the mouth of the maester-patron Diravol at the dawn of the mortal world. It is at least understood that any sapient being can "access" the transcendent fabric of the real (<i>the Transcendence</i>) and directly manipulate
   any principles of reality so long as they can sufficiently articulate their intent. To do so requires a lot of janky shortcutting, as no single mortal could ever sufficiently
-  articulate their intent to the incomprehensible wailing of the full-body Transcendence.
+  articulate their intent to the incomprehensible wailing of the absolute.
   <br /><br />
   &emsp;&emsp;These shortcuts are unreliable, built off of millenia of trial-and-error, transcribing certain effects into symbolics, prayers, somatics and behaviors. Most of them rely in some way on 
   the Gods; even less-understood gestalts that seem to preside over the natural world in unpredictable ways. There are an uncounted number of names, words and symbols for these Divines, muddled further
@@ -1218,12 +1217,16 @@ export const history=(
   <div id="spec-header-box">
     <div id="species-text">
       <h1 className="white">The Timeless Mandate</h1>
-      <p id="">
+      <p id=""> 
+      Ten thousand years ago, Diravol created the Mortals, so they say. The stories go something like this...
+      <br/><br/>
+      <i>
       In time unmeasured, a trillion years before and after, the Old Gods fought endlessly on battered planes of undecided matter. Their forms were perfect energies, maintained tantrums of thought and instrument. 
       Their origins and intentions were not known, but from their perpetual orbit was born the Laws of Reality. It was a time of imprecision, indecision and lots of energy. 
       <br /> <br />
       Somewhere in that roiling sea of every-thought, an incidental clash gave birth to Diravol, the Tender. To abridge their many miracles, the great Patron would be the only "living" creature
       to forge a meaningful relationship with the Old Gods, brokering the six primal Contracts required for Transcendence to mimic the shape of mortal-habitable reality. Life, death, time, space, reason and consequence.
+      </i>
       </p>
     </div>
   </div>
@@ -1239,7 +1242,7 @@ export const history=(
       If anything, the introduction of the Patrons was more like an imposition on their natural development. A skew. One that caused a great many more problems than it solved, certainly…
       </i>
       <br /><br />
-      The long and convoluted rise of the Mortal Folk, the First Inheritors. A time marred by the confusions of a world learning to understand rules as they change underfoot. 
+      The long and convoluted rise of the Mortal Folk, the First Inheritors. Diravol granted them the gift of Patrons, supermortal guides to keep them aligned and virtuous. <br/><br/>It was a time marred by the confusions of a world learning to understand rules as they change underfoot. 
       Patchy records recovered from only the deepest recesses build a frail picture; the First Age was a sequence of incomprehensible wars slowly building towards planar catastrophe. This is a descriptor that will be repeated for every subsequent age.
       The Inheritors struggled to build sensible relationships with their neurotic patrons, and the inextricable differences between them and their neighbors only served to worsen the attempt.
       The only reason the world was stalled from ending at the outset was due to the arrival of a greater foe.
@@ -1260,7 +1263,7 @@ export const history=(
       returning home to lift the plane up and away from the growing dark. 
       </i>
       <br /> <br />
-      The prophecies remember it well; the turning of the age as a realization of one Divine's ceaseless nightmares. It was perhaps the only extensively documented part, the massive mental decline of Oridei of the Dvirr, the world's
+      The Inverted Seers remember it well; the turning of the age as a realization of one Divine's ceaseless nightmares. It was perhaps the only extensively documented part, the massive mental decline of Oridei of the Dvirr, the world's
       only "sane" corporeal divine, as he was beset by an outsider's hostile visions. When none would respect his calls to action, he took it upon himself to enact the will of Alavaria, the King-under-Sky, and declared war on the world. 
       At first it was a brief and unremarkable string of assassinations and heists. Then, the wings came. A halo of words and light and feathered triumph descended from an overcast sky over Moz Haphora, crowning the Dvirran initiative with the blessing of the Other. 
       Things got a lot worse after that.
@@ -1305,9 +1308,10 @@ export const history=(
       <br /> <br />
       Inelegant failures of the Mortal Adherence. Synchronicity is a strange thing; we are wont to accuse the Gods of manufacturing coincidence, when the truth is simpler--there's just a lot of stuff. Sometimes, a lot of one-in-a-trillion happenstances just so happen to line up nicely. 
       In the wake of divine abandonment and repeated patricide, the Inheritors have been deserted by the faith. All the vectors of progress begin to lean inward--disaster 
-      looms. Every juncture meets in one narrow corridor. It could have been anything, from the folly of unchecked advancement to the widening gaps in planar coherence. 
-      Plenty of theories. Personally, I just think the poor thing just couldn't handle the pressure. Searing, blistering mana-blitzed static killed three quarters of the 
-      world in something akin to an instant. Tyrannical wars between the malcontents of the Upper Spheres carved at the planar crust, scarring landmasses with psychic trenches 
+      looms. Every juncture meets in one narrow corridor. <br/><br/>
+      It could have been anything, from the folly of unchecked advancement to the widening gaps in planar coherence. 
+      Plenty of theories. The result was essentially the end of the world. Searing, blistering mana-blitzed static killed three quarters of the 
+      Midlands' population in something akin to an instant. Tyrannical wars between the malcontents of the Upper Spheres carved at the planar crust, scarring landmasses with psychic trenches 
       and phantasm-boundaries. The trillion hands of antimortal intent emerged from every corner of the realm to weigh this new advantage. Things fell apart. 
       </p>
       </div>
@@ -1323,9 +1327,9 @@ export const history=(
       </i>
       <br /> <br />
       Faith suffocated, the skies closed like a wound finally healed, and the Midlands were left to rot in blacksun silence; in dead time. The world was wreathed in a 
-      paralyzing darkness, lit intermittently by vast bolts of outsider energy that streaked across an empty sky in riverlike patterns. Worldlaw was brittle, time was 
+      paralyzing darkness, lit intermittently by vast bolts of outsider energy that streaked across an empty sky in riverlike patterns. Worldlaw was made brittle, time was 
       inconsiderate, space was incoherent. The world grew dependent on the Confidences, narrow strips of land or sea that behaved with a semblance of predictability. 
-      Records estimate this Age lasting anywhere from fifteen to six thousand years, depending on the place. Histories were kept through word-of-mouth and the varieties 
+      Records estimate this Age lasting anywhere from a hundred to six thousand years, depending on the location. Histories were kept through word-of-mouth and the varieties 
       of body-curse observed in corpses from the period--even text did not always work as expected. 
       <br /> <br />
       For most, this age was long and torturous, involving many attempts at reconstructing society that met with extreme opposition. Fresh-formed divinities rejected old 
@@ -1356,12 +1360,12 @@ export const history=(
       for their right to naturality, they would be granted "unconditional immortality." None of the familial parriarchs will comment on why they accepted the bargain.
       <br /> <br />
       While the Human populations were not of one mind regarding this newfound trait, it did not take long for enough of them to rally to their new leaders. In the confused 
-      and disorganized Seasons of Regression, no empire was nearly strong enough to fight at all, let alone against a wall of unkillable, vindictive foes. The war was exacerbated on
-      both sides by the tumult of the Exits not entirely dispelled; infamous <i>ambush towns</i> appearing deep in enemy lines after centuries of apocalypse, disrupting offenses and defenses both.
+      and disorganized Seasons of Regression, no empire was nearly strong enough to fight at all, let alone against a wall of unkillable, vindictive foes. It would have been open-and-shut, if not for
+      the persisting tumult of the Exits not entirely dispelled; infamous <i>ambush towns</i> appearing deep in enemy lines after centuries of apocalypse, disrupting offenses and defenses both.
       The age was a roil of confusion, one where cities would trade hands thrice before being marked on any map. Supply and communication lines broke constantly, transforming the conflict into a paranoid mess
       of isolated fronts that would disconnect and reconfigure with little oversight from the increasingly-distant and ever-strange familial patrons. 
       <br /> <br />
-      The Human Age is marred by the confusing political re-evaluations of a deathless empire. As the Humans became more acquainted with their new lifecycles 
+      The record of this recent period is marred by the confusing political re-evaluations of a deathless empire. As the Humans became more acquainted with their new lifecycles 
       (<i>and the horrid strains it would place upon their bodies</i>), waves of panic and confusion would repeatedly shake at their grasp. Many answers were 
       proposed to solve the issues of overpopulation, mental degradation, divine imposition and magical conspiracy. None took, and the relations between the 
       five human families began to degrade--the prelude to a gradual restructuring of the Mortal alliances. 
@@ -1372,15 +1376,15 @@ export const history=(
   <div id="spec-header-box">
     <div id="species-text">
       <h1 className="orange"> Solar Age / Seasons of Stagnation</h1>
-      <p id="padding-scrunch" className="grey"> c.429 - present (???)</p>
+      <p id="padding-scrunch" className="grey"> c.430 - present (???)</p>
       <p id="">
       <i className="grey">
       The long climb.
       </i>
       <br /> <br />
       Many failures in organization have caused the Human Empires to shrink. The reports grow worse with each passing century; nervously recounting the gradual breakdowns 
-      of the Human body in the face of even this meager infinity. They may not die, but their options are unenviable--fall prey to the increasingly popular perpetual 
-      death-machines, have your capacity for emotion stolen by a Beast of Causality, or watch as your physical form glacially ages past the precipice of reasonable 
+      of the Human body in the face of even this meager infinity. They may not die, but their options are unenviable--fall prey to a perpetual 
+      death-machine, have your capacity for emotion stolen by a Beast of Causality, or watch as your physical form glacially ages past the precipice of reasonable 
       function, rendering you immobile and thought-strained for an ever-extending eternity. Most retreat in the face of this realization. About seventy-eight percent 
       of all Humans emigrate to the superstructural city-peninsula of Dyrit, where the Sleeping-Halls entomb their consciousness in a kind of suspended animation for 
       the rest of their lives (<i>ergo, forever</i>).

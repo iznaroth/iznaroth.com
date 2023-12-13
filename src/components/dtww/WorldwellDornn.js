@@ -1347,12 +1347,12 @@ const Dornn = () => {
         <h1 className="green">The Midland Council (XII)</h1>
         <p id="padding-scrunch">
         Reformed many times in the wake of worldshaking disaster, the Midland Council is the soul and spine of Dornnian peacetime. Their existence is not a symbolic platitude - the Council 
-        is the fulcrum of all traditional politics, the mediator, and an armed force backed by the Sword-Saints that will frequently stamp out potential conflict. In a world where the 
-        threat a single rogue agent poses can be planar, the highest level of mortal organization must have the power to decisively prevent such catastrophes. This has, does, and will 
-        cause problems when they take action too hastily without full-body consultation.
+        is the fulcrum of all traditional politics, the mediator, and an armed force backed by the Sword-Saints that will frequently stamp out potential conflict. "<i>In times where the 
+        threat a single rogue agent poses can be planar, the highest level of mortal organization must have the power to decisively prevent such catastrophes.</i>" - so the councillors say. This has, does, and will 
+        continue to cause problems.
         <br /> <br />
-        The Human Families have tentatively agreed to hold seats at the Council in the years following Draid’s “final” incursion. Their representatives will attend any summit deemed sufficiently-severe, which has only happened
-        three times since - the fourth Antikosmic Referendum, the discovery of the Timekeeper's Vault in northern Anterros, and the arrival of named-one "Remus".
+        The Human Families have a contentious relationship with the Council. After Draid, the only son of the fifth parriarch, was caught in his scheme to upend the plane in its entirety, the other familial parriarchs have
+        tentatively agreed to hold seats at the Council--though they have never been present for a meeting.
         <br /><br />
         </p>
       </div>
@@ -1399,8 +1399,8 @@ const Dornn = () => {
       <div id="species-text">
         <h1 className="orange">Free Agents</h1>
         <p id="padding-scrunch">
-        Beyond the apocalyptic coalitions of the semi-mortal west, most polities are hacking it on their own. This is usually--not always, but usually--because they have 
-        slightly-askew value systems. The Free Agents of Dornn are not inherently dangerous, but something about them is a bit too unfriendly to make it to the diplomatic chambers. 
+        Beyond the apocalyptic coalitions of the semi-mortal west, most polities are hacking it on their own. This is usually--not always, but usually--because they've picked a fight
+        with too many of the Council's allies. The Free Agents of Dornn are not inherently dangerous, but something about them is a bit too unfriendly to make it to the diplomatic chambers. 
         Their territories tend to be smaller than those of the Midland Council or the Human Empires, but they also employ exotic defenses and schemes of war to prevent further 
         border-shoves.
         </p>
@@ -1450,8 +1450,6 @@ const Dornn = () => {
         Absolutely at war with all other groups, at all times. Lousy with exotic magic and unpredictable technique. Sequestered in strange and remote places beyond or beneath the limits
         of Dornnian cartographies. That, or they are plainly-powerful enough to hold their ground amongst the Midlanders despite near-constant invasion and war. Neither is preferable for the average adventurer. 
         Generally speaking, it is not advisable to confront representatives of these factions alone. 
-        <br /> <br /> 
-        This is what we know. Push beyond the limits of recorded knowledge and it shouldn't be hard to find worse. 
         </p>
       </div>
     </div>
@@ -1473,7 +1471,7 @@ const Dornn = () => {
       <button id="poligrid-link" onClick={() => selectPoligridPin(63)}>Epitaxor-Lords</button>
       
       <button id="poligrid-link" onClick={() => selectPoligridPin(64)}>Woodsmen</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(65)}>Escian Relics</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(65)}>Eschian Relics</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(66)}>Antimortal Empires</button>
       <button id="poligrid-link" onClick={() => selectPoligridPin(67)}>Basilisks</button>
      
@@ -1493,6 +1491,13 @@ const Dornn = () => {
       <button id="poligrid-link" onClick={() => selectPoligridPin(79)}>Demons</button>
     
     
+    </div>
+
+    <div id='species-text'>
+    <br /> <br /> 
+      <p id='padding-scrunch'>
+        <b>This is what we know. </b> Push beyond the limits of recorded knowledge and it shouldn't be hard to find worse. 
+      </p>
     </div>
     
     <div className='blog-footer'></div>
