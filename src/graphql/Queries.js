@@ -89,6 +89,8 @@ export const QUERY_MAPENTRY = gql`
       }
 }`
 
+
+
 export const QUERY_SETTLEMENTENTRY = gql`
 {
     settlementInfos (first:100) {
@@ -99,4 +101,16 @@ export const QUERY_SETTLEMENTENTRY = gql`
         subtitle
         content
       }
+}`
+
+export const QUERY_WORLDWELL = gql`
+{
+    worldwellEntries () {
+      bannerImage {
+        url
+      }
+      header
+      htmlBody
+      slug
+    }
 }`

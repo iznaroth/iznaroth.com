@@ -19,7 +19,8 @@ import WorldwellLanding from './components/dtww/WorldwellLanding';
 import WorldwellSystem from './components/dtww/WorldwellSystem';
 import WorldwellDornn from './components/dtww/WorldwellDornn';
 import WorldwellRK from './components/dtww/WorldwellRK'
-import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES, QUERY_DEVLOG } from './graphql/Queries';
+import WorldwellSpecies from './components/dtww/WorldwellSpecies'
+import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES, QUERY_DEVLOG, QUERY_WORLDWELL } from './graphql/Queries';
 import WorldwellCharacters from './components/dtww/WorldwellCharacters';
 
 
@@ -29,6 +30,7 @@ function App() {
   const [categories, setCategories] = useState(null);
   const [devlogs, setDevlogs] = useState(null);
   const [bg, changeBg] = useState('');
+  const [wwdata, setWwdata] = useState(null);
 
   
 
@@ -38,9 +40,6 @@ function App() {
         console.log("call for blog")
         graphcms.request(QUERY_POSTLIST)
         .then(res => setPosts(res.simplePosts))
-
-        graphcms.request(QUERY_POSTLIST)
-        .then(res => console.log(res.simplePosts))
     }
 
     if(categories == null){
@@ -53,10 +52,12 @@ function App() {
       console.log("call for devlogs")
       graphcms.request(QUERY_DEVLOG)
       .then(res => setDevlogs(res.simplePosts))
+    }
 
-      graphcms.request(QUERY_DEVLOG)
-      .then(res => console.log(res.simplePosts))
-    
+    if(wwdata == null){
+      console.log("call for worldwell")
+      graphcms.request(QUERY_WORLDWELL)
+      .then(res => setWwdata(res.worldwellEntries))    
     }
     
   }, [])
@@ -67,7 +68,7 @@ function App() {
 
       
 
-      {(!posts || !devlogs) ? (
+      {(!posts || !devlogs || !wwdata) ? (
           'Loading'
         ) : (
       
@@ -129,6 +130,11 @@ function App() {
             <Fragment>
               <WorldwellDornn />
             </Fragment>
+          }>
+          </Route>
+
+          <Route path = "/dtww/dornn/:slug" element = {
+              <WorldwellSpecies content={wwdata}/>
           }>
           </Route>
 
