@@ -16,7 +16,7 @@ const About = ({ blogContent }) => {
            <br className="hidden lg:inline-block" />
          </h1>
          <p className="mb-8 leading-relaxed lg:px-8 text-black">
-         This is a massive quasi-portfolio monolith concerning my work - the me in question being Jonas Bull, iznaroth or whatever name you know me by. 
+         This is a massive quasi-portfolio monolith concerning my work - the me in question being iznaroth (or whatever name you know me by). 
          It’s more or less an organized storage locker for my brain. I put everything in here somewhere, and I try kind-of hard to make it logical for others to navigate. 
          <br /><br />
          It’s split into a lot of subsites for different things, tools and projects. You should probably bookmark the root page you’re looking for rather than this one - 
@@ -28,7 +28,7 @@ const About = ({ blogContent }) => {
         <br /><br />
         I love you! Stay baller!
         <br /><br />
-        – Jonas Bull (iznaroth in some places)
+        – iznaroth
          </p>
          <div className="flex flex-wrap justify-center pl-3  ">
            <a

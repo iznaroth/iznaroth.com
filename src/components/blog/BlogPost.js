@@ -56,7 +56,7 @@ const BlogPost = ({content, postOrDevlog}) => {
           <div className='blog-footer' />
         </div>
         <div className='blog-footer' />
-        <div className='blog-footer copynotice' >©2022 - 2023 Jonas Bull | All Rights Reserved</div>
+        <div className='blog-footer copynotice' >©2022 - 2023 iznaroth | All Rights Reserved</div>
         <div className='blog-footer' />
       </section>
       ) : (
