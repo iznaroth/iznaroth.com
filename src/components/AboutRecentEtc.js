@@ -20,11 +20,11 @@ const About = ({ blogContent }) => {
          It’s more or less an organized storage locker for my brain. I put everything in here somewhere, and I try kind-of hard to make it logical for others to navigate. 
          <br /><br />
          It’s split into a lot of subsites for different things, tools and projects. You should probably bookmark the root page you’re looking for rather than this one - 
-         /blogs for my blogposts, for example. 
+         /blogs for my blogposts, for example. The blog system is still a little threadbare, but I plan on adding comments and functional searching 'soon'.
          <br /><br />
         I keep this site because I make a lot of “conventionally unusable content,” as I call it. I peddle in unpolished ideas and unedited rambling, descriptions and design breakdowns for games and projects that I don’t necessarily believe in (or just don’t have the capital to make work). I am only accredited as a software engineer - I am not a professional designer, critic, philosopher or poet, though that doesn’t stop me from doing it anyways. Ideas are cheap and common, but I also dislike keeping all this junk locked up in my brain, so it goes here. If it interests you, that’s pretty cool. 
         <br /><br />
-        If you really like what I do, you can toss me a buck on Patreon, helping me eke a bit closer to self-sufficient creative living. I occasionally post more heavily-edited/targeted content over there, but I don’t like to paywall stuff - most everything will be on this site. Gotta make the bread somehow though. 
+        My patreon is frozen right now, not much going on over there. If or when it resumes, I'll make a post about it. Thanks for stopping by!
         <br /><br />
         I love you! Stay baller!
         <br /><br />
