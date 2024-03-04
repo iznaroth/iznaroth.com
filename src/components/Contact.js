@@ -28,7 +28,7 @@ export default function Contact() {
   }
 
 
-  return (
+  /*return (
     <section id="contact" className="relative">
       <div className="container px-5 py-10 mx-auto flex sm:flex-nowrap flex-wrap">
         <form
@@ -91,5 +91,6 @@ export default function Contact() {
       <div className='blog-footer copynotice' >©2022 - 2023 iznaroth | All Rights Reserved</div>
       <div className='blog-footer' />
     </section>
-  );
+  );*/
+  return(<div></div>);
 }

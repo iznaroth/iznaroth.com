@@ -68,7 +68,16 @@ const Dornn = () => {
 
   const [markerFocused, setMarkerFocused] = useState(false)
 
+  const [wakeupDone, setWakeupDone] = useState(false);
 
+
+  function mapWakeup(mapInstance){
+    if(mapInstance != null && !wakeupDone){
+      console.log("STARTUP FIT--------------->");
+      map.fitBounds(screenBounds);
+      setWakeupDone(true);
+    }
+  }
 
 
   function timeout(delay) {
@@ -161,8 +170,6 @@ const Dornn = () => {
         graphcms.request(QUERY_SETTLEMENTENTRY)
         .then(res => console.log(res))
     }
-
-
   }, []);
 
   useEffect(() => {
@@ -1516,7 +1523,7 @@ const Dornn = () => {
   return (
     
     <div className='worldwell min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)'}}>
-      {/* */}
+      {/* 
 
       <Collapse in={open}>
         <Alert severity="warning"
@@ -1536,7 +1543,7 @@ const Dornn = () => {
         >Hey! This specific page is not currently optimized for mobile--if used on small screens, you will encounter visual errors and the information may not be legible. Check back soon!
         </Alert>
       </Collapse>
-
+    */}
       
       
 
@@ -1580,7 +1587,7 @@ const Dornn = () => {
                   
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
                   <div id='map' ref={mapContainerRef}>
-                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.4} minZoom={0.4} dragging={true} scrollWheelZoom={mapControlState[1]} zoomControl={true} zoomSnap={0.1} zoomDelta={0.8} crs={CRS.Simple} maxBounds={screenBoundsWiggle} maxBoundsViscosity={0.9} tap={false} closePopupOnClick={false}>
+                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.4} dragging={true} scrollWheelZoom={mapControlState[1]} zoomControl={true} zoomSnap={0.1} zoomDelta={0.2} crs={CRS.Simple} maxBounds={screenBoundsWiggle} maxBoundsViscosity={0.9} tap={false} closePopupOnClick={false} whenCreated={mapWakeup(map)}>
                       <ImageOverlay 
                         url="../../whiteout-blank-site.png" bounds={screenBounds} pagespeed_no_transform
                       />

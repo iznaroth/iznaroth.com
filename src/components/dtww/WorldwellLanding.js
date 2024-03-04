@@ -73,7 +73,7 @@ const WorldwellLanding = () => {
                 shoves of the immortal Human Empires, desperately protected by the surviving Inheritors, it is a knotted sprawl of superstructural ruin and discordant anti-nature.  
                 <br/><br/>In these suffocated lands, now governed only by recluses, immortalesques and deranged ideologues, where no map nor road can reliably lead you where you wish to go, it falls to the <b>Travellers</b> to keep the world alive.
                 <br/><br/>
-                In Down the Worldwell, your players will pilot these Travellers, the bold-or-foolish few who forsake the paranoid comfort of ruin-state life to hunt for fame, money, history, truth and purpose across Dornn's ever-shifting frontiers.
+                Players will pilot these Travellers, the bold-or-foolish few who forsake the paranoid comfort of ruin-state life to hunt for fame, money, history, truth and purpose across Dornn's ever-shifting frontiers.
                 Life is a challenge in the Dornnian wilds, where disaster-warped creatures of unknown intent stalk the realm, world-law is fickle, the gods are unresponsive and magic is terribly unstable. 
                 <br/><br/>
                 Taking inspiration from both OSR-style high-stakes low-fantasy <i>and</i> ultra-high-magic nonsense beyond even D&D's scope, Down the Worldwell's system is a medium-weight TTRPG about 

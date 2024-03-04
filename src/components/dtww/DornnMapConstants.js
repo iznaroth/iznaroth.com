@@ -764,6 +764,17 @@ export const inhabitants = (
   <br/><br/>
   The Human lifecycle is a distorted mockery of natural existence, mimicking age by way of slowly permitting the divine frustration to loosen their shape. Given enough time, any Human will slowly degrade into a foggy ball of soul-lightning and emotionless memory, an indefinite repetition of pains and broken empathic links lacking any semblance of life, mobility, or speech.
   </p>
+  <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>The Immortal Slide<span className='tooltiptext tooltiptop !text-sm'>This is a curse. You can never die under any circumstances. Any damage suffered can and will be repaired within twenty-four hours. The efficacy of this curse is uncertain over time--the only guarantee is that your mind will survive, no matter the circumstances. Pain is unmitigated--if you are sealed in a vat of magma, it'll just keep melting you down. As you age into more remote centuries, the reconstruction of your form becomes frazzled and your grip on reality weakens. Humans beyond the age of five-hundred are unrecognizable.</span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Twilit Haze<span className='tooltiptext tooltiptop !text-sm'>The pantheon knows of your transgression. Something hangs heavy over the nature of your casts, converting its damage type, attunement, and sometimes even its targeting. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Paranoid Delusions<span className='tooltiptext tooltiptop !text-sm'>The world knows of your betrayals. You are particularly attractive to hostile, outsider intent, and are vulnerable to enthrallments (disadvantage on all INT and WIS saving throws).</span></div>
+        </div>
+      </div>
   </div>
   </div>
 
@@ -786,10 +797,29 @@ export const inhabitants = (
     <div id="species-text">
       <h2>Dvirr</h2>
       <p>
-      The lost four-armed fanatics of the Golden Age. Lanky, tall-yet-hunched, distended faces sporting three-odd eyes wreathed by ornate masks. Their culture was one of secrets; their language a rotating puzzle-box of unneeded complexity. They apparently had a distaste for recording their thoughts, perhaps due to the precision of their memory and their strange teaching techniques.<br/><br/>
+      The lost four-armed fanatics of the Golden Age. Lanky, tall-yet-hunched, distended faces sporting three-odd eyes, often wreathed by ornate masks. Their culture was one of secrets; their language a rotating puzzle-box of unneeded complexity. They apparently had a distaste for recording their thoughts, perhaps due to the precision of their memory and their strange teaching techniques.<br/><br/>
       Once the miracle-machinists of the early-world, these slight and angular bipeds were enthralled by their patron, Oridei, into a world-scarring war that nearly killed off the entirety of Mortal existence. In the wake of their loss, those that were spared the guilt were slowly dragged back into the Alavarian incumbent by strange ripples from below the crust. They are almost entirely missing in the Seasons of Stagnation. 
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Helper's Knuckle<span className='tooltiptext tooltiptop !text-sm'>The Dvirran mind is strangely-compartmentalized by genetic legacy. To utilize this power, they must link neural patterns to superstition and habit. The Helper’s Knuckle is the most common - the Dvirr’s favorite knuckle can remind them of nearly anything they’ve observed with extreme detail, once per hour. You may redraft this however you wish so long as it is  roughly equal in power.</span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Low Profile<span className='tooltiptext tooltiptop !text-sm'>The Dvirr have an unusually weak magical profile despite their general potency. If undetected, AOE magical saves are an automatic pass. Gain advantage on Int saving throws. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>House of the Artificers<span className='tooltiptext tooltiptop !text-sm'>You may take proficiency in Arcana, Medicine or Deception. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Quadroperative<span className='tooltiptext tooltiptop !text-sm'> Dvirr have a natural +1 in DEX at birth.  They lose it if one of their arm pairs are severed. If two of the same-orientation arms are lost, instead suffer -2 DEX</span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Alavarian Incumbent<span className='tooltiptext tooltiptop !text-sm'>All Dvirr post-worldwar live under the perpetual static wail of their sealed allfather. It draws them up, down and away from the natural world. It plagues their dreams. It strains them. </span></div>
+        </div>
+      </div>
+      <br/><br/>
     </div>
+    
   </div>
 
   <div id="species-box">
@@ -802,6 +832,23 @@ export const inhabitants = (
       to the waxy Ezym tallborn of the upper governmental circles, the notion of a Dwarf stood less for their resemblances and more for their attitudes towards progress, industry and democracy. In deep-time, 
       they emigrated to their vast subterranean citadels and disappeared entirely. They are not present in the Seasons of Stagnation. 
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Metalspeak Heritage<span className='tooltiptext tooltiptop !text-sm'> An ethereogenetic attachment to some kind of earthen element is written in the Dwarven blood. They share a natural affinity to all work done with it (+1 flat). Trained meltwhisperers can glean world-secrets from metal streams, if they can spend an hour speaking to it. (you must make this a heritage ability, otherwise it takes around ten years to learn) </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>A Bureaucratic Bend<span className='tooltiptext tooltiptop !text-sm'> Dwarves tend to learn politics and philosophy through an unusual lens - very utilitarian, bureaucratic, efficiency-over-individuality. It doesn’t translate well. Proficiency with persuasion and history when it concerns the theory of government. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>A Terrible Fascination<span className='tooltiptext tooltiptop !text-sm'> Dwarves find the depths more irresistible than most. This is a species-wide enthrallment that you’d need a whole lot to break. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Morphology & Scale<span className='tooltiptext tooltiptop !text-sm'> As an adaptation to the harsh early-world climates, the Dwarvish body specialized into classes. We generally consider three: the Dvarmote, the Dvarma and the Tallborn, ranked ascending by height. Click on each of their names to read about their unique traits. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Physiology and Biome<span className='tooltiptext tooltiptop !text-sm'>Dwarves have long been split by depth. There are three broad categories that most all creatures fall under--the Urmot, the Ezym, and the Dhuroi, ranked from shallowest to deepest. Click on each of their names to read about their unique traits.</span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -814,6 +861,26 @@ export const inhabitants = (
       <br /><br />
       Elves are everywhere, shattered-and-scattered as they were by the Elfwars of the early ages.  Elvish tribes can resemble anything from stony elementals to pallid pseudo-vampires--such is the nature of their chimerical past. They make up the bulk of most Mortal populations.
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Plight of the Systemists <span className='tooltiptext tooltiptop !text-sm'> Elves inherit dread-patterns from their dead Pointlord programmers. These are channeled into the skin as concentric polygonal patterns. They cannot be prevented, but they diminish in expression the less Elvish heritage you have. This is unique to each subgroup’s Pointlord origin - they gain a spec-skill related to a particular family of mathematics. In modern times, where many folks have some Elfblood, unpatterned people are a bit uncommon.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Compute Rule <span className='tooltiptext tooltiptop !text-sm'> Elves retain a degree of higher-order neural interleaving. Suffer no penalties for consecutive concentration on advanced spells. If you ever attempt to overcast, roll a d20. If it is below a 10, suffer a catastrophic failure.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> The Naked Truth <span className='tooltiptext tooltiptop !text-sm'> A gift. You may take Survival, Insight or Arcana as a heritage skill. In return, gain the Paranoid Naturalist/Systemist/Archivist trait (corresponding). </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Starscar Shadows <span className='tooltiptext tooltiptop !text-sm'> You can see your future-past in the water’s reflections. Gain a narrow form of futuresight related to your heritage--describe a very specific situation in which you may suffer half of your HP as damage and a point of exhaustion in order to see a brief snapshot of the future. If you do this more than once per month, you will die after conveying the information or within five minutes, whichever happens first.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Solved Physique <span className='tooltiptext tooltiptop !text-sm'> Long ago, the Pointlords reached the organic conclusion. Elves rarely die of old age, do not need to sleep often, and have tremendously efficient metabolisms. The longer they indulge in these abilities (one notch for each per day - not sleeping, not eating - minus one to every magic roll and +5 SR for every five notches) the more frayed their existence grows. Every ten years after eighty incurs a permanent notch. For every halved concentration of Elvish heritage (50 to 25 to 12.5 etc), you suffer twice the penalties for using this, the gift having waned in the bloodline. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Inheritance <span className='tooltiptext tooltiptop !text-sm'> Each tribe has a Pointlord in their distant bloodline, imbibing them with a particular affinity for some type of disentangled spellcasting. You may select a number of spells with the same damage type up to your current level--they do Pure damage instead.  </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -821,9 +888,9 @@ export const inhabitants = (
 
   <div id="spec-header-box">
     <div id="species-text">
-      <h1>The Splitfolk</h1>
+      <h1 className='green'>The Splitfolk</h1>
       <p>
-      In the seedling days of yore when the Mortal Inheritors were first planted, there came to be a creature known as the Unsplit. It was a pluripotent superorganism, a wanting thing nearly-guaranteed to bring disaster to its peer-species. In a moment of wary prescience, Diravol deigned to take this advantage literally, and so they sliced the Unsplit in twain, making from it two distinct peoples. 
+      In the seedling days of yore when the Mortal Inheritors were first planted, there was a creature known as the Unsplit. It was a pluripotent superorganism, a wanting thing of doubled mind, spirit, power and ambition. In a moment of wary prescience, Diravol deigned to take this advantage literally, and so they sliced the Unsplit in twain, making from it two distinct peoples. 
       </p>
     </div>
   </div>
@@ -838,6 +905,23 @@ export const inhabitants = (
       upper torso.  They used this unusual toolset to build grand sequesters of ornate construction in the deepwood mountains of the north, sickeningly-vertical jungle-gyms of silver and gold that wreathe 
       the chasms of the old Krangsway. At some point, disaster ejected them from their homelands and burdened them with a curse of broken memory. 
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Quicksilver Leglattice <span className='tooltiptext tooltiptop !text-sm'> A curse. Your bottom half was taken in a primordial schism. In its place is a freeform prosthetic thing, a liquid-metal leg bracket. You can manipulate its shape to some degree--for an action, cripple your movement for a turn. By the next one, your legs can be a slightly different shape. Damage suffered to the legs does not cause bloodloss or injury, treat it as a piece of armor. Your legs can be destroyed, forcing you to walk on your arms for life. You reproduce only through miraclework and confidence.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Earlyworld Musculature <span className='tooltiptext tooltiptop !text-sm'> Your upper body is an unblemished relic of the early-world. It is a raw and awesome powerwell. You can walk on your arms as long and as fast as an average mortal can on two feet. Your unarmed melee gains +2 in general. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Sculptor's Wit <span className='tooltiptext tooltiptop !text-sm'> Gnomes have suffered the brunt of the Divine defensiveness, and developed accurate methods of circumvention. Do not suffer any microscopic rage penalties until the third trigger within an hour. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Caveworks <span className='tooltiptext tooltiptop !text-sm'> Gnomes have an intimate, ancient connection with the Interstitial, not unlike the mites.  It is blurred by the failures of their past, but it holds in the subconscious--gain advantage on any subterranean navigation or tracking rolls.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Recursion Fallout <span className='tooltiptext tooltiptop !text-sm'> A curse. In prior ages, the Gnomes made a mistake. Their penance is in the haunting. Your dreams are impossible and sickening--if resting without a bed, you must sleep an extra two hours or suffer half the benefit of a short/long rest (quarter/half slots, partial refresh, partial heal, etc...) Your soul is clung-to by a ghost of impossible power, intimidating creatures &#60; 3 above, at, and below your level.  </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -851,6 +935,26 @@ export const inhabitants = (
       old-world power, while the torso is an intricate golem of swirling earthwork--crafted so flawlessly, it can be hard to spot the difference.  Halflings are the Earthen-Kings of 
       the southern mountain-lands, overly-accommodating and somehow in everyone’s good graces. You can find them pretty much everywhere. 
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Kiln-fired Façade <span className='tooltiptext tooltiptop !text-sm'> A curse. Your top half was taken in a primordial schism. Your torso is an elaborate masterpiece of earthen sculpture loosely fitted over an organless soul. You can heal yourself for 1d4 with a pound of matched earthen material. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Freak Physique <span className='tooltiptext tooltiptop !text-sm'> Your legs are an unblemished relic of the early-world. You kick like a cannon and can march nearly in-perpetuity without suffering exhaustion. +2 to leg melee.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Mountaincarver Kings <span className='tooltiptext tooltiptop !text-sm'> The Halflings are well-loved by the spirits of the Mountains, the innumerable cross-sectioned corpse kings of stone and dirt. You can speak to fossilstone and planesglass to glean its knowledge, expending four hours to gain double proficiency in survival and nature rolls for the next four.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Scorched Soulbody <span className='tooltiptext tooltiptop !text-sm'>  Beneath the fitting, your form is a narrowly-corporeal swirl of fire and rage.  It burns with impossible hostility when exposed, draining you for 20% of your HP maximum each round (this can go below zero) until it is quenched and re-fitted. While exposed, any creature within 10 feet of you suffers 1d6 heat damage per round. Your unarmed strikes do +1d10 heat damage. After re-fitting, you suffer a permanent -1 to a random stat.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> The Whittler’s Wisdom <span className='tooltiptext tooltiptop !text-sm'> The Halflings, in all their patience, know much of the world. Their study is a long one. If you are to suffer a penalty for dangerous knowledge (divine retribution or otherwise), something takes the fall for you, once per year.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> The Kolosthedi Conscript <span className='tooltiptext tooltiptop !text-sm'> All Halflings can choose the life of a Kolosthede; a semi-golem made from the same earthen mixture that their torso is. This permits a manufactured physique significantly-larger than their birth forms, but further restricts the use of their natural gifts. Gain +2 base AC, +2 PHYS, lose your Legs bonus. You cannot trigger Scorched Soulbody without suffering double the kickback.   </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -866,6 +970,23 @@ export const inhabitants = (
       lock-like scar; a promise to Tann that the debt will be repaid in time. If one of their teeth is embedded, they will die. This promise has split their kin into two subspecies--the Fireborn who hold the 
       war-lines against would-be invaders, and the Unstoked that quell and contain their burning blood to keep themselves against the meddlesome invaders of the Northern skies, often sporting a coat of platinum fur. 
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Boiling Blood <span className='tooltiptext tooltiptop !text-sm'> Quelled or not, the Northfolk carry a gift of heat in their veins that permits survival in brutal conditions. It is self adjusting. You suffer no adverse effects in extremely cold climates. If you sacrifice two points of constitution, you permanently gain the ability to focus the fire into your hands, starting small flames at will. This gift can be acquired at any time in your life, most Northfolk are taught the process at birth. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Tann's Fractals <span className='tooltiptext tooltiptop !text-sm'>  A curse. A long time ago, your forebears made a dreadful promise to keep their people safe from the leering cosmic intent. Your body is marked by this--a spiraling fractal-scar, marked at birth, centered on a tooth-shaped void-hole near the center of your torso. If any of your teeth are embedded into this, you die instantly. This is not necessarily common knowledge everywhere, and the scar can be hidden or armored.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Stoking Split <span className='tooltiptext tooltiptop !text-sm'> The Northfolk were once forced to split their people into two solemn duties. The cold of the farthest North is vicious and hostile to magic, so the blood must be quelled (an irony not lost on the participants). In return, these rangers have developed a thick coat of platinum fur and a near-zero magical signature--gain proficiency in Stealth.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Cosmic Resistance <span className='tooltiptext tooltiptop !text-sm'> The Intents are most hungry for the Northfolk intellect, but there is a wall between them. Tann protects--you cannot be meddled with by Cosmolarian agents or their styles of enthrallment.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Blessings of the Jawbone <span className='tooltiptext tooltiptop !text-sm'> The core of the Northfolk empire is diligently portioned and carefully educated.  You may memorize up to three extra spells based on which tooth of the Jawbone you hail from, if any. </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -882,6 +1003,23 @@ export const inhabitants = (
 
 
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Clans <span className='tooltiptext tooltiptop !text-sm'> Rhôminites, like their Dvirran cousins, are not a unified people in the traditional sense. There exist an innumerable amount of clans and polities, spread wide across the Dornnian seas. Appendix C describes several, but you can also make your own--assume any Rhominite clan grants +1 to a base stat and a single unique talent.</span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Theocratic Sacrifices <span className='tooltiptext tooltiptop !text-sm'> An impossibly long time ago, the Rhôminites sacrificed their patron for the sake of their future, partaking in the edible portions of its divine mystery. This has compounded with the constant destabilization of their religious body, rendering their spellcasting erratic and powerfully-resistant to countermagic, but distinctly more unstable. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Mark of the Handbreaker <span className='tooltiptext tooltiptop !text-sm'> You bear a scar-like hole through your right hand, which is withering and frail. This links you to your demonic kin, and the curse will only be undone when penance is paid and the Hand of Rhomi is felled. When in combat with Demon-adjacent entities, you gain advantage on saving throws, and with attack rolls done with your right hand.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Pseudomagic Static <span className='tooltiptext tooltiptop !text-sm'> There is a soft, atmospheric hum that follows you around. It's something like the mark of your family. It makes you slightly easier to detect, but also causes projectiles and other attacks to curve in strange ways-attackers suffer -1 when targeting you with a ranged magic attack. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Tidelord's Charity <span className='tooltiptext tooltiptop !text-sm'> The most corporeal of Rhominite divines are the wave-walking titans, the Tidelords. They freeze bridges between the inner isles as they stride from place to place, seeding the sea with secrets only your people can hear--you gain advantage on seabound navigation checks.  </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -894,6 +1032,23 @@ export const inhabitants = (
       <br /><br />
       The Theodryian soul is split in two, an attempt at understanding the ramblings of their magic-obsessed patron that burned an irrevocable mark on all subsequent Theodryian souls. One is the physical host--the Materiosapience--whereas the other is the transcendent communicator, the Ethereosapience. This makes Theodryians outlandishly talented spellcasters, but also renders them distractible and inattentive. 
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Bifurcated Soul <span className='tooltiptext tooltiptop !text-sm'> A curse. The Theodryian soul is split at birth--a convoluted result of cultural complications and inescapable curse-consequence, when their energy-god Ythryul attempted to impart a mote of transcendent understanding unto her children. Theodryians suffer an impossibly-low birthrate, but a full-born Theodryian child is two people linked via magical wire--one a soulbody trapped eternally in the Transcendent sea (ethereosapience), one a physical body forced to convey their double intents onto the world around them (materiosapience). They may have two names. Young Theodryians are untrained in the distinction between selves, and may suffer frequent swappage and memory-crossover. Mature Theodryians do not suffer this problem. <br/><br/> When half of a Theodryian dies, the other is called a halfson. This state does not kill the remaining sapience, but renders them prone to confusion and mental injury.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Energic Ritualblood <span className='tooltiptext tooltiptop !text-sm'> The Theodryian bloodline is supreme in its potency. Gain a flat +2 to your Spell Attack DC. Gain proficiency in Arcana. Gain a +1 to Intelligence.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Mad Mental Multithreading <span className='tooltiptext tooltiptop !text-sm'> The Theodryian mind is operating in terror-parallel at all times. This makes them horrendously distractible. Anything that would interrupt concentration always does, without a check. Suffer -2 to Persuasion and Deception. Gain proficiency in either Investigation or Perception.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Cast Advocacy <span className='tooltiptext tooltiptop !text-sm'> The Theodryians outlawed the development of the Divine a long time ago (prior incidents...) Their spellcasting conduit is self-maintained and run by overcomplicated bureaucracy. Theodryians that are not appraised of policy changes lose Cast Advocacy, forfeiting the benefits of their Ritualblood as they are often stalled in processes of mental litigation.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Superstrain <span className='tooltiptext tooltiptop !text-sm'> The Theodryian soul is predictably unstable. If you fail an Intelligence, Wisdom or Charisma saving throw, you suffer double damage. If a magical attack kills you, your body explodes in soul-static and prismatic fury, killing everything in a fifty foot radius without question or possibility of survival (at least, no such cases have been observed...)  </span></div>
+        </div>
+      </div>
     </div>
   </div>
   
@@ -908,6 +1063,17 @@ export const inhabitants = (
       whims of the Tender's council--everything from magical misfire to cumbersome prophecy will haunt them for as long as they remain here, unless they falsify their transcendent identities entirely. Despite this, many remain in the Midlands their entire lives. Some due to stubbornness,
       but usually it's just because nobody knows how to leave.
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -935,6 +1101,17 @@ export const inhabitants = (
       to the next stage. Imparting a soul to inert matter is partaking in the sacred acts of the Patrons, of Diravol, of the first. Constructs are venerated for this proximity to the divine, but not widely 
       advocated or understood due to their relative rarity.
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -947,6 +1124,17 @@ export const inhabitants = (
       They can vary greatly in size and shape--some hardly differentiated from their mortal cousins, others towering meters above the bulkiest Theodryian, all claws and hard angles.
        Constantly searching for a method of felling their parriarchs and freeing themselves from the heritor’s curse. Powerfully resistant to all forms of attack, magic or otherwise, but also nearly all conventions of medicine and mend.
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -959,6 +1147,17 @@ export const inhabitants = (
 
 
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -969,6 +1168,17 @@ export const inhabitants = (
       <p>
       Hezzar’s progeny; the chattering end. In the stubby interstitial plate that divides the Midlands from the unmeasured depths, a bounty of strange creatures have been granted a drop of the Mortal Sapience. The exact source of their ascension is contested. They are diverse of form, resembling all manner of insects--just a bit stonier in composition. They almost all hail from the great choke of Hezzar’s Pit, just under the centermost bruises of Dalumgrahd. This is a transitory post for their kin; most were born in deeper places that few Mortals would willingly venture to. 
       </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+        </div>
+      </div>
     </div>
   </div>
 
