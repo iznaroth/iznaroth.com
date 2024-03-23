@@ -1063,33 +1063,32 @@ export const inhabitants = (
       whims of the Tender's council--everything from magical misfire to cumbersome prophecy will haunt them for as long as they remain here, unless they falsify their transcendent identities entirely. Despite this, many remain in the Midlands their entire lives. Some due to stubbornness,
       but usually it's just because nobody knows how to leave.
       </p>
-      <div className='flex flex-wrap justify-evenly'>
-        <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
-        </div>
-        <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
-        </div>
-        <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
-        </div>
-      </div>
     </div>
   </div>
 
   <div id="species-box">
-  <img id="portrait" src="../../species_frame_I.png" />
-  <div id="species-text">
-  <h2>Ascendants</h2>
-  <p>
-  The Extended Other, those from higher rungs. As varied as one could imagine the mortal form to be--yet still imposed upon by the bipedal ghost. Anything and everything you could imagine, misplaced and thrown into Dornn without much warning. Lacking in agency and usually stuck under the boot of an Inheritor empire. 
-  <br/><br/>
-  There are an uncountable number of unidentified Visitors, but about 37 codified Ascendant species hold some territory in the Midlands. Certain groups of Ascendant have grown notorious enough to be granted their own category on the list--these are somewhat callously called the “descended”. 
-  <br/><br/>
-  Some of the most notorious descended are the Dragons and their progeny, star-crawling pseudo-reptiles from higher on the chitinous leg of the Outer Kosmos. They arrived in a prismatic bolt of dislodged theory long before the First Age, laying their brood wide and low in the recesses of the Earlyworld in wait; biding time for mortal bounties to proliferate and ripen.
-  </p>
-
-  </div>
+    <img id="portrait" src="../../species_frame_I.png" />
+    <div id="species-text">
+      <h2>Ascendants</h2>
+      <p>
+      The Extended Other, those from higher rungs. As varied as one could imagine the mortal form to be--yet still imposed upon by the bipedal ghost. Anything and everything you could imagine, misplaced and thrown into Dornn without much warning. Lacking in agency and usually stuck under the boot of an Inheritor empire. 
+      <br/><br/>
+      There are an uncountable number of unidentified Visitors, but about 37 codified Ascendant species hold some territory in the Midlands. Certain groups of Ascendant have grown notorious enough to be granted their own category on the list--these are somewhat callously called the “descended”. 
+      <br/><br/>
+      Instead of traits, here are a handful of known examples:
+      </p>
+      <div className='flex flex-wrap justify-evenly'>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'>Dragons<span className='tooltiptext tooltiptop !text-sm'>The reptilian uber-Other and all their progeny, star-crawling pseudo-reptiles from higher on the chitinous leg of the Outer Kosmos. They arrived in a prismatic bolt of dislodged theory long before the First Age, laying their brood wide and low in the recesses of the Earlyworld in wait; biding time for mortal bounties to proliferate and ripen. Carried by tremendous trenches of psychic concentrate, they are a rare and volatile breed.</span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> G’nossh <span className='tooltiptext tooltiptop !text-sm'> The Mites' remote crustacean relatives; stonebound crabs warped by the Bipedal Curse, though some still preserve their vestigial legs as ornaments. They eat deepsea mineral purifications and can snapcast certain long-form conjuries by way of parallel vocalization.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Contamort <span className='tooltiptext tooltiptop !text-sm'> The <i>Mural-Men</i>, a rarefied specter-species appearing as a ghostly, chalk projection of a nearly-bipedal creature suspended in air around a spiky lodestone core. Mortals find them disconcerting at the best of times, something between a golem and a ghost. They are insanely hard to physically maim, as they can project their astral bodies through several feet of solid material. </span></div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="species-box">
@@ -1099,17 +1098,20 @@ export const inhabitants = (
       <p>
       Children of Balam Arts; the Artificial Mind. Creating a Mortal from the composite parts of the world surrounding. The art of Golemancy was so fundamentally satisfying to world-law, it ascended the creator 
       to the next stage. Imparting a soul to inert matter is partaking in the sacred acts of the Patrons, of Diravol, of the first. Constructs are venerated for this proximity to the divine, but not widely 
-      advocated or understood due to their relative rarity.
+      advocated or understood due to their relative rarity. You are either a Golem or a Simulacrum, you cannot be both. 
       </p>
       <div className='flex flex-wrap justify-evenly'>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'>  Golems <span className='tooltiptext tooltiptop !text-sm'> Mortal-metal. These manufactured folk have a special injury state - they must be immobilized physically to be meaningfully disabled, but they can be ablated by under or overstraining (interrupt concentration in 5e), which permanently kills them. </span></div>
         </div>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> Simulacra <span className='tooltiptext tooltiptop !text-sm'> Golems with divorced soul-law. They are not linked to any one vessel, bound by some pre-defined protocol at birth which explains how they change bodies. They can be ablated similarly, but they may be able to dislocate to new bodies while immobilized. They take double damage from psychic attacks.  </span></div>
         </div>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> Inheritance <span className='tooltiptext tooltiptop !text-sm'> All constructs can claim Balam Arts as their father. His inheritance permits resculpture, allowing some degree of mutability to their form, once per month. You may gain the special action Claim Inheritance--once per month, your father takes a blow for you, and you gain a little bit of debt.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Nonphysiology <span className='tooltiptext tooltiptop !text-sm'>  Constructs do not want for food, water or rest. They also cannot grow without direct modification. </span></div>
         </div>
       </div>
     </div>
@@ -1126,13 +1128,16 @@ export const inhabitants = (
       </p>
       <div className='flex flex-wrap justify-evenly'>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center text-wrap w-3/4'> Magi-eugenic Discontinuities <span className='tooltiptext tooltiptop !text-sm'> Dragonborn cannot use magic in a conventional sense. Dragonborn clerics, zealots or speakers must use convoluted masking processes, making any attempt at holy magic more volatile. The backlash can, in fact, be used. You must carry some kind of Jamming Artifact or Trench Wedge to cast magic of any kind. If you attempt to without it, roll 1d20. On a 10 or below, it fails catastrophically.  </span></div>
         </div>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> Protomortal Seethe <span className='tooltiptext tooltiptop !text-sm'> The Dragonborn have almost no relation to Midlands mortals. Similar to a lot of Ascendants beyond the purview of the Old Gods, this makes them resistant to a lot of overly-specific or niche spellcraft, giving them advantage on all saving throws. This includes a lot of healing spells--roll 1d20 and add your Medicine. If it is 10 or below, the spell fails and still consumes the resources. </span></div>
         </div>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> Red-Eye’s Worm <span className='tooltiptext tooltiptop !text-sm'> The surveilling eye of the first Spine remains in all Dragonborn from birth. He can see through them all. This makes them strangely-centered and unlikely to cause strain failures, but it also induces a unique stress on their minds and renders them likely to betray those who do not follow Red-Eye’s interests, whether they want to or not. It is possible to sever this, but the surgery is extremely risky. If Red-Eye dies, this effect will fade. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Plain Old Resilience <span className='tooltiptext tooltiptop !text-sm'> Scales are hard. There are three levels to this - for each level of scale thickness, gain +1 to base AC, and receive a -1 penalty to any healing attempt, yourself or otherwise. </span></div>
         </div>
       </div>
     </div>
@@ -1149,13 +1154,19 @@ export const inhabitants = (
       </p>
       <div className='flex flex-wrap justify-evenly'>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> Faeblood <span className='tooltiptext tooltiptop !text-sm'> A hazy orange superfluid. You will be relentlessly hunted. Some people can detect it. You have a natural affinity for slipgating and accidental teleportation. It grows in power as your strain amps, making you easier to find and harder to catch. </span></div>
         </div>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> The Cling <span className='tooltiptext tooltiptop !text-sm'> The manner in which your flesh keeps to your spongy soulstone core is strange and fleeting. This makes your motions fluid and unreadable. When you take the Dodge action, attackers have double-disadvantage. Critical hits briefly shatter your shape, allowing all subsequent hits for the round to deal double-damage, but your AC increases by 3.  </span></div>
         </div>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> Lamplighters <span className='tooltiptext tooltiptop !text-sm'> Once, the Fae travelled this realm through the vast subdimensional Lantern-Lands and its many wrought-silver gateways. Demon-theoretics collapsed this bridge in a bygone age, but the route still lingers. You navigate flawlessly, regardless of lighting, so long as you are in a blessed forest. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Woodwhisper <span className='tooltiptext tooltiptop !text-sm'> You may take Survival as your Heritage skill. If you do, take the Deepwood Delusional spec-skill as well. </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Body Memory <span className='tooltiptext tooltiptop !text-sm'> You were not born, but shorn - taken from a lost soulmass and melded with material, offspring of fae only by technicality. You can look like pretty much anything.  </span></div>
         </div>
       </div>
     </div>
@@ -1170,17 +1181,25 @@ export const inhabitants = (
       </p>
       <div className='flex flex-wrap justify-evenly'>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> Mandible Psychosis <span className='tooltiptext tooltiptop !text-sm'> The mites strike their facial appendages together in strange harmonies. It travels through rock and consciousness with equal speed--a psychic substitute. Mites can communicate with one another as if they have Message with twice the range and no penalties. When utilizing this spell, they suffer disadvantage on saving throws and -5 to their AC for the round.  </span></div>
         </div>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> Rockbone <span className='tooltiptext tooltiptop !text-sm'> Most mites have some degree of stony physiology. This makes them annoyingly tough. +2 to each HP increment, +1 AC. </span></div>
         </div>
         <div className='basis-1/3 justify-center py-5'>
-          <div className='tooltip text-lg text-center'> <span className='tooltiptext tooltiptop !text-sm'> </span></div>
+          <div className='tooltip text-lg text-center'> Chattering End <span className='tooltiptext tooltiptop !text-sm'> There is a secret under the earth. The Mites are too close to it, so their patron protects them from encroaching fate. When underground, suffer no challenges nor penalties for dangerous knowledge. You cannot be tracked by outsider entities.  </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Rapid Mutation <span className='tooltiptext tooltiptop !text-sm'> Your body is capable of surprisingly-efficient alteration. If a limb is dismembered, you do not suffer severe bloodloss, and may regrow it with any adaptation from your familial line (select an insect to resemble at birth) </span></div>
+        </div>
+        <div className='basis-1/3 justify-center py-5'>
+          <div className='tooltip text-lg text-center'> Luminescent Symbolists <span className='tooltiptext tooltiptop !text-sm'> The Mites have acquired a strange language from deepworld residents, allowing them to carve symbols of power into the air with their hands--these behave as runes or magical script, and can carry spellcraft. They cannot be masked.  </span></div>
         </div>
       </div>
     </div>
   </div>
+
+  <p><br></br></p>
 
 </>
 )
