@@ -17,16 +17,16 @@ const About = ({ blogContent }) => {
            <br className="hidden lg:inline-block" />
          </h1>
          <p className="mb-8 leading-relaxed lg:px-8 text-black">
-         Hey! What's up? Welcome to the greater hall of unfinished things!
+         Hey! What's up? Welcome to the Greater House of Unfinished Works!
          <br /><br />
-         This is something like a portfolio, I guess? In a concentrated effort to '<i>stop hoarding work and start showing it to people</i>' I made this site about a year ago and have since failed to actually publish anything meaningful (<i>save for an entirely unfinished tour guide of my ill-advised TTRPG system and setting.</i>)
+         This is something like a portfolio, I guess? In a concentrated effort to '<i>stop hoarding stuff and start showing it to people</i>' I made this site about a year ago and have since failed to actually publish anything meaningful (<i>save for an entirely unfinished tour guide of my ill-advised TTRPG system and setting.</i>)
          I do make a lot of stuff, I'm just the ultra-typical washed creative that endlessly starts new projects without ever finishing something presentable. Still, this is the hopeful eventual home to a lot of disorganized thoughts, blog-posts, devlogs, half-finished materials, demos, the works. 
          <br /><br />
-        I also keep this site because I make a lot of “conventionally unusable content.” I peddle in unpolished ideas and unedited rambling, descriptions and design breakdowns for games and projects that I don’t necessarily believe in (or just don’t have the capital to make work). I am only accredited as a software engineer - I am not a professional designer, critic, philosopher or poet, though that doesn’t stop me from doing it anyways. Ideas are cheap and common, but I also dislike keeping all this junk locked up in my brain, so it goes here. If it interests you, that’s pretty cool. 
+        I also keep this site because I make a lot of “conventionally unusable content.” I peddle in unpolished ideas and unedited rambling, descriptions and design breakdowns for games and projects that I don’t necessarily believe in (or just don’t have the capital to make work).  Ideas are cheap and common, but I also dislike keeping all this junk locked up in my brain, so it goes here. If it interests you, that’s pretty cool. 
         <br /><br />
         My patreon is frozen right now, not much going on over there. If or when it resumes, I'll make a post about it. Thanks for stopping by!
         <br /><br />
-        I love you! Stay baller!
+        I love you! Stay cool!
         <br /><br />
         – iznaroth
          </p>
@@ -46,19 +46,23 @@ const About = ({ blogContent }) => {
             What's Current?
            <br className="hidden lg:inline-block" />
         </h1>
-        <p className="mb-8 leading-relaxed lg:px-8 text-center"><i className="!text-center text-slate-700">...or Frontier Incompletes as of (2/27/24)</i></p>
+        <p className="mb-8 leading-relaxed lg:px-8 text-center"><i className="!text-center text-slate-700">...or Frontier Incompletes as of (4/22/24)</i></p>
         <p className="mb-8 leading-relaxed lg:px-8 text-black text-left text-sm">
-        Surprise! It's <i>Down the Worldwell</i> and <i>Brittle.</i> Nothing substantial enough to justify a devlog on either side. <br/><br/>
-        
-        DtWW is suffering under a cycle of decompression and recompression as I fail
-        to settle on a desired threshold of complexity, but I do want to publish and write a bit about my current 4-page draft and how I do not understand the statistical implications of D12 dice pools on long-term progression. 
-        I still want to finish a lot of the site writeups (lots of unfinished cities, and damn is that page verbose for no reason) and integrate some character creation tools. Keep an eye out!<br/><br/>
-
-        Brittle is suffocating under a mound of required refactors to player control and state management--an expected outcome as the scope of the game continues to drift out of orbit. Some work is happening in there
-        regarding the more neurotic AI expectations a.la squad-sync behavior and conservation of playable space on a 2D plane, a lot of junk I will inevitably talk more about as it graduates from "suboptimal speculation" to "suboptimal reality."
+        What does two months of doing nothing look like? Nothing!
         <br/><br/>
-        On the frontier of Website Improvements--no comment box yet. That has unsettled security concerns (<i>the backend is a mess?! How could this be?</i>) and I won't get to it quite yet. Also, the contact box at the bottom doesn't work and scaling
-        is miserable on tablet. Check back soon!
+        I don't have much to update on. I've been working on-and-off with Down the Worldwell as much as usual, but mostly in a zombie-5e homebrew nightmare sense. The core system
+        remains untested.
+        <br/><br/>
+        The other big ones remain on ice and shoved way back in the freezer. Brittle's infinite gravity may be leading places soon, but I am deeply lost in the recursive maze of infinite system speculation. Imagine prototyping when you can just
+        think forever! I will emerge from this chasm reforged, older than 50, and carrying a game so primally evil that it releases to a 0 on metacritic.
+        <br/><br/>
+        M4 is always lingering on the back of my mind, but I also kind-of hate working in Forge so I'm a little unenthused. This is a failure of my own making--I did not learn the tool well, and for some reason, I 
+        struggle to use it to its fullest potential. I like to run into the reasonable limits of any engine or toolset I use. An impression of my tendencies is forming in the leaves here - two words spelled, SCOPE CREEP - I wonder what they mean?
+        <br/><br/>
+        Does Doloman Epoch even deserve to be there? A few new headers may appear soon...
+        <br/><br/>
+        Site improvements have not occurred. Some loose refactors to the DtWW page notwithstanding, I haven't done any work on comments (because I haven't written any posts, :p) so I can continue
+        to assume that everybody loves me and their obviously-intentional silence is a compliment. Thanks!
         </p>
         
        </div>
