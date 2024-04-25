@@ -27,6 +27,8 @@ const DevlogLanding = ({devlogContent}) => {
     m4_entries.current = devlogContent.filter((log) => log.relevantTags.includes("m4"))
     brittle_entries.current = devlogContent.filter((log) => log.relevantTags.includes("brittle"))
     dolom_entries.current = devlogContent.filter((log) => log.relevantTags.includes("doloman"))
+    modem_entries.current = devlogContent.filter((log) => log.relevantTags.includes("modem"))
+    mp_entries.current = devlogContent.filter((log) => log.relevantTags.includes("microprojects"))
 
 
     if(dtww_entries.current == null || m4_entries.current == null || brittle_entries.current == null || dolom_entries.current == null ){

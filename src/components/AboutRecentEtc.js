@@ -13,21 +13,17 @@ const About = ({ blogContent }) => {
       <div className="container !mx-0 md:mx-auto flex lg:px-10 py-10 md:flex-row flex-col items-center sm:items-start max-w-full">
        <div className="lg:flex-grow m-0 md:w-1/2 lg:pr-0 md:pr-0 md:text-left mb-16 md:mb-0 text-center">
          <h1 className="title-font sm:text-4xl text-3xl mb-4 lg:px-8 font-medium text-black">
-            What's all this, then?
+            The Eternal Prospect
            <br className="hidden lg:inline-block" />
          </h1>
          <p className="mb-8 leading-relaxed lg:px-8 text-black">
-         Hey! What's up? Welcome to the Greater House of Unfinished Works!
+         Hey! What's up? 
          <br /><br />
-         This is something like a portfolio, I guess? In a concentrated effort to '<i>stop hoarding stuff and start showing it to people</i>' I made this site about a year ago and have since failed to actually publish anything meaningful (<i>save for an entirely unfinished tour guide of my ill-advised TTRPG system and setting.</i>)
-         I do make a lot of stuff, I'm just the ultra-typical washed creative that endlessly starts new projects without ever finishing something presentable. Still, this is the hopeful eventual home to a lot of disorganized thoughts, blog-posts, devlogs, half-finished materials, demos, the works. 
-         <br /><br />
-        I also keep this site because I make a lot of “conventionally unusable content.” I peddle in unpolished ideas and unedited rambling, descriptions and design breakdowns for games and projects that I don’t necessarily believe in (or just don’t have the capital to make work).  Ideas are cheap and common, but I also dislike keeping all this junk locked up in my brain, so it goes here. If it interests you, that’s pretty cool. 
-        <br /><br />
-        My patreon is frozen right now, not much going on over there. If or when it resumes, I'll make a post about it. Thanks for stopping by!
-        <br /><br />
-        I love you! Stay cool!
-        <br /><br />
+         It's a little bit unfinished, I know. I love you for stopping by anyways. Welcome to the pit!
+         <br/><br/>
+         The steel-wired corpse of this site is currently incapable of accommodating comments, so if you want to get in touch, please send me an
+         email at iznaroth@gmail.com. If you have my Discord, that's probably a better option. 
+         <br/><br/>
         – iznaroth
          </p>
        </div>
@@ -43,26 +39,26 @@ const About = ({ blogContent }) => {
         </div>
         <div className="h-12"></div>
         <h1 className="text-black text-center sm:text-4xl text-3xl">
-            What's Current?
+            A Lay of the Land
            <br className="hidden lg:inline-block" />
         </h1>
         <p className="mb-8 leading-relaxed lg:px-8 text-center"><i className="!text-center text-slate-700">...or Frontier Incompletes as of (4/22/24)</i></p>
         <p className="mb-8 leading-relaxed lg:px-8 text-black text-left text-sm">
-        What does two months of doing nothing look like? Nothing!
-        <br/><br/>
-        I don't have much to update on. I've been working on-and-off with Down the Worldwell as much as usual, but mostly in a zombie-5e homebrew nightmare sense. The core system
-        remains untested.
-        <br/><br/>
-        The other big ones remain on ice and shoved way back in the freezer. Brittle's infinite gravity may be leading places soon, but I am deeply lost in the recursive maze of infinite system speculation. Imagine prototyping when you can just
-        think forever! I will emerge from this chasm reforged, older than 50, and carrying a game so primally evil that it releases to a 0 on metacritic.
-        <br/><br/>
-        M4 is always lingering on the back of my mind, but I also kind-of hate working in Forge so I'm a little unenthused. This is a failure of my own making--I did not learn the tool well, and for some reason, I 
-        struggle to use it to its fullest potential. I like to run into the reasonable limits of any engine or toolset I use. An impression of my tendencies is forming in the leaves here - two words spelled, SCOPE CREEP - I wonder what they mean?
-        <br/><br/>
-        Does Doloman Epoch even deserve to be there? A few new headers may appear soon...
-        <br/><br/>
-        Site improvements have not occurred. Some loose refactors to the DtWW page notwithstanding, I haven't done any work on comments (because I haven't written any posts, :p) so I can continue
-        to assume that everybody loves me and their obviously-intentional silence is a compliment. Thanks!
+          Under the gallows? Nothing changes.
+          <br/><br/>
+          - Brittle is a starving and unquenched pit of lightless, inverted hellfire. The Mechanic is always lost, because it goes down forever. It will be dissected and exposed as a series of vignettes.
+          <br/><br/>
+          - Down the Worldwell is an unlovable mutant with hands in too many drawers. Expect a lot of 5e homebrew. I haven't yet ran out of lore (phasiogenetic mapping protocol when?)
+          <br/><br/>
+          - M4 may one day eclipse Brittle in sheer scope, but not in precision or granularity (this is good, we can actually curb that behavior.) Never forget the rule of fives; Ordhomman Parallelism is watching you even when you harbor no love for it. Mörtz knows your favorite pickaxes.
+          <br/><br/>
+          - Nothing can outlive Dolom's flame, right? Balance paralysis and networking nightmares. What's the best way to pitch six collaborators against each-other when they're all essential personnel?
+          <br/><br/>
+          - The Grenz Expeditionsteam is proud to report that construction of the Modem Highway is theoretically complete, though they are unable to provide the IRSTYS with any direct footage at this time. Your patience is appreciated.
+          <br/><br/>
+          - The Interior, despite claims to the contrary, is not unexplored. It just grew faster than the Imperial Navigators could accurately map it. Postmortal Protocol is in the process of thawing disabled surveyors as we speak.
+          <br/><br/>
+          Don't worry about it. I'll figure it out.
         </p>
         
        </div>
@@ -87,7 +83,7 @@ const About = ({ blogContent }) => {
          </div>
      </div>
      <div className='blog-footer' />
-    <div className='blog-footer copynotice' >©2022 - 2023 iznaroth | All Rights Reserved</div>
+    <div className='blog-footer copynotice' >©2022 - 2024 iznaroth | All Rights Reserved</div>
     <div className='blog-footer' />
    </section>
    
