@@ -20,6 +20,17 @@ const About = ({ blogContent }) => {
          Hey! What's up? 
          <br /><br />
          It's a little bit unfinished, I know. I love you for stopping by anyways. Welcome to the pit!
+         <br /><br />
+         I have about *five* major mega monster projects in the running right now. In order of focus, they are:
+         <br /><br />
+         <ul>
+          <li><b>= Down the Worldwell,</b> an ill-advised TTRPG system set in my massively over-detailed homebrew setting, Dornn</li>
+          <li><b>= Brittle,</b> a structurally-disrespectful metroidvania about a faceless Mechanic with a very hostile inner voice</li>
+          <li><b>= Mad-Manic Magi-Mechanics (M4),</b> a scatterbrained tech mod for Minecraft involving a lot of market manipulation and outsider influence</li>
+          <li><b>= The Interior,</b> a strict semi-novelesque resource manager about a defunct Surveyor-class starship regaining operation ten thousand years after the Royal Domain's collapse</li>
+          <li><b>= Modem Highway,</b> an open-world roadtrip ramble through the dimlit monochrome Odembolg Basin, ex-American site of divine crashout and subsequent Halgryian colonization</li>
+          <li><b>= Doloman Epoch,</b> an utterly harebrained 6-player co-opera-competitive deckbuilder set in a diseased and bizarre interstellar empire, the Ca-or Inwheel</li>
+         </ul>
          <br/><br/>
          The steel-wired corpse of this site is currently incapable of accommodating comments, so if you want to get in touch, please send me an
          email at iznaroth@gmail.com. If you have my Discord, that's probably a better option. 
