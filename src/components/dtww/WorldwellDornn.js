@@ -1149,12 +1149,28 @@ const Dornn = () => {
   const dely_pos = [340, 209]
   const bodilse_pos = [360, 226]
   const milton_pos = [198, 250]
-  const carg_pos = [100, 178]
+  const carg_pos = [105, 178]
   const font_pos = [320, 289]
   const heg_pos = [323,  176]
   const manc_pos = [288, 113]
-
+  const ilkair_pos = [245, 508]
+  const raka_pos = [368, 635]
+  const founders_pos = [309, 244]
+  const akeldar_pos = [] //UNDERGROUND
+  const blaster_pos = [276, 857]
+  const sapphire_pos = [331, 307]
+  const fulcrum_pos = [295, 93]
+  const donri_pos = [114, 195]
+  const maathi_pos = [118, 118]
+  const dreadpoint_pos = [46, 332]
+  const radial_pos = [305, 164]
+  const black_pos = [220, 288]
+  const marble_pos = [264, 62]
+  const drumbone_pos = [375, 997]
+  const kalamant_pos = [107, 936]
   const ss_position = [218, 188]
+  const tyrant_pos = [206, 302]
+  const argo_pos = [445, 170]
 
   const settlement_handles_ordered = ["No Record", "The Glassblood Keep", "Halfstad", "Daol", "Ir", "High Kiln", 
   "Tholri", "Berasithus & Varičula", "Hezzar's Pit", "Daystride", 
@@ -1179,7 +1195,7 @@ const Dornn = () => {
 
 
   useEffect(() => {
-    setMarkerPositions([def_position, gbkeep_position, hfsd_position, daol_position, ir_pos, hk_pos, tholri_pos, bers_pos, hzpt_pos, dystd_pos, krst_pos, dely_pos, bodilse_pos, milton_pos])
+    setMarkerPositions([def_position, gbkeep_position, hfsd_position, daol_position, ir_pos, hk_pos, tholri_pos, bers_pos, hzpt_pos, dystd_pos, krst_pos, dely_pos, bodilse_pos, milton_pos, carg_pos, font_pos, heg_pos, manc_pos, ilkair_pos, raka_pos, founders_pos, akeldar_pos, blaster_pos, sapphire_pos, fulcrum_pos, donri_pos, maathi_pos, dreadpoint_pos, radial_pos, black_pos, marble_pos, drumbone_pos, kalamant_pos, ss_position, tyrant_pos, argo_pos])
     
   }, [])
   
