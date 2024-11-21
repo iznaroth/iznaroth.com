@@ -1164,13 +1164,59 @@ const Dornn = () => {
   const maathi_pos = [118, 118]
   const dreadpoint_pos = [46, 332]
   const radial_pos = [305, 164]
-  const black_pos = [220, 288]
+  const black_pos = [288, 220]
   const marble_pos = [264, 62]
   const drumbone_pos = [375, 997]
   const kalamant_pos = [107, 936]
   const ss_position = [218, 188]
   const tyrant_pos = [206, 302]
   const argo_pos = [445, 170]
+  const shipton_pos = [] //This one is offmap, so there's a needed feature. Stay zoomed out! Special centering?
+  const mirror_pos = [453, 309]
+  const torment_pos = [428, 298]
+  const glacier_pos = [406, 215]
+  const farside_pos = [415, 195]
+  const wastes_pos = [426, 152]
+  const dreamers_pos = [109, 261]
+  const delverton_pos = [87, 234]
+  const nightmount_pos = [66, 186]
+  const silences_pos = [377, 772]
+  const barod_pos = [343, 36]
+  const ythryannis_pos = [214, 0] //this is in the theodryian!
+  const maccaram_pos = [258, 109]
+  const krymhold_pos = [101, 198]
+  const beds_pos = [] //everywhere
+  const protean_pos = [115, 57]
+  const draid_pos = [372, 138]
+  const pivot_pos = [515, 535]
+  const abaalonia_pos = [289, 458]
+  const kallabas_pos = [240, 138]
+  const space_pos = []
+  const singularity_pos = [264, 915]
+  const auditor_pos = [184, 271]
+  const ralholm_pos = [138, 932]
+  const yardol_pos = [209, 860]
+  const dragon_pos = []
+  const briar_pos = [436, 239]
+  const deeprhyn_pos = [361, 268]
+  const faewatch_pos = [120, 86]
+  const marclight_pos = []
+  const spiral_pos = []
+  const pelen_pos = []
+  const jaiurn_pos = []
+  const yveir_pos = []
+  const ulinbarre_pos = [102, 62]
+  const daesis_pos = [180, 72]
+  const calecidonia_pos = [125, 51]
+  const bound_pos = [47, 691]
+  const platinnian_pos = [453, 527]
+  const godsrealm_pos = []
+  const ratwarrens_pos = [381, 311]
+  const beneath_pos = []
+  const ysterian_pos = []
+  const vaults_pos = [] 
+
+
 
   const settlement_handles_ordered = ["No Record", "The Glassblood Keep", "Halfstad", "Daol", "Ir", "High Kiln", 
   "Tholri", "Berasithus & Varičula", "Hezzar's Pit", "Daystride", 
@@ -1195,7 +1241,13 @@ const Dornn = () => {
 
 
   useEffect(() => {
-    setMarkerPositions([def_position, gbkeep_position, hfsd_position, daol_position, ir_pos, hk_pos, tholri_pos, bers_pos, hzpt_pos, dystd_pos, krst_pos, dely_pos, bodilse_pos, milton_pos, carg_pos, font_pos, heg_pos, manc_pos, ilkair_pos, raka_pos, founders_pos, akeldar_pos, blaster_pos, sapphire_pos, fulcrum_pos, donri_pos, maathi_pos, dreadpoint_pos, radial_pos, black_pos, marble_pos, drumbone_pos, kalamant_pos, ss_position, tyrant_pos, argo_pos])
+    setMarkerPositions([def_position, gbkeep_position, hfsd_position, daol_position, ir_pos, hk_pos, tholri_pos, bers_pos, hzpt_pos, dystd_pos, krst_pos, dely_pos, bodilse_pos, 
+                        milton_pos, carg_pos, font_pos, heg_pos, manc_pos, ilkair_pos, raka_pos, founders_pos, akeldar_pos, blaster_pos, sapphire_pos, fulcrum_pos, donri_pos, 
+                        maathi_pos, dreadpoint_pos, radial_pos, black_pos, marble_pos, drumbone_pos, kalamant_pos, ss_position, tyrant_pos, argo_pos, shipton_pos, mirror_pos, 
+                        torment_pos, glacier_pos, farside_pos, wastes_pos, dreamers_pos, delverton_pos, nightmount_pos, silences_pos, barod_pos, ythryannis_pos, maccaram_pos, 
+                        krymhold_pos, beds_pos, protean_pos, draid_pos, pivot_pos, abaalonia_pos, kallabas_pos, space_pos, singularity_pos, auditor_pos, ralholm_pos, yardol_pos, 
+                        dragon_pos, briar_pos, deeprhyn_pos, faewatch_pos, marclight_pos, spiral_pos, pelen_pos, jaiurn_pos, yveir_pos, ulinbarre_pos, daesis_pos, calecidonia_pos,
+                        bound_pos, platinnian_pos, godsrealm_pos, ratwarrens_pos, beneath_pos, ysterian_pos, vaults_pos])
     
   }, [])
   
