@@ -58,9 +58,9 @@ const About = ({ blogContent }) => {
         <p className="mb-8 leading-relaxed lg:px-8 text-black text-left text-sm">
         I'm not sure if this will be a surprise to you, but I don't have much to report. I'm not particularly adept at creating good bite-sized update material. I mostly just rework backend problems until
         I lose the plot.
-
+        <br/><br/>
         In the process of narrowing focus, only three projects remain relevant: Down the Worldwell, Brittle and Foundations. Please report to their devlog pages and/or related updates for more details.
-
+        <br/><br/>
         I know nothing of accountability. I will continue to promise unabated! Hahahahaha!
         </p>
         
