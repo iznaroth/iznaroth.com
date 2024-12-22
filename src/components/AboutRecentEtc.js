@@ -21,15 +21,16 @@ const About = ({ blogContent }) => {
          <br /><br />
          It's a little bit unfinished, I know. I love you for stopping by anyways. Welcome to the pit!
          <br /><br />
-         I have about *five* major mega monster projects in the running right now. In order of focus, they are:
+         Within the ever-rotating display case of my unfinishable vanity projects, I'm currently giving attention to the following:
          <br /><br />
          <ul>
           <li><b>= Down the Worldwell,</b> an ill-advised TTRPG system set in my massively over-detailed homebrew setting, Dornn</li>
           <li><b>= Brittle,</b> a structurally-disrespectful metroidvania about a faceless Mechanic with a very hostile inner voice</li>
-          <li><b>= Mad-Manic Magi-Mechanics (M4),</b> a scatterbrained tech mod for Minecraft involving a lot of market manipulation and outsider influence</li>
-          <li><b>= The Interior,</b> a strict semi-novelesque resource manager about a defunct Surveyor-class starship regaining operation ten thousand years after the Royal Domain's collapse</li>
+          <li><b>= Foundations,</b> an RPG about the son of a cultist lost in post-corporate antiphysical northwestern America </li>
           <li><b>= Modem Highway,</b> an open-world roadtrip ramble through the dimlit monochrome Odembolg Basin, ex-American site of divine crashout and subsequent Halgryian colonization</li>
           <li><b>= Doloman Epoch,</b> an utterly harebrained 6-player co-opera-competitive deckbuilder set in a diseased and bizarre interstellar empire, the Ca-or Inwheel</li>
+          <li><b>= Mad-Manic Magi-Mechanics (M4),</b> a scatterbrained tech mod for Minecraft involving a lot of market manipulation and outsider influence</li>
+          <li><b>= The Interior,</b> a strict semi-novelesque resource manager about a defunct Surveyor-class starship regaining operation ten thousand years after the Royal Domain's collapse</li>
          </ul>
          <br/><br/>
          The steel-wired corpse of this site is currently incapable of accommodating comments, so if you want to get in touch, please send me an
@@ -53,23 +54,14 @@ const About = ({ blogContent }) => {
             A Lay of the Land
            <br className="hidden lg:inline-block" />
         </h1>
-        <p className="mb-8 leading-relaxed lg:px-8 text-center"><i className="!text-center text-slate-700">...or Frontier Incompletes as of (4/22/24)</i></p>
+        <p className="mb-8 leading-relaxed lg:px-8 text-center"><i className="!text-center text-slate-700">...or Frontier Incompletes as of (12/22/24) - a six month gap!</i></p>
         <p className="mb-8 leading-relaxed lg:px-8 text-black text-left text-sm">
-          Under the gallows? Nothing changes.
-          <br/><br/>
-          - Brittle is a starving and unquenched pit of lightless, inverted hellfire. The Mechanic is always lost, because it goes down forever. It will be dissected and exposed as a series of vignettes.
-          <br/><br/>
-          - Down the Worldwell is an unlovable mutant with hands in too many drawers. Expect a lot of 5e homebrew. I haven't yet ran out of lore (phasiogenetic mapping protocol when?)
-          <br/><br/>
-          - M4 may one day eclipse Brittle in sheer scope, but not in precision or granularity (this is good, we can actually curb that behavior.) Never forget the rule of fives; Ordhomman Parallelism is watching you even when you harbor no love for it. Mörtz knows your favorite pickaxes.
-          <br/><br/>
-          - Nothing can outlive Dolom's flame, right? Balance paralysis and networking nightmares. What's the best way to pitch six collaborators against each-other when they're all essential personnel?
-          <br/><br/>
-          - The Grenz Expeditionsteam is proud to report that construction of the Modem Highway is theoretically complete, though they are unable to provide the IRSTYS with any direct footage at this time. Your patience is appreciated.
-          <br/><br/>
-          - The Interior, despite claims to the contrary, is not unexplored. It just grew faster than the Imperial Navigators could accurately map it. Postmortal Protocol is in the process of thawing disabled surveyors as we speak.
-          <br/><br/>
-          Don't worry about it. I'll figure it out.
+        I'm not sure if this will be a surprise to you, but I don't have much to report. I'm not particularly adept at creating good bite-sized update material. I mostly just rework backend problems until
+        I lose the plot.
+
+        In the process of narrowing focus, only three projects remain relevant: Down the Worldwell, Brittle and Foundations. Please report to their devlog pages and/or related updates for more details.
+
+        I know nothing of accountability. I will continue to promise unabated! Hahahahaha!
         </p>
         
        </div>
