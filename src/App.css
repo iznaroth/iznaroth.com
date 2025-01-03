@@ -311,7 +311,11 @@
 .leaflet-dragging .leaflet-grab .leaflet-interactive,
 .leaflet-dragging .leaflet-marker-draggable {
 	cursor: url('/public/tiny_cursor.png'), auto !important;
-	}
+}
+
+.leaflet-interactive{
+  transition: opacity 4s linear;
+}
 
   .tooltip {
     position: relative;

@@ -682,6 +682,46 @@ a:hover {
   }
 }
 
+.settlement-centered {
+  vertical-align: bottom;
+  bottom: 0%;
+  max-width: 100%;
+  max-height: 60%;
+}
+
+@media (min-width: 625px) {
+  .settlement-centered {
+    top: 0;
+    vertical-align: middle;
+    top: 10%;
+    left: 27%;
+    max-width: 60%;
+    max-height: 85%;
+    bottom: auto;
+    
+  }
+}
+
+.mapBlocker {
+  vertical-align: bottom;
+  bottom: 0%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+@media (min-width: 625px) {
+  .mapBlocker {
+    top: 0;
+    vertical-align: top;
+    top: 0%;
+    left: 0%;
+    min-width: 100%;
+    min-height: 100%;
+    bottom: auto;
+    
+  }
+}
+
 .bio-container img{
   margin: auto;
   vertical-align: top;
@@ -954,7 +994,11 @@ a:hover {
 }
 
 .map-polygon:hover {
-  opacity: 0.5;
+  opacity:0;
+  transition: opacity .2s ease-out;
+  -moz-transition: opacity .2s ease-out;
+  -webkit-transition: opacity .2s ease-out;
+  -o-transition: opacity .2s ease-out;
 }
 
 .polygon-hover
