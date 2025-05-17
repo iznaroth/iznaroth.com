@@ -7,6 +7,21 @@ import { Routes, Route, useParams } from 'react-router-dom';
 
 const BlogPost = ({content, postOrDevlog}) => {
 
+  function tagReplacer(string){
+    //this method is a lazy circumvention of Hygraph's uncontrollable substitution of characters in an RTF.
+    //you *should* refactor to use a custom renderer. but. lol.
+
+    string = string.replaceAll("&lt;hr&gt;", "<hr>");
+
+    //aligned image structuring
+    string = string.replaceAll("<p>wrapimagefirst_left</p>", "<figure style=\"float: left; margin-left: 0px; margin-right: 15px; max-width: 35%;\">");
+    string = string.replaceAll("<p>wrapimage_caption_pre", "<figcaption style=\"text-align: center; margin-top: 5px;\"><i>");
+    string = string.replaceAll("wrapimage_caption_post</p>", "</i></figcaption>");
+    string = string.replaceAll("<p>wrapimagelast</p>", "</figure>");
+
+    return string;
+  }
+
   useEffect(() => {
 
     console.log("at BlogItem, we have")
@@ -51,7 +66,7 @@ const BlogPost = ({content, postOrDevlog}) => {
             </header>
             <img src={post.headerImage.url} alt='cover' className='p-4 object-cover w-full h-96'/>
             <h2 className='text-2xl text-center text-slate-600'><i>{post.subtitle}</i></h2>
-            <div className='blog-content' dangerouslySetInnerHTML={{__html: post.content.html}}></div>
+            <div className='blog-content' dangerouslySetInnerHTML={{__html: tagReplacer(post.content.html)}}></div>
           </div>
           <div className='blog-footer' />
         </div>
