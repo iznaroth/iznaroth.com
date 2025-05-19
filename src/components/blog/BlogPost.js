@@ -14,8 +14,9 @@ const BlogPost = ({content, postOrDevlog}) => {
     string = string.replaceAll("&lt;hr&gt;", "<hr>");
 
     //aligned image structuring
-    string = string.replaceAll("<p>wrapimagefirst_left</p>", "<figure style=\"float: left; margin-left: 0px; margin-right: 15px; max-width: 35%;\">");
-    string = string.replaceAll("<p>wrapimage_caption_pre", "<figcaption style=\"text-align: center; margin-top: 5px;\"><i>");
+    string = string.replaceAll("<p>wrapimagefirst_left</p>", "<figure style=\"float: left; margin-left: 0px; margin-right: 25px; margin-top: 40px; margin-bottom: 20px; border-style: double; border-width: 4px; border-color: gray;  max-width: 35%;\">");
+    string = string.replaceAll("<p>wrapimagefirst_right</p>", "<figure style=\"float: right; margin-left: 25px; margin-right: 0px; margin-top: 40px; margin-bottom: 20px; border-style: double; border-width: 4px; border-color: gray;  max-width: 35%;\">");
+    string = string.replaceAll("<p>wrapimage_caption_pre", "<figcaption style=\"text-align: center; margin-top: 5px; margin-bottom: 5px;\"><i>");
     string = string.replaceAll("wrapimage_caption_post</p>", "</i></figcaption>");
     string = string.replaceAll("<p>wrapimagelast</p>", "</figure>");
 
