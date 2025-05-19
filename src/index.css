@@ -16,6 +16,10 @@ code {
     monospace;
 }
 
+a {
+  color: #5a85c7;
+}
+
 h1 {
   font-size: 36px;
 }
@@ -30,6 +34,16 @@ h3 {
 
 h4 {
   font-size: 16px;
+}
+
+ol {
+  list-style-type: decimal;
+  padding-left: 40px;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 40px;
 }
 
 /* Blog styling! */
