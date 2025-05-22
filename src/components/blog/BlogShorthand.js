@@ -19,7 +19,7 @@ const BlogShorthand = ({blogContent, content, postOrDevlog}) => {
       </Link>
       
         <div className='blogShorthand-author'>
-            <p>{blogContent.timestamp}</p>
+            <p>{new Date(blogContent.timestamp).toLocaleString()}</p>
         </div>
         
       
