@@ -49,13 +49,14 @@ const BlogPost = ({content, postOrDevlog}) => {
       {content ? (
       
       <section id="blogpost">
-        <meta property="og:title" content={composedTitle}/>
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content={composedUrl}  />
-        <meta property="og:image" content={post.headerImage.url} />
-        <meta property="og:description" content={generateShorthand(post.content.text)} />
-        <meta name="theme-color" content="#FF0000"/>
-
+        <Helmet>
+          <meta property="og:title" content={composedTitle}/>
+          <meta property="og:type" content="website" />
+          <meta property="og:url" content={composedUrl}  />
+          <meta property="og:image" content={post.headerImage.url} />
+          <meta property="og:description" content={generateShorthand(post.content.text)} />
+          <meta name="theme-color" content="#FF0000"/>
+        </Helmet>
         <div  className="flex h-96">
           
           <img
