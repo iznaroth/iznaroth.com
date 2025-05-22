@@ -23,9 +23,9 @@ const BlogItem = ({blogContent, content}) => {
       <p className='blogItem-desc'>{blogContent.subtitle}</p>
       <footer>
         <div className='blogItem-author'>
-          <img src={blogContent.createdBy.picture} alt='avatar' />
+          <img src={blogContent.publishedBy.picture} alt='avatar' />
           <div>
-            <h6>{blogContent.createdBy.name}</h6>
+            <h6>{blogContent.publishedBy.name}</h6>
             <p>{blogContent.timestamp}</p>
           </div>
         </div>

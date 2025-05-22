@@ -47,7 +47,7 @@ export const QUERY_POSTLIST = gql`
         headerImage {
           url
         },
-        createdBy {
+        publishedBy {
             picture
             name
         }
@@ -69,7 +69,7 @@ export const QUERY_DEVLOG = gql`
         headerImage {
           url
         },
-        createdBy {
+        publishedBy {
             picture
             name
         }
