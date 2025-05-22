@@ -55,7 +55,7 @@ const BlogPost = ({content, postOrDevlog}) => {
               <span> &#8592;</span> <span>Go Back</span>
             </Link>
             <header>
-              <p className='blog-date'>Published {post.timestamp}</p>
+              <p className='blog-date'>Published {new Date(post.timestamp).toLocaleString()}</p>
               <h1>{post.title}</h1>
               <div className='blog-subCategory'>
                 
