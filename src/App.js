@@ -22,7 +22,7 @@ import WorldwellRK from './components/dtww/WorldwellRK'
 import WorldwellSpecies from './components/dtww/WorldwellSpecies'
 import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES, QUERY_DEVLOG, QUERY_WORLDWELL } from './graphql/Queries';
 import WorldwellCharacters from './components/dtww/WorldwellCharacters';
-
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 
 function App() {
@@ -64,119 +64,121 @@ function App() {
 
    
   return (
-    <main className="text-gray-400 bg-cover body-font" style={{'backgroundImage': 'url(/iz_bg_simple.png)', 'backgroundSize' : '1920px 1080px'}}>
+    <HelmetProvider>
+      <main className="text-gray-400 bg-cover body-font" style={{'backgroundImage': 'url(/iz_bg_simple.png)', 'backgroundSize' : '1920px 1080px'}}>
 
-      
-
-      {(!posts || !devlogs || !wwdata) ? (
-          'Loading'
-        ) : (
-      
-      <Routes>
-          <Route path = "/" element={
-          <Fragment>
-            <Logo />
-            <Navbar />
-            <Astropanel />
-            <About blogContent={posts} devlogContent={devlogs}/>
-            <Contact />
-          </Fragment>}>
-
-          </Route>
-          <Route path = "/astromap" element = {
-            <Fragment>
-              <Contact />
-            </Fragment>
-          }>
-          </Route>
         
-          <Route path = "/blog" element = {
-            <Fragment>
-              <BlogLanding blogContent={posts}/>
-            </Fragment>
-          }></Route>
-          <Route path = "/blog/:slug" element = {
-              <BlogPost content={posts}/>
-          }>
-          </Route>
-          <Route path = "/devlogs" element = {
-            <Fragment>
-              <DevlogLanding devlogContent={devlogs} />
-            </Fragment>
-          }>
-          </Route>
-          <Route path = "/devlogs/:slug" element = {
-              <DevlogPost content={devlogs}/>
-          }>
-          </Route>
 
-          {/* START OF WORLDWELL SUBSITE*/}
+        {(!posts || !devlogs || !wwdata) ? (
+            'Loading'
+          ) : (
+        
+        <Routes>
+            <Route path = "/" element={
+            <Fragment>
+              <Logo />
+              <Navbar />
+              <Astropanel />
+              <About blogContent={posts} devlogContent={devlogs}/>
+              <Contact />
+            </Fragment>}>
+
+            </Route>
+            <Route path = "/astromap" element = {
+              <Fragment>
+                <Contact />
+              </Fragment>
+            }>
+            </Route>
           
-          <Route path = "/dtww" element = {
-            <Fragment>
-              <WorldwellLanding />
-            </Fragment>
-          }>
-          </Route>
+            <Route path = "/blog" element = {
+              <Fragment>
+                <BlogLanding blogContent={posts}/>
+              </Fragment>
+            }></Route>
+            <Route path = "/blog/:slug" element = {
+                <BlogPost content={posts}/>
+            }>
+            </Route>
+            <Route path = "/devlogs" element = {
+              <Fragment>
+                <DevlogLanding devlogContent={devlogs} />
+              </Fragment>
+            }>
+            </Route>
+            <Route path = "/devlogs/:slug" element = {
+                <DevlogPost content={devlogs}/>
+            }>
+            </Route>
 
-          <Route path = "/dtww/system" element = {
-            <Fragment>
-              <WorldwellSystem />
-            </Fragment>
-          }>
-          </Route>
+            {/* START OF WORLDWELL SUBSITE*/}
+            
+            <Route path = "/dtww" element = {
+              <Fragment>
+                <WorldwellLanding />
+              </Fragment>
+            }>
+            </Route>
 
-          <Route path = "/dtww/dornn" element = {
-            <Fragment>
-              <WorldwellDornn />
-            </Fragment>
-          }>
-          </Route>
+            <Route path = "/dtww/system" element = {
+              <Fragment>
+                <WorldwellSystem />
+              </Fragment>
+            }>
+            </Route>
 
-          <Route path = "/dtww/dornn/:slug" element = {
-              <WorldwellSpecies content={wwdata}/>
-          }>
-          </Route>
+            <Route path = "/dtww/dornn" element = {
+              <Fragment>
+                <WorldwellDornn />
+              </Fragment>
+            }>
+            </Route>
 
-          <Route path = "/dtww/assembly" element = {
-            <Fragment>
-              <WorldwellRK />
-            </Fragment>
-          }>
-          </Route>
+            <Route path = "/dtww/dornn/:slug" element = {
+                <WorldwellSpecies content={wwdata}/>
+            }>
+            </Route>
 
-          <Route path = "/dtww/character-creation" element = {
-            <Fragment>
-              <WorldwellCharacters />
-            </Fragment>
-          }>
-          </Route>
+            <Route path = "/dtww/assembly" element = {
+              <Fragment>
+                <WorldwellRK />
+              </Fragment>
+            }>
+            </Route>
 
-          {/* END OF WORLDWELL SUBSITE*/}
+            <Route path = "/dtww/character-creation" element = {
+              <Fragment>
+                <WorldwellCharacters />
+              </Fragment>
+            }>
+            </Route>
 
-          
-          <Route path = "/brittle" element = {
-            <Fragment>
-              <Contact />
-            </Fragment>
-          }>
-          </Route>
-          <Route path = "/manmech" element = {
-            <Fragment>
-              <Contact />
-            </Fragment>
-          }>
-          </Route>
-          <Route path = "/fragments" element = {
-            <Fragment>
-              <Contact />
-            </Fragment>
-          }>
-          </Route>
-    
-      </Routes>
-        )}
-    </main>
+            {/* END OF WORLDWELL SUBSITE*/}
+
+            
+            <Route path = "/brittle" element = {
+              <Fragment>
+                <Contact />
+              </Fragment>
+            }>
+            </Route>
+            <Route path = "/manmech" element = {
+              <Fragment>
+                <Contact />
+              </Fragment>
+            }>
+            </Route>
+            <Route path = "/fragments" element = {
+              <Fragment>
+                <Contact />
+              </Fragment>
+            }>
+            </Route>
+      
+        </Routes>
+          )}
+      </main>
+    </HelmetProvider>
   );
 
 }
