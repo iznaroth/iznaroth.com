@@ -4,7 +4,6 @@ import EmptyList from '../blog/EmptyList';
 import '../../index.css';
 import { Link } from 'react-router-dom';
 import { Routes, Route, useParams } from 'react-router-dom';
-import { LinkPreview } from '@dhaiwat10/react-link-preview';
 
 const BlogPost = ({content, postOrDevlog}) => {
 
