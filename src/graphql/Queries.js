@@ -41,7 +41,8 @@ export const QUERY_POSTLIST = gql`
         slug,
         relevantTags,
         content {
-          html
+          html,
+          text
         },
         headerImage {
           url

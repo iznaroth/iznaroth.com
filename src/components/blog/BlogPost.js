@@ -4,41 +4,58 @@ import EmptyList from '../blog/EmptyList';
 import '../../index.css';
 import { Link } from 'react-router-dom';
 import { Routes, Route, useParams } from 'react-router-dom';
+import { LinkPreview } from '@dhaiwat10/react-link-preview';
 
 const BlogPost = ({content, postOrDevlog}) => {
 
-  function tagReplacer(string){
+  function tagReplacer(text){
     //this method is a lazy circumvention of Hygraph's uncontrollable substitution of characters in an RTF.
     //you *should* refactor to use a custom renderer. but. lol.
 
-    string = string.replaceAll("&lt;hr&gt;", "<hr>");
+    text = text.replaceAll("&lt;hr&gt;", "<hr>");
 
     //aligned image structuring
-    string = string.replaceAll("<p>wrapimagefirst_left</p>", "<figure style=\"float: left; margin-left: 0px; margin-right: 25px; margin-top: 40px; margin-bottom: 20px; border-style: double; border-width: 4px; border-color: gray;  max-width: 35%;\">");
-    string = string.replaceAll("<p>wrapimagefirst_right</p>", "<figure style=\"float: right; margin-left: 25px; margin-right: 0px; margin-top: 40px; margin-bottom: 20px; border-style: double; border-width: 4px; border-color: gray;  max-width: 35%;\">");
-    string = string.replaceAll("<p>wrapimage_caption_pre", "<figcaption style=\"text-align: center; margin-top: 5px; margin-bottom: 5px;\"><i>");
-    string = string.replaceAll("wrapimage_caption_post</p>", "</i></figcaption>");
-    string = string.replaceAll("<p>wrapimagelast</p>", "</figure>");
+    text = text.replaceAll("<p>wrapimagefirst_left</p>", "<figure style=\"float: left; margin-left: 0px; margin-right: 25px; margin-top: 40px; margin-bottom: 20px; border-style: double; border-width: 4px; border-color: gray;  max-width: 35%;\">");
+    text = text.replaceAll("<p>wrapimagefirst_right</p>", "<figure style=\"float: right; margin-left: 25px; margin-right: 0px; margin-top: 40px; margin-bottom: 20px; border-style: double; border-width: 4px; border-color: gray;  max-width: 35%;\">");
+    text = text.replaceAll("<p>wrapimage_caption_pre", "<figcaption style=\"text-align: center; margin-top: 5px; margin-bottom: 5px;\"><i>");
+    text = text.replaceAll("wrapimage_caption_post</p>", "</i></figcaption>");
+    text = text.replaceAll("<p>wrapimagelast</p>", "</figure>");
 
-    return string;
+    return text;
+  }
+
+  function generateShorthand(text){
+    
+    //sentence matcher
+    const sentences = text.replaceAll("\\\\n", "").split(/(?<!\w\.\w.)(?<![A-Z][a-z]\.)(?<=\.|\?)\s/).filter(sentence => sentence.trim() !== "").slice(0, 2);
+    if(sentences[1].slice(-3) != '...'){
+      sentences[1] = sentences[1].slice(0, -1) + '...'; //if i didn't already put an ellipsis there, cut it in
+    }
+
+    return sentences.join(' ');
   }
 
   useEffect(() => {
-
-    console.log("at BlogItem, we have")
-    console.log(content)
-
   }, [])
 
   const { slug } = useParams();
   const post = content.find((post) => post.slug === slug);
 
+  const composedUrl = 'http://www.iznaroth.com/blog/' + slug;
+  const composedTitle = post.title + ' - iznaroth';
+
   return (
     <>
       
       {content ? (
-        
+      
       <section id="blogpost">
+        <meta property="og:title" content={composedTitle}/>
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={composedUrl}  />
+        <meta property="og:image" content={post.headerImage.url} />
+        <meta property="og:description" content={generateShorthand(post.content.text)} />
+        <meta name="theme-color" content="#FF0000"/>
 
         <div  className="flex h-96">
           
@@ -74,7 +91,9 @@ const BlogPost = ({content, postOrDevlog}) => {
         <div className='blog-footer' />
         <div className='blog-footer copynotice' >©2022 - 2025 iznaroth | All Rights Reserved</div>
         <div className='blog-footer' />
+        <LinkPreview url='https://iznaroth.com/blog/sclark' width='400px' />;
       </section>
+      
       ) : (
         <EmptyList />
       )}
