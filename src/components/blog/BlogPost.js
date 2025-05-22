@@ -4,6 +4,7 @@ import EmptyList from '../blog/EmptyList';
 import '../../index.css';
 import { Link } from 'react-router-dom';
 import { Routes, Route, useParams } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 
 const BlogPost = ({content, postOrDevlog}) => {
 
