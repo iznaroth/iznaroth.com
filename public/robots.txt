@@ -7,3 +7,7 @@ Disallow: /
 User-agent: facebookexternalhit
 Disallow: /api/
 Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+Disallow: /api/  
