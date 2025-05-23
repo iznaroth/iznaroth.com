@@ -66,10 +66,6 @@ function App() {
   return (
     <HelmetProvider>
       <Helmet>
-          <meta
-          name="description"
-          content="All sorts of silly business!"
-        />
         <title>iznaroth</title>
       </Helmet>
       <main className="text-gray-400 bg-cover body-font" style={{'backgroundImage': 'url(/iz_bg_simple.png)', 'backgroundSize' : '1920px 1080px'}}>
