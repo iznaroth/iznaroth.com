@@ -3,3 +3,7 @@ Disallow: /
 
 User-agent: GPTBot
 Disallow: /
+
+User-agent: facebookexternalhit
+Disallow: /api/
+Allow: /
