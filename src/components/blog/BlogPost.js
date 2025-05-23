@@ -41,7 +41,7 @@ const BlogPost = ({content, postOrDevlog}) => {
   const { slug } = useParams();
   const post = content.find((post) => post.slug === slug);
 
-  const composedUrl = 'http://www.iznaroth.com/blog/' + slug;
+  const composedUrl = 'https://iznaroth.com/blog/' + slug;
   const composedTitle = post.title + ' - iznaroth';
 
   return (
