@@ -11,3 +11,7 @@ Allow: /
 User-agent: meta-externalagent
 Allow: /
 Disallow: /api/  
+
+User-agent: Discordbot
+Allow: /
+Disallow: /api/  
