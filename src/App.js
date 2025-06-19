@@ -27,12 +27,8 @@ import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 function App() {
   const [posts, setPosts] = useState(null);
-  const [categories, setCategories] = useState(null);
   const [devlogs, setDevlogs] = useState(null);
   const [bg, changeBg] = useState('');
-  const [wwdata, setWwdata] = useState(null);
-
-  
 
   useEffect(() => {
     
@@ -42,22 +38,10 @@ function App() {
         .then(res => setPosts(res.simplePosts))
     }
 
-    if(categories == null){
-        console.log("call for categories")
-        graphcms.request(QUERY_SLUG_CATEGORIES)
-        .then(res => setCategories(res.categories))
-    }
-
     if(devlogs == null){
       console.log("call for devlogs")
       graphcms.request(QUERY_DEVLOG)
       .then(res => setDevlogs(res.simplePosts))
-    }
-
-    if(wwdata == null){
-      console.log("call for worldwell")
-      graphcms.request(QUERY_WORLDWELL)
-      .then(res => setWwdata(res.worldwellEntries))    
     }
     
   }, [])
@@ -72,7 +56,7 @@ function App() {
 
         
 
-        {(!posts || !devlogs || !wwdata) ? (
+        {(!posts || !devlogs) ? (
             'Loading'
           ) : (
         
@@ -134,11 +118,6 @@ function App() {
               <Fragment>
                 <WorldwellDornn />
               </Fragment>
-            }>
-            </Route>
-
-            <Route path = "/dtww/dornn/:slug" element = {
-                <WorldwellSpecies content={wwdata}/>
             }>
             </Route>
 
