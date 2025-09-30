@@ -1,7 +1,6 @@
 import { GraphQLClient, gql } from "graphql-request";
 
-//You need to require(dotenv) here, but I don't understand polyfills yet and I'm tired. 
-export const graphcms = new GraphQLClient(HYGRAPH_ENDPOINT)
+export const graphcms = new GraphQLClient('https://us-east-1-shared-usea1-02.cdn.hygraph.com/content/clj81m6ee0yiw01ue66p15s02/master')
 
 const simplePost = `
     id,
