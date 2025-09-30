@@ -72,6 +72,7 @@ const Dornn = () => {
   const [wakeupDone, setWakeupDone] = useState(false);
 
 
+  //fits the boundaries of the map to the viewport to the best of its ability
   function mapWakeup(mapInstance){
     if(mapInstance != null && !wakeupDone){
       console.log("STARTUP FIT--------------->");
@@ -80,12 +81,13 @@ const Dornn = () => {
     }
   }
 
-
+  //deprecated
   function timeout(delay) {
     return new Promise( res => setTimeout(res, delay) );
   }
 
 
+  //what does this do?
   function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
     return {
@@ -94,6 +96,7 @@ const Dornn = () => {
     };
   }
 
+  //??
   function useWindowDimensions() {
     const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
 
@@ -109,6 +112,7 @@ const Dornn = () => {
     return windowDimensions;
   }
 
+  //useless hack
   function wrapSetBio(bio){
     console.log("SET BIO")
     setBio(bio);
@@ -119,12 +123,12 @@ const Dornn = () => {
   //For bottom infopanel
   const [bio, setBio] = useState(0)
 
+  //hardcodey hack for 
   function setZoneOpacities(which){
 
     var newOpacitiesArray = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 
     for(let i = 0; i < zoneArray.length; i++){
-      console.log(which == screenBounds);
         if(which == screenBounds){
           console.log("RESET " + i);
           newOpacitiesArray[i] = 0.0; //reset bounds - disable blockers
@@ -154,7 +158,6 @@ const Dornn = () => {
   }
 
   useEffect(() => {
-    
     if(info == null && !runMonitor1){
     console.log("rereq map info")
       setRunMonitor1(true); //repeat insurance, unnecessary when we add []
@@ -179,18 +182,19 @@ const Dornn = () => {
       }
     });
     
-    
     resizeObserver.observe(mapContainerRef.current);
   })
   
-  function updateFocus(){ //Return to origin. Rename function!
-     setFocused(false);
-     setSelectedPoly(screenBounds);
-     console.log("Returning to origin.");
+  function goBack(){ //Return to origin. Rename function!
+     setFocused(false); 
+     setSelectedPoly(screenBounds); 
      setZoneOpacities(screenBounds);
      map.flyTo([256, 534], 0.4);
      setSelectedBody(null);
-     setMapControlState(true, true);  
+     setMapControlState(true, true); //deprecated?
+     
+    map.dragging.enable();
+    map.zoom.enable();
   }
 
 
@@ -198,8 +202,12 @@ const Dornn = () => {
     setMarkerFocused(false)
     map.flyTo([256, 534], 0.4)
     setSelectedSettlement(null)
+
+    map.dragging.enable();
+    map.zoom.enable();
  }
 
+  //genuinely how does this work and why is it like this? it's a component function, so i guess it just runs all this once at wakeup 
   function SetBoundsPolygons() {
     const [bounds, setBounds] = useState(screenBounds)
     const map = useMap()
@@ -213,712 +221,110 @@ const Dornn = () => {
         }
     })
   
+    //each memo handler appears to append onclick and  onmouseover/out handlers that are only different in how they pass constants around? let's see if we can achieve a compression of this
     const dolwyndHandlers = useMemo(
-      () => ({
-        click() {
-          if(!focused){
-            const post = info.find((post) => post.entryID === "dolwynd")
-            setSelectedBody(post);
-
-            setBounds(dolwynd);
-            setFocused(true);
-
-            map.invalidateSize();
-            setHeaderFont(dw);
-            
-            map.flyToBounds(dolwynd, {duration: 2})
-            setSelectedPoly(dolwynd);
-          }
-        },
-        mouseover(event) {
-          console.log("dol over")
-          if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-            hoverToggleOpacs(0, true) 
-          }
-        },
-        mouseout(event) {
-          console.log("dol OUT")
-          console.log(event)
-          if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-            hoverToggleOpacs(0, false) 
-           }
-        }
-      }),
+      generateHandlersForRegion("dolwynd", dolwynd, dw, map, 0),
       [map],
     )
-
+    
     const northseaHandlers = useMemo(
-      () => ({
-        click() {
-          if(!focused){
-            const post = info.find((post) => post.entryID === "northsea")
-            setSelectedBody(post);
-            setBounds(northsea);
-            
-            setFocused(true);
-            console.log(focused);
-            map.invalidateSize();
-            setHeaderFont(dw);
-            
-            map.flyToBounds(northsea, {duration: 2})
-            setSelectedPoly(northsea);
-          }
-        },
-        
-        mouseover(event) {
-          console.log("north over")
-          if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-            hoverToggleOpacs(1, true) 
-          }
-        },
-        mouseout(event) {
-          console.log("north OUT")
-          console.log(event)
-          if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-            hoverToggleOpacs(1, false) 
-          }
-        }
-        
-      }),
+      generateHandlersForRegion("northsea", northsea, dw, map, 1),
       [map],
     )
 
-      const anterrosHandlers = useMemo(
-        () => ({
-          click() {
-            if(!focused){
-              const post = info.find((post) => post.entryID === "anterros")
-              setSelectedBody(post);
-              setBounds(anterros);
-              
-              setFocused(true);
-              console.log(focused);
-              map.invalidateSize();
-              setHeaderFont(dw);
-              
-              map.flyToBounds(anterros, {duration: 2})
-              setSelectedPoly(anterros);
-            }
-          },
-          
-          mouseover(event) {
-            if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-              hoverToggleOpacs(2, true) 
-            }
-          },
-          mouseout(event) {
-            if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-              hoverToggleOpacs(2, false) 
-            }
-          }
-          
-        }),
-        [map],
+    const anterrosHandlers = useMemo(
+      generateHandlersForRegion("anterros", anterros, dw, map, 2),
+      [map],
     )
 
     const argovHandlers = useMemo(
-      () => ({
-        click() {
-          if(!focused){
-            const post = info.find((post) => post.entryID === "argov")
-            setSelectedBody(post);
-            setBounds(argov);
-            
-            setFocused(true);
-            console.log(focused);
-            map.invalidateSize();
-            setHeaderFont(dw);
-            
-            map.flyToBounds(argov, {duration: 2})
-            setSelectedPoly(argov);
-          }
-        },
-        
-        mouseover(event) {
-          if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-            hoverToggleOpacs(3, true) 
-          }
-        },
-        mouseout(event) {
-          if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-            hoverToggleOpacs(3, false) 
-          }
-        }
-        
-      }),
+      generateHandlersForRegion("argov", argov, dw, map, 3),
       [map],
-  )
+    )
 
-  const iorstavHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "iorstav")
-          setSelectedBody(post);
-          setBounds(iorstav);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(dw);
-          
-          map.flyToBounds(iorstav, {duration: 2})
-          setSelectedPoly(iorstav);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(4, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(4, false) 
-        }
-      }
-      
-    }),
-    [map],
+    const iorstavHandlers = useMemo(
+        generateHandlersForRegion("iorstav", iorstav, dw, map, 4),
+        [map],
     )
 
     const dorrimHandlers = useMemo(
-    () => ({
-      
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "dorrim")
-          setSelectedBody(post);
-          setBounds(dorrim);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(dw);
-
-          map.flyToBounds(dorrim, {duration: 2})
-          setSelectedPoly(dorrim);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(5, true) 
-        }
-        
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(5, false) 
-        }
-        
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("dorrim", dorrim, dw, map, 5),
+        [map],
     )
 
     const cantocHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "cantoc")
-          setSelectedBody(post);
-          setBounds(cantoc);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(dw);
-          
-          map.flyToBounds(cantoc, {duration: 2})
-          setSelectedPoly(cantoc);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(6, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(6, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("cantoc", cantoc, dw, map, 6),
+        [map],
     )
 
     const mologHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "molog")
-          setSelectedBody(post);
-          setBounds(molog);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(dw);
-          
-          map.flyToBounds(molog, {duration: 2})
-          setSelectedPoly(molog);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(7, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(7, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("molog", molog, dw, map, 7),
+        [map],
     )
 
     const ferveirnHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "ferveirn")
-          setSelectedBody(post);
-          setBounds(ferveirn);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(dw);
-          
-          map.flyToBounds(ferveirn, {duration: 2})
-          setSelectedPoly(ferveirn);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(8, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(8, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("ferveirn", ferveirn, dw, map, 8),
+        [map],
     )
 
     const rhomiHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "rhomi")
-          setSelectedBody(post);
-          setBounds(rhomi);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(dw);
-          
-          map.flyToBounds(rhomi, {duration: 2})
-          setSelectedPoly(rhomi);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(9, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(9, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("rhomi", rhomi, dw, map, 9),
+        [map],
     )
 
-  const lannochHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "lannoch")
-          setSelectedBody(post);
-          setBounds(lannoch);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(dw);
-          
-          map.flyToBounds(lannoch, {duration: 2})
-          setSelectedPoly(lannoch);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(10, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(10, false) 
-        }
-      }
-      
-    }),
-    [map],
+    const lannochHandlers = useMemo(
+        generateHandlersForRegion("lannoch", lannoch, dw, map, 10),
+        [map],
     )
 
     const mornaHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "morna")
-          setSelectedBody(post);
-          setBounds(morna);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(dw);
-          
-          map.flyToBounds(morna, {duration: 2})
-          setSelectedPoly(morna);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(11, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(11, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("morna", morna, dw, map, 11),
+        [map],
     )
 
     const vaicHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "vaic")
-          setSelectedBody(post);
-          setBounds(vaic);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(dw);
-          
-          map.flyToBounds(vaic, {duration: 2})
-          setSelectedPoly(vaic);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(12, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(12, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("vaic", vaic, dw, map, 12),
+        [map],
     )
 
     const akkvaltHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "akkvalt")
-          setSelectedBody(post);
-          setBounds(akkvalt);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(roman);
-          
-          map.flyToBounds(akkvalt, {duration: 2})
-          setSelectedPoly(akkvalt);
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(13, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(13, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("akkvalt", akkvalt, roman, map, 13),
+        [map],
     )
 
     const salirHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "salir")
-          setSelectedBody(post);
-          setBounds(salir);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(roman);
-          
-          map.flyToBounds(salir, {duration: 2})
-          setSelectedPoly(salir);
-
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(14, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(14, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("salir", salir, roman, map, 14),
+        [map],
     )
 
     const dorsHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "dors")
-          setSelectedBody(post);
-          setBounds(dors);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(roman);
-          
-          map.flyToBounds(dors, {duration: 2})
-          setSelectedPoly(dors);
-
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(15, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(15, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("dors", dors, roman, map, 15),
+        [map],
     )
 
     const crovonHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "crovon")
-          setSelectedBody(post);
-          setBounds(crovon);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(roman);
-          
-          map.flyToBounds(crovon, {duration: 2})
-          setSelectedPoly(crovon);
-
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(16, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(16, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("crovon", crovon, roman, map, 16),
+        [map],
     )
 
     const mosmogaHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "mosmoga")
-          setSelectedBody(post);
-          setBounds(mosmoga);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(roman);
-          
-          map.flyToBounds(mosmoga, {duration: 2})
-          setSelectedPoly(mosmoga);
-
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(17, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(17, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("mosmoga", mosmoga, roman, map, 17),
+        [map],
     )
 
     const kamdagHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "kamdag")
-          setSelectedBody(post);
-          setBounds(kamdag);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(roman);
-          
-          map.flyToBounds(kamdag, {duration: 2})
-          setSelectedPoly(kamdag);
-
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(18, true) 
-        }
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(18, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("kamdag", kamdag, roman, map, 18),
+        [map],
     )
 
     const agosHandlers = useMemo(
-      () => ({
-        click() {
-          if(!focused){
-            const post = info.find((post) => post.entryID === "agos")
-            setSelectedBody(post);
-            setBounds(agos);
-            
-            setFocused(true);
-            console.log(focused);
-            map.invalidateSize();
-            setHeaderFont(roman);
-            
-            map.flyToBounds(agos, {duration: 2})
-            setSelectedPoly(agos);
-
-          }
-        },
-        
-        mouseover(event) {
-          if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-            hoverToggleOpacs(19, true) 
-          }
-        },
-        mouseout(event) {
-          if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-            hoverToggleOpacs(19, false) 
-          }
-        }
-        
-      }),
-      [map],
-      )
+        generateHandlersForRegion("agos", agos, roman, map, 19),
+        [map],
+    )
 
     const ghommililHandlers = useMemo(
-    () => ({
-      click() {
-        if(!focused){
-          const post = info.find((post) => post.entryID === "ghommilil")
-          setSelectedBody(post);
-          setBounds(ghommilil);
-          
-          setFocused(true);
-          console.log(focused);
-          map.invalidateSize();
-          setHeaderFont(roman);
-          
-          map.flyToBounds(ghommilil, {duration: 2})
-          setSelectedPoly(ghommilil);
-      
-        }
-      },
-      
-      mouseover(event) {
-        if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
-          hoverToggleOpacs(20, true) 
-        }
-        
-      },
-      mouseout(event) {
-        if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
-          hoverToggleOpacs(20, false) 
-        }
-      }
-      
-    }),
-    [map],
+        generateHandlersForRegion("ghommilil", ghommilil, roman, map, 20),
+        [map],
     )
 
       
@@ -1103,6 +509,39 @@ const Dornn = () => {
     }
   }
 
+  function generateHandlersForRegion(regionString, regionBounds, regionHeaderFont, map, regionId){
+    return () => ({
+        click() {
+          if(!focused){
+            const post = info.find((post) => post.entryID === regionString)
+            setSelectedBody(post);
+
+            setFocused(true);
+
+            map.invalidateSize();
+            setHeaderFont(regionHeaderFont);
+            
+            map.flyToBounds(regionBounds, {duration: 2})
+            setSelectedPoly(regionBounds);
+
+            map.dragging.disable();
+            map.zoom.disable();
+          }
+        },
+        mouseover(event) {
+          if(!focused && !markerFocused &&  event.target.options.fillOpacity != 0.5){
+            hoverToggleOpacs(regionId, true) 
+          }
+        },
+        mouseout(event) {
+          console.log(event)
+          if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
+            hoverToggleOpacs(regionId, false) 
+           }
+        }
+      })
+  }
+
   function BioContainer() {
 
     if(bio == 0){
@@ -1251,67 +690,6 @@ const Dornn = () => {
                         bound_pos, platinnian_pos, godsrealm_pos, ratwarrens_pos, beneath_pos, ysterian_pos, vaults_pos])
     
   }, [])
-  
-
-  function PoligridPins() {
-
-    return (
-      <>
-
-        <Marker position={def_position}> 
-        </Marker>  
-
-        <Marker position={gbkeep_position} icon={humanCapital} eventHandlers={{
-            click: (e) => {
-              selectPoligridPin(1, false);
-            },
-          }}>
-        </Marker>
-
-        <Marker position={hfsd_position} icon={humanCapital} >
-        </Marker>
-
-        <Marker position={daol_position} icon={humanCapital} >
-        </Marker>
-
-        <Marker position={ir_pos} icon={humanCapital} >
-        </Marker>
-
-        <Marker position={hk_pos} icon={humanCapital} >
-        </Marker>
-
-        <Marker position={tholri_pos} icon={councilCity} >
-        </Marker>
-        
-        <Marker position={bers_pos} icon={councilCity} >
-        </Marker>
-
-        <Marker position={varc_pos} icon={councilFort} >
-        </Marker>
-
-        <Marker position={hzpt_pos} icon={councilCity} >
-        </Marker>
-
-        <Marker position={krst_pos} icon={councilCity} >
-        </Marker>
-        
-        <Marker position={dely_pos} icon={councilCity} >
-        </Marker>
-
-        <Marker position={bodilse_pos} icon={councilCity} >
-        </Marker>
-
-        <Marker position={milton_pos} icon={councilHold}>
-        </Marker>
-
-        <Marker position={ss_position} icon={freeFort} >
-        </Marker>
-
-      </>
-
-    )
-    
-  }
 
   async function selectPoligridPin(which, centered) {
     
@@ -1338,6 +716,8 @@ const Dornn = () => {
       const position = [markerPositions[which][0] + ssOffsetY, markerPositions[which][1] + ssOffsetX] //offset for setup. TODO pick box disp side based on proximity to edge
       map.flyTo(position, 3)
     
+      map.dragging.disable();
+      map.zoom.disable();
   }
 
   const polities = (
@@ -1656,7 +1036,21 @@ const Dornn = () => {
                   
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
                   <div id='map' ref={mapContainerRef}>
-                    <MapContainer ref={setMap} center={[256, 534]} zoom={0.4} dragging={true} scrollWheelZoom={mapControlState[1]} zoomControl={true} zoomSnap={0.1} zoomDelta={0.2} crs={CRS.Simple} maxBounds={screenBoundsWiggle} maxBoundsViscosity={0.9} tap={false} closePopupOnClick={false} whenCreated={mapWakeup(map)}>
+                    <MapContainer 
+                      ref={setMap} 
+                      center={[256, 534]} 
+                      zoom={0.4} 
+                      dragging={true} 
+                      scrollWheelZoom={mapControlState[1]} 
+                      zoomControl={true} 
+                      zoomSnap={0.1} 
+                      zoomDelta={0.2} 
+                      crs={CRS.Simple} 
+                      maxBounds={screenBoundsWiggle} 
+                      maxBoundsViscosity={0.9} tap={false} 
+                      closePopupOnClick={false}
+                      whenCreated={mapWakeup(map)}
+                    >
                       <ImageOverlay 
                         url="../../whiteout-blank-site.png" bounds={screenBounds} pagespeed_no_transform
                       />
@@ -1666,11 +1060,6 @@ const Dornn = () => {
                             <ImageOverlay 
                             url="../../just_names.png" bounds={screenBounds} pagespeed_no_transform
                             />
-                          </LayerGroup>
-                        </LayersControl.Overlay>
-                        <LayersControl.Overlay name="Settlements">
-                          <LayerGroup>
-                            <PoligridPins></PoligridPins>
                           </LayerGroup>
                         </LayersControl.Overlay>
                       </LayersControl>
@@ -1688,7 +1077,7 @@ const Dornn = () => {
                     </p>
                     <p className="inline-block pt-5 pb-0  px-5 map-info-content" dangerouslySetInnerHTML={{ __html: selectedBody.body }}>
                     </p>
-                    <button className='py-5 map-return' onClick={updateFocus}>GO BACK</button>
+                    <button className='py-5 map-return' onClick={goBack}>GO BACK</button>
                     </div> :  null }
 
                   { (markerFocused && !focused) ? <div className={centered ? "settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" : "settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto"}>
