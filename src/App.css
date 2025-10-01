@@ -53,6 +53,52 @@
   }
 }
 
+.animatedPin {
+    width: 128px;
+    height: 128px;
+    font-weight: bold;
+    position: absolute;
+    animation: mymove 1s ease-in 1;
+    background-size: 100%;
+    vertical-align: bottom;
+    bottom: 65%;
+    left: 37%;
+    max-width: 100%;
+    max-height: 60%;
+    transform: rotate(-10deg);
+}
+
+@media (min-width: 625px) {
+  .animatedPin{
+    top: 38%;
+    left: 38%;
+  }
+}
+
+.animatedPinCapital {
+  background-image: url('/public/dornn_pin_crowned.png');
+}
+
+.animatedPinFortress {
+  background-image: url('/public/dornn_pin_fortress.png');
+}
+
+.animatedPinUnknown {
+  background-image: url('/public/dornn_pin_landmark.png');
+}
+
+@keyframes mymove {
+  from {
+    bottom: 300px;
+    opacity: 0%;
+  }
+
+  to {
+    bottom: 0px;
+    opacity: 100%;
+  }
+}
+
 #about{
   max-width: 1200px;
   margin: auto;

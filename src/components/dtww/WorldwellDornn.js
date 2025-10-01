@@ -68,6 +68,7 @@ const Dornn = () => {
   const [headerFont, setHeaderFont] = useState(dw)
 
   const [markerFocused, setMarkerFocused] = useState(false)
+  const [markerClass, setMarkerClass] = useState(0);
 
   const [wakeupDone, setWakeupDone] = useState(false);
 
@@ -526,6 +527,7 @@ const Dornn = () => {
 
             map.dragging.disable();
             map.zoom.disable();
+            map.pinchZoom.disable();
           }
         },
         mouseover(event) {
@@ -691,14 +693,18 @@ const Dornn = () => {
     
   }, [])
 
-  async function selectPoligridPin(which, centered) {
+  async function selectPoligridPin(which, centered, targetMarkerClass) {
     
     const post = settlements.find((post) => post.name === settlement_handles_ordered[which])
     setCentered(centered);
     
     setSelectedSettlement(post);
 
-    if(marker)
+    console.log('set marker class to : ' + targetMarkerClass);
+    //purge to blank old marker even if the class is the same
+    setMarkerClass(-1);
+
+    if(marker){
       mapContainerRef.current.scrollIntoView()
 
       var ssOffsetX
@@ -716,8 +722,10 @@ const Dornn = () => {
       const position = [markerPositions[which][0] + ssOffsetY, markerPositions[which][1] + ssOffsetX] //offset for setup. TODO pick box disp side based on proximity to edge
       map.flyTo(position, 3)
     
+      setMarkerClass(targetMarkerClass);
       map.dragging.disable();
       map.zoom.disable();
+    }
   }
 
   const polities = (
@@ -747,7 +755,7 @@ const Dornn = () => {
         <div id="polwedge"></div>
         <img id="banner" src="../../species_frame_I.png" />
         <div id="majorpol-text">
-         <button onClick={() => selectPoligridPin(1, false)}>
+         <button onClick={() => selectPoligridPin(1, false, 0)}>
           <h2 className="blue force-vert-center">The Glassbloods</h2>
          </button>
         </div>
@@ -757,7 +765,7 @@ const Dornn = () => {
       <div id="polwedge"></div>
         <img id="banner" src="../../species_frame_I.png" />
         <div id="majorpol-text">
-          <button onClick={() => selectPoligridPin(2, false)}>
+          <button onClick={() => selectPoligridPin(2, false, 0)}>
             <h2 className="white force-vert-center">The Crux</h2>
           </button>
         </div>
@@ -767,7 +775,7 @@ const Dornn = () => {
         <div id="polwedge"></div>
         <img id="banner" src="../../species_frame_I.png" />
         <div id="majorpol-text">
-           <button onClick={() => selectPoligridPin(3, false)}>
+           <button onClick={() => selectPoligridPin(3, false, 0)}>
             <h2 className="red force-vert-center">The Britchoffs</h2>
            </button>
         </div>
@@ -777,7 +785,7 @@ const Dornn = () => {
         <div id="polwedge"></div>
         <img id="banner" src="../../species_frame_I.png" />
         <div id="majorpol-text">
-            <button onClick={() => selectPoligridPin(4, false)}>
+            <button onClick={() => selectPoligridPin(4, false, 0)}>
                 <h2 className="gold force-vert-center">The Drairinni</h2>
             </button>
         </div>
@@ -787,7 +795,7 @@ const Dornn = () => {
       <div id="polwedge"></div>
         <img id="banner" src="../../species_frame_I.png" />
         <div id="majorpol-text">
-            <button onClick={() => selectPoligridPin(5, false)}>
+            <button onClick={() => selectPoligridPin(5, false, 0)}>
             <h2 className="orange force-vert-center">The Anterrosites</h2>
             </button>
         </div>
@@ -815,35 +823,35 @@ const Dornn = () => {
     </div>
     
     <div id="poli-grid-box">
-      <button id="poligrid-link" onClick={() => selectPoligridPin(6, false)}>Tholri's Domain</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(7, false)}>The Northfolk Enclave<br/><i id="subtitle-tiny">"Northern Jawbone"</i></button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(8, false)}>Hezzar’s Pit</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(9, false)}>Wormking's Sea</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(6, false, 0)}>Tholri's Domain</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(7, false, 0)}>The Northfolk Enclave<br/><i id="subtitle-tiny">"Northern Jawbone"</i></button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(8, false, 0)}>Hezzar’s Pit</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(9, false, 0)}>Wormking's Sea</button>
                                          
-      <button id="poligrid-link" onClick={() => selectPoligridPin(10, false)}>Holger's Keep</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(11, false)}>The Elfholds<br/><i id="subtitle-tiny">"Ilvor-Ylvindal"</i></button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(12, false)}>Northsea Confederacy</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(13, false)}>The Demonhunters<br/><i id="subtitle-tiny">(perfunctory)</i></button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(10, false, 0)}>Holger's Keep</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(11, false, 0)}>The Elfholds<br/><i id="subtitle-tiny">"Ilvor-Ylvindal"</i></button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(12, false, 0)}>Northsea Confederacy</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(13, false, 1)}>The Demonhunters<br/><i id="subtitle-tiny">(perfunctory)</i></button>
                                          
-      <button id="poligrid-link" onClick={() => selectPoligridPin(14, false)}>Decryptor Houses</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(15, false)}>The Midlands Historical Archive</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(16, false)}>Isles of Security</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(17, false)}>Wahlrect<br/><i id="subtitle-tiny">House of the Blood Tyrants</i></button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(14, false, 0)}>Decryptor Houses</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(15, false, 1)}>The Midlands Historical Archive</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(16, false, 0)}>Isles of Security</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(17, false, 1)}>Wahlrect<br/><i id="subtitle-tiny">House of the Blood Tyrants</i></button>
                                          
-      <button id="poligrid-link" onClick={() => selectPoligridPin(18, false)}>Ilkair</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(19, false)}>Deilān Federation</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(20, false)}>The Sword-Saints</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(21, true)}>The Faults</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(18, false, 0)}>Ilkair</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(19, false, 0)}>Deilān Federation</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(20, false, 1)}>The Sword-Saints</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(21, true, 3)}>The Faults</button>
                                          
-      <button id="poligrid-link" onClick={() => selectPoligridPin(22, false)}>Beastguard</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(23, false)}>Denton's League</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(24, false)}>The Sixfold Star</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(25, false)}>Brassworks Fellowship</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(22, false, 1)}>Beastguard</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(23, false, 0)}>Denton's League</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(24, false, 1)}>The Sixfold Star</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(25, false, 1)}>Brassworks Fellowship</button>
                                          
-      <button id="poligrid-link" onClick={() => selectPoligridPin(26, false)}>Ithuk's Initiates</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(27, false)}>Dreadpoint Forgesons</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(28, false)}>Schools of the Elementalist</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(29, false)}>Central Mint</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(26, false, 1)}>Ithuk's Initiates</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(27, false, 0)}>Dreadpoint Forgesons</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(28, false, 0)}>Schools of the Elementalist</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(29, false, 1)}>Central Mint</button>
     
     </div>
     
@@ -864,33 +872,33 @@ const Dornn = () => {
     </div>
     
     <div id="poli-grid-box">
-      <button id="poligrid-link" onClick={() => selectPoligridPin(30, false)} >The Theodryian Bridge</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(31, false)} >Salíran Dynasties</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(32, false)} >Kalamant</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(33, false)} >Deadlands Purging Company</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(30, false, 0)} >The Theodryian Bridge</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(31, false, 0)} >Salíran Dynasties</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(32, false, 0)} >Kalamant</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(33, false, 1)} >Deadlands Purging Company</button>
     
-      <button id="poligrid-link" onClick={() => selectPoligridPin(34, false)} >Ordo Terra-néve<br /><i id="subtitle-tiny">"Twilit Order"</i></button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(35, false)} >Argo's Riders</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(36, true)} >The Captain's Promise</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(37, false)} >Rogue Cosmologist Academies</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(34, false, 1)} >Ordo Terra-néve<br /><i id="subtitle-tiny">"Twilit Order"</i></button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(35, false, 1)} >Argo's Riders</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(36, true, 3)} >The Captain's Promise</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(37, false, 1)} >Rogue Cosmologist Academies</button>
     
-      <button id="poligrid-link" onClick={() => selectPoligridPin(38, false)} >The Encompassed</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(39, false)} >Northmount Calamity Concern</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(40, false)} >Statesmen</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(41, false)} >Tann's Lock</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(38, false, 0)} >The Encompassed</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(39, false, 1)} >Northmount Calamity Concern</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(40, false, 1)} >Statesmen</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(41, false, 2)} >Tann's Lock</button>
     
-      <button id="poligrid-link" onClick={() => selectPoligridPin(42, false)} >Dreamer's Rise</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(43, false)} >The Witchspine</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(44, false)} >Irwin's Council</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(45, false)} >The Golden Reach</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(42, false, 1)} >Dreamer's Rise</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(43, false, 0)} >The Witchspine</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(44, false, 2)} >Irwin's Council</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(45, false, 1)} >The Golden Reach</button>
     
-      <button id="poligrid-link" onClick={() => selectPoligridPin(46, false)} >Barod-Dām</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(47, false)} >Theodryia</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(48, false)} >Isles of Contentment</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(49, false)} >People of Krym</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(46, false, 1)} >Barod-Dām</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(47, false, 0)} >Theodryia</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(48, false, 0)} >Isles of Contentment</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(49, false, 2)} >People of Krym</button>
     
-      <button id="poligrid-link" onClick={() => selectPoligridPin(50, true)} >Olcrid</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(51, false)} >Zaic-Zahl<br /><i id="subtitle-tiny">"Basalt Towers"</i></button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(50, true, 3)} >Olcrid</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(51, false, 2)} >Zaic-Zahl<br /><i id="subtitle-tiny">"Basalt Towers"</i></button>
     
     
     </div>
@@ -907,44 +915,44 @@ const Dornn = () => {
         of Dornnian cartographies. That, or they are plainly-powerful enough to hold their ground amongst the Midlanders despite near-constant invasion and war. Neither is preferable for the average adventurer. 
         Generally speaking, it is not advisable to confront representatives of these factions alone. 
         </p>
-      </div>
+      </div>, 0
     </div>
     
     <div id="poli-grid-box">
-      <button id="poligrid-link" onClick={() => selectPoligridPin(52, false)}>Draid</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(53, false)}>The Stone Unit</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(54, false)}>Rhômi's Hand</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(55, false)}>The Jawlord Lives!</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(52, false, 0)}>Draid</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(53, false, 0)}>The Stone Unit</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(54, false, 0)}>Rhômi's Hand</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(55, false, 0)}>The Jawlord Lives!</button>
       
-      <button id="poligrid-link" onClick={() => selectPoligridPin(56, true)}>Cosmolarian Visitors</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(57, false)}>Avaroth</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(58, false)}>Auditors</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(59, false)}>The Remaining Riders</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(56, true, 3)}>Cosmolarian Visitors</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(57, false, 0)}>Avaroth</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(58, false, 1)}>Auditors</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(59, false, 1)}>The Remaining Riders</button>
       
-      <button id="poligrid-link" onClick={() => selectPoligridPin(60, false)}>Yardol</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(61, true)}>The Five Spines</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(62, false)}>Trawlers</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(63, false)}>Epitaxor-Lords</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(60, false, 0)}>Yardol</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(61, true, 3)}>The Five Spines</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(62, false, 0)}>Trawlers</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(63, false, 1)}>Epitaxor-Lords</button>
       
-      <button id="poligrid-link" onClick={() => selectPoligridPin(64, false)}>Woodsmen</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(65, true)}>Eschian Relics</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(66, true)}>Antimortal Empires</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(67, true)}>Basilisks</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(64, false, 1)}>Woodsmen</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(65, true, 3)}>Eschan Relics</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(66, true, 3)}>Antimortal Empires</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(67, true, 3)}>Basilisks</button>
      
-      <button id="poligrid-link" onClick={() => selectPoligridPin(68, true)}>House of Jai-Urn</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(69, true)}>Primal Vampirics</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(70, false)}>Coldbody Guardsmen</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(71, false)}>Atrophykos</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(68, true, 3)}>House of Jai-Urn</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(69, true, 3)}>Primal Vampirics</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(70, false, 1)}>Coldbody Guardsmen</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(71, false, 2)}>Atrophykos</button>
  
-      <button id="poligrid-link" onClick={() => selectPoligridPin(72, false)}>Lilted Ones</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(73, false)}>The Scorched</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(74, false)}>The Rimed</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(75, true)}>Icons</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(72, false, 0)}>Lilted Ones</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(73, false, 2)}>The Scorched</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(74, false, 2)}>The Rimed</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(75, true, 3)}>Icons</button>
       
-      <button id="poligrid-link" onClick={() => selectPoligridPin(76, false)}>Recluses</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(77, true)}>Deeper Echoes</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(78, true)}>Ysteria</button>
-      <button id="poligrid-link" onClick={() => selectPoligridPin(79, true)}>Demons</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(76, false, 2)}>Recluses</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(77, true, 3)}>Deeper Echoes</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(78, true, 3)}>Ysteria</button>
+      <button id="poligrid-link" onClick={() => selectPoligridPin(79, true, 3)}>Demons</button>
     
     
     </div>
@@ -1080,16 +1088,22 @@ const Dornn = () => {
                     <button className='py-5 map-return' onClick={goBack}>GO BACK</button>
                     </div> :  null }
 
-                  { (markerFocused && !focused) ? <div className={centered ? "settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" : "settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto"}>
-                    <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': selectedSettlement.nameColor.hex, 'fontFamily' : headerFont}}>{selectedSettlement.name}</h>
-                    <p>
-                      <i>
-                        {selectedSettlement.subtitle}
-                      </i>
-                    </p>
-                    <p className="inline-block pt-5 pb-0  px-5 map-info-content" dangerouslySetInnerHTML={{ __html: selectedSettlement.content }}>
-                    </p>
-                    <button className='py-5 map-return' onClick={closeSettlementPopup}>GO BACK</button>
+                  { (markerFocused && !focused) ?
+                    <div>
+                      { markerClass == 0 ? <div className='animatedPin animatedPinCapital'></div> : null }
+                      { markerClass == 1 ? <div className='animatedPin animatedPinFortress'></div> : null }
+                      { markerClass == 2 ? <div className='animatedPin animatedPinUnknown'></div> : null }
+                      <div className={centered ? "settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" : "settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto"}>
+                      <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': selectedSettlement.nameColor.hex, 'fontFamily' : headerFont}}>{selectedSettlement.name}</h>
+                      <p>
+                        <i>
+                          {selectedSettlement.subtitle}
+                        </i>
+                      </p>
+                      <p className="inline-block pt-5 pb-0  px-5 map-info-content" dangerouslySetInnerHTML={{ __html: selectedSettlement.content }}>
+                      </p>
+                      <button className='py-5 map-return' onClick={closeSettlementPopup}>GO BACK</button>
+                      </div>
                     </div> :  null }
                   
                 </div>
