@@ -915,7 +915,7 @@ const Dornn = () => {
         of Dornnian cartographies. That, or they are plainly-powerful enough to hold their ground amongst the Midlanders despite near-constant invasion and war. Neither is preferable for the average adventurer. 
         Generally speaking, it is not advisable to confront representatives of these factions alone. 
         </p>
-      </div>, 0
+      </div>
     </div>
     
     <div id="poli-grid-box">
