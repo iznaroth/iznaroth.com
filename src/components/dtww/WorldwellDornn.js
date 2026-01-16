@@ -54,6 +54,9 @@ const Dornn = () => {
   const [selectedBody, setSelectedBody] = useState(null);
   const [selectedPoly, setSelectedPoly] = useState(screenBounds);
   const [selectedSettlement, setSelectedSettlement] = useState(null);
+  const [infoPanel, setInfoPanel] = useState(null);
+  const [settlementsTab, setSettlementsTab] = useState(null);
+  const [territoriesTab, setTerritoriesTab] = useState(null);
   const [mapControlState, setMapControlState] = useState([false, false]); //represents drag and zoom restrictions
 
   const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
@@ -66,6 +69,8 @@ const Dornn = () => {
   const roman = 'Gideon Roman'
 
   const [headerFont, setHeaderFont] = useState(dw)
+
+  const [entityFocused, setEntityFocused] = useState(false)
 
   const [markerFocused, setMarkerFocused] = useState(false)
   const [markerClass, setMarkerClass] = useState(0);
@@ -131,7 +136,6 @@ const Dornn = () => {
 
     for(let i = 0; i < zoneArray.length; i++){
         if(which == screenBounds){
-          console.log("RESET " + i);
           newOpacitiesArray[i] = 0.0; //reset bounds - disable blockers
         }
         else if(zoneArray[i] != which){
@@ -160,14 +164,12 @@ const Dornn = () => {
 
   useEffect(() => {
     if(info == null && !runMonitor1){
-    console.log("rereq map info")
       setRunMonitor1(true); //repeat insurance, unnecessary when we add []
       graphcms.request(QUERY_MAPENTRY)
       .then(res => setInfo(res.mapInfos))
     }
 
     if(settlements == null && !runMonitor2){
-      console.log("rereq sett info")
         setRunMonitor2(true);
         graphcms.request(QUERY_SETTLEMENTENTRY)
         .then(res => setSettlements(res.settlementInfos))
@@ -206,7 +208,13 @@ const Dornn = () => {
 
     map.dragging.enable();
     map.zoom.enable();
- }
+  }
+
+  function selectCapitalPopout(){
+    console.log("popout");
+    settlementsTab.classList.toggle("banner-extend");
+    infoPanel.classList.toggle("settlement-bumped");
+  }
 
   //genuinely how does this work and why is it like this? it's a component function, so i guess it just runs all this once at wakeup 
   function SetBoundsPolygons() {
@@ -728,6 +736,17 @@ const Dornn = () => {
     }
   }
 
+  async function selectEntity(which, centered, targetMarkerClass){
+    //focus
+    setEntityFocused(true);
+    //setFocused(true);
+
+    //pop panel more?
+
+    //marker render vs ?? - close-layer subterritory capital subservient etc
+
+  }
+
   const polities = (
 
     <>
@@ -739,7 +758,15 @@ const Dornn = () => {
     <br /> <br />
     <b className='green'><u>Click on any individual faction header to select their capital on the map. </u></b>
     </p>
-    
+
+    <div id="politic-box">
+      <div id="polwedge"></div>
+      <div id="majorpol-text">
+        <button onClick={() => selectEntity(1, false, 0)}>
+        <h2 className="blue force-vert-center">this button tests the new entity panel.</h2>
+        </button>
+      </div>
+    </div>
     
     <div id="spec-header-box">
       <div id="species-text">
@@ -979,31 +1006,7 @@ const Dornn = () => {
 
   return (
     
-    <div className='worldwell min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)'}}>
-      {/* 
-
-      <Collapse in={open}>
-        <Alert severity="warning"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setOpen(false);
-              }}
-            >
-              CLOSE
-            </IconButton>
-          }
-          sx={{ mb: 2 }}
-        >Hey! This specific page is not currently optimized for mobile--if used on small screens, you will encounter visual errors and the information may not be legible. Check back soon!
-        </Alert>
-      </Collapse>
-    */}
-      
-      
-
+    <div className='worldwell min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)' }}>
       <section id="logo" className="wwlogo">
       <a className="m-auto lg:w-2/5 md:w-3/5 sm:w-4/5" href="/dtww">  
       <img
@@ -1104,6 +1107,44 @@ const Dornn = () => {
                       </p>
                       <button className='py-5 map-return' onClick={closeSettlementPopup}>GO BACK</button>
                       </div>
+                    </div> :  null }
+
+                  { (entityFocused && !focused) ?
+                    <div className="settlement-base"> 
+                      <div ref={setInfoPanel} className={centered ? "settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" : "settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto"}>
+                        <div className="settlement-content-scrollable">
+                          <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': 'white', 'fontFamily' : headerFont}}>Test Entity</h>
+                          <p>
+                            <i>
+                              Test Entity Subtitle
+                            </i>
+                          </p>
+                          <p className="inline-block pt-5 pb-0  px-5 map-info-content">
+                            Test Entity Content
+
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sagittis ante quis velit egestas pharetra. Curabitur quis laoreet dui. Integer volutpat felis consectetur pellentesque sodales. Aenean lobortis neque enim, a semper urna semper quis. Maecenas diam elit, tincidunt sed tellus nec, dapibus hendrerit ante. Nullam eu efficitur sem. Fusce semper iaculis ex ac porttitor. Integer sit amet nulla ac nunc ullamcorper ultricies sed id dolor. Etiam pharetra, nisl a suscipit malesuada, eros leo lobortis metus, ut condimentum felis dolor in turpis. Praesent viverra arcu eget sollicitudin sodales. Proin lacinia ipsum vel nunc sodales, vel cursus leo mollis. Vivamus et quam tincidunt, maximus ante eget, fermentum purus. Sed laoreet nisi vitae diam elementum, at consectetur arcu scelerisque. Aenean efficitur sit amet ex in consequat. Maecenas tempor nulla non consectetur varius.
+
+                            Nam porta at arcu et porttitor. In quis purus non ex pharetra fermentum id eget risus. Vestibulum mollis, eros quis pharetra vulputate, odio ante volutpat felis, vel ultricies nisi ante a orci. Pellentesque sit amet condimentum augue, sit amet bibendum elit. Donec fermentum ullamcorper dui vel placerat. Pellentesque vel libero et ex imperdiet molestie a id felis. Nulla finibus, lorem porttitor pellentesque tempus, purus massa tincidunt metus, ut tincidunt massa orci eu felis. Etiam bibendum ut dui quis venenatis.
+
+                            Praesent non neque imperdiet ipsum dictum pretium id ac metus. Nullam ex ligula, maximus in risus ac, fringilla luctus lorem. Pellentesque id augue a ante consectetur dignissim. Fusce vulputate neque at dolor fermentum, in vulputate metus mollis. Fusce mattis auctor orci, at rhoncus nibh. Sed dictum augue id arcu ornare, quis tincidunt nunc facilisis. Proin ut eros ut mauris suscipit porttitor id eu lorem. Duis at varius urna.
+
+                            Nam pharetra mi tempus felis consequat interdum. Maecenas maximus scelerisque euismod. Mauris tempus, leo in rhoncus auctor, mauris ligula fringilla sem, vulputate rhoncus erat nibh vitae erat. Morbi sed tellus sapien. Vestibulum ante purus, bibendum nec gravida iaculis, suscipit tincidunt nisi. Duis libero nunc, ultricies sed euismod vitae, vestibulum sed augue. Nullam velit urna, vulputate in sapien consequat, vestibulum maximus neque. Nullam ut aliquam turpis, in ultricies turpis. Nunc pharetra sodales erat quis placerat.
+                          </p>
+                          <div>
+                            <button className='py-5 map-return' onClick={closeSettlementPopup}>GO BACK</button>
+                          </div>
+                        </div>
+                        <div ref={setSettlementsTab} className="hoverTab holdingsHoverTab" style={{'borderImage': 'url(/hoverbar_tile.png) 20 / 16px / .25 stretch'}}>
+                          <div className='px-5 '>
+                            <div className='text-center whitespace-nowrap dynamic-header' style={{'fontFamily' : headerFont, 'color' : 'white'}}>Test Capital</div>
+                            <div className='text-center whitespace-nowrap dynamic-subtitle' style={{'fontFamily' : headerFont, 'color' : 'grey'}}>Test Capital Subtitle (489750832974539)</div>
+                          </div>
+                          <button  onClick={selectCapitalPopout}>
+                            <img className='px-1 hovericon' src="../../crown_icon.png"></img>
+                          </button>
+                        </div>
+                      </div>
+                      <div className="territoriesHoverTab"></div>
                     </div> :  null }
                   
                 </div>

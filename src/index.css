@@ -674,26 +674,36 @@ a:hover {
 	color: #c4635c;
 }
 
-
+.settlement-base{
+  z-index: 0;
+}
 
 .settlement {
   vertical-align: bottom;
   bottom: 0%;
   max-width: 100%;
   max-height: 60%;
+  overflow: visible;
 }
 
 @media (min-width: 625px) {
   .settlement {
-    top: 0;
     vertical-align: middle;
-    top: 10%;
-    left: 49%;
-    max-width: 60%;
-    max-height: 85%;
+    top: 10vh;
+    right: 8vw;
+    max-width: 50vw;
+    max-height: 75vh;
     bottom: auto;
-    
+    transition: right 2s ease;
   }
+}
+
+.settlement-bumped {
+  right: 27vw;
+}
+
+.banner-extend{
+  right: calc(-24vw) !important;
 }
 
 .settlement-centered {
@@ -701,6 +711,7 @@ a:hover {
   bottom: 0%;
   max-width: 100%;
   max-height: 60%;
+  overflow: visible;
 }
 
 @media (min-width: 625px) {
@@ -712,8 +723,12 @@ a:hover {
     max-width: 60%;
     max-height: 85%;
     bottom: auto;
-    
   }
+}
+
+.settlement-content-scrollable {
+  overflow-y: auto;
+  max-height: 600px;
 }
 
 .mapBlocker {
@@ -734,6 +749,38 @@ a:hover {
     bottom: auto;
     
   }
+}
+
+.holdingsHoverTab {
+  position: absolute;
+  top: 0;
+  right: -70px;
+  display: flex;
+  background-clip: content-box;
+  background-color: black;
+  z-index: -1;
+  border-width: 6px;
+  max-width: 100%;
+  align-items: center;
+  width: max-content;
+  transition: right 2s ease;
+}
+/*
+.dynamic-header{
+  font-size: clamp(5px, 2vw, 20px);
+}
+
+.dynamic-subtitle{
+  font-size: clamp(7px, 1vw, 14px);
+}
+*/
+
+.territoriesHoverTab {
+  
+}
+
+.territoryText {
+  font: 'IM Fell DW Pica';
 }
 
 .bio-container img{
@@ -1018,6 +1065,10 @@ a:hover {
 .polygon-hover
 {
   opacity: 1;
+}
+
+.kdm-center {
+  max-width: 80vw;
 }
 
 h1.double {
