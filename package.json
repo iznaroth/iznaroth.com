@@ -4,34 +4,32 @@
   "homepage": "https://www.iznaroth.com",
   "private": true,
   "dependencies": {
-    "@emotion/react": "^11.11.1",
-    "@emotion/styled": "^11.11.0",
-    "@heroicons/react": "^1.0.5",
-    "@mui/material": "^5.14.7",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.4.0",
-    "dotenv": "^16.3.1",
-    "graphql-request": "^6.1.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@heroicons/react": "^2.2.0",
+    "@mui/material": "^7.3.7",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3",
+    "graphql-request": "^7.4.0",
     "leaflet": "^1.9.4",
     "panzoom": "^9.4.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-dropdown": "^1.11.0",
-    "react-helmet-async": "^2.0.5",
-    "react-leaflet": "^4.2.1",
-    "react-resize-detector": "^9.1.0",
-    "react-router-dom": "^6.13.0",
-    "react-scripts": "^5.0.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-leaflet": "^5.0.0",
+    "react-resize-detector": "^12.3.0",
+    "react-router-dom": "^7.12.0",
     "react-transition-group": "^4.4.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^5.1.0"
   },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "CI=false && react-scripts build",
+    "start": "vite",       
+    "build": "vite build",  
+    "preview": "vite preview", 
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -57,8 +55,11 @@
     ]
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.2",
-    "postcss": "^8.4.6",
-    "tailwindcss": "^3.0.22"
+    "@tailwindcss/postcss": "^4.1.18",
+    "@vitejs/plugin-react": "^5.1.2",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.18",
+    "vite": "^7.3.1"
   }
 }

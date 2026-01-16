@@ -1,8 +1,8 @@
 import '../../../index.css';
 
 import {React,  useState, useEffect, useRef } from 'react';
-import EmptyList from '../../blog/EmptyList';
-import BlogShorthand from '../../blog/BlogShorthand';
+import EmptyList from '../EmptyList';
+import BlogShorthand from '../BlogShorthand';
 
 
 
