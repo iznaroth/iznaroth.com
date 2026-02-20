@@ -411,5 +411,22 @@
     z-index: 1000 !important;
   }
 
+  .list-hoverable:hover{
+    background-color: #3b4e43 !important;
+  }
+
+  .sublist-hoverable:hover{
+    background-color: #377053 !important;
+  }
+
+  .circle {
+    height: 20px; 
+    width: 20px; 
+    border-radius: 50%; 
+    border-color: white;
+    border-width: 2px;
+    margin-right: 8px;
+  }
+
   /**/
 

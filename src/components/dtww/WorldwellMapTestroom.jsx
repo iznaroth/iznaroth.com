@@ -5,8 +5,9 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import * as PIXI from 'pixi.js';
 import 'leaflet-pixi-overlay';
+import geojsonRbush from 'geojson-rbush';
 
-import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo, Component } from 'react';
 import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, LayerGroup, LayersControl, GeoJSON, SVGOverlay } from 'react-leaflet'
 import { CRS, icon, map, marker } from 'leaflet'
 import { useResizeDetector } from 'react-resize-detector';
@@ -20,8 +21,6 @@ import testVoronoiPoints from './filtered_points.json';
 import voronoiGeoData from './voronoi_data.json';
 import sorted from './sorted_data.json';
 import tinySlice from './cut_data_0.json';
-import oneShape from './oneshape.json';
-import bigSlice from './25k.json';
 import firstSlice from './cropped_data_0.json'
 import secondSlice from './cropped_data_1000.json'
 import thirdSlice from './cropped_data_11000.json'
@@ -32,6 +31,15 @@ import seventhSlice from './cropped_data_51000.json'
 import eighthSlice from './cropped_data_61000.json'
 import concat from './concat.json'
 import unified from './svg_cutouts_unified.json'
+import { ClassNames } from '@emotion/react';
+
+//import structure
+import alliances from './alliances.json';
+import entities from './entities.json';
+import subentities from './subentities.json';
+import inter from './inter.json';
+
+//
 
 const screenBounds = [
   [0, 0],
@@ -57,35 +65,23 @@ const borderColor = { color: 'black' }
 const Dornn = () => {
 
   const mapContainerRef = useRef(null);
-  const [focused, setFocused] = useState(false);
-  const [centered, setCentered] = useState(false);
-  const [map, setMap] = useState(null);
-  const [extraLayers, setExtraLayers] = useState(null);
-  const [info, setInfo] = useState(null);
-  const [settlements, setSettlements] = useState(null);
-  const [selectedBody, setSelectedBody] = useState(null);
-  const [selectedPoly, setSelectedPoly] = useState(screenBounds);
-  const [selectedSettlement, setSelectedSettlement] = useState(null);
-  const [infoPanel, setInfoPanel] = useState(null);
-  const [settlementsTab, setSettlementsTab] = useState(null);
-  const [territoriesTab, setTerritoriesTab] = useState(null);
-  const [mapControlState, setMapControlState] = useState([false, false]); //represents drag and zoom restrictions
-  const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
-  const [runMonitor1, setRunMonitor1] = useState(false);
-  const [runMonitor2, setRunMonitor2] = useState(false);
-  const [classNames, setClassNames] = useState(['map-polygon'])
+  const layerNodeRef = useRef(null);
+  const [mapRef, setMapRef] = useState(null);
   const dw = 'IM Fell DW Pica'
   const roman = 'Gideon Roman'
-  const [headerFont, setHeaderFont] = useState(dw)
-  const [entityFocused, setEntityFocused] = useState(false)
-  const [markerFocused, setMarkerFocused] = useState(false)
-  const [markerClass, setMarkerClass] = useState(0);
-  const [wakeupDone, setWakeupDone] = useState(false);
-  const [testJson, setTestJson] = useState(null);
+
+  const [layerCont, setLayerCont] = useState(null);
 
   //deprecated
   function timeout(delay) {
     return new Promise( res => setTimeout(res, delay) );
+  }
+
+  function componentDidMount() {
+    // Access the Leaflet layers control instance after the component mounts
+    setLayerCont(this.refs.layersControl.leafletElement); 
+    // You can now use the native Leaflet API methods on this.layerControl
+    console.log(layerContRef); 
   }
 
   const onEachFeature = (feature, layer) => {
@@ -305,179 +301,8 @@ const Dornn = () => {
     console.log('succesfully saved file');
   }
 
-  function GeoLayer(props){
-    return (<><GeoJSON 
-        data={props.geoData}
-        style={() => ({
-          color: props.lineColor,
-          weight: 2,
-          opacity: 1,
-          fillColor: '#ffffff',
-          fillOpacity: 0.5
-        })}
-      ></GeoJSON></>
-    )
-  }
-
-
-  //WORKING PIXILAYER, BUT IT DOES NOT EVER FREE ANYTHING ON RECALCULATION
-  const PixiGeoJsonLayer = ({ data }) => {
-    const map = useMap();
-    
-    useEffect(() => {
-      console.log('in pixi generator');
-      console.log(data);
-
-      const pixiContainer = new PIXI.Container();
-      const overlay = L.pixiOverlay((utils) => {
-        const container = utils.getContainer();
-        const project = utils.latLngToLayerPoint;
-        const scale = utils.getScale();
-        
-        // Clear and redraw
-        container.removeChildren();
-        const graphics = new PIXI.Graphics();
-        
-        data.features.forEach(feature => {
-          graphics.lineStyle(2 / scale, 0xFF0000);
-          graphics.beginFill(0xFF0000, 0.5);
-          
-          //console.log(feature.geometry.coordinates);
-          if(feature.geometry.type === 'Polygon'){
-            feature.geometry.coordinates.forEach(coords => {
-              console.log('RED PRETRANSFORM');
-              console.log(coords);
-              const points = coords.map(c => {
-                //console.log('whats in c? ' + c);
-                const p = project([c[1], c[0]]); // GeoJSON [Lon, Lat] -> [Lat, Lon]
-                return [p.x, p.y];
-              }).flat();
-              
-              console.log('RED');
-              console.log(points);
-              graphics.drawPolygon(points);
-            })
-          } else if (feature.geometry.type === 'MultiPolygon'){
-            feature.geometry.coordinates.forEach(coordSet => {
-              //console.log('whats in coords?');
-              //console.log(coords);
-              coordSet.forEach(coords => {
-                const points = coords.map(c => {
-                    //console.log('whats in c? ' + c);
-                    const p = project([c[1], c[0]]); // GeoJSON [Lon, Lat] -> [Lat, Lon]
-                    return [p.x, p.y];
-                  }).flat();
-                  
-                  console.log('RED');
-                  console.log(points);
-                  graphics.drawPolygon(points);
-              })
-            })
-          }
-        });
-
-        container.addChild(graphics);
-        console.log('rerender!');
-        console.log(container);
-        utils.getRenderer().render(container);
-      }, pixiContainer);
-
-      overlay.addTo(map);
-      return () => map.removeLayer(overlay);
-    }, [map, data]);
-
-    return null;
-  };
-
-
-
-  //2ND WORKING PIXILAYER?
-  const PixiGeoJsonLayerEdit = ({ data }) => {
-    const map = useMap();
-
-    console.log('HOW MANY HITS?');
-    const calculatedPoints = data.features.map(feature => {
-        const coords = feature.geometry.coordinates;
-        if (feature.geometry.type === 'Polygon') {
-          // IMPORTANT: Swap [x, y] to [y, x] and project to Zoom 0 pixels
-          return {
-            coordinates: coords.map(coordinateSet => {
-              return coordinateSet.map(c => {
-                const projected = map.options.crs.project(L.latLng(c, c));
-                const updatedProjected = [projected.y * 64, projected.x * -64];
-                return [projected.y * 64, projected.x * -64];
-              });
-            }),
-            type: feature.geometry.type
-          };
-        }
-
-        if (feature.geometry.type === 'MultiPolygon') {
-          // IMPORTANT: Swap [x, y] to [y, x] and project to Zoom 0 pixels
-          return {
-            coordinates: coords.map(subshape => {
-              return subshape.map(coordinateSet => {
-                return coordinateSet.map(c => {
-                  const projected = map.options.crs.project(L.latLng(c, c));
-                  const updatedProjected = [projected.y * 64, projected.x * -64];
-                  return [projected.y * 64, projected.x * -64];
-                });
-              });
-            }),
-            type: feature.geometry.type
-          }
-        }
-      });
-
-    console.log(calculatedPoints);
-    
-    useEffect(() => {
-      const pixiContainer = new PIXI.Container();
-
-      const overlay = L.pixiOverlay((utils) => {
-        const container = utils.getContainer();
-        const project = utils.latLngToLayerPoint;
-        const scale = utils.getScale();
-        
-        // Clear and redraw
-        container.removeChildren();
-        const graphics = new PIXI.Graphics();
-        
-        calculatedPoints.forEach(feature => {
-          graphics.lineStyle(2 / scale, 0x0000FF);
-          graphics.beginFill(0x0000FF, 0.5);
-          
-          //console.log(feature.geometry.coordinates);
-          if(feature.type === 'Polygon'){
-            feature.coordinates.forEach(pointsUnflat => {
-              const points = pointsUnflat.flat();
-              graphics.drawPolygon(points);
-            })
-          } else if (feature.type === 'MultiPolygon'){
-            feature.coordinates.forEach(coordSet => {
-              coordSet.forEach(pointsUnflat => {
-                const points = pointsUnflat.flat();
-                graphics.drawPolygon(points);
-              })
-            })
-          }
-        });
-
-        container.addChild(graphics);
-        console.log('rerender!');
-        console.log(container);
-        utils.getRenderer().render(container);
-      }, pixiContainer);
-
-      overlay.addTo(map);
-      return () => map.removeLayer(overlay);
-    }, [map, data]);
-
-    return null;
-  };
-
-  //2ND WORKING PIXILAYER?
-  const PixiGeoJsonLayerEdit2 = ({ data, name }) => {
+  //BASELINE SHAPE RENDER
+  const MonocolorPixiLayer = ({ data, name }) => {
     const map = useMap();
     const graphicsRef = useRef(new PIXI.Graphics());
 
@@ -489,7 +314,6 @@ const Dornn = () => {
       graphics.lineStyle(8, 0x0000FF);
       graphics.beginFill(0x0000FF, 0.5);
 
-      console.log('HOW MANY HITS?');
       data.features.forEach(feature => {
         const coords = feature.geometry.coordinates;
         if (feature.geometry.type === 'Polygon') {
@@ -528,8 +352,6 @@ const Dornn = () => {
         const mapOrigin = project(L.latLng(0, 0));
         
         container.addChild(graphics);
-        console.log(graphics)
-        
         
         renderer.render(container);
       }, new PIXI.Container());
@@ -539,11 +361,93 @@ const Dornn = () => {
         name: overlay
       };
 
-      L.control.layers(null, overlayMaps).addTo(map)
+      layerNodeRef.current.addOverlay(overlay, name);
+
+      //L.control.layers(null, overlayMaps).addTo(map)
 
       // 3. CLEANUP: Explicitly destroy to free GPU memory
       return () => {
         map.removeLayer(overlay);
+        layerNodeRef.current.removeLayer(overlay);
+        graphics.destroy({ children: true, texture: true, baseTexture: true });
+      };
+    }, [map, data]);
+
+    return null;
+  };
+
+  //BASELINE SHAPE RENDER
+  const MulticolorPixiLayer = ({ data, name }) => {
+    const map = useMap();
+    const graphicsRef = useRef(new PIXI.Graphics());
+
+    useEffect(() => {
+      if (!map || !data) return;
+
+      const graphics = graphicsRef.current;
+      graphics.clear(); // Clear only when the DATA changes, not on zoom
+
+      console.log('rerender' + name);
+      console.log(data);
+      if(data.features){
+        data.features.forEach(feature => {
+          graphics.lineStyle(8, feature.color ?? 0x00FF00);
+          graphics.beginFill(feature.color ?? 0x00FF00, 0.5);
+          const coords = feature.geometry.coordinates;
+          if (feature.geometry.type === 'Polygon') {
+            // IMPORTANT: Swap [x, y] to [y, x] and project to Zoom 0 pixels
+            coords.forEach(coordinateSet => {
+              const path = coordinateSet.map(c => {
+                const projected = map.options.crs.project(L.latLng(c, c));
+                return [projected.y * 64, projected.x * -64];
+              }).flat();
+
+              graphics.drawPolygon(path)
+            });
+          } else if (feature.geometry.type === 'MultiPolygon') {
+            coords.forEach(subshape => {
+              subshape.forEach(coordinateSet => {
+                const path = coordinateSet.map(c => {
+                  const projected = map.options.crs.project(L.latLng(c, c));
+                  return [projected.y * 64, projected.x * -64];
+                }).flat();
+
+                graphics.drawPolygon(path)
+              });
+            })
+          }
+        });
+      }
+      graphics.endFill();
+
+      const overlay = L.pixiOverlay((utils) => {
+        const container = utils.getContainer();
+        const renderer = utils.getRenderer();
+        const project = utils.latLngToLayerPoint;
+        const scale = utils.getScale();
+
+        // 2. TRANSFORM ONLY: Don't call drawPolygon here!
+        // This origin tells us where the world (0,0) is in current pixels
+        const mapOrigin = project(L.latLng(0, 0));
+        
+        container.addChild(graphics);
+        
+        renderer.render(container);
+      }, new PIXI.Container());
+
+      overlay.addTo(map);
+      const overlayMaps = {
+        name: overlay
+      };
+
+      layerNodeRef.current.addOverlay(overlay, name);
+
+      //L.control.layers(null, overlayMaps).addTo(map)
+
+      // 3. CLEANUP: Explicitly destroy to free GPU memory
+      return () => {
+        map.removeLayer(overlay);
+        layerNodeRef.current.removeLayer(overlay);
         graphics.destroy({ children: true, texture: true, baseTexture: true });
       };
     }, [map, data]);
@@ -562,9 +466,166 @@ const Dornn = () => {
   //a new color and parent. that's pretty much it *shrug*
 
   //the other half of this is a form that handles a complex object and maintains multiple states
+  const [rbush, setRbush] = useState(null); //contains spatially-indexed form of the concat set
+  
+  //threemap - we need to retrieve and replace so there has to be a binding
+  //the key for a polygon is the hashcode of the shape it copies - exactly as returned from the r-tree
+  const entityLayer = new Map();
+  const subentityLayer = new Map();
+  const interLayer = new Map();
 
-  //entityDrawLayer
-  //subEntityDrawLayer
+  var [entityRenderSet, setEntityRenderSet] = useState(null);
+
+  const [selectedLayer, setSelectedLayer] = useState(entityLayer);
+  const [selectedEntity, setSelectedEntity] = useState(null);
+
+  const [entityEntries, setEntityEntries] = useState(new Map());
+
+  //initialize rbush
+  useEffect(() => {
+    console.log('init');
+    let tree = geojsonRbush();
+    console.log(concat);
+    tree.load(concat);
+    console.log(tree.all());
+    setRbush(tree); //holy ugly call
+
+    let subentitiesMap = new Map();
+    subentitiesMap.set('dyrit', {
+      name: 'dyrit',
+      color: '#3a478f'
+    })
+
+    subentitiesMap.set('palis', {
+      name: 'palis',
+      color: '#583e3e'
+    })
+
+    subentitiesMap.set('rona', {
+      name: 'rona',
+      color: '#477456'
+    })
+
+    subentitiesMap.set('laar', {
+      name: 'laar',
+      color: '#617437'
+    })
+
+    subentitiesMap.set('paxta', {
+      name: 'paxta',
+      color: '#69385d'
+    })
+
+    let interentities = new Map();
+    interentities.set('terraneve', {
+      name: 'Ordo Terra-néve',
+      color: '#684392'
+    });
+
+    //this will be assembled from the website tomorrow, but this is a patch
+    entityEntries.set('glassblood', {
+      name: 'glassblood',
+      color: '#79c5bb',
+      subentities: subentitiesMap,
+      inter: interentities
+    });
+
+    console.log(entities);
+
+    setSelectedEntity(entityEntries.get('glassblood'));
+
+  }, []);
+
+  useEffect(() => {
+    console.log('run every time entityRenderSet changes');
+    console.log(entityRenderSet);
+  }, [entityRenderSet])
+
+  const LocationFinder = () => {
+    const [position, setPosition] = useState(null);
+
+    useMapEvents({
+      click(e) {
+        // Access the latitude and longitude from the event object
+        setPosition(e.latlng);
+        console.log('Clicked coordinates:', e.latlng.lng, e.latlng.lat);
+        // You can also use the map instance if needed, via `const map = useMapEvents(...)`
+        let pt = turf.point([e.latlng.lng, e.latlng.lat]);
+        let result = rbush.search(pt);
+        console.log(result);
+
+        tryPaint(result);
+      },
+    });
+
+    return position ? (
+      <p>
+        Latitude: {position.lat.toFixed(4)}, Longitude: {position.lng.toFixed(4)}
+      </p>
+    ) : (
+      <p>Click the map to get coordinates</p>
+    );
+  };
+
+  function changeMode(event){
+    console.log(event.target.value);
+    switch (event.target.value){
+      case "entities":
+        setSelectedLayer(entityLayer);
+      case "subentities":
+        setSelectedLayer(subentityLayer);
+      case "internal":
+        setSelectedLayer(interEntityLayer);
+    } 
+  }
+
+  //map onclick handler
+  function tryPaint(hits){
+    //console.log('clicked! dependencies loaded:');
+    //console.log(selectedLayer);
+    //console.log(selectedEntity);
+
+    //for whatever map you have selected, we need to hash and look for collisions in the currently selected layer
+    hits.features.forEach(hit => {
+      let hash = quickHash(JSON.stringify(hit));
+      //console.log(hash);
+      let collision = selectedLayer.get(hash);
+
+      //handle replacement per mode
+      if(collision){
+          //
+      }
+
+      let hitCopy = structuredClone(hit);
+      hitCopy.owner = selectedEntity.name;
+      hitCopy.color = selectedEntity.color;
+
+      //console.log(hitCopy);
+
+      selectedLayer.set(hash, hitCopy);
+    })
+
+    console.log(entityRenderSet);
+
+    setEntityRenderSet(turf.featureCollection([...selectedLayer.values()]));
+    
+    //console.log('map');
+    //console.log(mapRef);
+    mapRef.fire('viewreset');
+
+  }
+
+  function quickHash(string){
+      var hash = 0;
+      for (var i = 0; i < string.length; i++) {
+          var code = string.charCodeAt(i);
+          hash = ((hash<<5)-hash)+code;
+          hash = hash & hash; // Convert to 32bit integer
+      }
+      return hash;
+  }
+
+
 
   return (
     <>
@@ -575,7 +636,7 @@ const Dornn = () => {
           {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
           <div id='map' ref={mapContainerRef}>
             <MapContainer 
-              ref={setMap} 
+              ref={setMapRef} 
               center={[1024, 2048]} 
               zoom={-2} 
               minZoom={-2}
@@ -584,25 +645,13 @@ const Dornn = () => {
               crs={CRS.Simple} 
               maxBounds={screenBoundsWiggle} 
               maxBoundsViscosity={0.9} tap={false} 
+              onClick={tryPaint}
             >
               <LandmassLayer />
-              <PixiGeoJsonLayerEdit2 data={concat} name="base"/>
-              <PixiGeoJsonLayerEdit2 data={null} name="alliance"/>
-              <PixiGeoJsonLayerEdit2 data={null} name="entity"/>
-              <PixiGeoJsonLayerEdit2 data={null} name="subentity"/>
-              <PixiGeoJsonLayerEdit2 data={null} name="inter"/>
-              <LayersControl position="topright">
-                <LayersControl.Overlay name="white">
-                  <ImageOverlay 
-                      url="../../plain_overlay.png" bounds={screenBounds} pagespeed_no_transform
-                  />
-                </LayersControl.Overlay>
-                <LayersControl.Overlay name="uncropped">
-                  <GeoLayer geoData={tinySlice} lineColor={'black'}/>
-                </LayersControl.Overlay>
-                <LayersControl.Overlay name="crop attempt I">
-                  <GeoLayer geoData={firstSlice} lineColor={'black'}/>
-                </LayersControl.Overlay>
+              <MonocolorPixiLayer data={concat} name="base"/>
+              <MulticolorPixiLayer data={entityRenderSet} name="entity"/>
+              <LocationFinder />
+              <LayersControl ref={layerNodeRef} position="topright">
                 <LayersControl.Overlay name="indi">
                   <IndivisibleLayer />
                 </LayersControl.Overlay>
@@ -610,8 +659,48 @@ const Dornn = () => {
             </MapContainer>
           </div>
         </div>
+        <div style={{'padding-bottom':'24px'}}>
+          <div style={{'width':'fit-content', 'margin': 'auto', 'padding-bottom':'24px'}}>
+            <div className='m-auto'>
+              <p className='m-left-auto' style={{'color': 'white', 'width': 'fit-content', 'font-size':'32px', 'padding-bottom':'12px'}}>SELECT ENTITY TO PAINT</p>
+            </div>
+            <div style={{'width':'fit-content', 'margin': 'auto'}}>
+              MODE: <select style={{'margin-bottom':'18px', 'width':'fit-content', 'margin-left': 'auto', 'margin-right':'8px'}} onChange={changeMode}>
+                <option value="entities">Entities</option>
+                <option value="subentities">Subentities</option>
+                <option value="internal">Internal Entities</option>
+              </select>
+              SELECTED: {selectedEntity?.name}
+            </div>
+          </div>
+          <div style={{'width':'85%', 'margin': 'auto', 'margin-bottom':'48px', 'max-height':'300px', 'overflowY':'auto'}}>
+            <ul style={{'list-style-type':'none'}}>
+              { 
+                [...entityEntries.values()].map(entity => <li key={entity.name} className='list-hoverable' style={{'margin-top':'2px', 'margin-bottom':'2px', 'padding':'6px','border':'1px solid #585858', 'background-color':'black'}}> 
+                  <div style={{'display':'flex'}}>
+                    <div className='circle' style={{'background-color':entity.color}}></div>
+                    <p>{entity.name}</p>
+                  </div>
+                  <p>-| SUBENTITIES</p>
+                  <ul>
+                    {
+                      [...entity.subentities.values()].map(subentity => <li key={subentity.name} className='sublist-hoverable' style={{'margin-top':'2px', 'margin-bottom':'2px', 'padding':'6px','border':'1px solid #2c2c2c', 'border-radius':'8px', 'background-color':'black'}}>{subentity.name}</li>)
+                    }
+                  </ul>
+                  <p>-| INTERNAL ENTITIES</p>
+                  <ul>
+                    {
+                      [...entity.inter.values()].map(internal => <li key={internal.name} className='sublist-hoverable' style={{'margin-top':'2px', 'margin-bottom':'2px', 'padding':'6px','border':'1px solid #2c2c2c', 'background-color':'black'}}>{internal.name}</li>)
+                    }
+                  </ul>
+                </li>)
+              }
+            </ul>
+          </div>
+        </div>
       </div>
-      <div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
+      
+      {/*<div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
         <button onClick={generateAndStoreVoronoiPolygons}>GENERATE VORONOI</button>
       </div>
       <div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
@@ -622,7 +711,7 @@ const Dornn = () => {
       </div>
       <div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
         <button onClick={quicksave}>save match batch</button>
-      </div>
+      </div>*/}
     </>
 
   );
