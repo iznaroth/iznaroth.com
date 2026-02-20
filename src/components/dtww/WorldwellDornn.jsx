@@ -1,4 +1,5 @@
 import '../../index.css';
+import * as turf from "@turf/turf";
 
 import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import EmptyList from '../blog/EmptyList';
@@ -6,7 +7,7 @@ import BlogList from '../blog/BlogList';
 import Header from '../blog/Header';
 import SearchBar from '../blog/SearchBar';
 import { request } from 'graphql-request';
-import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, LayerGroup, LayersControl } from 'react-leaflet'
+import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, LayerGroup, LayersControl, GeoJSON } from 'react-leaflet'
 import { CRS, icon, map, marker } from 'leaflet'
 import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY, QUERY_SETTLEMENTENTRY } from '../../graphql/Queries';
@@ -16,19 +17,19 @@ import { CSSTransition } from 'react-transition-group';
 import { Alert, Collapse, IconButton } from '@mui/material';
 
 
+//const screenBounds = [
+//  [0, 0],
+//  [511, 1068],
+//]
+
 const screenBounds = [
   [0, 0],
-  [511, 1068],
-]
-
-const st = [
-  [-500, -500],
-  [1011, 1568],
+  [8180, 17084],
 ]
 
 const screenBoundsWiggle = [
-  [-125, -125],
-  [611, 1168],
+  [-2045, -2045],
+  [10225, 19130],
 ]
 
 
@@ -81,7 +82,7 @@ const Dornn = () => {
   function mapWakeup(mapInstance){
     if(mapInstance != null && !wakeupDone){
       console.log("STARTUP FIT--------------->");
-      map.fitBounds(screenBounds);
+      //map.fitBounds(screenBounds);
       setWakeupDone(true);
     }
   }
@@ -191,7 +192,7 @@ const Dornn = () => {
      setFocused(false); 
      setSelectedPoly(screenBounds); 
      setZoneOpacities(screenBounds);
-     map.flyTo([256, 534], 0.4);
+     map.flyTo([256, 534], 0.0001);
      setSelectedBody(null);
      setMapControlState(true, true); //deprecated?
      
@@ -213,6 +214,40 @@ const Dornn = () => {
     console.log("popout");
     settlementsTab.classList.toggle("banner-extend");
     infoPanel.classList.toggle("settlement-bumped");
+  }
+
+  //handles the construction of the map subdivision layer for highlighting and splitting (nonperformant)
+  function SetTerritorialSubdivisions(){
+    /*
+    const options = {
+      bbox: [0, 0, 1068, 511]
+    };
+    const points = turf.randomPoint(200000, options);
+    const voronoiPolygons = turf.voronoi(points, options);
+
+    console.log(typeof(voronoiPolygons.features));
+
+    return (
+      <>
+        {
+          voronoiPolygons.features.map((item, index) => (
+            <GeoJSON 
+              key={index}
+              data={item}
+              style={() => ({
+              color: '#000000',
+              weight: 2,
+              opacity: 1,
+              fillColor: '#ffffff',
+              fillOpacity: 0
+            })}
+            ></GeoJSON>
+          ))
+        }
+      </>
+    )
+      */
+     return (<></>);
   }
 
   //genuinely how does this work and why is it like this? it's a component function, so i guess it just runs all this once at wakeup 
@@ -529,6 +564,8 @@ const Dornn = () => {
             map.invalidateSize();
             setHeaderFont(regionHeaderFont);
             
+            console.log('fly to bounds?');
+
             map.flyToBounds(regionBounds, {duration: 2})
             setSelectedPoly(regionBounds);
 
@@ -1049,7 +1086,7 @@ const Dornn = () => {
                     <MapContainer 
                       ref={setMap} 
                       center={[256, 534]} 
-                      zoom={0.4} 
+                      zoom={6} 
                       dragging={true} 
                       scrollWheelZoom={mapControlState[1]} 
                       zoomControl={true} 
@@ -1070,6 +1107,11 @@ const Dornn = () => {
                             <ImageOverlay 
                             url="../../just_names.png" bounds={screenBounds} pagespeed_no_transform
                             />
+                          </LayerGroup>
+                        </LayersControl.Overlay>
+                        <LayersControl.Overlay name="Voronoi View">
+                          <LayerGroup>
+                            <SetTerritorialSubdivisions />
                           </LayerGroup>
                         </LayersControl.Overlay>
                       </LayersControl>

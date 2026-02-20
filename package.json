@@ -11,25 +11,32 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.1",
     "@testing-library/user-event": "^14.6.1",
+    "@turf/turf": "^7.3.2",
+    "@turf/voronoi": "^7.3.2",
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
+    "geojson2svg": "^2.0.3",
+    "glify": "^0.5.1",
     "graphql-request": "^7.4.0",
     "leaflet": "^1.9.4",
+    "leaflet.glify": "^3.3.1",
     "panzoom": "^9.4.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "react-leaflet": "^5.0.0",
+    "react-leaflet-pixi-overlay": "^3.0.2",
     "react-resize-detector": "^12.3.0",
     "react-router-dom": "^7.12.0",
     "react-transition-group": "^4.4.5",
+    "vite-plugin-glsl": "^1.1.2",
     "web-vitals": "^5.1.0"
   },
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "vite",       
-    "build": "vite build",  
-    "preview": "vite preview", 
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -60,6 +67,7 @@
     "autoprefixer": "^10.4.23",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
-    "vite": "^7.3.1"
+    "vite": "^7.3.1",
+    "vite-plugin-glsl": "^1.5.5"
   }
 }

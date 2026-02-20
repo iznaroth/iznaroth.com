@@ -20,6 +20,7 @@ import WorldwellSystem from './components/dtww/WorldwellSystem';
 import WorldwellDornn from './components/dtww/WorldwellDornn';
 import WorldwellRK from './components/dtww/WorldwellRK'
 import WorldwellSpecies from './components/dtww/WorldwellSpecies'
+import WorldwellMapTestroom from './components/dtww/WorldwellMapTestroom'
 import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES, QUERY_DEVLOG, QUERY_WORLDWELL } from './graphql/Queries';
 import WorldwellCharacters from './components/dtww/WorldwellCharacters';
 
@@ -128,6 +129,13 @@ function App() {
           <Route path = "/dtww/character-creation" element = {
             <Fragment>
               <WorldwellCharacters />
+            </Fragment>
+          }>
+          </Route>
+
+          <Route path = "/dtww/test" element = {
+            <Fragment>
+              <WorldwellMapTestroom />
             </Fragment>
           }>
           </Route>

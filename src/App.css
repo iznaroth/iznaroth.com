@@ -407,5 +407,9 @@
     visibility: visible;
   }
 
+  .leaflet-zoom-animated {
+    z-index: 1000 !important;
+  }
+
   /**/
 

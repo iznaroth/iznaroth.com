@@ -89,6 +89,10 @@ input {
   min-height: 100vh;
 }
 
+.hover-highlight-poly:hover{
+  opacity: 1 !important;
+}
+
 .dtww-bg {
   max-width: 1200px;
   background-color: black;
