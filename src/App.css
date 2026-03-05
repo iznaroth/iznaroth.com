@@ -420,8 +420,8 @@
   }
 
   .circle {
-    height: 20px; 
-    width: 20px; 
+    height: 25px; 
+    width: 25px; 
     border-radius: 50%; 
     border-color: white;
     border-width: 2px;
