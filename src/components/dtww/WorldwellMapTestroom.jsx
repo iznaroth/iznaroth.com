@@ -31,6 +31,7 @@ import sixthSlice from './cropped_data_41000.json'
 import seventhSlice from './cropped_data_51000.json'
 import eighthSlice from './cropped_data_61000.json'
 import concat from './concat.json'
+import paintlayer from './paint_layer_full_edited.json' //all cells + indivisible landmasses
 import unified from './svg_cutouts_unified.json'
 import nomulti from './nomulti.json'
 import entityAgg from './entity_shapes.json'
@@ -43,7 +44,9 @@ import entities from './entities.json';
 import subentities from './subentities.json';
 import inter from './inter.json';
 
-//
+import preloadedPaintState from './paint_state.json'
+
+//const preloadedPaintState = null;
 
 const screenBounds = [
   [0, 0],
@@ -118,7 +121,6 @@ const Dornn = () => {
   //handles the construction of the map subdivision layer for highlighting and splitting (nonperformant)
   function LandmassLayer(){
     return (unified.features.map((item, index) => (<GeoJSON 
-              onEachFeature={onEachFeature}
               key={index}
               data={item}
               style={() => ({
@@ -135,7 +137,6 @@ const Dornn = () => {
   //handles the construction of the map subdivision layer for highlighting and splitting (nonperformant)
   function IndivisibleLayer(){
     return (<GeoJSON 
-              onEachFeature={onEachFeature}
               data={indivisibleCutouts.features}
               style={() => ({
               color: '#000000',
@@ -148,20 +149,26 @@ const Dornn = () => {
     
   }
 
+  //handles the construction of the map subdivision layer for highlighting and splitting (nonperformant)
+  function DivisibleLayer(){
+    return (<GeoJSON 
+              data={divisibleCutouts.features}
+              style={() => ({
+              color: '#000000',
+              weight: 2,
+              opacity: 1,
+              fillColor: '#ffffff',
+              fillOpacity: 0.5
+              })}
+            ></GeoJSON>)
+    
+  }
 
-  function quicksave(){
-    let startIdx = 0;
-    let size = 25000;
 
-    let saveSet = [];
+  function combine(){
+    let finalFeatures = turf.featureCollection([...concat.features, ...indivisibleCutouts.features]);
 
-    for(let i = startIdx; i < startIdx + size; i++){
-      saveSet.push(sorted.features[i]);
-    }
-
-    let finalFeatures = turf.featureCollection(saveSet);
-
-    jsonDownloadUtility(finalFeatures, 'cut_data_' + startIdx + '.json');
+    jsonDownloadUtility(finalFeatures, 'paint_layer_full.json');
   }
 
   function coercePolygonsToIntersectionBoundary(){
@@ -295,6 +302,26 @@ const Dornn = () => {
     const geoJSONstring = JSON.stringify(dataToStringify);
 
     const blob = new Blob([geoJSONstring], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    console.log('succesfully saved file');
+  }
+
+  function jsonDownloadUtilityObj(dataToStringify, filename){
+    console.log('ready to download!');
+
+    const jsonString = JSON.stringify(dataToStringify);
+    console.log(jsonString);
+
+    const blob = new Blob([jsonString], {type: 'application/json'});
     const url = URL.createObjectURL(blob);
 
     const a = document.createElement('a');
@@ -460,6 +487,7 @@ const Dornn = () => {
 
   function rerenderEntryTerritories(graphics, entries, container){
     //clear the graphics!
+    if(!mapRef) return;
     graphics.clear();
     
     entries.forEach(entry => {
@@ -470,8 +498,8 @@ const Dornn = () => {
 
       //for each shape in the territory collection, draw it in this color!
       [...entry.territories.values()].forEach(shape => {
-        console.log('shapeValid?');
-        console.log(shape);
+        //console.log('shapeValid?');
+        //console.log(shape);
         const coords = shape.geometry.coordinates;
         if (shape.geometry.type === 'Polygon') {
           // IMPORTANT: Swap [x, y] to [y, x] and project to Zoom 0 pixels
@@ -548,9 +576,9 @@ const Dornn = () => {
       case 'entity':
         return entityCollisionMap.current;
       case 'subentity':
-        return interCollisionMap.current.current;
+        return subentityCollisionMap.current;
       case 'inter':
-        return interCollisionMap;
+        return interCollisionMap.current;
     }
   }
 
@@ -563,6 +591,29 @@ const Dornn = () => {
       case 'inter':
         return interEntries.current;
     }
+  }
+
+  function getParentFontClass(parent){
+    console.log(parent);
+    switch(parent){
+      case 'MIDLAND COUNCIL (XII)':
+        return 'midland';
+      case 'INDEPENDENTS':
+        return 'independents';
+      case 'THE UNMORTAL LEAGUE':
+        return 'unmortal';
+      case 'SALÍRAN DYNASTIES':
+        return 'salir';
+      case 'DRAIDIC PACT':
+        return 'draid';
+      case 'FAR-NORTHERN ENCLAVE':
+        return 'enclave';
+      case 'THE THIRD MANDATE OF POWER':
+        return 'mandate';
+      case 'THE FRONTIER':
+        return 'frontier';
+    }
+
   }
 
   function onMouseDown(e){
@@ -584,8 +635,7 @@ const Dornn = () => {
      
     console.log('init');
     let tree = geojsonRbush();
-    console.log(concat);
-    tree.load(concat);
+    tree.load(paintlayer);
     console.log(tree.all());
     setRbush(tree); //holy ugly call
 
@@ -593,19 +643,24 @@ const Dornn = () => {
     rona paxta palis 
     */
 
-    mapEntities.data.settlementInfos.forEach(entity => {
-      let subentitiesMap = new Map();
-      let interEntitiesMap = new Map();
-      entityEntries.current.set(entity.name, {
-        name: entity.name,
-        color: entity.nameColor.hex,
-        subentities: subentitiesMap,
-        inter: interEntitiesMap,
-        territories: new Map(),
-        superentityName: entity.mapSuperentity.name,
-        aggregatedShape: null
+    if(preloadedPaintState){
+      loadSavedPaintState(preloadedPaintState);
+    } else {
+      mapEntities.data.settlementInfos.forEach(entity => {
+        let subentitiesMap = new Map();
+        let interEntitiesMap = new Map();
+        entityEntries.current.set(entity.name, {
+          name: entity.name,
+          color: entity.nameColor.hex,
+          subentities: subentitiesMap,
+          inter: interEntitiesMap,
+          territories: new Map(),
+          superentityName: entity.mapSuperentity.name,
+          aggregatedShape: null
+        })
       })
-    })
+    }
+    
 
     
     //setSelectedEntity(entityEntries.get('Glassblood'));
@@ -615,30 +670,78 @@ const Dornn = () => {
 
   }, []);
 
+  function loadSavedPaintState(state){
+    console.log(state);
+    let mappedEntities = new Map();
+    state.entities.forEach(entry => {
+      if(entry.territories){
+        let mappedTerritories = new Map();
+        entry.territories.forEach(shape => {
+          console.log(shape);
+          let shapeKey = quickHash(JSON.stringify(shape));
+          mappedTerritories.set(shapeKey, shape);
+          entityCollisionMap.current.set(shapeKey, shape);
+        });
+
+        entry.territories = mappedTerritories;
+        entry.subentities = new Map();
+        entry.inter = new Map();
+      }
+
+      mappedEntities.set(entry.name, entry);
+    });
+
+    
+
+    entityEntries.current = mappedEntities;
+    console.log(entityEntries.current);
+
+    //SUBENTITY EXTRACT ----------------
+    let mappedSubentities = new Map();
+    state.subentities.forEach(entry => {
+      if(entry.territories){
+        let mappedTerritories = new Map();
+        entry.territories.forEach(shape => {
+          let shapeKey = quickHash(JSON.stringify(shape));
+          mappedTerritories.set(shapeKey, shape);
+          subentityCollisionMap.current.set(shapeKey, shape);
+        });
+
+        entry.territories = mappedTerritories;
+      }
+
+      mappedSubentities.set(entry.name, entry);
+    });
+
+    subentityEntries.current = mappedSubentities;
+    console.log(subentityEntries.current);
+
+    //INTER EXTRACT -------------------
+    let mappedInter = new Map();
+    state.inter.forEach(entry => {
+      if(entry.territories){
+        let mappedTerritories = new Map();
+        entry.territories.forEach(shape => {
+          let shapeKey = quickHash(JSON.stringify(shape));
+          mappedTerritories.set(shapeKey, shape);
+          interCollisionMap.current.set(shapeKey, shape);
+        });
+
+        entry.territories = mappedTerritories;
+      }
+
+      mappedInter.set(entry.name, entry)
+    });
+
+    interEntries.current = mappedInter;
+    console.log(interEntries.current);
+  }
+
   const isMouseDown = useRef(false);
   const lastShapeEntered = useRef(null);
 
   const LocationFinder = () => {
     useMapEvents({
-      click(e) {
-        // You can also use the map instance if needed, via `const map = useMapEvents(...)`
-        let pt = turf.point([e.latlng.lng, e.latlng.lat]);
-        let result = rbush.search(pt);
-
-        //check which shape from the search result the point is actually in
-        let exact = null;
-        console.log(result);
-        result.features.forEach(hit => {
-          if(turf.booleanPointInPolygon(pt, hit)){
-            exact = hit;
-          }
-        });
-
-        if(exact){
-          tryPaint(exact);
-        }
-
-      },
       mousemove(e) {
         if(isMouseDown.current){
           let pt = turf.point([e.latlng.lng, e.latlng.lat]);
@@ -669,7 +772,7 @@ const Dornn = () => {
 
     let entitiesToUpdate = [...entitiesNeedingRebuild.current].map(entity => entityEntries.current.get(entity));
 
-    console.log('TO-UPDATE');
+    console.log('TO-UPDATE- SHOULD INCLUDE THE PARENT THAT LOST A SHAPE IN THIS EXCHANGE');
     console.log(entitiesToUpdate);
 
     entitiesToUpdate.forEach(entity => {
@@ -679,8 +782,18 @@ const Dornn = () => {
       
         entity.aggregatedShape.properties.color = entity.color;
         entity.aggregatedShape.properties.name = entity.name;
+        entity.aggregatedShape.properties.superentityName = entity.superentityName;
         entity.aggregatedShape.properties.labelColor = (('0x' + entity.color.slice(1)) & 0xfefefe) >> 1;
         console.log(entity.aggregatedShape);
+      } else if(territorySpread.length == 1){
+        entity.aggregatedShape = territorySpread[0];
+        entity.aggregatedShape.properties.color = entity.color;
+        entity.aggregatedShape.properties.name = entity.name;
+        entity.aggregatedShape.properties.superentityName = entity.superentityName;
+        entity.aggregatedShape.properties.labelColor = (('0x' + entity.color.slice(1)) & 0xfefefe) >> 1;
+        console.log(entity.aggregatedShape);
+      } else {
+        entity.aggregatedShape = null;
       }
     })
 
@@ -789,10 +902,10 @@ const Dornn = () => {
               className='mapclass'
               style={() => ({
               color: entity.color,
-              weight: 12,
+              weight: 6,
               opacity: 1,
               fillColor: entity.color,
-              fillOpacity: 0.5,
+              fillOpacity: 0.2,
               })}
       ></GeoJSON> : 
       <GeoJSON //fallback
@@ -805,7 +918,7 @@ const Dornn = () => {
                 weight: 12,
                 opacity: 1,
                 fillColor: '#000000',
-                fillOpacity: 0.5,
+                fillOpacity: 0.3,
                 })}
       ></GeoJSON>))}
     </FeatureGroup>)
@@ -831,12 +944,12 @@ const Dornn = () => {
 
     // Optional: Bind a popup with feature properties
     layer.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
-        `<span style="color: ${feature.properties.labelColor}; font-weight: bold;">
+        `<span style="color: ${feature.properties.color}; font-weight: bold;">
             ${feature.properties.name}
         </span>`, {
         permanent: true,     // Makes the label always visible
         direction: 'center', // Centers the label
-        className: 'map-label', // Add a custom CSS class for styling
+        className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`, // Add a custom CSS class for styling
         opacity: 1,
         offset: [0, 0]       // Adjust offset if needed
     });
@@ -851,6 +964,34 @@ const Dornn = () => {
 
     let featureSet = turf.featureCollection(entitySet);
     jsonDownloadUtility(featureSet, 'entity_shapes.json');
+  }
+
+  function saveCurrentPaintState(){
+    //serialize and return the current entity state, which can be used on-load to reconstruct everything.
+    let entitiesFlat = flattenCollectionUtil(entityEntries.current);
+    let subentitiesFlat = flattenCollectionUtil(subentityEntries.current);
+    let interFlat = flattenCollectionUtil(interEntries.current);
+
+    let exported = {
+      entities: entitiesFlat,
+      subentities: subentitiesFlat,
+      inter: interFlat
+    }
+
+    console.log(exported);
+
+    jsonDownloadUtilityObj(exported, 'paint_state.json');
+  }
+
+  function flattenCollectionUtil(collection){
+    //takes a map that has a 'territories' map property and flattens them for serialization.
+    let flat = [...collection.values()];
+
+    flat.forEach(entry => {
+      entry.territories = [...entry.territories.values()];
+    });
+
+    return flat;
   }
 
 
@@ -877,15 +1018,24 @@ const Dornn = () => {
               doubleClickZoom={false}
             >
               <LandmassLayer />
-              <MonocolorPixiLayer data={concat} name="base"/>
+              <MonocolorPixiLayer data={paintlayer} name="base"/>
               <EntityPixiPaintLayer name="entity"/>
               <LocationFinder />
               <LayersControl ref={layerNodeRef} position="topright">
                 <LayersControl.Overlay name="indi">
                   <IndivisibleLayer />
                 </LayersControl.Overlay>
+                <LayersControl.Overlay name="di">
+                  <DivisibleLayer />
+                </LayersControl.Overlay>
                 <LayersControl.Overlay name="agg">
                   <EntityLayerComponent />
+                </LayersControl.Overlay>
+                <LayersControl.Overlay name="dornn">
+                  <ImageOverlay 
+                    url="../../dornn_standard.png" bounds={screenBounds} pagespeed_no_transform
+                    opacity={0.4}
+                  />
                 </LayersControl.Overlay>
               </LayersControl>
             </MapContainer>
@@ -937,10 +1087,13 @@ const Dornn = () => {
         </div>
       </div>
       <div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
-        <button onClick={multiprint}>CUT MULTI</button>
+        <button onClick={combine}>FINAL JSON</button>
       </div>
       <div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
         <button onClick={saveEntityShapeData}>SAVE POLI</button>
+      </div>
+      <div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
+        <button onClick={saveCurrentPaintState}>SAVE PAINT STATE</button>
       </div>
       
       {/*<div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>

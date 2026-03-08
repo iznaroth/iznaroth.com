@@ -1145,3 +1145,84 @@ h1.default {
   color: black !important;
 }
 
+@font-face {
+  font-family: 'FahimSans'; /* A name you choose to use later */
+  src: url('../fonts/FahimSans.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'AvQuest'; /* A name you choose to use later */
+  src: url('../fonts/AvQuest.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'Ondrwaax'; /* A name you choose to use later */
+  src: url('../fonts/YourCustomFont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'Rediviva'; /* A name you choose to use later */
+  src: url('../fonts/Rediviva.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'Alice'; /* A name you choose to use later */
+  src: url('../fonts/Alice_in_Wonderland.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'Cardinal'; /* A name you choose to use later */
+  src: url('../fonts/Cardinal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+.midland{
+  font-family: 'Rediviva', serif !important;
+}
+
+/*.independents{
+
+}
+
+.unmortal{
+
+}
+
+.salir{
+
+}
+
+.draid{
+
+}
+
+.enclave{
+
+}
+
+.mandate{
+
+}
+
+.frontier{
+
+}*/
+
+
