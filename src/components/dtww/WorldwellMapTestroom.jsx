@@ -9,7 +9,7 @@ import geojsonRbush from 'geojson-rbush';
 
 import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo, Component } from 'react';
 import { flushSync } from 'react-dom';
-import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, LayerGroup, LayersControl, GeoJSON, SVGOverlay } from 'react-leaflet'
+import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, FeatureGroup, LayerGroup, LayersControl, GeoJSON, SVGOverlay } from 'react-leaflet'
 import { CRS, icon, map, marker } from 'leaflet'
 import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY, QUERY_SETTLEMENTENTRY } from '../../graphql/Queries';
@@ -286,7 +286,7 @@ const Dornn = () => {
     let entry = entityEntries.current.get(name);
     console.log(entry);
     //setSelectedEntity(entry);
-    selectedEntity.current = entry;
+    setSelectedEntity(entry);
   }
 
   function jsonDownloadUtility(dataToStringify, filename){
@@ -423,48 +423,13 @@ const Dornn = () => {
       if(!graphics) return;
       graphics.clear(); // Clear only when the DATA changes, not on zoom
 
-      /*
-      data.features.forEach(feature => {
-        graphics.lineStyle(8, feature.color ?? 0x00FF00);
-        graphics.beginFill(feature.color ?? 0x00FF00, 0.5);
-        const coords = feature.geometry.coordinates;
-        if (feature.geometry.type === 'Polygon') {
-          // IMPORTANT: Swap [x, y] to [y, x] and project to Zoom 0 pixels
-          coords.forEach(coordinateSet => {
-            const path = coordinateSet.map(c => {
-              const projected = map.options.crs.project(L.latLng(c, c));
-              return [projected.y * 64, projected.x * -64];
-            }).flat();
-
-            graphics.drawPolygon(path)
-          });
-        } else if (feature.geometry.type === 'MultiPolygon') {
-          coords.forEach(subshape => {
-            subshape.forEach(coordinateSet => {
-              const path = coordinateSet.map(c => {
-                const projected = map.options.crs.project(L.latLng(c, c));
-                return [projected.y * 64, projected.x * -64];
-              }).flat();
-
-              graphics.drawPolygon(path)
-            });
-          })
-        }
-      });
-      
-
-      graphics.endFill();
-      */
-
-      //first-pass render of whatever state we had stored
-      rerenderEntryTerritories(multicolorGraphics.current, [...entityEntries.current.values()]);
-
-
       const overlay = L.pixiOverlay((utils) => {
         const container = utils.getContainer();
         const renderer = utils.getRenderer();
         const project = utils.latLngToLayerPoint;
         const scale = utils.getScale();
+
+        rerenderEntryTerritories(multicolorGraphics.current, [...entityEntries.current.values()], container);
 
         // 2. TRANSFORM ONLY: Don't call drawPolygon here!
         // This origin tells us where the world (0,0) is in current pixels
@@ -476,6 +441,7 @@ const Dornn = () => {
       }, new PIXI.Container());
 
       pixiOverlayRef.current = overlay;
+      overlay.addTo(map);
       layerNodeRef.current.addOverlay(overlay, name);
 
 
@@ -492,7 +458,7 @@ const Dornn = () => {
     return null;
   };
 
-  function rerenderEntryTerritories(graphics, entries){
+  function rerenderEntryTerritories(graphics, entries, container){
     //clear the graphics!
     graphics.clear();
     
@@ -500,17 +466,43 @@ const Dornn = () => {
       var color = entry.color ? "0x" + entry.color.replace("#", "") : '0xff0000';
       graphics.lineStyle(8, color);
       graphics.beginFill(color, 0.5);
+      //console.log(entry);
 
       //for each shape in the territory collection, draw it in this color!
       [...entry.territories.values()].forEach(shape => {
-        shape.geometry.coordinates.forEach(coordinateSet => {
+        console.log('shapeValid?');
+        console.log(shape);
+        const coords = shape.geometry.coordinates;
+        if (shape.geometry.type === 'Polygon') {
+          // IMPORTANT: Swap [x, y] to [y, x] and project to Zoom 0 pixels
+          coords.forEach(coordinateSet => {
+            const path = coordinateSet.map(c => {
+              const projected = mapRef.options.crs.project(L.latLng(c, c));
+              return [projected.y * 64, projected.x * -64];
+            }).flat();
+
+            graphics.drawPolygon(path)
+          });
+        } else if (shape.geometry.type === 'MultiPolygon') {
+          coords.forEach(subshape => {
+            subshape.forEach(coordinateSet => {
+              const path = coordinateSet.map(c => {
+                const projected = mapRef.options.crs.project(L.latLng(c, c));
+                return [projected.y * 64, projected.x * -64];
+              }).flat();
+
+              graphics.drawPolygon(path)
+            });
+          })
+        }
+        /*shape.geometry.coordinates.forEach(coordinateSet => {
           const path = coordinateSet.map(c => {
             const projected = mapRef.options.crs.project(L.latLng(c, c));
             return [projected.y * 64, projected.x * -64];
           }).flat();
 
           graphics.drawPolygon(path)
-        });
+        });*/
       })
 
       graphics.endFill();
@@ -544,8 +536,12 @@ const Dornn = () => {
   const subentityEntries = useRef(new Map());
   const interEntries = useRef(new Map());
 
+  const entitiesNeedingRebuild = useRef(new Set());
+
   //const [selectedEntity, setSelectedEntity] = useState(null);
-  const selectedEntity = useRef(null);
+  const [selectedEntity, setSelectedEntity] = useState(null);
+
+  const [entityItr, setEntityItr] = useState(0);
 
   function getSelectedCollisionLayer(){
     switch(selectedLayer.current){
@@ -569,10 +565,23 @@ const Dornn = () => {
     }
   }
 
+  function onMouseDown(e){
+    isMouseDown.current = true;
+    console.log('mouse down');
+  }
+
+  function onMouseUp(e){
+    isMouseDown.current = false;
+    console.log('mouse up');
+  }
 
 
   //This is an initializer. It loads the rbush tree and the maps.
   useEffect(() => {
+   
+    window.addEventListener('mousedown', onMouseDown);
+    window.addEventListener('mouseup', onMouseUp);
+     
     console.log('init');
     let tree = geojsonRbush();
     console.log(concat);
@@ -602,9 +611,12 @@ const Dornn = () => {
     //setSelectedEntity(entityEntries.get('Glassblood'));
     console.log('SELECTOR');
     console.log(entityEntries.current.get('Glassblood'));
-    selectedEntity.current = entityEntries.current.get('Glassblood');
+    setSelectedEntity(entityEntries.current.get('Glassblood'));
 
   }, []);
+
+  const isMouseDown = useRef(false);
+  const lastShapeEntered = useRef(null);
 
   const LocationFinder = () => {
     useMapEvents({
@@ -622,22 +634,60 @@ const Dornn = () => {
           }
         });
 
-        tryPaint(exact);
+        if(exact){
+          tryPaint(exact);
+        }
+
+      },
+      mousemove(e) {
+        if(isMouseDown.current){
+          let pt = turf.point([e.latlng.lng, e.latlng.lat]);
+          let result = rbush.search(pt);
+        
+
+          let exact = null;
+          //console.log(result);
+          result.features.forEach(hit => {
+            if(turf.booleanPointInPolygon(pt, hit)){
+              exact = hit;
+            }
+          });
+
+          if(exact && exact != lastShapeEntered.current){
+            lastShapeEntered.current = exact;
+            console.log('try to paint');
+            tryPaint(exact);
+          }
+        }
       },
     });
   };
 
-  function updateAggregate(entity){
-    if(!entity) return;
+  function updateAggregates(){
 
-    console.log(entity);
+    console.log(entitiesNeedingRebuild);
 
-    let territorySpread = [...entity.territories.values()];
-    if(territorySpread.length > 1){
-      entity.aggregatedShape = turf.union(turf.featureCollection(territorySpread));
-    }
+    let entitiesToUpdate = [...entitiesNeedingRebuild.current].map(entity => entityEntries.current.get(entity));
 
-    console.log(entity.aggregatedShape);
+    console.log('TO-UPDATE');
+    console.log(entitiesToUpdate);
+
+    entitiesToUpdate.forEach(entity => {
+      let territorySpread = [...entity.territories.values()];
+      if(territorySpread.length > 1){
+        entity.aggregatedShape = turf.union(turf.featureCollection(territorySpread));
+      
+        entity.aggregatedShape.properties.color = entity.color;
+        entity.aggregatedShape.properties.name = entity.name;
+        entity.aggregatedShape.properties.labelColor = (('0x' + entity.color.slice(1)) & 0xfefefe) >> 1;
+        console.log(entity.aggregatedShape);
+      }
+    })
+
+    //clear!
+    entitiesNeedingRebuild.current = new Set();
+    
+    setEntityItr(entityItr + 1);
     //setEntityEntries(structuredClone(entityEntries)); //try and trip comp refresh
   }
 
@@ -648,11 +698,17 @@ const Dornn = () => {
     selectedLayer.current = event.target.value;
   }
 
+  const erasing = useRef(false);
+
+  function toggleErase(event){
+    console.log(event.target.checked);
+    erasing.current = event.target.checked;
+  }
+
   //Try and paint a shape onto the map!
   //This method will get an unannotated duplicate of a shape from the original dataset.
   //other datastructures handle binding, we just use these to reproduce hashes for identification and storage.
   function tryPaint(hit){
-
     var currentCollisionLayer = getSelectedCollisionLayer();
     var currentEntryCollection = getSelectedEntryCollection();
     var currentGraphics = multicolorGraphics.current; //ADD A GETTER HERE FOR THE OTHER TWO LAYERS!
@@ -669,15 +725,17 @@ const Dornn = () => {
           case 'entity':
             //if you clicked a DIFFERENT entity, grab the parent that just lost a nib and take this tile away from it
             owningEntity.territories.delete(hash)
+            entitiesNeedingRebuild.current.add(owningEntity.name);
             
           case 'subentity':
             //if you didn't click inside a parent tile (check the other map), ignore this
-            if(owningEntity.parentName != selectedEntity.current.parentName){
+            if(owningEntity.parentName != selectedEntity.parentName){
               return;
             }
 
             //otherwise, perform as normal
             owningEntity.territories.delete(hash);
+            entitiesNeedingRebuild.current.add(owningEntity.name);
           case 'inter':
             //pop confirm? maybe do nothing
         }
@@ -685,37 +743,21 @@ const Dornn = () => {
     }
 
     let hitCopy = structuredClone(hit);
-    console.log(selectedEntity.current);
-    currentCollisionLayer.set(hash, selectedEntity.current.name);
+    console.log(selectedEntity);
+    currentCollisionLayer.set(hash, selectedEntity.name);
 
-    //if we got here, the paint was valid, so give this tile to the selectedEntity.
-    selectedEntity.current.territories.set(hash, hitCopy);
-    updateAggregate(selectedEntity.current);
+    if(!erasing.current){
+      //if we got here, the paint was valid, so give this tile to the selectedEntity.
+      selectedEntity.territories.set(hash, hitCopy);
+      //updateAggregate(selectedEntity);
+      entitiesNeedingRebuild.current.add(selectedEntity.name);
+    }
+    
 
     //rerender everything
-    rerenderEntryTerritories(currentGraphics, [...currentEntryCollection.values()]);
+    //rerenderEntryTerritories(currentGraphics, [...currentEntryCollection.values()]);
     pixiOverlayRef.current.redraw();
 
-    //something changed
-    /*const graphics = multicolorGraphics.current;
-
-    var color = hitCopy.properties.color ? "0x" + hitCopy.properties.color.replace("#", "") : '0xff0000';
-    graphics.lineStyle(8, color);
-    graphics.beginFill(color, 0.5);
-
-    hitCopy.geometry.coordinates.forEach(coordinateSet => {
-      const path = coordinateSet.map(c => {
-        const projected = mapRef.options.crs.project(L.latLng(c, c));
-        return [projected.y * 64, projected.x * -64];
-      }).flat();
-
-      graphics.drawPolygon(path)
-    });
-
-    graphics.endFill();*/
-
-    //trip the ownership change
-    //pixiOverlayRef.current.redraw();
 
     //we collect each polygon that was 'destroyed' (lost ownership) in one list,
     //and every polygon that was 'added' (gained ownership)
@@ -736,26 +778,45 @@ const Dornn = () => {
   function EntityLayerComponent(){
     //return jsx corresponding to the current entity master shapes
     //this is where labels come from
-    return (entityAgg.features.map((entity, index) => (<GeoJSON 
+
+    return (<FeatureGroup key={entityItr}>
+    {[...entityEntries.current.values()].map((entity, index) => 
+      (entity.aggregatedShape ? 
+      <GeoJSON 
               onEachFeature={onEachPoliFeature}
               key={index}
-              data={entity}
+              data={entity.aggregatedShape}
               className='mapclass'
               style={() => ({
-              color: '#000000',
+              color: entity.color,
               weight: 12,
               opacity: 1,
-              fillColor: '#000000',
+              fillColor: entity.color,
               fillOpacity: 0.5,
               })}
-      ></GeoJSON>)))
+      ></GeoJSON> : 
+      <GeoJSON //fallback
+                onEachFeature={onEachPoliFeature}
+                key={index}
+                data={unified.features[0]}
+                className='mapclass'
+                style={() => ({
+                color: '#000000',
+                weight: 12,
+                opacity: 1,
+                fillColor: '#000000',
+                fillOpacity: 0.5,
+                })}
+      ></GeoJSON>))}
+    </FeatureGroup>)
   }
 
   const onEachPoliFeature = (feature, layer) => {
     // Add a click event listener
+    /*
     layer.on({
       click: (e) => {
-        console.log("Clicked on feature:", feature.properties.name);
+        console.log("Clicked on feature:", feature);
         // Optional: fit map to feature bounds or other actions
       },
       mouseover: (e) => {
@@ -766,36 +827,13 @@ const Dornn = () => {
         // Optional: reset style on mouse out
         // Note: resetStyle() can be used if you define a style prop
         layer.setStyle({ weight: 1, color: feature.properties.color, fillOpacity: 0.7 }); 
-      }, 
-      add: (e) => { //an attempt at clipping the path to only the portion 'inside' the shape
-        const path = layer.getElement();
-        if (!path) return;
-
-        // 1. Find the SVG container (Leaflet's main SVG layer)
-        const svg = path.closest('svg');
-        let defs = svg.querySelector('defs');
-        if (!defs) {
-          defs = L.SVG.create('defs');
-          svg.insertBefore(defs, svg.firstChild);
-        }
-
-        // 2. Create the <clipPath> element
-        const clipPath = L.SVG.create('clipPath');
-        clipPath.setAttribute('id', clipId);
-        
-        // 3. Create a clone of the path to act as the mask geometry
-        const maskPath = L.SVG.create('path');
-        maskPath.setAttribute('d', path.getAttribute('d'));
-        
-        clipPath.appendChild(maskPath);
-        defs.appendChild(clipPath);
-
-        // 4. Apply the clip-path to the actual visible layer
-        path.setAttribute('clip-path', `url(#${clipId})`);
-      }});
+      }});*/
 
     // Optional: Bind a popup with feature properties
-    layer.bindTooltip('Tholri', {
+    layer.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+        `<span style="color: ${feature.properties.labelColor}; font-weight: bold;">
+            ${feature.properties.name}
+        </span>`, {
         permanent: true,     // Makes the label always visible
         direction: 'center', // Centers the label
         className: 'map-label', // Add a custom CSS class for styling
@@ -830,12 +868,12 @@ const Dornn = () => {
               center={[1024, 2048]} 
               zoom={-2} 
               minZoom={-2}
-              dragging={true} 
+              dragging={false} 
+              keyboardPanDelta={200}
               zoomControl={true} 
               crs={CRS.Simple} 
               maxBounds={screenBoundsWiggle} 
               maxBoundsViscosity={0.9} tap={false} 
-              onClick={tryPaint}
               doubleClickZoom={false}
             >
               <LandmassLayer />
@@ -864,7 +902,12 @@ const Dornn = () => {
                 <option value="subentities">Subentities</option>
                 <option value="internal">Internal Entities</option>
               </select>
-              SELECTED: {selectedEntity.current?.name}
+              SELECTED: {selectedEntity?.name}  
+              <input style={{'margin-left': '16px'}} type="checkbox" id="erase" name="erase" value="Erase" onChange={toggleErase}/>
+              <label for="erase">ERASE MODE</label>
+              <div style={{'margin-left':'5vw', 'margin-top':'50px', 'border':'3px solid white'}}>
+                <button onClick={updateAggregates}>REBUILD ENTITY SHAPES</button>
+              </div>
             </div>
           </div>
           <div style={{'width':'85%', 'margin': 'auto', 'margin-bottom':'48px', 'max-height':'900px', 'overflowY':'auto'}}>

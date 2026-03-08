@@ -1132,7 +1132,6 @@ h1.default {
 }
 
 .map-label{
-  color: rgb(46, 46, 46) !important; /* Sets the text fill color */
   font-weight: bold;
   font-size: 24px;
   font-family: "IM Fell DW Pica";
