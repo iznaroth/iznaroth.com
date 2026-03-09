@@ -33,6 +33,7 @@ import eighthSlice from './cropped_data_61000.json'
 import concat from './concat.json'
 import paintlayer from './paint_layer_full_edited.json' //all cells + indivisible landmasses
 import unified from './svg_cutouts_unified.json'
+//import unified from './cutouts_merged.json'
 import nomulti from './nomulti.json'
 import entityAgg from './entity_shapes.json'
 import { ClassNames } from '@emotion/react';
@@ -44,7 +45,7 @@ import entities from './entities.json';
 import subentities from './subentities.json';
 import inter from './inter.json';
 
-import preloadedPaintState from './paint_state.json'
+import preloadedPaintState from './paint_state_valid.json'
 
 //const preloadedPaintState = null;
 
@@ -485,6 +486,59 @@ const Dornn = () => {
     return null;
   };
 
+  //Set up the renderer for the subentity painting layer (jank)
+  const SubentityPixiPaintLayer = ({name}) => {
+    const map = useMap();
+    const graphicsRef = useRef(new PIXI.Graphics());
+
+    //This layer is much less honest - rather than rendering all entities in its entry collection,
+    //it ONLY renders subentities with a common parent (based on what's been selected) - basically, each subentity has a parent
+    //and each parent has an array of strings referring to the rest of the subentities. so you just find the parent, use it to find the rest of the subentities,
+    //then pass the renderer the tweaked parent and all its children.  
+    useEffect(() => {
+      if (!map) return;
+
+      const graphics = new PIXI.Graphics();
+      multicolorGraphics.current = graphics;
+      console.log(graphics);
+      if(!graphics) return;
+      graphics.clear(); // Clear only when the DATA changes, not on zoom
+
+      const overlay = L.pixiOverlay((utils) => {
+        const container = utils.getContainer();
+        const renderer = utils.getRenderer();
+        const project = utils.latLngToLayerPoint;
+        const scale = utils.getScale();
+
+        rerenderEntryTerritories(multicolorGraphics.current, [...entityEntries.current.values()], container);
+
+        // 2. TRANSFORM ONLY: Don't call drawPolygon here!
+        // This origin tells us where the world (0,0) is in current pixels
+        const mapOrigin = project(L.latLng(0, 0));
+        container.addChild(graphics);
+
+        
+        renderer.render(container);
+      }, new PIXI.Container());
+
+      pixiOverlayRef.current = overlay;
+      overlay.addTo(map);
+      layerNodeRef.current.addOverlay(overlay, name);
+
+
+      //L.control.layers(null, overlayMaps).addTo(map)
+
+      // 3. CLEANUP: Explicitly destroy to free GPU memory
+      return () => {
+        map.removeLayer(overlay);
+        layerNodeRef.current.removeLayer(overlay);
+        graphics.destroy({ children: true, texture: true, baseTexture: true });
+      };
+    }, []);
+
+    return null;
+  };
+
   function rerenderEntryTerritories(graphics, entries, container){
     //clear the graphics!
     if(!mapRef) return;
@@ -594,7 +648,6 @@ const Dornn = () => {
   }
 
   function getParentFontClass(parent){
-    console.log(parent);
     switch(parent){
       case 'MIDLAND COUNCIL (XII)':
         return 'midland';
@@ -623,6 +676,7 @@ const Dornn = () => {
 
   function onMouseUp(e){
     isMouseDown.current = false;
+    pixiOverlayRef.current.redraw();
     console.log('mouse up');
   }
 
@@ -652,6 +706,7 @@ const Dornn = () => {
         entityEntries.current.set(entity.name, {
           name: entity.name,
           color: entity.nameColor.hex,
+          labelColor: entity.labelColor.hex,
           subentities: subentitiesMap,
           inter: interEntitiesMap,
           territories: new Map(),
@@ -664,8 +719,6 @@ const Dornn = () => {
 
     
     //setSelectedEntity(entityEntries.get('Glassblood'));
-    console.log('SELECTOR');
-    console.log(entityEntries.current.get('Glassblood'));
     setSelectedEntity(entityEntries.current.get('Glassblood'));
 
   }, []);
@@ -677,10 +730,9 @@ const Dornn = () => {
       if(entry.territories){
         let mappedTerritories = new Map();
         entry.territories.forEach(shape => {
-          console.log(shape);
           let shapeKey = quickHash(JSON.stringify(shape));
           mappedTerritories.set(shapeKey, shape);
-          entityCollisionMap.current.set(shapeKey, shape);
+          entityCollisionMap.current.set(shapeKey, entry.name);
         });
 
         entry.territories = mappedTerritories;
@@ -704,7 +756,7 @@ const Dornn = () => {
         entry.territories.forEach(shape => {
           let shapeKey = quickHash(JSON.stringify(shape));
           mappedTerritories.set(shapeKey, shape);
-          subentityCollisionMap.current.set(shapeKey, shape);
+          subentityCollisionMap.current.set(shapeKey, entry.name);
         });
 
         entry.territories = mappedTerritories;
@@ -724,7 +776,7 @@ const Dornn = () => {
         entry.territories.forEach(shape => {
           let shapeKey = quickHash(JSON.stringify(shape));
           mappedTerritories.set(shapeKey, shape);
-          interCollisionMap.current.set(shapeKey, shape);
+          interCollisionMap.current.set(shapeKey, entry.name);
         });
 
         entry.territories = mappedTerritories;
@@ -742,6 +794,26 @@ const Dornn = () => {
 
   const LocationFinder = () => {
     useMapEvents({
+      /*click(e){
+        console.log('performance test');
+          let pt = turf.point([e.latlng.lng, e.latlng.lat]);
+          let result = rbush.search(pt);
+        
+
+          let exact = null;
+          //console.log(result);
+          result.features.forEach(hit => {
+            if(turf.booleanPointInPolygon(pt, hit)){
+              exact = hit;
+            }
+          });
+
+          if(exact){
+            lastShapeEntered.current = exact;
+            console.log('eval done');
+            tryPaint(exact);
+          }
+      },*/
       mousemove(e) {
         if(isMouseDown.current){
           let pt = turf.point([e.latlng.lng, e.latlng.lat]);
@@ -758,7 +830,6 @@ const Dornn = () => {
 
           if(exact && exact != lastShapeEntered.current){
             lastShapeEntered.current = exact;
-            console.log('try to paint');
             tryPaint(exact);
           }
         }
@@ -775,22 +846,27 @@ const Dornn = () => {
     console.log('TO-UPDATE- SHOULD INCLUDE THE PARENT THAT LOST A SHAPE IN THIS EXCHANGE');
     console.log(entitiesToUpdate);
 
-    entitiesToUpdate.forEach(entity => {
+    //TEMP rebuilding the entire thing, why not!
+    entityEntries.current.forEach(entity => {
       let territorySpread = [...entity.territories.values()];
       if(territorySpread.length > 1){
         entity.aggregatedShape = turf.union(turf.featureCollection(territorySpread));
       
+        entity.aggregatedShape.properties = {};
         entity.aggregatedShape.properties.color = entity.color;
         entity.aggregatedShape.properties.name = entity.name;
         entity.aggregatedShape.properties.superentityName = entity.superentityName;
-        entity.aggregatedShape.properties.labelColor = (('0x' + entity.color.slice(1)) & 0xfefefe) >> 1;
+        entity.aggregatedShape.properties.labelColor = entity.labelColor;
         console.log(entity.aggregatedShape);
       } else if(territorySpread.length == 1){
+        console.log(entity);
         entity.aggregatedShape = territorySpread[0];
+
+        entity.aggregatedShape.properties = {};
         entity.aggregatedShape.properties.color = entity.color;
         entity.aggregatedShape.properties.name = entity.name;
         entity.aggregatedShape.properties.superentityName = entity.superentityName;
-        entity.aggregatedShape.properties.labelColor = (('0x' + entity.color.slice(1)) & 0xfefefe) >> 1;
+        entity.aggregatedShape.properties.labelColor = entity.labelColor;
         console.log(entity.aggregatedShape);
       } else {
         entity.aggregatedShape = null;
@@ -856,7 +932,6 @@ const Dornn = () => {
     }
 
     let hitCopy = structuredClone(hit);
-    console.log(selectedEntity);
     currentCollisionLayer.set(hash, selectedEntity.name);
 
     if(!erasing.current){
@@ -869,7 +944,7 @@ const Dornn = () => {
 
     //rerender everything
     //rerenderEntryTerritories(currentGraphics, [...currentEntryCollection.values()]);
-    pixiOverlayRef.current.redraw();
+    //pixiOverlayRef.current.redraw();
 
 
     //we collect each polygon that was 'destroyed' (lost ownership) in one list,
@@ -944,14 +1019,14 @@ const Dornn = () => {
 
     // Optional: Bind a popup with feature properties
     layer.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
-        `<span style="color: ${feature.properties.color}; font-weight: bold;">
+        `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
             ${feature.properties.name}
-        </span>`, {
+        </span></div>`, {
         permanent: true,     // Makes the label always visible
         direction: 'center', // Centers the label
         className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`, // Add a custom CSS class for styling
         opacity: 1,
-        offset: [0, 0]       // Adjust offset if needed
+        offset: [-75, 0]       // Adjust offset if needed
     });
   };
 
