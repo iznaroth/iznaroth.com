@@ -3,6 +3,7 @@ import * as turf from "@turf/turf";
 import { GeoJSON2SVG } from 'geojson2svg';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import 'leaflet.pattern';
 import * as PIXI from 'pixi.js';
 import 'leaflet-pixi-overlay';
 import geojsonRbush from 'geojson-rbush';
@@ -44,8 +45,7 @@ import alliances from './alliances.json';
 import entities from './entities.json';
 import subentities from './subentities.json';
 import inter from './inter.json';
-
-import preloadedPaintState from './paint_state_valid.json'
+import preloadedPaintState from './paint_state_valid_mk2.json'
 
 //const preloadedPaintState = null;
 
@@ -74,6 +74,7 @@ const Dornn = () => {
 
   const mapContainerRef = useRef(null);
   const layerNodeRef = useRef(null);
+  const geojsonEntitiesRef = useRef(null);
   const [mapRef, setMapRef] = useState(null);
   const dw = 'IM Fell DW Pica'
   const roman = 'Gideon Roman'
@@ -720,7 +721,6 @@ const Dornn = () => {
     
     //setSelectedEntity(entityEntries.get('Glassblood'));
     setSelectedEntity(entityEntries.current.get('Glassblood'));
-
   }, []);
 
   function loadSavedPaintState(state){
@@ -792,7 +792,7 @@ const Dornn = () => {
   const isMouseDown = useRef(false);
   const lastShapeEntered = useRef(null);
 
-  const LocationFinder = () => {
+  const MapEventHandler = () => {
     useMapEvents({
       /*click(e){
         console.log('performance test');
@@ -814,6 +814,9 @@ const Dornn = () => {
             tryPaint(exact);
           }
       },*/
+      zoomend(e) {
+        updateLabelSizes();
+      },
       mousemove(e) {
         if(isMouseDown.current){
           let pt = turf.point([e.latlng.lng, e.latlng.lat]);
@@ -967,6 +970,67 @@ const Dornn = () => {
     //return jsx corresponding to the current entity master shapes
     //this is where labels come from
 
+    const map = useMap();
+
+    const onEachPoliFeature = (feature, layer) => {
+      // Add a click event listener
+      
+      /*layer.on({
+        
+        zoomend: (e) => {
+          console.log("zoomed on feature:", feature);
+          // Optional: fit map to feature bounds or other actions
+        },
+        mouseover: (e) => {
+          // Optional: highlight feature on hover
+          layer.setStyle({ weight: 3, color: feature.properties.color, fillOpacity: 0.9 });
+        },
+        mouseout: (e) => {
+          // Optional: reset style on mouse out
+          // Note: resetStyle() can be used if you define a style prop
+          layer.setStyle({ weight: 1, color: feature.properties.color, fillOpacity: 0.7 }); 
+        });*/
+
+      //pull feature style and apply a fillpattern to it
+      console.log(feature.properties.superentityName);
+      if(feature.properties.superentityName == 'ESOTERICS'){
+        console.log('ESO?');
+        var stripes = new L.StripePattern({
+          opacity: 0.9, //this is relative
+          spaceOpacity: 0.4,
+          color: feature.properties.color,
+          spaceColor: feature.properties.color,
+          angle: 45,
+          width: 32,
+          height: 32,
+          weight: 16,
+          spaceWeight: 16
+        })
+
+        console.log(stripes);
+
+        stripes.addTo(map);
+
+        console.log('added');
+
+        layer.setStyle({fillPattern: stripes});
+        console.log('applied pattern?');
+      }
+    
+
+    // Optional: Bind a popup with feature properties
+    layer.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+        `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
+            ${feature.properties.name}
+        </span></div>`, {
+        permanent: true,     // Makes the label always visible
+        direction: 'center', // Centers the label
+        className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`, // Add a custom CSS class for styling
+        opacity: 1,
+        offset: [-75, 0]       // Adjust offset if needed
+    });
+  };
+
     return (<FeatureGroup key={entityItr}>
     {[...entityEntries.current.values()].map((entity, index) => 
       (entity.aggregatedShape ? 
@@ -980,7 +1044,7 @@ const Dornn = () => {
               weight: 6,
               opacity: 1,
               fillColor: entity.color,
-              fillOpacity: 0.2,
+              fillOpacity: 0.6,
               })}
       ></GeoJSON> : 
       <GeoJSON //fallback
@@ -999,36 +1063,37 @@ const Dornn = () => {
     </FeatureGroup>)
   }
 
-  const onEachPoliFeature = (feature, layer) => {
-    // Add a click event listener
-    /*
-    layer.on({
-      click: (e) => {
-        console.log("Clicked on feature:", feature);
-        // Optional: fit map to feature bounds or other actions
-      },
-      mouseover: (e) => {
-        // Optional: highlight feature on hover
-        layer.setStyle({ weight: 3, color: feature.properties.color, fillOpacity: 0.9 });
-      },
-      mouseout: (e) => {
-        // Optional: reset style on mouse out
-        // Note: resetStyle() can be used if you define a style prop
-        layer.setStyle({ weight: 1, color: feature.properties.color, fillOpacity: 0.7 }); 
-      }});*/
+  // Function to calculate font size based on zoom level
+  function getFontSize(zoom) {
+      // You can adjust this formula as needed
+      switch(zoom){
+        case -2:
+          return '0px';
+        case -1:
+          return '8px';
+        case 0:
+          return '16px';
+        case 1:
+          return '24px';
+        case 2:
+          return '32px';
+        default:
+          return '48px';
+      }     
+  }
 
-    // Optional: Bind a popup with feature properties
-    layer.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
-        `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
-            ${feature.properties.name}
-        </span></div>`, {
-        permanent: true,     // Makes the label always visible
-        direction: 'center', // Centers the label
-        className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`, // Add a custom CSS class for styling
-        opacity: 1,
-        offset: [-75, 0]       // Adjust offset if needed
-    });
-  };
+  // Function to update all labels in the layer
+  function updateLabelSizes() {
+    console.log('test');
+    console.log(mapRef);
+    var currentZoom = mapRef.getZoom();
+    console.log(currentZoom);
+    var newSize = getFontSize(currentZoom);
+
+    const root = document.documentElement;
+
+    root.style.setProperty('--label-font-size', newSize);
+  }
 
   function saveEntityShapeData(){
     let entitySet = [];
@@ -1095,7 +1160,7 @@ const Dornn = () => {
               <LandmassLayer />
               <MonocolorPixiLayer data={paintlayer} name="base"/>
               <EntityPixiPaintLayer name="entity"/>
-              <LocationFinder />
+              <MapEventHandler />
               <LayersControl ref={layerNodeRef} position="topright">
                 <LayersControl.Overlay name="indi">
                   <IndivisibleLayer />
@@ -1104,7 +1169,7 @@ const Dornn = () => {
                   <DivisibleLayer />
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="agg">
-                  <EntityLayerComponent />
+                  <EntityLayerComponent ref={geojsonEntitiesRef} />
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="dornn">
                   <ImageOverlay 

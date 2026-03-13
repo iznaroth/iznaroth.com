@@ -1131,9 +1131,13 @@ h1.default {
   max-height: 2px !important;
 }
 
+:root{
+  --label-font-size: 0px;
+}
+
 .map-label{
   font-weight: bold;
-  font-size: 24px;
+  font-size: var(--label-font-size);
   font-family: "IM Fell DW Pica";
   background-color: transparent !important;
   border: none !important;
@@ -1197,7 +1201,10 @@ h1.default {
 }
 
 .midland{
-  font-family: 'Rediviva', serif !important;
+  font-family: "Grenze Gotisch", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .independents{
@@ -1225,7 +1232,7 @@ h1.default {
 }
 
 .enclave{
-  font-family: "Grenze Gotisch", serif;
+  font-family: 'Rediviva', serif !important;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;

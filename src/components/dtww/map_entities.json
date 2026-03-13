@@ -2,6 +2,734 @@
   "data": {
     "settlementInfos": [
       {
+        "id": "cmmmyueqavzl007k0su3petys",
+        "name": "Hollow Eye",
+        "nameColor": {
+          "hex": "#a15285"
+        },
+        "labelColor": {
+          "hex": "#5d304e"
+        },
+        "mapSuperentity": {
+          "name": "THE UNMORTAL LEAGUE"
+        }
+      },
+      {
+        "id": "cmmmytpxyviv807lchzwb7qtu",
+        "name": "Yuracche",
+        "nameColor": {
+          "hex": "#d3a34f"
+        },
+        "labelColor": {
+          "hex": "#886933"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmmysuxlvuu707l9zrf46mgo",
+        "name": "Wellik",
+        "nameColor": {
+          "hex": "#798fbb"
+        },
+        "labelColor": {
+          "hex": "#546483"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmmyrzsdwxju08lljag0octj",
+        "name": "Ruby Isle",
+        "nameColor": {
+          "hex": "#c90000"
+        },
+        "labelColor": {
+          "hex": "#8a0606"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmmyrg3nvvwd07k00evyzb3t",
+        "name": "Aldrr",
+        "nameColor": {
+          "hex": "#5d7063"
+        },
+        "labelColor": {
+          "hex": "#303b33"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmlovxzc6qjp08lpaz6ijxku",
+        "name": "Boneshallows",
+        "nameColor": {
+          "hex": "#888888"
+        },
+        "labelColor": {
+          "hex": "#525252"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmlov7si7wju07k0zqvm6gzs",
+        "name": "Din",
+        "nameColor": {
+          "hex": "#a06da3"
+        },
+        "labelColor": {
+          "hex": "#593e5a"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmlou4cx6jzx07jz5nhgy8fz",
+        "name": "Haslaster",
+        "nameColor": {
+          "hex": "#924242"
+        },
+        "labelColor": {
+          "hex": "#612929"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmloth6m6pwb08lpz72mrwk0",
+        "name": "Camley",
+        "nameColor": {
+          "hex": "#438f50"
+        },
+        "labelColor": {
+          "hex": "#264e2c"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmlot44f6jfr07jzxjhkw8lw",
+        "name": "Westcronn",
+        "nameColor": {
+          "hex": "#4e56da"
+        },
+        "labelColor": {
+          "hex": "#32378f"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmlosj3h6ow008lp7r3q7in5",
+        "name": "Atachatachas",
+        "nameColor": {
+          "hex": "#a26bc0"
+        },
+        "labelColor": {
+          "hex": "#6a4480"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmlos0n46izp07jz7kufqpe8",
+        "name": "Okos",
+        "nameColor": {
+          "hex": "#aaa66c"
+        },
+        "labelColor": {
+          "hex": "#686541"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmlorkhg6ig607lbnrj92t3m",
+        "name": "Pyasse",
+        "nameColor": {
+          "hex": "#c793ae"
+        },
+        "labelColor": {
+          "hex": "#8a6277"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmloqzs76id807lb0o74oz9m",
+        "name": "Vandaan",
+        "nameColor": {
+          "hex": "#a8b3ee"
+        },
+        "labelColor": {
+          "hex": "#757ca7"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmloqfvv7uof07k0y9ac5507",
+        "name": "Nail-not-Xorics",
+        "nameColor": {
+          "hex": "#aa7898"
+        },
+        "labelColor": {
+          "hex": "#6b4d60"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlopjej7tbd07k00aynijig",
+        "name": "Senn",
+        "nameColor": {
+          "hex": "#86839c"
+        },
+        "labelColor": {
+          "hex": "#545261"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmlop5dv6npp08lp7c8rhg06",
+        "name": "Qaril",
+        "nameColor": {
+          "hex": "#925f4b"
+        },
+        "labelColor": {
+          "hex": "#50342a"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmloon616i8n07lby5ugqqfe",
+        "name": "Rhangia",
+        "nameColor": {
+          "hex": "#dac2df"
+        },
+        "labelColor": {
+          "hex": "#97849b"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmloo3no7su607k0b1rznthu",
+        "name": "Lago",
+        "nameColor": {
+          "hex": "#968fb3"
+        },
+        "labelColor": {
+          "hex": "#656179"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmlonkmg6ng008lp2y6iuhsn",
+        "name": "Mabel's Rime",
+        "nameColor": {
+          "hex": "#8eaca6"
+        },
+        "labelColor": {
+          "hex": "#536662"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmlon48r6mxn08lp30xnersb",
+        "name": "Guldura",
+        "nameColor": {
+          "hex": "#445d4a"
+        },
+        "labelColor": {
+          "hex": "#2b3a2f"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmlolm1i6g8y07lb44f7ajuq",
+        "name": "Western Kallabastian Lobby",
+        "nameColor": {
+          "hex": "#dfb4b4"
+        },
+        "labelColor": {
+          "hex": "#997a7a"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmloksps6er907lbljgc4ovn",
+        "name": "Three-One-Three",
+        "nameColor": {
+          "hex": "#4b88d4"
+        },
+        "labelColor": {
+          "hex": "#355e92"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmlojz6y6kul08lp7aur16t7",
+        "name": "Rahwi Rosj",
+        "nameColor": {
+          "hex": "#a15e70"
+        },
+        "labelColor": {
+          "hex": "#6e414d"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmloizke7px807k0gn475hog",
+        "name": "Stonesalve",
+        "nameColor": {
+          "hex": "#8d8a9e"
+        },
+        "labelColor": {
+          "hex": "#56545f"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmloiahr6e3w07lbdbgfuxa2",
+        "name": "Witchclave",
+        "nameColor": {
+          "hex": "#645e6d"
+        },
+        "labelColor": {
+          "hex": "#302d35"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlohs0e6k0b08lpfz1fgu9h",
+        "name": "Stratum Mercay",
+        "nameColor": {
+          "hex": "#e08c31"
+        },
+        "labelColor": {
+          "hex": "#ac6d2a"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmlogg557p8807k0rgyuzp42",
+        "name": "Mjahai Osal",
+        "nameColor": {
+          "hex": "#d85f7c"
+        },
+        "labelColor": {
+          "hex": "#aa4b62"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmlofrkn6jn708lpe9eqfq67",
+        "name": "Irwin's Pact",
+        "nameColor": {
+          "hex": "#c76d4e"
+        },
+        "labelColor": {
+          "hex": "#7a422f"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmloezhr6dph07jz8kdfzuu5",
+        "name": "Bohras Midor",
+        "nameColor": {
+          "hex": "#c99a38"
+        },
+        "labelColor": {
+          "hex": "#927028"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmlodhle6d2207jzx0f7p0lg",
+        "name": "Naserii",
+        "nameColor": {
+          "hex": "#88c06b"
+        },
+        "labelColor": {
+          "hex": "#5a8146"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmlocnhz6cxm07jzd88uy7qd",
+        "name": "Lorticil",
+        "nameColor": {
+          "hex": "#79a58d"
+        },
+        "labelColor": {
+          "hex": "#547262"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmloc74o7nbr07k0i871x8oc",
+        "name": "Mismonitia",
+        "nameColor": {
+          "hex": "#88ac88"
+        },
+        "labelColor": {
+          "hex": "#485d48"
+        },
+        "mapSuperentity": {
+          "name": "MIDLAND COUNCIL (XII)"
+        }
+      },
+      {
+        "id": "cmmlnz6s163ky08lpdmsta8pf",
+        "name": "Gammon",
+        "nameColor": {
+          "hex": "#a83c32"
+        },
+        "labelColor": {
+          "hex": "#642520"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnygy95u3207lbj3tpxhiy",
+        "name": "Canith",
+        "nameColor": {
+          "hex": "#8393a3"
+        },
+        "labelColor": {
+          "hex": "#535d69"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlny2ms63g708lpveuju757",
+        "name": "Horde",
+        "nameColor": {
+          "hex": "#6c9b97"
+        },
+        "labelColor": {
+          "hex": "#44615e"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnxnml638508lpzdj294xj",
+        "name": "Naskejannan",
+        "nameColor": {
+          "hex": "#924e6f"
+        },
+        "labelColor": {
+          "hex": "#553042"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnx44a635008lpzinttg7d",
+        "name": "Monad Glaive",
+        "nameColor": {
+          "hex": "#c297d3"
+        },
+        "labelColor": {
+          "hex": "#8b6c97"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnwjw65v9v07jznfbfo7bv",
+        "name": "Havenspool",
+        "nameColor": {
+          "hex": "#aeccb6"
+        },
+        "labelColor": {
+          "hex": "#738678"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnv4ux5uw707jzlfet7xdk",
+        "name": "Seven-Three-Chatri",
+        "nameColor": {
+          "hex": "#b4a5b4"
+        },
+        "labelColor": {
+          "hex": "#6e656e"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnujdx5uv207jz1xpsio2i",
+        "name": "Four-Nine-Vlisc",
+        "nameColor": {
+          "hex": "#c2aaaa"
+        },
+        "labelColor": {
+          "hex": "#796868"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlntv5z5usc07jz35iel22v",
+        "name": "HARNESS SEGMENT C-18-18-BQ",
+        "nameColor": {
+          "hex": "#c3c3c3"
+        },
+        "labelColor": {
+          "hex": "#727272"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnta0q74qz07k0bq1uev8e",
+        "name": "Ras Katra",
+        "nameColor": {
+          "hex": "#817897"
+        },
+        "labelColor": {
+          "hex": "#534e61"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnspxt60zx08lpyla07ph5",
+        "name": "Dom Galach",
+        "nameColor": {
+          "hex": "#be857d"
+        },
+        "labelColor": {
+          "hex": "#8b625c"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnra325pzc07lbo3kl8466",
+        "name": "Dom Kav'ch",
+        "nameColor": {
+          "hex": "#a6ac59"
+        },
+        "labelColor": {
+          "hex": "#74793e"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmlnob635njb07lbhkva6ymx",
+        "name": "Status Unknown",
+        "nameColor": {
+          "hex": "#d1d1d1"
+        },
+        "labelColor": {
+          "hex": "#7c7c7c"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
+        "id": "cmmlnnqga704u07k0wl7rxyez",
+        "name": "Ecological Extrema",
+        "nameColor": {
+          "hex": "#6c9b7e"
+        },
+        "labelColor": {
+          "hex": "#3b5545"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
+        "id": "cmmlnn8qu5o7107jzbne5p7ys",
+        "name": "Thaumatological Distortion",
+        "nameColor": {
+          "hex": "#7c6299"
+        },
+        "labelColor": {
+          "hex": "#534266"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
+        "id": "cmmlnmoe65ktu07lblbuc1iw8",
+        "name": "Mountaincarver Tectonics",
+        "nameColor": {
+          "hex": "#b69169"
+        },
+        "labelColor": {
+          "hex": "#8b6e51"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
+        "id": "cmmlnl7kr6vid07k09ese90cq",
+        "name": "Duel Blasts",
+        "nameColor": {
+          "hex": "#97c7a2"
+        },
+        "labelColor": {
+          "hex": "#5f7e66"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
+        "id": "cmmlnk5576tta07k07f799efy",
+        "name": "Tannsland",
+        "nameColor": {
+          "hex": "#bedada"
+        },
+        "labelColor": {
+          "hex": "#8aa5a5"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
+        "id": "cmmlnjkfs5qog08lp40jbac8l",
+        "name": "Astral Scorch",
+        "nameColor": {
+          "hex": "#9b9b9b"
+        },
+        "labelColor": {
+          "hex": "#525252"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
+        "id": "cmmlnj03x5f1307jz3ta2gx7a",
+        "name": "Dragonlaw",
+        "nameColor": {
+          "hex": "#ac327c"
+        },
+        "labelColor": {
+          "hex": "#862862"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
+        "id": "cmmlnii3v6p2l07k0qrsj56nk",
+        "name": "Wingblight Wastes",
+        "nameColor": {
+          "hex": "#d8c551"
+        },
+        "labelColor": {
+          "hex": "#a89a40"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
+        "id": "cmmj93ozq9tpx07jykhsysywc",
+        "name": "Zharr",
+        "nameColor": {
+          "hex": "#657cbb"
+        },
+        "labelColor": {
+          "hex": "#50618f"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmj90bk09o1i07jyb0pvzm2o",
+        "name": "Unbound Deepwood",
+        "nameColor": {
+          "hex": "#547959"
+        },
+        "labelColor": {
+          "hex": "#3a523d"
+        },
+        "mapSuperentity": {
+          "name": "THE FRONTIER"
+        }
+      },
+      {
         "id": "cmmiljkwb95oz07k6sxukub0n",
         "name": "The Frontier",
         "nameColor": {
@@ -343,10 +1071,10 @@
         "id": "cmm3vhlzzpjfs07lcac9zirwv",
         "name": "The Dream",
         "nameColor": {
-          "hex": "#bd9ac5"
+          "hex": "#6445d3"
         },
         "labelColor": {
-          "hex": "#674d6d"
+          "hex": "#3c2a80"
         },
         "mapSuperentity": {
           "name": "INDEPENDENTS"
@@ -571,591 +1299,6 @@
         },
         "mapSuperentity": {
           "name": "SALÍRAN DYNASTIES"
-        }
-      },
-      {
-        "id": "cmlzljz9e4ns108k2dxgldtqd",
-        "name": "Sar-sal-Salír",
-        "nameColor": {
-          "hex": "#bc40cd"
-        },
-        "labelColor": {
-          "hex": "#762881"
-        },
-        "mapSuperentity": {
-          "name": "SALÍRAN DYNASTIES"
-        }
-      },
-      {
-        "id": "cmlzlj2v34ngm07k1upn4w7ql",
-        "name": "Longmarsh",
-        "nameColor": {
-          "hex": "#6f6081"
-        },
-        "labelColor": {
-          "hex": "#393242"
-        },
-        "mapSuperentity": {
-          "name": "DRAIDIC PACT"
-        }
-      },
-      {
-        "id": "cmlzlii6p4n8907k10fm1vkeq",
-        "name": "Atrophykos",
-        "nameColor": {
-          "hex": "#a5d260"
-        },
-        "labelColor": {
-          "hex": "#6b883f"
-        },
-        "mapSuperentity": {
-          "name": "DRAIDIC PACT"
-        }
-      },
-      {
-        "id": "cmlzlhypb4n3208k2s531q7n9",
-        "name": "Gilded-Lands",
-        "nameColor": {
-          "hex": "#c8b34a"
-        },
-        "labelColor": {
-          "hex": "#867832"
-        },
-        "mapSuperentity": {
-          "name": "DRAIDIC PACT"
-        }
-      },
-      {
-        "id": "cmlzlgxi44qje08leih7768pf",
-        "name": "Avaroth?",
-        "nameColor": {
-          "hex": "#9f395d"
-        },
-        "labelColor": {
-          "hex": "#5c2135"
-        },
-        "mapSuperentity": {
-          "name": "DRAIDIC PACT"
-        }
-      },
-      {
-        "id": "cmlzlgbpy4jmg07k14fg96xor",
-        "name": "Draid",
-        "nameColor": {
-          "hex": "#c82a2a"
-        },
-        "labelColor": {
-          "hex": "#861c1c"
-        },
-        "mapSuperentity": {
-          "name": "DRAIDIC PACT"
-        }
-      },
-      {
-        "id": "cmlzlft9t4pdq08leojbvceon",
-        "name": "Clayman Gildsman Illivit",
-        "nameColor": {
-          "hex": "#eeda93"
-        },
-        "labelColor": {
-          "hex": "#beaf77"
-        },
-        "mapSuperentity": {
-          "name": "FAR-NORTHERN ENCLAVE"
-        }
-      },
-      {
-        "id": "cmlzldn564nk708ledb7kxx74",
-        "name": "Sathal",
-        "nameColor": {
-          "hex": "#61867d"
-        },
-        "labelColor": {
-          "hex": "#293834"
-        },
-        "mapSuperentity": {
-          "name": "FAR-NORTHERN ENCLAVE"
-        }
-      },
-      {
-        "id": "cmlzlck2j4eaw08lgqbfsdt4g",
-        "name": "Anterros",
-        "nameColor": {
-          "hex": "#c68577"
-        },
-        "labelColor": {
-          "hex": "#80544b"
-        },
-        "mapSuperentity": {
-          "name": "FAR-NORTHERN ENCLAVE"
-        }
-      },
-      {
-        "id": "cmlzg8bvwg79u08lgy2bq9rjh",
-        "name": "Thas-Thuay Collaborate",
-        "nameColor": {
-          "hex": "#9b8bef"
-        },
-        "labelColor": {
-          "hex": "#645999"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzg802rg77o08lgkv0axyqb",
-        "name": "Yadanai",
-        "nameColor": {
-          "hex": "#40b447"
-        },
-        "labelColor": {
-          "hex": "#26662a"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzg7jrxh8q607imswm3vlpr",
-        "name": "Lakyrimati",
-        "nameColor": {
-          "hex": "#e575ac"
-        },
-        "labelColor": {
-          "hex": "#924b6e"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzg6tk1gkn807laz0kjconj",
-        "name": "Sulphurfort",
-        "nameColor": {
-          "hex": "#e0a732"
-        },
-        "labelColor": {
-          "hex": "#8d6920"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzg68nih8a207imij548hdy",
-        "name": "Ilkair",
-        "nameColor": {
-          "hex": "#f8dd9f"
-        },
-        "labelColor": {
-          "hex": "#b1a07b"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzg5qjygp2j07lilu48b1uq",
-        "name": "Deilān Federation",
-        "nameColor": {
-          "hex": "#5799d4"
-        },
-        "labelColor": {
-          "hex": "#355d81"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzg53epgjax07lak80zv18u",
-        "name": "Northern Shab Council",
-        "nameColor": {
-          "hex": "#d491c0"
-        },
-        "labelColor": {
-          "hex": "#8b5f7e"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzg4lk9h6vg07imhogjosha",
-        "name": "Central Mint",
-        "nameColor": {
-          "hex": "#3a3a3a"
-        },
-        "labelColor": {
-          "hex": "#000000"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzg3uf9g6ba08lgn8lsb3vq",
-        "name": "Operational No-Zones",
-        "nameColor": {
-          "hex": "#ff0000"
-        },
-        "labelColor": {
-          "hex": "#990000"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzg3c0jgng407lic8yov13n",
-        "name": "Vladisland",
-        "nameColor": {
-          "hex": "#e6d875"
-        },
-        "labelColor": {
-          "hex": "#c2b664"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfy0kth1ru07imsta5e2g4",
-        "name": "Jadiz",
-        "nameColor": {
-          "hex": "#61b58a"
-        },
-        "labelColor": {
-          "hex": "#458062"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfxkawh18007iminhfvliy",
-        "name": "Ithûk",
-        "nameColor": {
-          "hex": "#c28ddb"
-        },
-        "labelColor": {
-          "hex": "#775786"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfvtelgjux07lir15fzlco",
-        "name": "Dreadpoint",
-        "nameColor": {
-          "hex": "#9c5654"
-        },
-        "labelColor": {
-          "hex": "#663a39"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfv9hzfw0p08lgmx8z6i43",
-        "name": "Renanazs",
-        "nameColor": {
-          "hex": "#f47762"
-        },
-        "labelColor": {
-          "hex": "#ad5445"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfuuldgd4u07la5d2h39pc",
-        "name": "Fathalazs",
-        "nameColor": {
-          "hex": "#cdbb6c"
-        },
-        "labelColor": {
-          "hex": "#817645"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfug0xgyrb07im94qwpemp",
-        "name": "Manastazs",
-        "nameColor": {
-          "hex": "#908c75"
-        },
-        "labelColor": {
-          "hex": "#585648"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzftos6gg1b07liishbzdos",
-        "name": "Calmarriné",
-        "nameColor": {
-          "hex": "#aaa1c8"
-        },
-        "labelColor": {
-          "hex": "#6b657e"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfsftifsns08lg557t8pun",
-        "name": "The Sixfold Star",
-        "nameColor": {
-          "hex": "#5fadcc"
-        },
-        "labelColor": {
-          "hex": "#366779"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfrp0ogf2907lin8nuoxxy",
-        "name": "Isles of Security",
-        "nameColor": {
-          "hex": "#acd79a"
-        },
-        "labelColor": {
-          "hex": "#67805c"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfr57ng7zi07lar04z9f2v",
-        "name": "Mes-Mas-Malas",
-        "nameColor": {
-          "hex": "#659369"
-        },
-        "labelColor": {
-          "hex": "#344d36"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfqkqogsv207imstzyxyvl",
-        "name": "Brassworks Fellowship",
-        "nameColor": {
-          "hex": "#dec4a3"
-        },
-        "labelColor": {
-          "hex": "#92806a"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfov2agrm107imhrldtecb",
-        "name": "Moristene",
-        "nameColor": {
-          "hex": "#b2475f"
-        },
-        "labelColor": {
-          "hex": "#833648"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfnyjagqpr07imafey74cj",
-        "name": "Northsea Confederacy",
-        "nameColor": {
-          "hex": "#65c7bd"
-        },
-        "labelColor": {
-          "hex": "#41837c"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlzfnetrfpd008lg74n2z9u4",
-        "name": "Hei Kophkatos",
-        "nameColor": {
-          "hex": "#e39564"
-        },
-        "labelColor": {
-          "hex": "#8d5d3e"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlskhcdmtzxz07lgj5lrwzrn",
-        "name": "Wahlrect",
-        "nameColor": {
-          "hex": "#a82928"
-        },
-        "labelColor": {
-          "hex": "#6e1c1c"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlskgocjumpq07lmwjo0kr7g",
-        "name": "Vaxassa Xaoxavas",
-        "nameColor": {
-          "hex": "#bc94d4"
-        },
-        "labelColor": {
-          "hex": "#614e6d"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlskf6fjtyyz07lgsyyp7tob",
-        "name": "Ilvor-Ilvindal",
-        "nameColor": {
-          "hex": "#96be68"
-        },
-        "labelColor": {
-          "hex": "#536939"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlsker6buior07lbaviwzgyy",
-        "name": "Northern Jawbone",
-        "nameColor": {
-          "hex": "#b04b66"
-        },
-        "labelColor": {
-          "hex": "#703041"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlske6y9uugd07l9oc2ocs8q",
-        "name": "Bandlow",
-        "nameColor": {
-          "hex": "#ad5367"
-        },
-        "labelColor": {
-          "hex": "#5c2c36"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlskdgc7uufh07l9z7eon4dw",
-        "name": "Councilholds",
-        "nameColor": {
-          "hex": "#ca873f"
-        },
-        "labelColor": {
-          "hex": "#8a5a29"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmlsgdoh5re0707l95ae4077y",
-        "name": "Wyndish Union",
-        "nameColor": {
-          "hex": "#a7c383"
-        },
-        "labelColor": {
-          "hex": "#90a870"
-        },
-        "mapSuperentity": {
-          "name": "MIDLAND COUNCIL (XII)"
-        }
-      },
-      {
-        "id": "cmls77tx0ftd807l9zik6d332",
-        "name": "Southern Shab Council",
-        "nameColor": {
-          "hex": "#7a7a9c"
-        },
-        "labelColor": {
-          "hex": "#4a4a5f"
-        },
-        "mapSuperentity": {
-          "name": "THE THIRD MANDATE OF POWER"
-        }
-      },
-      {
-        "id": "cmls76oo3g8cu07lmz88saqfw",
-        "name": "Drairin",
-        "nameColor": {
-          "hex": "#78c88e"
-        },
-        "labelColor": {
-          "hex": "#42704f"
-        },
-        "mapSuperentity": {
-          "name": "THE THIRD MANDATE OF POWER"
-        }
-      },
-      {
-        "id": "cmls73gh0ffih07lb5kbqevuq",
-        "name": "Britchoff",
-        "nameColor": {
-          "hex": "#e24949"
-        },
-        "labelColor": {
-          "hex": "#a03434"
-        },
-        "mapSuperentity": {
-          "name": "THE THIRD MANDATE OF POWER"
-        }
-      },
-      {
-        "id": "cmls72u3nfayl07lgsfadflgu",
-        "name": "Crux",
-        "nameColor": {
-          "hex": "#e8c166"
-        },
-        "labelColor": {
-          "hex": "#a18647"
-        },
-        "mapSuperentity": {
-          "name": "THE THIRD MANDATE OF POWER"
-        }
-      },
-      {
-        "id": "cmls71ss1f5nw07lgk6d2hne9",
-        "name": "Glassblood",
-        "nameColor": {
-          "hex": "#4cd1b4"
-        },
-        "labelColor": {
-          "hex": "#328674"
-        },
-        "mapSuperentity": {
-          "name": "THE THIRD MANDATE OF POWER"
         }
       }
     ]
