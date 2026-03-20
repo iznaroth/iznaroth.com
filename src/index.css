@@ -1144,8 +1144,8 @@ h1.default {
   box-shadow: none !important;
   padding: 0 !important; /* Adjust padding if necessary */
   white-space: normal;
-  width: 20px;
-  max-width: 20px;
+  width: 150px;
+  max-width: 150px;
 }
 
 .mapclass{

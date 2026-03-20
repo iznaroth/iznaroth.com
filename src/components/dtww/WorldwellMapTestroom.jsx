@@ -45,7 +45,9 @@ import alliances from './alliances.json';
 import entities from './entities.json';
 import subentities from './subentities.json';
 import inter from './inter.json';
-import preloadedPaintState from './paint_state_valid_mk2.json'
+import preloadedPaintState from './paint_state_full_fill.json';
+
+import blankMarker from './blank_marker.png';
 
 //const preloadedPaintState = null;
 
@@ -671,14 +673,14 @@ const Dornn = () => {
   }
 
   function onMouseDown(e){
-    isMouseDown.current = true;
-    console.log('mouse down');
+    //isMouseDown.current = true;
+    //console.log('mouse down');
   }
 
   function onMouseUp(e){
-    isMouseDown.current = false;
-    pixiOverlayRef.current.redraw();
-    console.log('mouse up');
+    //isMouseDown.current = false;
+    //pixiOverlayRef.current.redraw();
+    //console.log('mouse up');
   }
 
 
@@ -692,13 +694,14 @@ const Dornn = () => {
     let tree = geojsonRbush();
     tree.load(paintlayer);
     console.log(tree.all());
-    setRbush(tree); //holy ugly call
+    setRbush(tree); 
 
     /*
     rona paxta palis 
     */
 
     if(preloadedPaintState){
+      //basemapToTerritory();
       loadSavedPaintState(preloadedPaintState);
     } else {
       mapEntities.data.settlementInfos.forEach(entity => {
@@ -718,6 +721,21 @@ const Dornn = () => {
     }
     
 
+    // HACK to help icon pathing // likely a better way of doing this, but we won't be using
+    L.Icon.Default.imagePath = ''; 
+    L.Icon.Default.mergeOptions({
+        iconUrl: '../../blank_marker.png',
+        shadowUrl: '../../blank_marker.png',
+        iconSize:     [25, 25], // size of the icon
+        shadowSize:   [25, 25], // size of the shadow
+        iconAnchor:   [12, 12], // point of the icon which will correspond to marker's location
+        shadowAnchor: [12, 12],  // the same for the shadow
+        popupAnchor:  [12, 12] // point from which the popup should open relative to the iconAnchor
+    
+    });
+
+
+
     
     //setSelectedEntity(entityEntries.get('Glassblood'));
     setSelectedEntity(entityEntries.current.get('Glassblood'));
@@ -726,7 +744,13 @@ const Dornn = () => {
   function loadSavedPaintState(state){
     console.log(state);
     let mappedEntities = new Map();
+
+    //let baseEntity = state.entities.find(entity => entity.name == 'The Frontier');
+    //console.log(baseEntity);
+    //basemapToTerritory(baseEntity);
+
     state.entities.forEach(entry => {
+      
       if(entry.territories){
         let mappedTerritories = new Map();
         entry.territories.forEach(shape => {
@@ -736,9 +760,10 @@ const Dornn = () => {
         });
 
         entry.territories = mappedTerritories;
-        entry.subentities = new Map();
-        entry.inter = new Map();
       }
+
+      entry.subentities = new Map();
+      entry.inter = new Map();
 
       mappedEntities.set(entry.name, entry);
     });
@@ -794,31 +819,23 @@ const Dornn = () => {
 
   const MapEventHandler = () => {
     useMapEvents({
-      /*click(e){
-        console.log('performance test');
-          let pt = turf.point([e.latlng.lng, e.latlng.lat]);
-          let result = rbush.search(pt);
-        
+      click(e){
+        if(labeling.current){
+          console.log('label interp');
+          selectedEntity.labelAnchor = [e.latlng.lat, e.latlng.lng];
+          console.log(selectedEntity.labelAnchor);
 
-          let exact = null;
-          //console.log(result);
-          result.features.forEach(hit => {
-            if(turf.booleanPointInPolygon(pt, hit)){
-              exact = hit;
-            }
-          });
+          //paradigms for label anchoring are based on the currently selected entity.
+          //the two versions are "many" and "one". Most superentities permit only one label. 
 
-          if(exact){
-            lastShapeEntered.current = exact;
-            console.log('eval done');
-            tryPaint(exact);
-          }
-      },*/
+        }
+      },
       zoomend(e) {
+        console.log('zoomend');
         updateLabelSizes();
       },
       mousemove(e) {
-        if(isMouseDown.current){
+        if(isMouseDown.current && !labeling.current){
           let pt = turf.point([e.latlng.lng, e.latlng.lat]);
           let result = rbush.search(pt);
         
@@ -860,6 +877,7 @@ const Dornn = () => {
         entity.aggregatedShape.properties.name = entity.name;
         entity.aggregatedShape.properties.superentityName = entity.superentityName;
         entity.aggregatedShape.properties.labelColor = entity.labelColor;
+        entity.aggregatedShape.properties.labelAnchor = entity.labelAnchor;
         console.log(entity.aggregatedShape);
       } else if(territorySpread.length == 1){
         console.log(entity);
@@ -870,6 +888,7 @@ const Dornn = () => {
         entity.aggregatedShape.properties.name = entity.name;
         entity.aggregatedShape.properties.superentityName = entity.superentityName;
         entity.aggregatedShape.properties.labelColor = entity.labelColor;
+        entity.aggregatedShape.properties.labelAnchor = entity.labelAnchor;
         console.log(entity.aggregatedShape);
       } else {
         entity.aggregatedShape = null;
@@ -895,6 +914,13 @@ const Dornn = () => {
   function toggleErase(event){
     console.log(event.target.checked);
     erasing.current = event.target.checked;
+  }
+
+  const labeling = useRef(false);
+
+  function toggleLabel(event){
+    console.log(event.target.checked);
+    labeling.current = event.target.checked;
   }
 
   //Try and paint a shape onto the map!
@@ -966,6 +992,25 @@ const Dornn = () => {
       return hash;
   }
 
+  function basemapToTerritory(targetEntity){
+    //sets every cell to a given entity then iteratively reapplies each ownership map until all un-possessed cells are possessed.
+    //this is called before the maps are populated
+    // 
+
+    let mappedBaseTerritories = new Map();
+    
+    paintlayer.features.forEach(cell => {
+      let hash = quickHash(JSON.stringify(cell));
+      mappedBaseTerritories.set(hash, cell);
+      entityCollisionMap.current.set(hash, targetEntity.name);
+    })
+
+    targetEntity.territories = mappedBaseTerritories;
+
+    //after this completes, loadSavedPaintState should run and overwrite all of this 
+  }
+
+  var markerPlaced = useRef(new Map());
   function EntityLayerComponent(){
     //return jsx corresponding to the current entity master shapes
     //this is where labels come from
@@ -973,63 +1018,80 @@ const Dornn = () => {
     const map = useMap();
 
     const onEachPoliFeature = (feature, layer) => {
-      // Add a click event listener
-      
-      /*layer.on({
-        
-        zoomend: (e) => {
-          console.log("zoomed on feature:", feature);
-          // Optional: fit map to feature bounds or other actions
-        },
-        mouseover: (e) => {
-          // Optional: highlight feature on hover
-          layer.setStyle({ weight: 3, color: feature.properties.color, fillOpacity: 0.9 });
-        },
-        mouseout: (e) => {
-          // Optional: reset style on mouse out
-          // Note: resetStyle() can be used if you define a style prop
-          layer.setStyle({ weight: 1, color: feature.properties.color, fillOpacity: 0.7 }); 
+      //pull feature style and apply a fillpattern to it
+      if(![...markerPlaced.current.keys()].includes(feature.properties.name)){
+        console.log(feature.properties.name);
+        if(feature.properties.superentityName == 'ESOTERICS'){
+          console.log('ESO?');
+          var stripes = new L.StripePattern({
+            opacity: 0.9, //this is relative
+            spaceOpacity: 0.4,
+            color: feature.properties.color,
+            spaceColor: feature.properties.color,
+            angle: 45,
+            width: 32,
+            height: 32,
+            weight: 16,
+            spaceWeight: 16
+          })
+
+          console.log(stripes);
+
+          stripes.addTo(map);
+
+          console.log('added');
+
+          layer.setStyle({fillPattern: stripes});
+          console.log('applied pattern?');
+        }
+
+        // Optional: Bind a popup with feature properties
+
+        //shapes can have two important props: multimarker and symbol
+        //multimarker means you need to make a marker for each entry in the object's list and bind it 
+        //symbol means you need to reconfigure the marker's icon to match the territory type.
+
+        var marker = L.marker(feature.properties.labelAnchor ?? [0,0], {
+          draggable: true,
+          properties: {
+            icon: null,
+            name: feature.properties.name
+          }
+        }).addTo(map).bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+            `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
+                ${feature.properties.name}
+            </span></div>`, {
+            permanent: true,     // Makes the label always visible
+            direction: 'center', // Centers the label
+            className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`,
+            opacity: 1,
+            offset: [-15, 28]       // Adjust offset if needed
+        });/*.addTo(map).bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+            `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
+                ${feature.properties.name}
+            </span></div>`, {
+            permanent: true,     // Makes the label always visible
+            direction: 'bottom', // Centers the label
+            className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`, // Add a custom CSS class for styling
+            opacity: 1,
+            offset: [0, 0]       // Adjust offset if needed
         });*/
 
-      //pull feature style and apply a fillpattern to it
-      console.log(feature.properties.superentityName);
-      if(feature.properties.superentityName == 'ESOTERICS'){
-        console.log('ESO?');
-        var stripes = new L.StripePattern({
-          opacity: 0.9, //this is relative
-          spaceOpacity: 0.4,
-          color: feature.properties.color,
-          spaceColor: feature.properties.color,
-          angle: 45,
-          width: 32,
-          height: 32,
-          weight: 16,
-          spaceWeight: 16
-        })
+        marker.on('dragend', function(e){
+          var marker = e.target;
+          console.log(marker);
 
-        console.log(stripes);
+          var position = marker.getLatLng();
 
-        stripes.addTo(map);
+          var entity = entityEntries.current.get(marker.options.properties.name);
+          console.log(entity);
+          entity.labelAnchor = position;
+        });
+        //console.log(feature.properties.labelAnchor);
 
-        console.log('added');
-
-        layer.setStyle({fillPattern: stripes});
-        console.log('applied pattern?');
+        markerPlaced.current.set(feature.properties.name, marker);
       }
-    
-
-    // Optional: Bind a popup with feature properties
-    layer.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
-        `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
-            ${feature.properties.name}
-        </span></div>`, {
-        permanent: true,     // Makes the label always visible
-        direction: 'center', // Centers the label
-        className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`, // Add a custom CSS class for styling
-        opacity: 1,
-        offset: [-75, 0]       // Adjust offset if needed
-    });
-  };
+    };
 
     return (<FeatureGroup key={entityItr}>
     {[...entityEntries.current.values()].map((entity, index) => 
@@ -1041,7 +1103,7 @@ const Dornn = () => {
               className='mapclass'
               style={() => ({
               color: entity.color,
-              weight: 6,
+              weight: 3,
               opacity: 1,
               fillColor: entity.color,
               fillOpacity: 0.6,
@@ -1083,16 +1145,17 @@ const Dornn = () => {
   }
 
   // Function to update all labels in the layer
-  function updateLabelSizes() {
-    console.log('test');
-    console.log(mapRef);
+  function updateLabelSizes() {;
     var currentZoom = mapRef.getZoom();
-    console.log(currentZoom);
     var newSize = getFontSize(currentZoom);
 
     const root = document.documentElement;
 
     root.style.setProperty('--label-font-size', newSize);
+    [...markerPlaced.current.values()].forEach(marker => {
+      let tooltip = marker.getTooltip();
+      if(tooltip) tooltip.update();
+    })
   }
 
   function saveEntityShapeData(){
@@ -1195,6 +1258,8 @@ const Dornn = () => {
               SELECTED: {selectedEntity?.name}  
               <input style={{'margin-left': '16px'}} type="checkbox" id="erase" name="erase" value="Erase" onChange={toggleErase}/>
               <label for="erase">ERASE MODE</label>
+              <input style={{'margin-left': '16px'}} type="checkbox" id="labelMode" name="labelMode" value="labelMode" onChange={toggleLabel}/>
+              <label for="labelMode">LABEL POSITION MODE</label>
               <div style={{'margin-left':'5vw', 'margin-top':'50px', 'border':'3px solid white'}}>
                 <button onClick={updateAggregates}>REBUILD ENTITY SHAPES</button>
               </div>
