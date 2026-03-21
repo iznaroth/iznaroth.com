@@ -45,9 +45,11 @@ import alliances from './alliances.json';
 import entities from './entities.json';
 import subentities from './subentities.json';
 import inter from './inter.json';
-import preloadedPaintState from './paint_state_full_fill.json';
+import preloadedPaintState from './paint_state.json';
 
 import blankMarker from './blank_marker.png';
+
+import {entityLabelCounts, entityLabelSizes, territoryIcons} from './MapTestroomConstants.jsx';
 
 //const preloadedPaintState = null;
 
@@ -419,7 +421,7 @@ const Dornn = () => {
         renderer.render(container);
       }, new PIXI.Container());
 
-      overlay.addTo(map);
+      //overlay.addTo(map);
       const overlayMaps = {
         name: overlay
       };
@@ -472,7 +474,7 @@ const Dornn = () => {
       }, new PIXI.Container());
 
       pixiOverlayRef.current = overlay;
-      overlay.addTo(map);
+      //overlay.addTo(map);
       layerNodeRef.current.addOverlay(overlay, name);
 
 
@@ -623,6 +625,8 @@ const Dornn = () => {
 
   const entitiesNeedingRebuild = useRef(new Set());
 
+  const [showIndevPopup, setShowIndevPopup] = useState(true);
+
   //const [selectedEntity, setSelectedEntity] = useState(null);
   const [selectedEntity, setSelectedEntity] = useState(null);
 
@@ -741,6 +745,12 @@ const Dornn = () => {
     setSelectedEntity(entityEntries.current.get('Glassblood'));
   }, []);
 
+  var CustomLeafletIcon = L.Icon.extend({
+    options: {
+
+    }
+  })
+
   function loadSavedPaintState(state){
     console.log(state);
     let mappedEntities = new Map();
@@ -772,6 +782,8 @@ const Dornn = () => {
 
     entityEntries.current = mappedEntities;
     console.log(entityEntries.current);
+
+    //propSurgery();
 
     //SUBENTITY EXTRACT ----------------
     let mappedSubentities = new Map();
@@ -819,19 +831,8 @@ const Dornn = () => {
 
   const MapEventHandler = () => {
     useMapEvents({
-      click(e){
-        if(labeling.current){
-          console.log('label interp');
-          selectedEntity.labelAnchor = [e.latlng.lat, e.latlng.lng];
-          console.log(selectedEntity.labelAnchor);
-
-          //paradigms for label anchoring are based on the currently selected entity.
-          //the two versions are "many" and "one". Most superentities permit only one label. 
-
-        }
-      },
       zoomend(e) {
-        console.log('zoomend');
+        console.log('zoomend: ' + mapRef.getZoom());
         updateLabelSizes();
       },
       mousemove(e) {
@@ -877,7 +878,8 @@ const Dornn = () => {
         entity.aggregatedShape.properties.name = entity.name;
         entity.aggregatedShape.properties.superentityName = entity.superentityName;
         entity.aggregatedShape.properties.labelColor = entity.labelColor;
-        entity.aggregatedShape.properties.labelAnchor = entity.labelAnchor;
+        entity.aggregatedShape.properties.labelAnchors = entity.labelAnchors;
+        entity.aggregatedShape.properties.labelSize = entity.labelSize;
         console.log(entity.aggregatedShape);
       } else if(territorySpread.length == 1){
         console.log(entity);
@@ -888,11 +890,14 @@ const Dornn = () => {
         entity.aggregatedShape.properties.name = entity.name;
         entity.aggregatedShape.properties.superentityName = entity.superentityName;
         entity.aggregatedShape.properties.labelColor = entity.labelColor;
-        entity.aggregatedShape.properties.labelAnchor = entity.labelAnchor;
+        entity.aggregatedShape.properties.labelAnchors = entity.labelAnchors;
+        entity.aggregatedShape.properties.labelSize = entity.labelSize;
         console.log(entity.aggregatedShape);
       } else {
         entity.aggregatedShape = null;
       }
+
+      console.log(entity);
     })
 
     //clear!
@@ -1010,16 +1015,36 @@ const Dornn = () => {
     //after this completes, loadSavedPaintState should run and overwrite all of this 
   }
 
+  function propSurgery(){
+    //this is a quick attempt at smacking props onto all the entities in the authority collection.
+    entityEntries.current.forEach(entry => {
+      entry.labelAnchors = [];
+      entry.labelAnchors.push(entry.labelAnchor ?? [0, 0]); //multi
+
+      //using the mapped index of entity names to label counts, create a new baselabel at 0, 0
+      let labelCount = entityLabelCounts.get(entry.name) - 1;
+      console.log('for ' + entry.name + ' add ' + labelCount);
+      for(let i = 0; i < labelCount; i++){
+        entry.labelAnchors.push([0, 0]);
+      }
+
+      //apply labelsize (normal is the base, small territories or oversized names are "small" and big ones are "large")
+      entry.labelSize = entityLabelSizes.get(entry.name);
+      console.log(entry);
+    });
+  }
+
   var markerPlaced = useRef(new Map());
   function EntityLayerComponent(){
     //return jsx corresponding to the current entity master shapes
     //this is where labels come from
 
     const map = useMap();
+    const groupRef = useRef(null);
 
     const onEachPoliFeature = (feature, layer) => {
       //pull feature style and apply a fillpattern to it
-      if(![...markerPlaced.current.keys()].includes(feature.properties.name)){
+      //if(![...markerPlaced.current.keys()].includes(feature.properties.name)){
         console.log(feature.properties.name);
         if(feature.properties.superentityName == 'ESOTERICS'){
           console.log('ESO?');
@@ -1035,14 +1060,10 @@ const Dornn = () => {
             spaceWeight: 16
           })
 
-          console.log(stripes);
-
           stripes.addTo(map);
 
-          console.log('added');
 
           layer.setStyle({fillPattern: stripes});
-          console.log('applied pattern?');
         }
 
         // Optional: Bind a popup with feature properties
@@ -1051,49 +1072,107 @@ const Dornn = () => {
         //multimarker means you need to make a marker for each entry in the object's list and bind it 
         //symbol means you need to reconfigure the marker's icon to match the territory type.
 
-        var marker = L.marker(feature.properties.labelAnchor ?? [0,0], {
-          draggable: true,
-          properties: {
-            icon: null,
-            name: feature.properties.name
-          }
-        }).addTo(map).bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
-            `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
-                ${feature.properties.name}
-            </span></div>`, {
-            permanent: true,     // Makes the label always visible
-            direction: 'center', // Centers the label
-            className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`,
-            opacity: 1,
-            offset: [-15, 28]       // Adjust offset if needed
-        });/*.addTo(map).bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
-            `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
-                ${feature.properties.name}
-            </span></div>`, {
-            permanent: true,     // Makes the label always visible
-            direction: 'bottom', // Centers the label
-            className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`, // Add a custom CSS class for styling
-            opacity: 1,
-            offset: [0, 0]       // Adjust offset if needed
-        });*/
+      if(![...markerPlaced.current.keys()].includes(feature.properties.name)){
+        if(!feature.properties.labelAnchors) feature.properties.labelAnchors = [[0, 0]];
 
-        marker.on('dragend', function(e){
-          var marker = e.target;
+        var optIcon = null;
+        if(feature.properties.superentityName == 'THE FRONTIER'){
+          var iconName = territoryIcons.get(feature.properties.name);
+
+          optIcon = L.icon({
+            iconUrl: '../..' + iconName,
+            shadowUrl: '../..' + iconName,
+            iconSize:     [25, 25], // size of the icon
+            shadowSize:   [25, 25], // size of the shadow
+            iconAnchor:   [12, 12], // point of the icon which will correspond to marker's location
+            shadowAnchor: [12, 12],  // the same for the shadow
+            popupAnchor:  [12, 12] // point from which the popup should open relative to the iconAnchor
+          })
+
+          console.log(optIcon);
+        }
+
+        console.log('SIZING?');
+        console.log(feature.properties.labelSize);
+        console.log(getFontSizeClass(feature.properties.labelSize));
+
+
+        feature.properties.labelAnchors.forEach((anchor, index) => {
+          var marker = L.marker(anchor ?? [0,0], {
+            draggable: true,
+            properties: {
+              icon: optIcon,
+              name: feature.properties.name,
+              idx: index
+            }
+          })
+
           console.log(marker);
+          
+          marker.addTo(map)
+          
+          if(!optIcon){
+            marker.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+                `<div style="white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
+                    ${feature.properties.name}
+                </span></div>`, {
+                permanent: true,     // Makes the label always visible
+                direction: 'center', // Centers the label
+                className: `${'map-label ' + getLabelWidthClass(feature.properties.labelSize) + ' ' + getFontSizeClass(feature.properties.labelSize) + ' ' + getParentFontClass(feature.properties.superentityName)}`,
+                opacity: 1,
+                offset: [-15, 28]       // Adjust offset if needed
+            });/*.addTo(map).bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+                `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${feature.properties.labelColor}; font-weight: bold;">
+                    ${feature.properties.name}
+                </span></div>`, {
+                permanent: true,     // Makes the label always visible
+                direction: 'bottom', // Centers the label
+                className: `${'map-label ' + getParentFontClass(feature.properties.superentityName)}`, // Add a custom CSS class for styling
+                opacity: 1,
+                offset: [0, 0]       // Adjust offset if needed
+            });*/
+          }
 
-          var position = marker.getLatLng();
+          marker.on('dragend', function(e){
+            var marker = e.target;
+            console.log(marker);
 
-          var entity = entityEntries.current.get(marker.options.properties.name);
-          console.log(entity);
-          entity.labelAnchor = position;
+            var position = marker.getLatLng();
+
+            var entity = entityEntries.current.get(marker.options.properties.name);
+            console.log(entity);
+            console.log(marker.options.properties.idx);
+            console.log(position);
+            entity.labelAnchors[marker.options.properties.idx] = position;
+            console.log(entity);
+
+            // Inside your event
+            console.log(marker.options.icon.options.iconUrl); // The path you want
+            console.log(marker._icon.src);                   // The path the browser has
+
+            // If they don't match, force it:
+            marker.setIcon(marker.options.icon); 
+          });
+          //console.log(feature.properties.labelAnchors);
+
+          markerPlaced.current.set(feature.properties.name, marker);
         });
-        //console.log(feature.properties.labelAnchor);
-
-        markerPlaced.current.set(feature.properties.name, marker);
       }
+
+      console.log(feature.properties.name);
+      console.log(layer);
     };
 
-    return (<FeatureGroup key={entityItr}>
+    return (<FeatureGroup 
+      ref={groupRef}
+      key={entityItr}
+      eventHandlers={{
+        add: (e) => {
+          console.log("fix markers");
+          fixMarkerIcons(map);
+        }
+      }}
+    >
     {[...entityEntries.current.values()].map((entity, index) => 
       (entity.aggregatedShape ? 
       <GeoJSON 
@@ -1126,32 +1205,143 @@ const Dornn = () => {
   }
 
   // Function to calculate font size based on zoom level
-  function getFontSize(zoom) {
+  function getFontSize(zoom, labelSize) {
       // You can adjust this formula as needed
-      switch(zoom){
-        case -2:
-          return '0px';
-        case -1:
-          return '8px';
-        case 0:
-          return '16px';
-        case 1:
-          return '24px';
-        case 2:
-          return '32px';
-        default:
-          return '48px';
-      }     
+      switch(labelSize){
+        case "small":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '0px';
+            case 0:
+              return '0px';
+            case 1:
+              return '0px';
+            case 2:
+              return '16px';
+            default:
+              return '24px';
+          }
+        case "medium":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '6px';
+            case 0:
+              return '12px';
+            case 1:
+              return '16px';
+            case 2:
+              return '24px';
+            default:
+              return '32px';
+          }  
+        case "large":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '16px';
+            case 0:
+              return '24px';
+            case 1:
+              return '24px';
+            case 2:
+              return '48px';
+            default:
+              return '48px';
+          }      
+      }
+  }
+
+  // Function to calculate label width based on zoom level
+  function getLabelWidth(zoom, labelSize) {
+      // You can adjust this formula as needed
+      switch(labelSize){
+        case "small":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '0px';
+            case 0:
+              return '0px';
+            case 1:
+              return '0px';
+            case 2:
+              return '75px';
+            default:
+              return '150px';
+          }
+        case "medium":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '50px';
+            case 0:
+              return '100px';
+            case 1:
+              return '100px';
+            case 2:
+              return '150px';
+            default:
+              return '150px';
+          }  
+        case "large":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '80px';
+            case 0:
+              return '100px';
+            case 1:
+              return '150px';
+            case 2:
+              return '150px';
+            default:
+              return '150px';
+          }      
+      }
+  }
+
+  function getFontSizeClass(size){
+    switch(size){
+      case "small":
+        return 'map-label-small';
+      case "medium":
+        return 'map-label-medium';
+      case "large":
+        return 'map-label-large';
+    }
+  }
+
+  function getLabelWidthClass(size){
+    switch(size){
+      case "small":
+        return 'label-width-small';
+      case "medium":
+        return 'label-width-medium';
+      case "large":
+        return 'label-width-large';
+    }
   }
 
   // Function to update all labels in the layer
   function updateLabelSizes() {;
     var currentZoom = mapRef.getZoom();
-    var newSize = getFontSize(currentZoom);
-
     const root = document.documentElement;
-
-    root.style.setProperty('--label-font-size', newSize);
+    root.style.setProperty('--label-font-size-small', getFontSize(currentZoom, "small"));
+    root.style.setProperty('--label-font-size-medium', getFontSize(currentZoom, "medium"));
+    root.style.setProperty('--label-font-size-large', getFontSize(currentZoom, "large"));
+    
+    root.style.setProperty('--label-width-small', getLabelWidth(currentZoom, "small"));
+    root.style.setProperty('--label-width-medium', getLabelWidth(currentZoom, "medium"));
+    root.style.setProperty('--label-width-large', getLabelWidth(currentZoom, "large"));
+    
     [...markerPlaced.current.values()].forEach(marker => {
       let tooltip = marker.getTooltip();
       if(tooltip) tooltip.update();
@@ -1197,6 +1387,27 @@ const Dornn = () => {
     return flat;
   }
 
+  function fixMarkerIcons(map){
+    var markerList = [];
+    map.eachLayer(function(layer) {
+        if (layer instanceof L.Marker) {
+            markerList.push(layer);
+        }
+    });
+
+    console.log(markerList);
+    markerList.forEach(marker => {
+      let icon = marker.options.properties.icon;
+      if(icon) marker.setIcon(marker.options.properties.icon);
+      console.log(marker);
+    })
+  }
+
+  function closeIndevPopup(){
+    console.log('close ' + showIndevPopup.current);
+    setShowIndevPopup(false);
+  }
+
 
 
   return (
@@ -1231,7 +1442,7 @@ const Dornn = () => {
                 <LayersControl.Overlay name="di">
                   <DivisibleLayer />
                 </LayersControl.Overlay>
-                <LayersControl.Overlay name="agg">
+                <LayersControl.Overlay name="agg" checked>
                   <EntityLayerComponent ref={geojsonEntitiesRef} />
                 </LayersControl.Overlay>
                 <LayersControl.Overlay name="dornn">
@@ -1243,6 +1454,17 @@ const Dornn = () => {
               </LayersControl>
             </MapContainer>
           </div>
+          { showIndevPopup ? <div style={{'position':'absolute', 'display':'flex', 'left':'10%','top':'1%'}}>
+            <div style={{'width':'50%','position':'relative'}}>
+              <img src="../../map_indev_panel.png"></img>
+              <button style={{'position':'absolute', 'max-width':'50px', 'right':'5%', 'top':'25%'}}>
+                <img src="../../changes_button.png"></img>
+              </button>
+            </div>
+            <button onClick={closeIndevPopup} style={{'width':'5%'}}>
+              <img src="../../close_popup.png" style={{'max-width':'100%', 'margin-bottom':'20%'}}></img>
+            </button>
+          </div> : null}
         </div>
         <div style={{'padding-bottom':'24px'}}>
           <div style={{'width':'fit-content', 'margin': 'auto', 'padding-bottom':'24px'}}>
@@ -1299,6 +1521,9 @@ const Dornn = () => {
       </div>
       <div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
         <button onClick={saveCurrentPaintState}>SAVE PAINT STATE</button>
+      </div>
+      <div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
+        <button onClick={fixMarkerIcons}>MARKER HELP</button>
       </div>
       
       {/*<div style={{'margin-left':'45vw', 'margin-top':'50px','padding-bottom':'50px'}}>
