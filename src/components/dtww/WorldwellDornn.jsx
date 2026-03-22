@@ -1,46 +1,33 @@
 import '../../index.css';
 import * as turf from "@turf/turf";
+import L from 'leaflet';
 
 import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import EmptyList from '../blog/EmptyList';
-import BlogList from '../blog/BlogList';
-import Header from '../blog/Header';
-import SearchBar from '../blog/SearchBar';
-import { request } from 'graphql-request';
-import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, LayerGroup, LayersControl, GeoJSON } from 'react-leaflet'
+import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, FeatureGroup, LayerGroup, LayersControl, GeoJSON, SVGOverlay } from 'react-leaflet'
 import { CRS, icon, map, marker } from 'leaflet'
-import { useResizeDetector } from 'react-resize-detector';
 import { graphcms, QUERY_MAPENTRY, QUERY_SETTLEMENTENTRY } from '../../graphql/Queries';
-import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, history,
-councilFort, councilCity, councilSettlement, councilHold, freeFort, freeCity, freeSettlement, freeHold, threatFort, threatCity, threatSettlement, threatHold, humanCapital} from './DornnMapConstants';
-import { CSSTransition } from 'react-transition-group';
-import { Alert, Collapse, IconButton } from '@mui/material';
-
-
-//const screenBounds = [
-//  [0, 0],
-//  [511, 1068],
-//]
+import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, history} from './DornnMapConstants';
+import unified from './svg_cutouts_unified.json';
+import superentityShapes from './superentity_shapes.json';
+import entityShapes from './entity_shapes.json';
+import {entityLabelCounts, entityLabelSizes, territoryIcons} from './MapTestroomConstants.jsx';
 
 const screenBounds = [
   [0, 0],
-  [8180, 17084],
+  [2045, 4271],
 ]
 
 const screenBoundsWiggle = [
-  [-2045, -2045],
-  [10225, 19130],
+  [-500, -500],
+  [2545, 4771],
 ]
 
 
 const zoneArray = [dolwynd, northsea, anterros, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil ]
 
 
-
-const redColor = { color: 'red' }
 const whiteColor = { color: 'white' }
 const blackColor = { color: 'black' }
-const borderColor = { color: 'black' }
 
 
 const Dornn = () => {
@@ -58,24 +45,23 @@ const Dornn = () => {
   const [settlementsTab, setSettlementsTab] = useState(null);
   const [territoriesTab, setTerritoriesTab] = useState(null);
   const [mapControlState, setMapControlState] = useState([false, false]); //represents drag and zoom restrictions
-
   const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
   const [runMonitor1, setRunMonitor1] = useState(false);
   const [runMonitor2, setRunMonitor2] = useState(false);
-
   const [classNames, setClassNames] = useState(['map-polygon'])
+  const [entityFocused, setEntityFocused] = useState(false)
+  const [markerFocused, setMarkerFocused] = useState(false)
+  const [markerClass, setMarkerClass] = useState(0);
+  const [wakeupDone, setWakeupDone] = useState(false);
+  const [showIndevPopup, setShowIndevPopup] = useState(true);
+  const [changelogOpen, setChangelogOpen] = useState(false);
+  const [mapRef, setMapRef] = useState(null);
+  const layerNodeRef = useRef(null);
 
   const dw = 'IM Fell DW Pica'
   const roman = 'Gideon Roman'
 
   const [headerFont, setHeaderFont] = useState(dw)
-
-  const [entityFocused, setEntityFocused] = useState(false)
-
-  const [markerFocused, setMarkerFocused] = useState(false)
-  const [markerClass, setMarkerClass] = useState(0);
-
-  const [wakeupDone, setWakeupDone] = useState(false);
 
 
   //fits the boundaries of the map to the viewport to the best of its ability
@@ -86,45 +72,6 @@ const Dornn = () => {
       setWakeupDone(true);
     }
   }
-
-  //deprecated
-  function timeout(delay) {
-    return new Promise( res => setTimeout(res, delay) );
-  }
-
-
-  //what does this do?
-  function getWindowDimensions() {
-    const { innerWidth: width, innerHeight: height } = window;
-    return {
-      width,
-      height
-    };
-  }
-
-  //??
-  function useWindowDimensions() {
-    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions());
-
-    useEffect(() => {
-      function handleResize() {
-        setWindowDimensions(getWindowDimensions());
-      }
-
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-
-    return windowDimensions;
-  }
-
-  //useless hack
-  function wrapSetBio(bio){
-    console.log("SET BIO")
-    setBio(bio);
-  }
-
-
 
   //For bottom infopanel
   const [bio, setBio] = useState(0)
@@ -177,6 +124,19 @@ const Dornn = () => {
         graphcms.request(QUERY_SETTLEMENTENTRY)
         .then(res => console.log(res))
     }
+
+    // HACK to help icon pathing // likely a better way of doing this, but we won't be using
+    L.Icon.Default.imagePath = ''; 
+    L.Icon.Default.mergeOptions({
+        iconUrl: '../../blank_marker.png',
+        shadowUrl: '../../blank_marker.png',
+        iconSize:     [25, 25], // size of the icon
+        shadowSize:   [25, 25], // size of the shadow
+        iconAnchor:   [12, 12], // point of the icon which will correspond to marker's location
+        shadowAnchor: [12, 12],  // the same for the shadow
+        popupAnchor:  [12, 12] // point from which the popup should open relative to the iconAnchor
+    
+    });
   }, []);
 
   useEffect(() => {
@@ -188,13 +148,14 @@ const Dornn = () => {
     resizeObserver.observe(mapContainerRef.current);
   })
   
-  function goBack(){ //Return to origin. Rename function!
+  function goBack(){ //Revert all popover properties and return to origin. Rename function!
      setFocused(false); 
      setSelectedPoly(screenBounds); 
      setZoneOpacities(screenBounds);
-     map.flyTo([256, 534], 0.0001);
+     mapRef.flyTo([1200, 2350], -2);
      setSelectedBody(null);
      setMapControlState(true, true); //deprecated?
+     setChangelogOpen(false);
      
     map.dragging.enable();
     map.zoom.enable();
@@ -214,40 +175,6 @@ const Dornn = () => {
     console.log("popout");
     settlementsTab.classList.toggle("banner-extend");
     infoPanel.classList.toggle("settlement-bumped");
-  }
-
-  //handles the construction of the map subdivision layer for highlighting and splitting (nonperformant)
-  function SetTerritorialSubdivisions(){
-    /*
-    const options = {
-      bbox: [0, 0, 1068, 511]
-    };
-    const points = turf.randomPoint(200000, options);
-    const voronoiPolygons = turf.voronoi(points, options);
-
-    console.log(typeof(voronoiPolygons.features));
-
-    return (
-      <>
-        {
-          voronoiPolygons.features.map((item, index) => (
-            <GeoJSON 
-              key={index}
-              data={item}
-              style={() => ({
-              color: '#000000',
-              weight: 2,
-              opacity: 1,
-              fillColor: '#ffffff',
-              fillOpacity: 0
-            })}
-            ></GeoJSON>
-          ))
-        }
-      </>
-    )
-      */
-     return (<></>);
   }
 
   //genuinely how does this work and why is it like this? it's a component function, so i guess it just runs all this once at wakeup 
@@ -563,8 +490,6 @@ const Dornn = () => {
 
             map.invalidateSize();
             setHeaderFont(regionHeaderFont);
-            
-            console.log('fly to bounds?');
 
             map.flyToBounds(regionBounds, {duration: 2})
             setSelectedPoly(regionBounds);
@@ -614,8 +539,7 @@ const Dornn = () => {
 
   }
 
-  const [markerList, setMarkerList] = useState([]) 
-  const [markerPositions, setMarkerPositions] = useState([]) 
+  const [markerPositions, setMarkerPositions] = useState([]) ;
 
   //list of const - move to const file and export array.
   
@@ -787,13 +711,22 @@ const Dornn = () => {
 
     <>
     <img id="huge-header" className="mx-auto align-top opacity-90 pt-16 w-2/5" src="../../political_cover_alt.png"/>
-    
-    
+    <p id="text-center-83">
+      Hey there! This portion of the site has been broken by ongoing map upgrades. It may be removed in a later update and folded into the map. Stay tuned! 
+    </p>
+    <div className="container">
+      <img className="mx-auto align-top pt-64 pb-64 w-4/6" src="../../unfinished.png"/>
+    </div>
+    {/*
     <p id="text-center-83">
     The Dornnian Midlands have changed hands about as many times as you’d expect, burdened by the spasms, expansions and contractions of mortal whim. In the Seasons of Stagnation, the receding Empires of Men have left room for old hands to resume their work; the shape of the map has begun to take on a familiar form.
     <br /> <br />
     <b className='green'><u>Click on any individual faction header to select their capital on the map. </u></b>
     </p>
+
+    
+
+     
 
     <div id="politic-box">
       <div id="polwedge"></div>
@@ -1029,20 +962,517 @@ const Dornn = () => {
     
     <div className='blog-footer'></div>
     
-    
+    */}
     </>
     )
 
   const [inProp, setInProp] = useState(false);
   const nodeRef = useRef(null);
 
-  const [open, setOpen] = useState(true);
 
+  //-----------------------[BEGIN MAP ELEMENTS]---------------------------
+
+  const [lastZoom, setLastZoom] = useState(-2);
+    
+  const entityVisible = useRef(false);
+  const superEntityVisible = useRef(true);
+
+  const MapEventHandler = () => {
+    useMapEvents({
+      zoomend(e) {
+        console.log(e)
+        let zoom = mapRef.getZoom();
+        console.log(zoom);
+        if(zoom >= 0 && lastZoom <= -1){
+          console.log('entities?')
+          entityVisible.current = true;
+          superEntityVisible.current = false;
+        } else if(zoom <= -1 && lastZoom >= 0){
+          console.log('supers?')
+          entityVisible.current = false;
+          superEntityVisible.current = true;
+        }
+
+        if(zoom >= 0){
+          updateLabelSizes();
+        }
+        setLastZoom(zoom);
+      }
+    });
+  };
+
+  //handles the construction of the map subdivision layer for highlighting and splitting (nonperformant)
+  function LandmassLayer(){
+    return (unified.features.map((item, index) => (<GeoJSON 
+              key={index}
+              data={item}
+              style={() => ({
+              color: '#000000',
+              weight: 2,
+              opacity: 1,
+              fillColor: '#ffffff',
+              fillOpacity: 1.0
+              })}
+            ></GeoJSON>)))
+    
+  }
+
+  var markerPlaced = useRef(new Map());
+  function EntityLayerComponent(){
+    //return jsx corresponding to the current entity master shapes
+    //this is where labels come from
+
+    const map = useMap();
+    const svgRenderer = L.svg();
+
+    const onEachPoliFeature = (feature, layer) => {
+      //pull feature style and apply a fillpattern to it
+      //if(![...markerPlaced.current.keys()].includes(feature.properties.name)){
+      //console.log(feature.properties.name);
+      if(feature.properties.superentityName == 'ESOTERICS'){
+        //console.log('ESO?');
+        var stripes = new L.StripePattern({
+          opacity: 0.9, //this is relative
+          spaceOpacity: 0.4,
+          color: feature.properties.color,
+          spaceColor: feature.properties.color,
+          angle: 45,
+          width: 32,
+          height: 32,
+          weight: 16,
+          spaceWeight: 16
+        })
+
+        stripes.addTo(map);
+
+
+        layer.setStyle({fillPattern: stripes});
+      }
+    };
+
+    return (<FeatureGroup 
+      eventHandlers={{ //markers get added before icons can be applied, but this happens after geo is ready, so we can fix them here.
+        add: (e) => {
+          console.log("fix markers");
+          fixMarkerIcons(map);
+        }
+      }}
+    >
+    {entityShapes.map((entity, index) => 
+      (entity.aggregatedShape ? 
+      <GeoJSON 
+              onEachFeature={onEachPoliFeature}
+              key={index}
+              data={entity.aggregatedShape}
+              className='mapclass'
+              style={() => ({
+                color: entity.color,
+                weight: 3,
+                opacity: 1,
+                fillColor: entity.color,
+                fillOpacity: 0.6,
+              })}
+              pathOptions={() => ({
+                renderer: entity.superentityName == 'ESOTERICS' ? svgRenderer : null,
+              })}
+      ></GeoJSON> : 
+      <GeoJSON //fallback
+                onEachFeature={onEachPoliFeature}
+                key={index}
+                data={unified.features[0]}
+                className='mapclass'
+                style={() => ({
+                color: '#000000',
+                weight: 12,
+                opacity: 1,
+                fillColor: '#000000',
+                fillOpacity: 0.3,
+                })}
+      ></GeoJSON>))}
+    </FeatureGroup>)
+  }
+
+  const entityMarkerGroup = useRef(null);
+  function EntityMarkerGenerator(){
+    useEffect(() => {
+      console.log('GENERATE MARKERS? ------------------------->');
+      console.log(entityMarkerGroup.current);
+      entityShapes.forEach(entity => {
+        if(![...markerPlaced.current.keys()].includes(entity.name)){
+          if(!entity.labelAnchors) entity.labelAnchors = [[0, 0]];
+
+          var optIcon = null;
+          if(entity.superentityName == 'THE FRONTIER'){
+            var iconName = territoryIcons.get(entity.name);
+
+            optIcon = L.icon({
+              iconUrl: '../..' + iconName,
+              shadowUrl: '../..' + iconName,
+              iconSize:     [25, 25], // size of the icon
+              shadowSize:   [25, 25], // size of the shadow
+              iconAnchor:   [12, 12], // point of the icon which will correspond to marker's location
+              shadowAnchor: [12, 12],  // the same for the shadow
+              popupAnchor:  [12, 12] // point from which the popup should open relative to the iconAnchor
+            }) 
+            console.log(optIcon);
+          }
+
+          console.log('SIZING?');
+          console.log(entity.labelSize);
+          console.log(getFontSizeClass(entity.labelSize));
+
+
+          entity.labelAnchors.forEach((anchor, index) => {
+            var marker = L.marker(anchor ?? [0,0], {
+              properties: {
+                icon: optIcon,
+                name: entity.name,
+                idx: index
+              }
+            })
+            
+            marker.addTo(entityMarkerGroup.current)
+            
+            if(!optIcon){
+              marker.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+                  `<div style="white-space: normal; text-align: center;"><span style="color: ${entity.labelColor}; font-weight: bold;">
+                      ${entity.name}
+                  </span></div>`, {
+                  permanent: true,     // Makes the label always visible
+                  direction: 'center', // Centers the label
+                  className: `${'map-label ' + getLabelWidthClass(entity.labelSize) + ' ' + getFontSizeClass(entity.labelSize) + ' ' + getParentFontClass(entity.superentityName)}`,
+                  opacity: 1,
+                  offset: [-15, 28]       // Adjust offset if needed
+              });/*.addTo(map).bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+                  `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${entity.labelColor}; font-weight: bold;">
+                      ${entity.name}
+                  </span></div>`, {
+                  permanent: true,     // Makes the label always visible
+                  direction: 'bottom', // Centers the label
+                  className: `${'map-label ' + getParentFontClass(entity.superentityName)}`, // Add a custom CSS class for styling
+                  opacity: 1,
+                  offset: [0, 0]       // Adjust offset if needed
+              });*/
+            }
+
+            markerPlaced.current.set(entity.name, marker);
+          });
+        }
+      });
+    }, []);
+  }
+
+  function SuperEntityLayerComponent(){
+    //return jsx corresponding to the current entity master shapes
+    //this is where labels come from
+
+    const map = useMap();
+    const svgRenderer = L.svg();
+
+    const onEachSuperFeature = (feature, layer) => {
+      //pull feature style and apply a fillpattern to it
+      //if(![...markerPlaced.current.keys()].includes(feature.properties.name)){
+      //console.log(feature.properties.name);
+      if(feature.properties.name == 'ESOTERICS'){
+        var stripes = new L.StripePattern({
+          opacity: 0.9, //this is relative
+          spaceOpacity: 0.4,
+          color: feature.properties.color,
+          spaceColor: feature.properties.color,
+          angle: 45,
+          width: 32,
+          height: 32,
+          weight: 16,
+          spaceWeight: 16
+        })
+
+        stripes.addTo(map);
+
+
+        layer.setStyle({fillPattern: stripes});
+      }
+    };
+
+    return (<FeatureGroup>
+    {superentityShapes.map((superentity, index) => 
+      (superentity.aggregatedShape ? 
+      <GeoJSON 
+              onEachFeature={onEachSuperFeature}
+              key={index}
+              data={superentity.aggregatedShape}
+              className='mapclass'
+              style={() => ({
+                color: superentity.color.hex,
+                weight: 3,
+                opacity: 1,
+                fillColor: superentity.color.hex,
+                fillOpacity: 0.6,
+              })}
+              pathOptions={() => ({
+                renderer: superentity.name == 'ESOTERICS' ? svgRenderer : null,
+              })}
+      ></GeoJSON> : 
+      <GeoJSON //fallback
+                onEachFeature={onEachSuperFeature}
+                key={index}
+                data={unified.features[0]}
+                className='mapclass'
+                style={() => ({
+                color: '#000000',
+                weight: 12,
+                opacity: 1,
+                fillColor: '#000000',
+                fillOpacity: 0.3,
+                })}
+      ></GeoJSON>))}
+    </FeatureGroup>)
+  }
+
+  const superentityMarkerGroup = useRef(null);
+  const superentityMarkerPlaced = useRef(new Map());
+  function SuperEntityMarkerGenerator(){
+    useEffect(() => {
+      console.log('GENERATE MARKERS? ------------------------->');
+      console.log(superentityMarkerGroup.current);
+      superentityShapes.forEach(superentity => {
+        if(![...superentityMarkerPlaced.current.keys()].includes(superentity.name)){
+          if(!superentity.labelAnchor) superentity.labelAnchor = [0, 0];
+
+          var marker = L.marker(superentity.labelAnchor ?? [0,0], {
+            properties: {
+              name: superentity.name,
+            }
+          })
+            
+          marker.addTo(superentityMarkerGroup.current)
+            
+          marker.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+              `<div style="white-space: normal; text-align: center;"><span style="color: ${superentity.nameColor.hex}; font-weight: bold;">
+                  ${superentity.name}
+              </span></div>`, {
+              permanent: true,     // Makes the label always visible
+              direction: 'center', // Centers the label
+              className: `${'map-label superentity-label ' + getFontSizeClass(superentity.labelSize) + ' ' + getParentFontClass(superentity.name)}`,
+              opacity: 1,
+              offset: [-15, 28]       // Adjust offset if needed
+          });
+
+          superentityMarkerPlaced.current.set(superentity.name, marker);
+        }
+      });
+    }, []);
+  }
+
+  //------------------------[MAP LAYER UTILS]------------------------------
+
+  function getParentFontClass(parent){
+    switch(parent){
+      case 'MIDLAND COUNCIL (XII)':
+        return 'midland';
+      case 'INDEPENDENTS':
+        return 'independents';
+      case 'THE UNMORTAL LEAGUE':
+        return 'unmortal';
+      case 'SALÍRAN DYNASTIES':
+        return 'salir';
+      case 'DRAIDIC PACT':
+        return 'draid';
+      case 'FAR-NORTHERN ENCLAVE':
+        return 'enclave';
+      case 'THE THIRD MANDATE OF POWER':
+        return 'mandate';
+      case 'THE FRONTIER':
+        return 'frontier';
+    }
+  }
+  
+  // Function to calculate font size based on zoom level
+  function getFontSize(zoom, labelSize) {
+      // You can adjust this formula as needed
+      switch(labelSize){
+        case "small":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '0px';
+            case 0:
+              return '0px';
+            case 1:
+              return '0px';
+            case 2:
+              return '16px';
+            default:
+              return '24px';
+          }
+        case "medium":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '6px';
+            case 0:
+              return '12px';
+            case 1:
+              return '16px';
+            case 2:
+              return '24px';
+            default:
+              return '32px';
+          }  
+        case "large":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '16px';
+            case 0:
+              return '24px';
+            case 1:
+              return '24px';
+            case 2:
+              return '48px';
+            default:
+              return '48px';
+          }
+        case "super":
+          switch(zoom){
+            case -2:
+              return '16px';
+            case -1:
+              return '24px';
+            case 0:
+              return '0px';
+            case 1:
+              return '0px';
+            case 2:
+              return '0px';
+            default:
+              return '0px';
+          }      
+      }
+  }
+
+  // Function to calculate label width based on zoom level
+  function getLabelWidth(zoom, labelSize) {
+      // You can adjust this formula as needed
+      switch(labelSize){
+        case "small":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '0px';
+            case 0:
+              return '0px';
+            case 1:
+              return '0px';
+            case 2:
+              return '75px';
+            default:
+              return '150px';
+          }
+        case "medium":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '50px';
+            case 0:
+              return '100px';
+            case 1:
+              return '100px';
+            case 2:
+              return '150px';
+            default:
+              return '150px';
+          }  
+        case "large":
+          switch(zoom){
+            case -2:
+              return '0px';
+            case -1:
+              return '80px';
+            case 0:
+              return '100px';
+            case 1:
+              return '150px';
+            case 2:
+              return '150px';
+            default:
+              return '150px';
+          }      
+      }
+  }
+
+  function getFontSizeClass(size){
+    switch(size){
+      case "small":
+        return 'map-label-small';
+      case "medium":
+        return 'map-label-medium';
+      case "large":
+        return 'map-label-large';
+    }
+  }
+
+  function getLabelWidthClass(size){
+    switch(size){
+      case "small":
+        return 'label-width-small';
+      case "medium":
+        return 'label-width-medium';
+      case "large":
+        return 'label-width-large';
+    }
+  }
+
+  // Function to update all labels in the layer
+  function updateLabelSizes() {;
+    var currentZoom = mapRef.getZoom();
+    const root = document.documentElement;
+    root.style.setProperty('--label-font-size-small', getFontSize(currentZoom, "small"));
+    root.style.setProperty('--label-font-size-medium', getFontSize(currentZoom, "medium"));
+    root.style.setProperty('--label-font-size-large', getFontSize(currentZoom, "large"));
+    
+    root.style.setProperty('--label-width-small', getLabelWidth(currentZoom, "small"));
+    root.style.setProperty('--label-width-medium', getLabelWidth(currentZoom, "medium"));
+    root.style.setProperty('--label-width-large', getLabelWidth(currentZoom, "large"));
+    
+    [...markerPlaced.current.values()].forEach(marker => {
+      let tooltip = marker.getTooltip();
+      if(tooltip) tooltip.update();
+    })
+  }
+
+  function fixMarkerIcons(map){
+    var markerList = [];
+    map.eachLayer(function(layer) {
+        if (layer instanceof L.Marker) {
+            markerList.push(layer);
+        }
+    });
+
+    markerList.forEach(marker => {
+      let icon = marker.options.properties.icon;
+      if(icon) marker.setIcon(marker.options.properties.icon);
+    })
+  }
+
+  function closeIndevPopup(){
+    console.log('close ' + showIndevPopup.current);
+    setShowIndevPopup(false);
+  }
+
+  function openChangelog(){
+    console.log('open changelog');
+    setChangelogOpen(true);
+  }
   
 
   return (
     
-    <div className='worldwell min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)' }}>
+    <div className='worldwell min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)'}}>
       <section id="logo" className="wwlogo">
       <a className="m-auto lg:w-2/5 md:w-3/5 sm:w-4/5" href="/dtww">  
       <img
@@ -1084,40 +1514,105 @@ const Dornn = () => {
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
                   <div id='map' ref={mapContainerRef}>
                     <MapContainer 
-                      ref={setMap} 
-                      center={[256, 534]} 
-                      zoom={6} 
+                      ref={setMapRef} 
+                      center={[1024, 2048]} 
+                      zoom={-2} 
+                      minZoom={-2}
                       dragging={true} 
-                      scrollWheelZoom={mapControlState[1]} 
+                      keyboardPanDelta={200}
                       zoomControl={true} 
-                      zoomSnap={0.1} 
-                      zoomDelta={0.2} 
                       crs={CRS.Simple} 
                       maxBounds={screenBoundsWiggle} 
                       maxBoundsViscosity={0.9} tap={false} 
-                      closePopupOnClick={false}
-                      whenCreated={mapWakeup(map)}
+                      doubleClickZoom={false}
+                      preferCanvas={false}
                     >
-                      <ImageOverlay 
-                        url="../../whiteout-blank-site.png" bounds={screenBounds} pagespeed_no_transform
-                      />
-                      <LayersControl position="topright">
-                        <LayersControl.Overlay name="Regional Nameplates">
-                          <LayerGroup>
-                            <ImageOverlay 
-                            url="../../just_names.png" bounds={screenBounds} pagespeed_no_transform
-                            />
+                      <LandmassLayer />
+                      <MapEventHandler />
+                      <LayersControl ref={layerNodeRef} position="topright">
+                        <LayersControl.Overlay name="SHOW ENTITIES" checked={entityVisible.current}>
+                          <LayerGroup ref={entityMarkerGroup}>
+                            <EntityLayerComponent />
+                            <EntityMarkerGenerator/>
                           </LayerGroup>
                         </LayersControl.Overlay>
-                        <LayersControl.Overlay name="Voronoi View">
-                          <LayerGroup>
-                            <SetTerritorialSubdivisions />
+                        <LayersControl.Overlay name="SHOW SUPERENTITIES" checked={superEntityVisible.current}>
+                          <LayerGroup ref={superentityMarkerGroup}>
+                            <SuperEntityLayerComponent />
                           </LayerGroup>
                         </LayersControl.Overlay>
                       </LayersControl>
-                      <SetBoundsPolygons />
                     </MapContainer>
                   </div>
+                  { showIndevPopup ? 
+                    <div style={{'position':'absolute', 'display':'flex', 'left':'10%'}}>
+                      <div style={{'width':'50%','position':'relative'}}>
+                        <img src="../../map_indev_panel.png"></img>
+                      </div>
+                      <button onClick={openChangelog} style={{'max-width':'60px', 'right':'5%', 'top':'25%'}}>
+                        <img src="../../changes_button.png"></img>
+                      </button>
+                      <button onClick={closeIndevPopup} style={{'width':'5%'}}>
+                        <img src="../../close_popup.png" style={{'max-width':'100%'}}></img>
+                      </button>
+                    </div> : null }
+
+                  {/* MAP INFO PANELS */}
+                  { (changelogOpen) ? <div className="settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" style={{'color':'white','fontFamily' : 'Grenze Gotisch'}}>
+                      <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'white','fontFamily' : 'Grenze Gotisch'}}>Maplog!</h>
+                      <p className='pb-2  px-5 text-slate-500'>
+                        ver. 1.1
+                      </p>
+                      <p className="inline-block pt-5 pb-0  px-5 map-info-content" style={{'text-align':'left'}}>
+                        The map is currently being reworked from the ground up. This has broken a lot of the functionality from 1.0. The following features no longer work:
+                        <br/><br/>
+                        <ul >
+                          <li>Landmass Selection & their bios</li>
+                          <li>Political Entity selections and their bios</li>
+                        </ul>
+                        <br/>
+                        This is mostly due to a broad-scope reevaluation of how these features ought to work and what they convey. The preexisting descriptors for landmasses were overly-pithy
+                        and not really useful for any kind of play or expansion of setting. Similarly, while amusing, the political entities were a disorganized jumble of cities, states and organizations that
+                        often failed to distinguish the binding between their formal titles and the pin they were linked to.
+                        <br/><br/>
+                        ...and so, I'm redoing it! There's a fancy new mode that allows you to view the map subdivided by CONTROL or REGION. The first, CONTROL, describes the various landholding 
+                        entities of Dornn. It has three levels of detail and one unusual conditional view, of which two are already implemented:
+                        <br/><br/>
+                        <ul >
+                          <li>SUPERENTITIES are alliances and other agreements between landholding entities, so they unify all common territories into one shape.</li>
+                          <li>ENTITIES are *any* kind of landholding organization of people (the distinctions between their types will come later)</li>
+                          <li>SUBENTITIES are administrative divisions of entity territories.</li>
+                          <li>INTERNAL ENTITIES are non-landholding organizations that can operate within and sometimes beyond the borders of the entity which they reside in.</li>
+                        </ul>
+                        <br/>
+                        Currently, the map supports those first two layers. At base, it shows SUPERENTITIES, and beyond a certain zoom, it will break these entities into their constituent ENTITIES. 
+                        This is a very early-alpha version of the feature, so expect (and report!) bad performance and weird behavior. Lots of bugs. No real interactivity at this time.
+                        <br/><br/>
+                      </p>
+                      <h className="inline-block text-4xl pt-5 pb-5 map-info-header" style={{'color':'white','fontFamily' : 'IM Fell DW Pica'}}>What's Next?</h>
+                      <p className="inline-block pt-5 pb-0  px-5 map-info-content" style={{'text-align':'left'}}>
+                        A lot of stuff is on the way. Most of this work was foundational (the ability to project and control arbitrary shapes on the map was a hard-fought feature :L) and so now, I get to move into the 
+                        content phase. Here's a rapid-fire overview:
+                        <br/><br/>
+                        <ul >
+                          <li>A "Navigation" tray under the map which lists a hierarchical, searchable view of super-entities, entities, sub-entities and internal entities. Selecting an entry will fly to it.</li>
+                          <li>Subentities! Also, aggregate territories will, at the proper zoom level, show traced subdivisions of their contents.</li>
+                          <li>A detail panel for each sup/en/sub/int entry!</li>
+                          <li>Selectable pins for cities and settlements!</li>
+                          <li>An overlay that allows for more sensible control of these views and provides contextual information about what they represent and how they work.</li>
+                          <li>Reintroducing the Regions view as an extension of these political shapes! (landmasses -> regions)</li>
+                          <li>Internal entities! The rendering and control process for this is a headache, so it's slotted for last.</li>
+                          <li>Performance improvements - this will probably have to be rebuilt at some point to accommodate an outsized number of shapes, subshapes and pins.</li>
+                        </ul>
+                        <br/>
+                        Stay tuned!
+                        <br/><br/>
+                      </p>
+                      <button className='py-5 map-return' onClick={goBack}>GO BACK</button>
+                    </div> :  null 
+                  }  
+
+                  {/* CENTERED & BLOCKED BIOS for information that decontextualizes the map on select. */}  
                   { (markerFocused && !focused && centered) ? <div className="mapBlocker bg-black absolute"></div> :  null }
                   { focused && !markerFocused ? <div className="map-info text-center overflow-y-auto">
                     <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': selectedBody.headerColor.hex, 'fontFamily' : headerFont}}>{selectedBody.header}</h>
@@ -1130,8 +1625,10 @@ const Dornn = () => {
                     <p className="inline-block pt-5 pb-0  px-5 map-info-content" dangerouslySetInnerHTML={{ __html: selectedBody.body }}>
                     </p>
                     <button className='py-5 map-return' onClick={goBack}>GO BACK</button>
-                    </div> :  null }
+                    </div> :  null 
+                  }
 
+                  {/* SETTLEMENT SELECTION with lefthand pin focus */}  
                   { (markerFocused && !focused) ?
                     <div>
                       { markerClass == 0 ? <div className='animatedPin animatedPinCapital'></div> : null }
@@ -1150,6 +1647,7 @@ const Dornn = () => {
                       </div>
                     </div> :  null }
 
+                  {/* WIP - ENTITY SELECTION with lefthand territory focus */}  
                   { (entityFocused && !focused) ?
                     <div className="settlement-base"> 
                       <div ref={setInfoPanel} className={centered ? "settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" : "settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto"}>

@@ -34,14 +34,16 @@ function App() {
     
     if(posts == null){
         console.log("call for blog")
-        graphcms.request(QUERY_POSTLIST)
-        .then(res => setPosts(res.simplePosts))
+        setPosts('dummy');
+        //graphcms.request(QUERY_POSTLIST)
+        //.then(res => setPosts(res.simplePosts))
     }
 
     if(devlogs == null){
       console.log("call for devlogs")
-      graphcms.request(QUERY_DEVLOG)
-      .then(res => setDevlogs(res.simplePosts))
+      setDevlogs('dummy');
+      //graphcms.request(QUERY_DEVLOG)
+      //.then(res => setDevlogs(res.simplePosts))
     }
     
   }, [])

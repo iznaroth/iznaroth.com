@@ -713,7 +713,7 @@ a:hover {
   bottom: 0%;
   max-width: 100%;
   max-height: 60%;
-  overflow: visible;
+  overflow-y: auto;
 }
 
 @media (min-width: 625px) {
@@ -1132,12 +1132,18 @@ h1.default {
 }
 
 :root{
-  --label-font-size: 0px;
+  --label-font-size-small: 0px;
+  --label-font-size-medium: 0px;
+  --label-font-size-large: 0px;
+
+  --label-width-small: 0px;
+  --label-width-medium: 0px;
+  --label-width-large: 0px;
 }
 
 .map-label{
   font-weight: bold;
-  font-size: var(--label-font-size);
+  
   font-family: "IM Fell DW Pica";
   background-color: transparent !important;
   border: none !important;
@@ -1147,6 +1153,36 @@ h1.default {
   width: 150px;
   max-width: 150px;
 }
+
+.superentity-label{
+  width: 200px;
+}
+
+.map-label-small{
+  font-size: var(--label-font-size-small);
+}
+
+.map-label-medium{
+  font-size: var(--label-font-size-medium);
+}
+
+.map-label-large{
+  font-size: var(--label-font-size-large);
+}
+
+.label-width-small{
+  width: var(--label-width-small);
+}
+
+.label-width-medium{
+  width: var(--label-width-medium);
+}
+
+
+.label-width-large{
+  width: var(--label-width-large);
+}
+
 
 .mapclass{
   color: black !important;
