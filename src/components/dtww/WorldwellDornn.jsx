@@ -1,6 +1,7 @@
 import '../../index.css';
 import * as turf from "@turf/turf";
 import L from 'leaflet';
+import 'leaflet.pattern';
 
 import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, FeatureGroup, LayerGroup, LayersControl, GeoJSON, SVGOverlay } from 'react-leaflet'
