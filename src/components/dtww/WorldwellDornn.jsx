@@ -6,11 +6,10 @@ import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo } fr
 import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, FeatureGroup, LayerGroup, LayersControl, GeoJSON, SVGOverlay } from 'react-leaflet'
 import { CRS, icon, map, marker } from 'leaflet'
 import { graphcms, QUERY_MAPENTRY, QUERY_SETTLEMENTENTRY } from '../../graphql/Queries';
-import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, history} from './DornnMapConstants';
+import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, history, entityLabelCounts, entityLabelSizes, territoryIcons} from './DornnMapConstants';
 import unified from './svg_cutouts_unified.json';
 import superentityShapes from './superentity_shapes.json';
 import entityShapes from './entity_shapes.json';
-import {entityLabelCounts, entityLabelSizes, territoryIcons} from './MapTestroomConstants.jsx';
 
 const screenBounds = [
   [0, 0],
