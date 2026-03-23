@@ -1,11 +1,5 @@
 // src/components/Navbar.jsx
 
-import { ArrowRightIcon } from "@heroicons/react/solid";
-import React from "react";
-
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
-
 const options = [
   'one', 'two', 'three'
 ];
