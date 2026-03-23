@@ -1,5 +1,10 @@
-// src/components/Navbar.js
+// src/components/Navbar.jsx
+
+import { ArrowRightIcon } from "@heroicons/react/solid";
 import React from "react";
+
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 const options = [
   'one', 'two', 'three'
@@ -23,9 +28,6 @@ export default function Navbar() {
         </div>
         <a className="rootpic" href="blog">
         <img className = "picbar-img" src = "./navbar(blog).png"/>
-        </a>
-        <a className="rootpic"  href="devlogs">
-        <img className = "picbar-img" src = "./navbar(devlog).png"/>
         </a>
         <div className="dropdown">
           <button className="picbar">

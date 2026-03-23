@@ -17,11 +17,12 @@ const About = ({ blogContent, devlogContent }) => {
             <br className="hidden lg:inline-block" />
           </h1>
           <p className="mb-8 leading-relaxed lg:px-8 text-black">
-            Hey! What's up? 
+            Hello there!
             <br /><br />
-            It's a little bit unfinished, I know. I love you for stopping by anyways. Welcome to the pit!
+            It's a little bit unfinished, I know. I love you for stopping by anyways. Welcome!!
             <br /><br />
-            Within the ever-rotating display case of my unfinishable vanity projects, I'm currently giving attention to the following:
+            I'm 'iznaroth' (or whatever else you probably know me by). I try to make stuff (mostly games and books), fail, and then reconcile my failures by writing and crying about the things I'm sluggishly working towards.
+            I am a fundamentally impractical creature. Here's some of the stuff I continue to work on fruitlessly:
             <br /><br />
             <ul>
               <li><b>= Down the Worldwell,</b> an ill-advised TTRPG system set in my massively over-detailed homebrew setting, Dornn</li>
@@ -33,7 +34,7 @@ const About = ({ blogContent, devlogContent }) => {
               <li><b>= The Interior,</b> a strict semi-novelesque resource manager about a defunct Surveyor-class starship regaining operation ten thousand years after the Royal Domain's collapse</li>
             </ul>
             <br/><br/>
-            The steel-wired corpse of this site is currently incapable of accommodating comments, so if you want to get in touch, please send me an
+            The feeble structure of this site is currently incapable of accommodating comments, so if you want to get in touch, please send me an
             email at iznaroth@gmail.com. If you have my Discord, that's probably a better option. 
             <br/><br/>
             – iznaroth
@@ -51,41 +52,21 @@ const About = ({ blogContent, devlogContent }) => {
           </div>
           <div className="h-12"></div>
           <h1 className="text-black text-center sm:text-4xl text-3xl">
-              Project Writeups & Updates
-            <br className="hidden lg:inline-block" />
-          </h1>
-          <div className='blogList-stubs-wrap'>
-            {devlogContent.map((devlog) => (
-              <BlogShorthand blogContent={devlog} postOrDevlog={false}  />
-            ))}
-          </div>
-          <div className="h-12"></div>
-          <h1 className="text-black text-center sm:text-4xl text-3xl">
               A Lay of the Land
             <br className="hidden lg:inline-block" />
           </h1>
-          <p className="mb-8 leading-relaxed lg:px-8 text-center"><i className="!text-center text-slate-700">...or Frontier Incompletes as of (12/22/24) - a six month gap!</i></p>
+          <p className="mb-8 leading-relaxed lg:px-8 text-center"><i className="!text-center text-slate-700">...or Frontier Incompletes as of (2/24/26) - 429 days! wow!!!</i></p>
           <p className="mb-8 leading-relaxed lg:px-8 text-black text-left text-sm">
-          I'm not sure if this will be a surprise to you, but I don't have much to report. I'm not particularly adept at creating good bite-sized update material. I mostly just rework backend problems until
-          I lose the plot.
+          I am alive! Seriously!
           <br/><br/>
-          In the process of narrowing focus, only three projects remain relevant: <a href="/devlogs/dtww-overview">Down the Worldwell</a>, <a href="/devlogs/brittle-summary">Brittle</a> and Foundations. Please report to their devlog pages and/or related updates for more details.
+          The claws of practicality are setting in. Doesn't that suck? I'm trying to focus on Down the Worldwell right now, so there are a few big site updates sloooooowly coming together. I'd also like to
+          make some headway on Foundations and M4 this year, but I'll keep the details for the big "end-of-year" post I'm now two full months late to. Deadlines? No idea what you're talking about.
           <br/><br/>
-          I know nothing of accountability. I will continue to promise unabated! Hahahahaha!
+          So it goes. Seeya later!
           </p>
         </div>
       </div>
       <div className="flex flex-wrap justify-center pl-3  " style={{flexBasis: 100}}>
-           <a
-             href="#contact"
-             className="inline-flex text-white bg-green-500 mb-2 sm:mb-0 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">
-             Contact
-           </a>
-           <a
-             href="https://www.patreon.com/iznaroth"
-             className="ml-4 inline-flex text-gray-400 bg-orange-800 mb-2 sm:mb-0  border-0 py-2 px-6 focus:outline-none hover:bg-orange-700 hover:text-white rounded text-lg">
-             Patreon
-           </a>
            <a
              href="https://github.com/iznaroth/"
              className="sm:ml-4 inline-flex text-gray-400 bg-gray-800 mb-2 sm:mb-0  border-0 py-2 px-6 focus:outline-none hover:bg-gray-700 hover:text-white rounded text-lg">
