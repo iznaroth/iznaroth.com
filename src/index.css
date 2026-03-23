@@ -1,3 +1,7 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -48,13 +52,7 @@ ul {
 
 /* Blog styling! */
 
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  margin: 0;
-}
+
 body {
   font-family: 'Montserrat', sans-serif;
 }
@@ -89,6 +87,10 @@ input {
   border-width: 5px;
   margin: 0 auto;
   min-height: 100vh;
+}
+
+.hover-highlight-poly:hover{
+  opacity: 1 !important;
 }
 
 .dtww-bg {
@@ -495,6 +497,20 @@ a:hover {
     margin: 0 auto;
 }
 
+.map-nav-drawer {
+  width: 70vw;
+  background-color: black;
+  margin: 0 auto;
+  padding: 1em;
+  min-height: auto;
+
+  border: 6px solid #ffffff;
+  border-top: none !important;
+  height: 100%;
+  padding: 6px;
+  margin: 0 auto;
+}
+
 @media (min-width: 625px) {
 	.map-spec {
     min-width: 80vw;
@@ -674,26 +690,36 @@ a:hover {
 	color: #c4635c;
 }
 
-
+.settlement-base{
+  z-index: 0;
+}
 
 .settlement {
   vertical-align: bottom;
   bottom: 0%;
   max-width: 100%;
   max-height: 60%;
+  overflow: visible;
 }
 
 @media (min-width: 625px) {
   .settlement {
-    top: 0;
     vertical-align: middle;
-    top: 10%;
-    left: 49%;
-    max-width: 60%;
-    max-height: 85%;
+    top: 10vh;
+    right: 8vw;
+    max-width: 50vw;
+    max-height: 75vh;
     bottom: auto;
-    
+    transition: right 2s ease;
   }
+}
+
+.settlement-bumped {
+  right: 27vw;
+}
+
+.banner-extend{
+  right: calc(-24vw) !important;
 }
 
 .settlement-centered {
@@ -701,6 +727,7 @@ a:hover {
   bottom: 0%;
   max-width: 100%;
   max-height: 60%;
+  overflow-y: auto;
 }
 
 @media (min-width: 625px) {
@@ -712,8 +739,12 @@ a:hover {
     max-width: 60%;
     max-height: 85%;
     bottom: auto;
-    
   }
+}
+
+.settlement-content-scrollable {
+  overflow-y: auto;
+  max-height: 600px;
 }
 
 .mapBlocker {
@@ -736,9 +767,51 @@ a:hover {
   }
 }
 
+.holdingsHoverTab {
+  position: absolute;
+  top: 0;
+  right: -70px;
+  display: flex;
+  background-clip: content-box;
+  background-color: black;
+  z-index: -1;
+  border-width: 6px;
+  max-width: 100%;
+  align-items: center;
+  width: max-content;
+  transition: right 2s ease;
+}
+/*
+.dynamic-header{
+  font-size: clamp(5px, 2vw, 20px);
+}
+
+.dynamic-subtitle{
+  font-size: clamp(7px, 1vw, 14px);
+}
+*/
+
+.territoriesHoverTab {
+  
+}
+
+.territoryText {
+  font: 'IM Fell DW Pica';
+}
+
 .bio-container img{
   margin: auto;
   vertical-align: top;
+}
+
+.content {
+  max-height: 0;
+  overflow: auto;
+  transition: max-height 0.5s ease-out; /* Smooth transition */
+}
+
+.expand-container.expanded .content {
+  max-height: 45vh; /* A value large enough to fit all content */
 }
 
 /* DTWW WORLD SUBPAGE IMAGES */
@@ -817,7 +890,6 @@ a:hover {
 
 #poligrid-link{
   flex-basis: 50%;
-  font-family: "IM Fell DW Pica";
   font-size: 1.5rem;
   margin: auto;
   text-align: center;
@@ -1020,6 +1092,10 @@ a:hover {
   opacity: 1;
 }
 
+.kdm-center {
+  max-width: 80vw;
+}
+
 h1.double {
   border-top: 8px double;
   border-bottom: none;
@@ -1073,4 +1149,168 @@ h1.default {
 .grey{
   color: grey;
 }
+
+.testclass{
+  max-height: 2px !important;
+}
+
+:root{
+  --label-font-size-small: 0px;
+  --label-font-size-medium: 0px;
+  --label-font-size-large: 0px;
+
+  --label-width-small: 0px;
+  --label-width-medium: 0px;
+  --label-width-large: 0px;
+}
+
+.map-label{
+  font-weight: bold;
+  
+  font-family: "IM Fell DW Pica";
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important; /* Adjust padding if necessary */
+  white-space: normal;
+  width: 150px;
+  max-width: 150px;
+}
+
+.superentity-label{
+  width: 200px;
+}
+
+.map-label-small{
+  font-size: var(--label-font-size-small);
+}
+
+.map-label-medium{
+  font-size: var(--label-font-size-medium);
+}
+
+.map-label-large{
+  font-size: var(--label-font-size-large);
+}
+
+.label-width-small{
+  width: var(--label-width-small);
+}
+
+.label-width-medium{
+  width: var(--label-width-medium);
+}
+
+
+.label-width-large{
+  width: var(--label-width-large);
+}
+
+
+.mapclass{
+  color: black !important;
+}
+
+@font-face {
+  font-family: 'FahimSans'; /* A name you choose to use later */
+  src: url('../fonts/FahimSans.ttf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'AvQuest'; /* A name you choose to use later */
+  src: url('../fonts/AvQuest.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'Ondrwaax'; /* A name you choose to use later */
+  src: url('../fonts/YourCustomFont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'Rediviva'; /* A name you choose to use later */
+  src: url('../fonts/Rediviva.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'Alice'; /* A name you choose to use later */
+  src: url('../fonts/Alice_in_Wonderland.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+@font-face {
+  font-family: 'Cardinal'; /* A name you choose to use later */
+  src: url('../fonts/Cardinal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Helps control behavior while the font loads */
+}
+
+.midland{
+  font-family: "Grenze Gotisch", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.independents{
+  font-family: "Amarante", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.unmortal{
+  font-family: "Medula One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.salir{
+  font-family: "Macondo Swash Caps", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.draid{
+  font-family: "MedievalSharp", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.enclave{
+  font-family: "Cormorant Unicase", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.mandate{
+  font-family: "Bodoni Moda SC", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.frontier{
+  font-family: "IM Fell DW Pica", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/*.frontier{
+
+}*/
+
 

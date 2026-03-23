@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .App {
   text-align: center;
 }
@@ -76,15 +78,15 @@
 }
 
 .animatedPinCapital {
-  background-image: url('/public/dornn_pin_crowned.png');
+  background-image: url('/dornn_pin_crowned.png');
 }
 
 .animatedPinFortress {
-  background-image: url('/public/dornn_pin_fortress.png');
+  background-image: url('/dornn_pin_fortress.png');
 }
 
 .animatedPinUnknown {
-  background-image: url('/public/dornn_pin_landmark.png');
+  background-image: url('/dornn_pin_landmark.png');
 }
 
 @keyframes mymove {
@@ -316,17 +318,17 @@
 }
 
 .worldwell {
-  cursor: url('/public/tiny_cursor.png'), auto;
+  cursor: url('/tiny_cursor.png'), auto;
 }
 
 .worldwell a:hover {
-  cursor: url('/public/tiny_clickable_hand.png'), auto;
+  cursor: url('/tiny_clickable_hand.png'), auto;
 }
 
 
 .leaflet-container{
   height: 70vh;
-  max-width: 192vh;
+  max-width: 90vw;
   margin: auto;
   background: none !important;
   z-index: 0 !important;
@@ -343,20 +345,20 @@
 
 
 .leaflet-grab {
-	cursor: url('/public/tiny_cursor.png'), auto !important;
+	cursor: url('/tiny_cursor.png'), auto !important;
 	}
 .leaflet-crosshair,
 .leaflet-crosshair .leaflet-interactive {
-	cursor: url('/public/tiny_cursor.png'), auto !important;
+	cursor: url('/tiny_cursor.png'), auto !important;
 	}
 .leaflet-popup-pane,
 .leaflet-control {
-	cursor: url('/public/tiny_cursor.png'), auto !important;
+	cursor: url('/tiny_cursor.png'), auto !important;
 	}
 .leaflet-dragging .leaflet-grab,
 .leaflet-dragging .leaflet-grab .leaflet-interactive,
 .leaflet-dragging .leaflet-marker-draggable {
-	cursor: url('/public/tiny_cursor.png'), auto !important;
+	cursor: url('/tiny_cursor.png'), auto !important;
 }
 
 .leaflet-interactive{
@@ -404,4 +406,27 @@
   .tooltip:hover .tooltiptext {
     visibility: visible;
   }
+
+  .leaflet-zoom-animated {
+    z-index: 1000 !important;
+  }
+
+  .list-hoverable:hover{
+    background-color: #3b4e43 !important;
+  }
+
+  .sublist-hoverable:hover{
+    background-color: #377053 !important;
+  }
+
+  .circle {
+    height: 25px; 
+    width: 25px; 
+    border-radius: 50%; 
+    border-color: white;
+    border-width: 2px;
+    margin-right: 8px;
+  }
+
+  /**/
 
