@@ -1,5 +1,6 @@
 iznaroth.com
 
-This is a goofy homepage blog-writeup-planetarium-aggregator nightmare. Don't worry about it.
+This is a goofy personal site, mostly just a blog and landing for my comically-unfinished ttrpg. 
 
-Bootstrapped with create-react-app.
+Originally made with create-react-app! Now we do vite here.
+
