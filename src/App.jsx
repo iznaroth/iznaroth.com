@@ -5,7 +5,6 @@ import { request } from 'graphql-request';
 
 import './App.css';
 
-import Product from './components/Product';
 import Logo from './components/Logo';
 import Navbar from './components/Navbar';
 import Astropanel from './components/Astropanel';
@@ -19,8 +18,6 @@ import WorldwellLanding from './components/dtww/WorldwellLanding';
 import WorldwellSystem from './components/dtww/WorldwellSystem';
 import WorldwellDornn from './components/dtww/WorldwellDornn';
 import WorldwellRK from './components/dtww/WorldwellRK'
-import WorldwellSpecies from './components/dtww/WorldwellSpecies'
-import WorldwellMapTestroom from './components/dtww/WorldwellMapTestroom'
 import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES, QUERY_DEVLOG, QUERY_WORLDWELL } from './graphql/Queries';
 import WorldwellCharacters from './components/dtww/WorldwellCharacters';
 
