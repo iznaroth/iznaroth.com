@@ -1701,9 +1701,13 @@ const Dornn = () => {
 
     <div className="map-nav-drawer">
       <div style={{'display':'flex','justify-content':'center'}}>
-        <img style={{'width':'20%'}} src="../../nav_divider_l.png"></img>
+        <div style={{'width':'30%'}}>
+          <img style={{'width':'100%'}} src="../../nav_divider_l.png"></img>
+        </div>
         <h1 style={{'color':'white','text-align':'center', 'fontFamily' : 'Grenze Gotisch'}}> - Navigation  - </h1>
-        <img style={{'width':'20%'}} src="../../nav_divider_r.png"></img>
+        <div style={{'width':'30%'}}>
+          <img style={{'width':'100%'}} src="../../nav_divider_r.png"></img>              
+        </div>
       </div>
       <div className="expand-container">
         <div className="content">
@@ -1728,7 +1732,7 @@ const Dornn = () => {
 
 
 
-    <section id="navbar" className="">
+    {/*<section id="navbar" className="">
         <div className="wwdnavbar">
             <button onClick={() => setBio(0)}>- What Is This? -</button>
             <button onClick={() => setBio(1)}>- The Realms -</button>
@@ -1736,9 +1740,9 @@ const Dornn = () => {
             <button onClick={() => setBio(3)}>- The Polities -</button>
             <button onClick={() => setBio(4)}>- The Histories -</button>
         </div>
-    </section>
+    </section>*/}
     <div className="dark-background ">
-         <div className="mid-border">
+         <div className="mid-border" style={{'min-height':'0px'}}>
             <div className="inner-border">
               <img className="corner-decoration corner-left-top" src="../../corner-decoration.png"></img>
               <img className="corner-decoration corner-right-top" src="../../corner-decoration.png"></img>
@@ -1749,9 +1753,11 @@ const Dornn = () => {
 
 
               <div className="bio-container">
-                <BioContainer />
+                <img id="what-header" className="" src="../../what_is_this.png"/>
+                <h2 className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'white','fontFamily' : 'Grenze Gotisch', 'text-align':'center','width':'100%'}}>WOAH! IT'S ALL GONE!</h2>
+                <h4 className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'gray','fontFamily' : 'Grenze Gotisch', 'text-align':'center','width':'100%', 'padding-bottom':'8vh'}}>Please grant me a few days to edit and rewrite this stuff! Thanks!!</h4>
+                {/*<BioContainer />*/}
               </div>
-                
             </div>
       </div>
     </div>
