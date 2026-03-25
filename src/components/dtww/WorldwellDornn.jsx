@@ -130,6 +130,7 @@ const Dornn = () => {
     L.Icon.Default.mergeOptions({
         iconUrl: '../../blank_marker.png',
         shadowUrl: '../../blank_marker.png',
+        iconRetinaUrl: '../../blank_marker.png',
         iconSize:     [25, 25], // size of the icon
         shadowSize:   [25, 25], // size of the shadow
         iconAnchor:   [12, 12], // point of the icon which will correspond to marker's location
