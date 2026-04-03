@@ -82,7 +82,7 @@ const BlogPost = ({content, postOrDevlog}) => {
                 
               </div>
             </header>
-            <img src={post.headerImage.url} alt='cover' className='p-4 object-cover w-full h-96'/>
+            <img src={post.headerImage.url} alt='cover' className='p-4 object-cover w-full'/>
             <h2 className='text-2xl text-center text-slate-600'><i>{post.subtitle}</i></h2>
             <div className='blog-content' dangerouslySetInnerHTML={{__html: tagReplacer(post.content.html)}}></div>
           </div>
