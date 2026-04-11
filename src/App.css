@@ -327,19 +327,28 @@
 
 
 .leaflet-container{
-  height: 70vh;
   max-width: 90vw;
+  height: 80vh;
   margin: auto;
   background: none !important;
   z-index: 0 !important;
   flex: 1;
-
 }
 
 
 @media (min-width: 625px) {
   .leaflet-container{
     height: 95vh;
+  }
+}
+
+.leaflet-container-focused {
+  height: 80vh;
+}
+
+@media (min-width: 625px) {
+  .leaflet-container-focused{
+    height: 75vh !important;
   }
 }
 
@@ -368,7 +377,6 @@
   .tooltip {
     position: relative;
     display: inline-block;
-    border-bottom: 1px dotted gray; /* If you want dots under the hoverable text */
   }
   
   /* Tooltip text */
@@ -396,10 +404,10 @@
   }
 
   .tooltipbottom {
-    width: 120px;
-    top: 100%;
+    max-width: 200px;
+    top: 130%;
     left: 20%;
-    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+    margin-left: -100px; /* Use half of the width (120/2 = 60), to center the tooltip */
   }
   
   /* Show the tooltip text when you mouse over the tooltip container */

@@ -6,7 +6,7 @@ import 'leaflet.pattern';
 import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, FeatureGroup, LayerGroup, LayersControl, GeoJSON, SVGOverlay } from 'react-leaflet'
 import { CRS, icon, map, marker } from 'leaflet'
-import { graphcms, QUERY_MAPENTRY, QUERY_SETTLEMENTENTRY } from '../../graphql/Queries';
+import { graphcms, QUERY_MAPENTRY, QUERY_SETTLEMENTENTRY, QUERY_ENTITY_1, QUERY_ENTITY_2} from '../../graphql/Queries';
 import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, history, entityLabelCounts, entityLabelSizes, territoryIcons} from './DornnMapConstants';
 import unified from './svg_cutouts_unified.json';
 import superentityShapes from './superentity_shapes.json';
@@ -33,21 +33,17 @@ const blackColor = { color: 'black' }
 const Dornn = () => {
 
   const mapContainerRef = useRef(null);
-  const [focused, setFocused] = useState(false);
+  const [focused, setFocused] = useState(null); //NOTE - Changed to string for style prop sensitivity
   const [centered, setCentered] = useState(false);
   const [map, setMap] = useState(null);
   const [info, setInfo] = useState(null);
   const [settlements, setSettlements] = useState(null);
-  const [selectedBody, setSelectedBody] = useState(null);
-  const [selectedPoly, setSelectedPoly] = useState(screenBounds);
-  const [selectedSettlement, setSelectedSettlement] = useState(null);
+  const [selectedBody, setSelectedBody] = useState(null); //! DEPRECATED - DELETE AFTER REFACTOR!
+  const [selectedPoly, setSelectedPoly] = useState(screenBounds); //! DEPRECATED
+  const [selectedSettlement, setSelectedSettlement] = useState(null); //! DEPRECATED
   const [infoPanel, setInfoPanel] = useState(null);
   const [settlementsTab, setSettlementsTab] = useState(null);
-  const [territoriesTab, setTerritoriesTab] = useState(null);
-  const [mapControlState, setMapControlState] = useState([false, false]); //represents drag and zoom restrictions
   const [opacities, setOpacities] = useState([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
-  const [runMonitor1, setRunMonitor1] = useState(false);
-  const [runMonitor2, setRunMonitor2] = useState(false);
   const [classNames, setClassNames] = useState(['map-polygon'])
   const [entityFocused, setEntityFocused] = useState(false)
   const [markerFocused, setMarkerFocused] = useState(false)
@@ -56,12 +52,30 @@ const Dornn = () => {
   const [showIndevPopup, setShowIndevPopup] = useState(true);
   const [changelogOpen, setChangelogOpen] = useState(false);
   const [mapRef, setMapRef] = useState(null);
-  const layerNodeRef = useRef(null);
 
   const dw = 'IM Fell DW Pica'
   const roman = 'Gideon Roman'
 
   const [headerFont, setHeaderFont] = useState(dw)
+  
+  const entityLayerCache = useRef(new Map());
+
+  const [entityMarkerGroup, setEntityMarkerGroup] = useState(null);
+  const entityLayerGroup = useRef(null);
+  const mapBackgroundGroup = useRef(null);
+
+  //ANTIPATTERN ! We use this to allow for a few forced-conditions. Namely:
+  //-> We use this to init-load the entity layer for the sake of caching shapes.
+  const [firstLoadComplete, setFirstLoadComplete] = useState(false);
+
+  //Here's where the CMS content sits for now.
+  const entityFocusEntries = useRef(new Map());
+
+  //zoom and visibility
+  const [lastZoom, setLastZoom] = useState(-2);
+  const [entityVisible, setEntityVisible] = useState(true); //this will be set to false upon (! FOR NOW ) the end of the entity layer evaluation/caching process.
+  const [superEntityVisible, setSuperEntityVisible] = useState(true);
+
 
 
   //fits the boundaries of the map to the viewport to the best of its ability
@@ -109,7 +123,10 @@ const Dornn = () => {
     setOpacities(setterArray); //this function is primarily to wedge missed mouseover / mouseout collisions - instead of just wiping out it neutrals all entries on deselect just in case.
   }
 
+  //INIT!
+  var markerPlaced = useRef(new Map());
   useEffect(() => {
+    /*
     if(info == null && !runMonitor1){
       setRunMonitor1(true); //repeat insurance, unnecessary when we add []
       graphcms.request(QUERY_MAPENTRY)
@@ -123,7 +140,28 @@ const Dornn = () => {
 
         graphcms.request(QUERY_SETTLEMENTENTRY)
         .then(res => console.log(res))
+    }*/
+
+    console.log(entityFocusEntries.current.size);
+    if(entityFocusEntries.current.size === 0){
+      graphcms.request(QUERY_ENTITY_1)
+      .then(res => {
+        console.log(res);
+        res.mapEntities.forEach(entity => {
+          entityFocusEntries.current.set(entity.name, entity);
+        })
+      })
+
+      graphcms.request(QUERY_ENTITY_2)
+      .then(res => {
+        console.log(res);
+        res.mapEntities.forEach(entity => {
+          entityFocusEntries.current.set(entity.name, entity);
+        })
+      })
     }
+
+    console.log(entityFocusEntries.current);
 
     // HACK to help icon pathing // likely a better way of doing this, but we won't be using
     L.Icon.Default.imagePath = ''; 
@@ -138,28 +176,90 @@ const Dornn = () => {
         popupAnchor:  [12, 12] // point from which the popup should open relative to the iconAnchor
     
     });
-  }, []);
 
-  useEffect(() => {
-    const resizeObserver = new ResizeObserver(() => {
-      if(map != null){ map.invalidateSize(); 
+    //GENERATE MARKERS!
+    if(entityMarkerGroup){
+      entityShapes.forEach(entity => {
+        if(![...markerPlaced.current.keys()].includes(entity.name)){
+          if(!entity.labelAnchors) entity.labelAnchors = [[0, 0]];
+
+          var optIcon = null;
+          if(entity.superentityName == 'THE FRONTIER'){
+            var iconName = territoryIcons.get(entity.name);
+
+            optIcon = L.icon({
+              iconUrl: '../..' + iconName,
+              shadowUrl: '../..' + iconName,
+              iconSize:     [25, 25], // size of the icon
+              shadowSize:   [25, 25], // size of the shadow
+              iconAnchor:   [12, 12], // point of the icon which will correspond to marker's location
+              shadowAnchor: [12, 12],  // the same for the shadow
+              popupAnchor:  [12, 12] // point from which the popup should open relative to the iconAnchor
+            }) 
+          }
+
+
+          entity.labelAnchors.forEach((anchor, index) => {
+            var marker = L.marker(anchor ?? [0,0], {
+              properties: {
+                icon: optIcon,
+                name: entity.name,
+                idx: index
+              }
+            })
+            
+            marker.addTo(entityMarkerGroup)
+            
+            if(!optIcon){
+              marker.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+                  `<div style="white-space: normal; text-align: center;"><span style="color: ${entity.labelColor}; font-weight: bold;">
+                      ${entity.name}
+                  </span></div>`, {
+                  permanent: true,     // Makes the label always visible
+                  direction: 'center', // Centers the label
+                  className: `${'map-label ' + getLabelWidthClass(entity.labelSize) + ' ' + getFontSizeClass(entity.labelSize) + ' ' + getParentFontClass(entity.superentityName)}`,
+                  opacity: 1,
+                  offset: [-15, 28]       // Adjust offset if needed
+              });/*.addTo(map).bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
+                  `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${entity.labelColor}; font-weight: bold;">
+                      ${entity.name}
+                  </span></div>`, {
+                  permanent: true,     // Makes the label always visible
+                  direction: 'bottom', // Centers the label
+                  className: `${'map-label ' + getParentFontClass(entity.superentityName)}`, // Add a custom CSS class for styling
+                  opacity: 1,
+                  offset: [0, 0]       // Adjust offset if needed
+              });*/
+            }
+
+            markerPlaced.current.set(entity.name, marker);
+          });
+        }
+      });
+
+      return () => {
+        markerPlaced.current = new Map();
       }
-    });
-    
-    resizeObserver.observe(mapContainerRef.current);
-  })
+    }
+  }, [mapRef, entityMarkerGroup]);
   
   function goBack(){ //Revert all popover properties and return to origin. Rename function!
-     setFocused(false); 
-     setSelectedPoly(screenBounds); 
-     setZoneOpacities(screenBounds);
-     mapRef.flyTo([1200, 2350], -2);
-     setSelectedBody(null);
-     setMapControlState(true, true); //deprecated?
-     setChangelogOpen(false);
+    setFocused(null); 
+    mapRef.flyTo([1200, 2350], -2);
+    setChangelogOpen(false);
+
+    mapRef.addLayer(mapBackgroundGroup.current);
      
-    map.dragging.enable();
-    map.zoom.enable();
+    mapRef.dragging.enable();
+    //mapRef.zoom.enable();
+    mapRef.scrollWheelZoom.enable();
+    mapRef._container.classList.toggle('leaflet-container-focused');
+
+    //we know we're zooming to max, so we're entering superentity-only view
+    //there's a chance focus-flows will have bounding boxes in 'SOV', so going back
+    //won't trigger the zoom-boundary layer update. we do
+    setEntityVisible(false);
+    setSuperEntityVisible(true);
   }
 
 
@@ -173,7 +273,6 @@ const Dornn = () => {
   }
 
   function selectCapitalPopout(){
-    console.log("popout");
     settlementsTab.classList.toggle("banner-extend");
     infoPanel.classList.toggle("settlement-bumped");
   }
@@ -182,15 +281,6 @@ const Dornn = () => {
   function SetBoundsPolygons() {
     const [bounds, setBounds] = useState(screenBounds)
     const map = useMap()
-
-    const mapEvents = useMapEvents({
-        zoomend(e){
-          if(selectedPoly != screenBounds){
-            setZoneOpacities(selectedPoly, true);
-            setClassNames(['map-polygon polygon-hover'])
-          }
-        }
-    })
   
     //each memo handler appears to append onclick and  onmouseover/out handlers that are only different in how they pass constants around? let's see if we can achieve a compression of this
     const dolwyndHandlers = useMemo(
@@ -480,6 +570,7 @@ const Dornn = () => {
     }
   }
 
+  //! - EVERYTHING IN HERE NEEDS TO BE REFACTORED TO FIT WITH THE NEW SELECTION PARADIGM
   function generateHandlersForRegion(regionString, regionBounds, regionHeaderFont, map, regionId){
     return () => ({
         click() {
@@ -487,7 +578,7 @@ const Dornn = () => {
             const post = info.find((post) => post.entryID === regionString)
             setSelectedBody(post);
 
-            setFocused(true);
+            setFocused(regionString); 
 
             map.invalidateSize();
             setHeaderFont(regionHeaderFont);
@@ -506,7 +597,6 @@ const Dornn = () => {
           }
         },
         mouseout(event) {
-          console.log(event)
           if(!focused && !markerFocused && event.target.options.fillOpacity != 0){
             hoverToggleOpacs(regionId, false) 
            }
@@ -669,7 +759,6 @@ const Dornn = () => {
     
     setSelectedSettlement(post);
 
-    console.log('set marker class to : ' + targetMarkerClass);
     //purge to blank old marker even if the class is the same
     setMarkerClass(-1);
 
@@ -695,17 +784,6 @@ const Dornn = () => {
       map.dragging.disable();
       map.zoom.disable();
     }
-  }
-
-  async function selectEntity(which, centered, targetMarkerClass){
-    //focus
-    setEntityFocused(true);
-    //setFocused(true);
-
-    //pop panel more?
-
-    //marker render vs ?? - close-layer subterritory capital subservient etc
-
   }
 
   const polities = (
@@ -974,34 +1052,40 @@ const Dornn = () => {
 
   //-----------------------[BEGIN MAP ELEMENTS]---------------------------
 
-  const [lastZoom, setLastZoom] = useState(-2);
-    
-  const entityVisible = useRef(false);
-  const superEntityVisible = useRef(true);
-
   const MapEventHandler = () => {
     useMapEvents({
       zoomend(e) {
-        console.log(e)
+
         let zoom = mapRef.getZoom();
-        console.log(zoom);
-        if(zoom >= 0 && lastZoom <= -1){
-          console.log('entities?')
-          entityVisible.current = true;
-          superEntityVisible.current = false;
-        } else if(zoom <= -1 && lastZoom >= 0){
-          console.log('supers?')
-          entityVisible.current = false;
-          superEntityVisible.current = true;
+        //switch layers at or beyond certain breakpoints. 
+        //skipped if focused, though we still cache the previous zoom as it changes.
+        if(!focused){
+          mapZoomLayerChange(zoom);
         }
 
-        if(zoom >= 0){
-          updateLabelSizes();
-        }
         setLastZoom(zoom);
+      },
+      moveend(e){
+        if(awaitingZoom){
+          setAwaitingZoom(false);
+        }
       }
     });
   };
+
+  function mapZoomLayerChange(zoom){
+    if(zoom >= 0 && lastZoom <= -1){
+      setEntityVisible(true);
+      setSuperEntityVisible(false);
+    } else if(zoom <= -1 && lastZoom >= 0){
+      setEntityVisible(false);
+      setSuperEntityVisible(true);
+    }
+
+    if(zoom >= 0){
+      updateLabelSizes();
+    }
+  }
 
   //handles the construction of the map subdivision layer for highlighting and splitting (nonperformant)
   function LandmassLayer(){
@@ -1019,7 +1103,6 @@ const Dornn = () => {
     
   }
 
-  var markerPlaced = useRef(new Map());
   function EntityLayerComponent(){
     //return jsx corresponding to the current entity master shapes
     //this is where labels come from
@@ -1028,16 +1111,24 @@ const Dornn = () => {
     const svgRenderer = L.svg();
 
     const onEachPoliFeature = (feature, layer) => {
-      //pull feature style and apply a fillpattern to it
-      //if(![...markerPlaced.current.keys()].includes(feature.properties.name)){
-      //console.log(feature.properties.name);
+      if(!firstLoadComplete){
+        entityLayerCache.current.set(feature.properties.name, layer);
+      }
+
+      layer.on('click', function (e) {
+        //console.log(focused);
+        if(!focused){
+          flyToGeoShape(feature.properties.name)
+        }
+      });
+
       if(feature.properties.superentityName == 'ESOTERICS'){
         //console.log('ESO?');
         var stripes = new L.StripePattern({
-          opacity: 0.9, //this is relative
-          spaceOpacity: 0.4,
-          color: feature.properties.color,
-          spaceColor: feature.properties.color,
+          opacity: (!focused || focused.name == feature.properties.name) ? 0.9 : 0.2, //this is relative
+          spaceOpacity: (!focused || focused.name == feature.properties.name) ? 0.4 : 0.1,
+          color: (!focused || focused.name == feature.properties.name) ? feature.properties.color : feature.properties.color,
+          spaceColor: (!focused || focused.name == feature.properties.name) ? feature.properties.color : feature.properties.color,
           angle: 45,
           width: 32,
           height: 32,
@@ -1052,10 +1143,20 @@ const Dornn = () => {
       }
     };
 
+    useEffect(() => {
+      if (entityShapes) {
+        // This runs once after the component renders with new data
+        if(!firstLoadComplete){
+          setFirstLoadComplete(true);
+          setEntityVisible(false);
+        }
+      }
+    }, [entityShapes]);
+
     return (<FeatureGroup 
       eventHandlers={{ //markers get added before icons can be applied, but this happens after geo is ready, so we can fix them here.
         add: (e) => {
-          console.log("fix markers");
+          //console.log("fix markers");
           fixMarkerIcons(map);
         }
       }}
@@ -1067,12 +1168,12 @@ const Dornn = () => {
               key={index}
               data={entity.aggregatedShape}
               className='mapclass'
-              style={() => ({
-                color: entity.color,
-                weight: 3,
-                opacity: 1,
-                fillColor: entity.color,
-                fillOpacity: 0.6,
+              style={(feature) => ({
+                color: (!focused || focused.name == feature.properties.name) ? entity.color : entity.color,
+                weight: (!focused || focused.name == feature.properties.name) ? 3 : 1,
+                opacity:  (!focused || focused.name == feature.properties.name) ? 1 : 0.2,
+                fillColor: (!focused || focused.name == feature.properties.name) ? entity.color : entity.color,
+                fillOpacity: (!focused || focused.name == feature.properties.name) ? 0.6 : 0.05,
               })}
               pathOptions={() => ({
                 renderer: entity.superentityName == 'ESOTERICS' ? svgRenderer : null,
@@ -1092,76 +1193,6 @@ const Dornn = () => {
                 })}
       ></GeoJSON>))}
     </FeatureGroup>)
-  }
-
-  const entityMarkerGroup = useRef(null);
-  function EntityMarkerGenerator(){
-    useEffect(() => {
-      console.log('GENERATE MARKERS? ------------------------->');
-      console.log(entityMarkerGroup.current);
-      entityShapes.forEach(entity => {
-        if(![...markerPlaced.current.keys()].includes(entity.name)){
-          if(!entity.labelAnchors) entity.labelAnchors = [[0, 0]];
-
-          var optIcon = null;
-          if(entity.superentityName == 'THE FRONTIER'){
-            var iconName = territoryIcons.get(entity.name);
-
-            optIcon = L.icon({
-              iconUrl: '../..' + iconName,
-              shadowUrl: '../..' + iconName,
-              iconSize:     [25, 25], // size of the icon
-              shadowSize:   [25, 25], // size of the shadow
-              iconAnchor:   [12, 12], // point of the icon which will correspond to marker's location
-              shadowAnchor: [12, 12],  // the same for the shadow
-              popupAnchor:  [12, 12] // point from which the popup should open relative to the iconAnchor
-            }) 
-            console.log(optIcon);
-          }
-
-          console.log('SIZING?');
-          console.log(entity.labelSize);
-          console.log(getFontSizeClass(entity.labelSize));
-
-
-          entity.labelAnchors.forEach((anchor, index) => {
-            var marker = L.marker(anchor ?? [0,0], {
-              properties: {
-                icon: optIcon,
-                name: entity.name,
-                idx: index
-              }
-            })
-            
-            marker.addTo(entityMarkerGroup.current)
-            
-            if(!optIcon){
-              marker.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
-                  `<div style="white-space: normal; text-align: center;"><span style="color: ${entity.labelColor}; font-weight: bold;">
-                      ${entity.name}
-                  </span></div>`, {
-                  permanent: true,     // Makes the label always visible
-                  direction: 'center', // Centers the label
-                  className: `${'map-label ' + getLabelWidthClass(entity.labelSize) + ' ' + getFontSizeClass(entity.labelSize) + ' ' + getParentFontClass(entity.superentityName)}`,
-                  opacity: 1,
-                  offset: [-15, 28]       // Adjust offset if needed
-              });/*.addTo(map).bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
-                  `<div style="width: 150px; white-space: normal; text-align: center;"><span style="color: ${entity.labelColor}; font-weight: bold;">
-                      ${entity.name}
-                  </span></div>`, {
-                  permanent: true,     // Makes the label always visible
-                  direction: 'bottom', // Centers the label
-                  className: `${'map-label ' + getParentFontClass(entity.superentityName)}`, // Add a custom CSS class for styling
-                  opacity: 1,
-                  offset: [0, 0]       // Adjust offset if needed
-              });*/
-            }
-
-            markerPlaced.current.set(entity.name, marker);
-          });
-        }
-      });
-    }, []);
   }
 
   function SuperEntityLayerComponent(){
@@ -1230,45 +1261,12 @@ const Dornn = () => {
     </FeatureGroup>)
   }
 
-  const superentityMarkerGroup = useRef(null);
-  const superentityMarkerPlaced = useRef(new Map());
-  function SuperEntityMarkerGenerator(){
-    useEffect(() => {
-      console.log('GENERATE MARKERS? ------------------------->');
-      console.log(superentityMarkerGroup.current);
-      superentityShapes.forEach(superentity => {
-        if(![...superentityMarkerPlaced.current.keys()].includes(superentity.name)){
-          if(!superentity.labelAnchor) superentity.labelAnchor = [0, 0];
-
-          var marker = L.marker(superentity.labelAnchor ?? [0,0], {
-            properties: {
-              name: superentity.name,
-            }
-          })
-            
-          marker.addTo(superentityMarkerGroup.current)
-            
-          marker.bindTooltip(// 1. Dynamic Content: Inject the unique color into an inline style
-              `<div style="white-space: normal; text-align: center;"><span style="color: ${superentity.nameColor.hex}; font-weight: bold;">
-                  ${superentity.name}
-              </span></div>`, {
-              permanent: true,     // Makes the label always visible
-              direction: 'center', // Centers the label
-              className: `${'map-label superentity-label ' + getFontSizeClass(superentity.labelSize) + ' ' + getParentFontClass(superentity.name)}`,
-              opacity: 1,
-              offset: [-15, 28]       // Adjust offset if needed
-          });
-
-          superentityMarkerPlaced.current.set(superentity.name, marker);
-        }
-      });
-    }, []);
-  }
-
+  const superentityLayerGroup = useRef(null);
+  
   //------------------------[MAP LAYER UTILS]------------------------------
 
   function getParentFontClass(parent){
-    console.log(parent);
+    //console.log(parent);
     switch(parent){
       case 'MIDLAND COUNCIL (XII)':
         return 'midland';
@@ -1286,6 +1284,8 @@ const Dornn = () => {
         return 'mandate';
       case 'THE FRONTIER':
         return 'frontier';
+      case 'ESOTERICS':
+        return 'esoterics';
     }
   }
   
@@ -1463,20 +1463,81 @@ const Dornn = () => {
   }
 
   function closeIndevPopup(){
-    console.log('close ' + showIndevPopup.current);
     setShowIndevPopup(false);
   }
 
   function openChangelog(){
-    console.log('open changelog');
     setChangelogOpen(true);
   }
 
   function toggleNav(e){
-    console.log(e);
     e.target.parentNode.parentNode.parentNode.classList.toggle('expanded');
   }
-  
+
+  // --------------------[INFORMATIONAL UTILITY & WIKI]----------------------------
+
+  const [awaitingZoom, setAwaitingZoom] = useState(true);
+  function flyToGeoShape(name){
+    let target = entityLayerCache.current.get(name);
+
+    if(!target){
+      //something went wrong. raise an error? and return
+
+      return;
+    }
+
+    mapRef._container.classList.toggle('leaflet-container-focused');
+
+    mapRef.removeLayer(mapBackgroundGroup.current);
+
+    setFocused(entityFocusEntries.current.get(name));
+
+    //this disables the map's default zoom-toggling behavior - 
+    //when focused, we manage the layers ourselves.
+    setEntityVisible(true);
+    setSuperEntityVisible(false);
+    //setSubentityVisible(true)? - we don't know how this works yet
+
+    mapRef.flyToBounds(target.getBounds(), {
+      paddingTopLeft: [0, 0], //! These values seem to cause major issues on mobile. They likely need to be derived from screen size or use vw/vh?
+      paddingBottomRight: [650, 160],
+      duration: 1.5
+    });
+
+    setAwaitingZoom(true);
+
+    
+
+    mapRef.dragging.disable();
+    //mapRef.zoom.disable();
+    mapRef.scrollWheelZoom.disable();
+    mapRef.zoomControl.remove();
+  }
+
+  //return an image tag with a background color matching the selected entity, with dimensions
+  //of a standard flag. 
+  function getFlagForFocus(){
+    if(!focused){
+      return null;
+    } else {
+      return (<div style={{
+                'aspect-ratio': '16 / 9', 
+                'background-color': focused.nameColor.hex,
+                'display': 'flex',
+                'align-items': 'center',
+                'justify-content': 'center',
+                'color': 'white',
+                'font-family': getParentFontClass(focused.mapSuperentity.name),
+                'height': '20%',
+                'margin':'auto', 
+                'margin-top':'32px'}}>
+                  <p style={{'max-width':'200px', 'text-align':'center', 'font-size':'64px'}}>
+                    ?
+                  </p>
+              </div>
+      );
+    }
+  }
 
   return (
     
@@ -1520,7 +1581,14 @@ const Dornn = () => {
                 <div className="mapcontent relative">
                   
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
-                  <div id='map' ref={mapContainerRef}>
+                  { focused && !markerFocused ? <div className="map-selection-header text-center overflow-y-auto"> { /* !REFACTOR NEEDED! */}
+                    <h className={`inline-block text-7xl pt-5 pb-5 map-info-header ${getParentFontClass(focused.mapSuperentity.name)}`} style={{'color': focused.labelColor.hex}}>{focused.name}</h>
+                    <p className="text-xl">
+                    {focused.subtitle}
+                    </p>
+                    </div> : null 
+                  }
+                  <div className="map" ref={mapContainerRef}>
                     <MapContainer 
                       ref={setMapRef} 
                       center={[1024, 2048]} 
@@ -1535,21 +1603,26 @@ const Dornn = () => {
                       doubleClickZoom={false}
                       preferCanvas={false}
                     >
-                      <LandmassLayer />
+                      <LayerGroup ref={mapBackgroundGroup}>
+                        <LandmassLayer/>
+                      </LayerGroup>
                       <MapEventHandler />
-                      <LayersControl ref={layerNodeRef} position="topright">
-                        <LayersControl.Overlay name="SHOW ENTITIES" checked={entityVisible.current}>
-                          <LayerGroup ref={entityMarkerGroup}>
+                      {entityVisible ? (
+                        <>
+                          { !focused ? (
+                          <LayerGroup ref={setEntityMarkerGroup}>
+                          </LayerGroup>
+                          ) : <></>}
+                          <LayerGroup ref={entityLayerGroup}>
                             <EntityLayerComponent />
-                            <EntityMarkerGenerator/>
                           </LayerGroup>
-                        </LayersControl.Overlay>
-                        <LayersControl.Overlay name="SHOW SUPERENTITIES" checked={superEntityVisible.current}>
-                          <LayerGroup ref={superentityMarkerGroup}>
-                            <SuperEntityLayerComponent />
-                          </LayerGroup>
-                        </LayersControl.Overlay>
-                      </LayersControl>
+                        </>
+                      ) : <></>}
+                      {superEntityVisible ? (
+                        <LayerGroup ref={superentityLayerGroup}>
+                          <SuperEntityLayerComponent />
+                        </LayerGroup>
+                      ) : <></>}
                     </MapContainer>
                   </div>
                   { showIndevPopup ? 
@@ -1622,16 +1695,44 @@ const Dornn = () => {
 
                   {/* CENTERED & BLOCKED BIOS for information that decontextualizes the map on select. */}  
                   { (markerFocused && !focused && centered) ? <div className="mapBlocker bg-black absolute"></div> :  null }
-                  { focused && !markerFocused ? <div className="map-info text-center overflow-y-auto">
-                    <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': selectedBody.headerColor.hex, 'fontFamily' : headerFont}}>{selectedBody.header}</h>
-                    <p className='pb-2  px-5 text-slate-500'>
-                    {selectedBody.environs}
+                  { focused && !markerFocused ? <div className="map-info text-center overflow-y-auto"> { /* !REFACTOR NEEDED! */}
+                    
+                    {focused.flagEmblem?.url ? <img style={{'height':'20%', 'display':'block', 'margin':'auto', 'margin-top':'32px'}} alt="Down the Worldwell" src="../../demo_flag.png"/>
+                     : getFlagForFocus()}
+                    {/* THIS IS A PLACEHOLDER REPRESENTING THE HOVERABLE EYECATCH BITES */}
+                    <div style={{'display':'flex', 'justify-content':'center', 'align-items':'center', 'margin-top':'12px', 'margin-bottom':'12px'}}>
+                      {focused.summaryProperties?.bubbles ? (
+                        <div style={{'margin-right':'12px'}}>
+                        {
+                            focused.summaryProperties.bubbles.map(bubble => {
+                              return (<div className='circle tooltip' style={{'background-color':bubble.color, 'margin-left':'12px', 'margin-right':'12px', 'margin-top':'6px'}}><span className='tooltiptext tooltipbottom !text-sm'>{bubble.text}</span></div>)
+                            })
+                        }
+                        </div> 
+                       ) : <></>} 
+                      <button style={{'color': 'white', 'border':'2px solid #3d3d3d', 'border-radius':'6px'}}>
+                        <div style={{'display':'flex'}}>
+                          <img style={{'max-height':'35px', 'padding-left':'8px'}} src="../../crown_icon.png"/>
+                          <p style={{'line-height':'35px', 'color':'white', 'font-size':'14px', 'text-align':'center', 'padding-left':'12px', 'padding-right':'12px'}}>{focused.summaryProperties?.capital}</p>
+                        </div>
+                      </button>
+                    </div>
+                    <p style={{'color':'grey', 'font-size':'14px'}}>
+                      {focused.eyecatchFacts}
                     </p>
-                    <p>
-                    {selectedBody.populations}
+                    <p className="inline-block pt-5 pb-0  px-10 map-info-content">
+                    {focused.content}
                     </p>
-                    <p className="inline-block pt-5 pb-0  px-5 map-info-content" dangerouslySetInnerHTML={{ __html: selectedBody.body }}>
-                    </p>
+                    <br/><br/>
+                    <div className="grid-box">
+                      <button className="grid-item-bordered">Demographics & Culture</button>
+                      <button className="grid-item-bordered">Geography & Climate</button>
+                      <button className="grid-item-bordered">History</button>
+                      <button className="grid-item-bordered">Economy</button>                       
+                      <button className="grid-item-bordered">Government & Politics</button>
+                      <button className="grid-item-bordered">Settlements & Landmarks</button>
+                      <button className="grid-item-bordered">Foreign Relations</button>
+                    </div>
                     <button className='py-5 map-return' onClick={goBack}>GO BACK</button>
                     </div> :  null 
                   }
@@ -1713,13 +1814,22 @@ const Dornn = () => {
       <div className="expand-container">
         <div className="content">
           <p style={{'text-align':'center', 'padding-top':'8px'}}>( -- this section is a work in progress! click at your own peril! --)</p>
-          <div id="poli-grid-box">
-            {superentityShapes.map(se => {
-              return (<>
-                <button id="poligrid-link" className={getParentFontClass(se.name)} style={{'color':se.nameColor.hex}}>{se.name}</button>
-              </>)
-            })}
-          </div>
+          {superentityShapes.map(se => {
+            return (
+              <details style={{'width':'100%', 'margin-bottom':'18px'}}>
+                <summary className={getParentFontClass(se.name)} style={{'color':se.nameColor.hex, 'font-size':'36px', 'text-align':'center'}}>{se.name}</summary>
+                <div id="poli-grid-box">
+                {
+                    entityShapes.filter(entity => entity.superentityName == se.name).sort((a, b) => a.name.localeCompare(b.name)).map(entity => {
+                      return (<>
+                        <button className={getParentFontClass(se.name)} id="poligrid-link" onClick={() => flyToGeoShape(entity.name)}>{entity.name}</button>
+                      </>)
+                    })
+                }
+                </div>
+            </details>
+            )
+          })}
         </div>
         <div style={{'display':'flex','justify-content':'center'}}>
           <button style={{'width':'5%'}} onClick={toggleNav}>
@@ -1755,8 +1865,8 @@ const Dornn = () => {
 
               <div className="bio-container">
                 <img id="what-header" className="" src="../../what_is_this.png"/>
-                <h2 className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'white','fontFamily' : 'Grenze Gotisch', 'text-align':'center','width':'100%'}}>WOAH! IT'S ALL GONE!</h2>
-                <h4 className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'gray','fontFamily' : 'Grenze Gotisch', 'text-align':'center','width':'100%', 'padding-bottom':'8vh'}}>Please grant me a few days to edit and rewrite this stuff! Thanks!!</h4>
+                <h2 className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'white','fontFamily' : 'Grenze Gotisch', 'text-align':'center','width':'100%'}}>COMING SOON</h2>
+                <h4 className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'gray','fontFamily' : 'Grenze Gotisch', 'text-align':'center','width':'100%', 'padding-bottom':'8vh'}}>The Codex will contain a living glossary of setting terms by generic category and allow for cross-site linking.</h4>
                 {/*<BioContainer />*/}
               </div>
             </div>
@@ -1764,7 +1874,7 @@ const Dornn = () => {
     </div>
       
       <div className='blog-footer' />
-      <div className='blog-footer copynotice' >©2022 - 2025 iznaroth | All Rights Reserved</div>
+      <div className='blog-footer copynotice' >©2022 - 2026 iznaroth | All Rights Reserved</div>
       <div className='blog-footer' />
     </div>
 

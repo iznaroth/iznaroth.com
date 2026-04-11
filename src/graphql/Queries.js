@@ -114,3 +114,50 @@ export const QUERY_WORLDWELL = gql`
       slug
     }
 }`
+
+export const QUERY_ENTITY_1 = gql`
+{
+    mapEntities(orderBy: publishedAt_DESC, where: {legacyIndicator_TEMP: false}, first: 100, skip:0){
+        id,
+        name,
+    		nameColor{hex},
+    		labelColor{hex},
+    		mapSuperentity{name},
+    		subtitle,
+    		flagEmblem{url},
+    		summaryProperties,
+    		eyecatchFacts,
+    		content,
+    		demographicsCulture,
+    		geography,
+    		entityHistory,
+    		economy,
+    		governmentPolitics,
+    		settlementsLandmarks,
+    		foreignRelations
+    }
+}`
+
+export const QUERY_ENTITY_2 = gql`
+{
+    mapEntities(orderBy: publishedAt_DESC, where: {legacyIndicator_TEMP: false}, first: 100, skip:100){
+        id,
+        name,
+    		nameColor{hex},
+    		labelColor{hex},
+    		mapSuperentity{name},
+    		subtitle,
+    		flagEmblem{url},
+    		summaryProperties,
+    		eyecatchFacts,
+    		content,
+    		demographicsCulture,
+    		geography,
+    		entityHistory,
+    		economy,
+    		governmentPolitics,
+    		settlementsLandmarks,
+    		foreignRelations
+    }
+}`
+

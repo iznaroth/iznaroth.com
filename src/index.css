@@ -645,14 +645,6 @@ a:hover {
   	transform: scaleY(-1);
 }
 
-#map {
-  max-height: 100vh;
-  min-height: auto;
-  background-color: transparent;
-
-  flex: 1;
-}
-
 .mapcontent {
   display: flex;
   flex-direction: column;
@@ -662,7 +654,8 @@ a:hover {
 @media (min-width: 625px) {
 	.mapcontent {
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
     height: 95vh;
   }
 }
@@ -673,8 +666,13 @@ a:hover {
 
 @media (min-width: 625px) {
 	.map-info{
-    width: 40vw;
+    width: 30vw;
   }
+}
+
+.map-selection-header{
+  height: 20vh;
+  width: 57vw;
 }
 
 
@@ -886,8 +884,6 @@ a:hover {
   padding: 0rem 1rem;
 }
 
-
-
 #poligrid-link{
   flex-basis: 50%;
   font-size: 1.5rem;
@@ -896,6 +892,33 @@ a:hover {
   padding: 1.5rem 0;
   flex-grow: 0;
 }
+
+.grid-box{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0rem 1rem;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.grid-item-bordered{
+  flex-basis: 45%;
+  min-height: 100px;
+  font-family: 'Grenze Gotisch';
+  font-size: 1.5rem;
+  color: white;
+  margin: auto;
+  text-align: center;
+  padding: 1.5rem 0;
+  flex-grow: 0;
+  border: 2px solid grey;
+  border-radius: 6px;
+  margin: 3px;
+  padding: 12px
+}
+
 
 #subtitle-tiny {
   font-size: 1.0rem;
@@ -1305,6 +1328,21 @@ h1.default {
 
 .frontier{
   font-family: "IM Fell DW Pica", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.circle {
+  height: 25px; 
+  width: 25px; 
+  border-radius: 50%; 
+  border-color: white;
+  border-width: 2px;
+  margin-right: 8px;
+}
+
+.esoterics {
+  font-family: "Fondamento", cursive;
   font-weight: 400;
   font-style: normal;
 }

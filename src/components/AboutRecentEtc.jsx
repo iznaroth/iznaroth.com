@@ -75,7 +75,7 @@ const About = ({ blogContent, devlogContent }) => {
          </div>
      </div>
      <div className='blog-footer' />
-    <div className='blog-footer copynotice' >©2022 - 2025 iznaroth | All Rights Reserved</div>
+    <div className='blog-footer copynotice' >©2022 - 2026 iznaroth | All Rights Reserved</div>
     <div className='blog-footer' />
    </section>
    

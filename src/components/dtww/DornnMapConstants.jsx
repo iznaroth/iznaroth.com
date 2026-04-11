@@ -2092,3 +2092,42 @@ export const territoryIcons = new Map([
     ["Thaumatological Distortion", thaumIcon],
     ["Duel Blasts", duelIcon]
 ])
+
+//STANDARDIZED SUMMARY PROPERTIES
+//Each entity should have three. These are meant to allow the user to rapidly identify the following traits:
+// -> Cooperativeness with neighbors (or others at all) / External Stability
+// -> Favorability of Governance / Internal Political-Social Stability
+// -> Contemporary Relevance / Is this entity able to legitimize itself globally, or is it struggling to do so?
+
+//Each of these are graded across five tiers - good/okay/neutral/mediocre/bad, with two additionals for each: NED (not enough data) and N/A (not applicable)
+//the colors are soft green - yellow-green - yellow - yellow-red - red - gray - black. 
+//here's some reusable fragments for each of those along with their boilerplate text.
+const bubbleFrameworkRelations = [
+  {"color":"#7ad16b", "text":"This territory has cooperative relations with many territories, and it holds the advantage in most of those relations."},
+  {"color":"#afd16b", "text":"This territory has cooperative relations with some territories, and it manages to hold advantages in some of them."},
+  {"color":"#ebce65", "text":"This territory has a smattering of cooperative and contentious relations, and its position in them is inconsistent."},
+  {"color":"#f08a4a", "text":"This territory has some contentious relations with other territories, and may be in direct or indirect conflict with them."},
+  {"color":"#f75757", "text":"This territory is in open hostilities with one or a number of other territories and struggles to form and maintain cooperative relations."},
+  {"color":"#949494", "text":"Dharshav lacks substantial data on the diplomatic processes and relationships this territory maintains."},
+  {"color":"#000000", "text":"This territory does not meaningfully participate in foreign relations."}
+]
+
+const bubbleFrameworkStability = [
+  {"color":"#7ad16b", "text":"This territory is resolutely stable - it has acceptable quality of life and a relatively-popular governance."},
+  {"color":"#afd16b", "text":"This territory is fairly stable - its governance and social structuring has some contentious elements, but by-and-large it is peaceful."},
+  {"color":"#ebce65", "text":"This territory's internal stability is volatile. Social unrest and political dissatisfaction are not uncommon."},
+  {"color":"#f08a4a", "text":"This territory is notably unstable - objections to governance, civil revolt and domestic conflict are facets of everyday life."},
+  {"color":"#f75757", "text":"This territory is extremely unstable - active domestic conflict and/or revolutionary activity are commonplace, and local government does not have it under control."},
+  {"color":"#949494", "text":"Dharshav lacks substantial data on the internal stability of this region."},
+  {"color":"#000000", "text":"This territory has no coherent internal social or political structure to evaluate, or it is too unusual to compare to mortal experience."}
+]
+
+const bubbleFrameworkRelevance = [
+  {"color":"#7ad16b", "text":"This territory is a dominant participant in both local and planar trade, diplomacy and politics. They likely drive the majority of regional activity and have active relations with distant entities."},
+  {"color":"#afd16b", "text":"This territory is a strong participant in local trade, and may have broader planar interests. They likely have meaningful sway over regional activities either through niche dominance or breadth-of-influence."},
+  {"color":"#ebce65", "text":"This territory is an uneven or neutral player in local activities, with meager to no influence beyond their locality. They may have trade niches that grant them influence, but it is hampered by outside interests and meddling."},
+  {"color":"#f08a4a", "text":"This territory struggles to maintain relevance and independence even in their locality. They may suffer exploitation and minor occupation from more powerful neighbors, and resource exhaustion may be degrading their ability to maintain their holdings."},
+  {"color":"#f75757", "text":"This territory has essentially no agency or relevance in areas of trade, production or extraction. They may likely be partially or wholly colonized by more powerful neighbors, and are likely suffering from mass emigration and similar ailments."},
+  {"color":"#949494", "text":"Dharshav lacks substantial data on this territory's access to and exploitation of resources, trade participation and infrastructure."},
+  {"color":"#000000", "text":"This territory does not participate in any kind of import, export or known production."}
+]
