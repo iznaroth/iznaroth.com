@@ -18,8 +18,8 @@ const screenBounds = [
 ]
 
 const screenBoundsWiggle = [
-  [-500, -500],
-  [2545, 4771],
+  [-2000, -3000],
+  [4045, 7271],
 ]
 
 
@@ -142,11 +142,10 @@ const Dornn = () => {
         .then(res => console.log(res))
     }*/
 
-    console.log(entityFocusEntries.current.size);
     if(entityFocusEntries.current.size === 0){
       graphcms.request(QUERY_ENTITY_1)
       .then(res => {
-        console.log(res);
+        //console.log(res);
         res.mapEntities.forEach(entity => {
           entityFocusEntries.current.set(entity.name, entity);
         })
@@ -154,14 +153,14 @@ const Dornn = () => {
 
       graphcms.request(QUERY_ENTITY_2)
       .then(res => {
-        console.log(res);
+        //console.log(res);
         res.mapEntities.forEach(entity => {
           entityFocusEntries.current.set(entity.name, entity);
         })
       })
     }
 
-    console.log(entityFocusEntries.current);
+    //console.log(entityFocusEntries.current);
 
     // HACK to help icon pathing // likely a better way of doing this, but we won't be using
     L.Icon.Default.imagePath = ''; 
@@ -237,6 +236,8 @@ const Dornn = () => {
         }
       });
 
+      fixMarkerIcons(mapRef);
+
       return () => {
         markerPlaced.current = new Map();
       }
@@ -254,6 +255,7 @@ const Dornn = () => {
     //mapRef.zoom.enable();
     mapRef.scrollWheelZoom.enable();
     mapRef._container.classList.toggle('leaflet-container-focused');
+    mapRef.options.zoomSnap = 0.5;
 
     //we know we're zooming to max, so we're entering superentity-only view
     //there's a chance focus-flows will have bounding boxes in 'SOV', so going back
@@ -1057,6 +1059,8 @@ const Dornn = () => {
       zoomend(e) {
 
         let zoom = mapRef.getZoom();
+        console.log(zoom);
+        console.log(lastZoom);
         //switch layers at or beyond certain breakpoints. 
         //skipped if focused, though we still cache the previous zoom as it changes.
         if(!focused){
@@ -1074,10 +1078,10 @@ const Dornn = () => {
   };
 
   function mapZoomLayerChange(zoom){
-    if(zoom >= 0 && lastZoom <= -1){
+    if(zoom >= 0 && lastZoom < 0){
       setEntityVisible(true);
       setSuperEntityVisible(false);
-    } else if(zoom <= -1 && lastZoom >= 0){
+    } else if(zoom < 0 && lastZoom >= 0){
       setEntityVisible(false);
       setSuperEntityVisible(true);
     }
@@ -1157,7 +1161,7 @@ const Dornn = () => {
       eventHandlers={{ //markers get added before icons can be applied, but this happens after geo is ready, so we can fix them here.
         add: (e) => {
           //console.log("fix markers");
-          fixMarkerIcons(map);
+          //fixMarkerIcons(map);
         }
       }}
     >
@@ -1294,50 +1298,37 @@ const Dornn = () => {
       // You can adjust this formula as needed
       switch(labelSize){
         case "small":
-          switch(zoom){
-            case -2:
-              return '0px';
-            case -1:
-              return '0px';
-            case 0:
-              return '0px';
-            case 1:
-              return '0px';
-            case 2:
-              return '16px';
-            default:
-              return '24px';
+          if(zoom <= 1){
+            return '0px';
+          } else if(zoom <= 2){
+            return '16px';
+          } else {
+            return '24px';
           }
         case "medium":
-          switch(zoom){
-            case -2:
-              return '0px';
-            case -1:
-              return '6px';
-            case 0:
-              return '12px';
-            case 1:
-              return '16px';
-            case 2:
-              return '24px';
-            default:
-              return '32px';
-          }  
+          if(zoom <= -2){
+            return '0px';
+          } else if(zoom <= -1){
+            return '6px';
+          } else if(zoom <= 0){
+            return '12px';
+          } else if(zoom <= 1){
+            return '16px';
+          } else if(zoom <= 2){
+            return '24px';
+          } else {
+            return '32px';
+          } 
         case "large":
-          switch(zoom){
-            case -2:
-              return '0px';
-            case -1:
-              return '16px';
-            case 0:
-              return '24px';
-            case 1:
-              return '24px';
-            case 2:
-              return '48px';
-            default:
-              return '48px';
-          }
+          if(zoom <= -2){
+            return '0px';
+          } else if(zoom <= -1){
+            return '16px';
+          } else if(zoom <= 1){
+            return '24px';
+          } else {
+            return '48px';
+          } 
         case "super":
           switch(zoom){
             case -2:
@@ -1361,50 +1352,33 @@ const Dornn = () => {
       // You can adjust this formula as needed
       switch(labelSize){
         case "small":
-          switch(zoom){
-            case -2:
-              return '0px';
-            case -1:
-              return '0px';
-            case 0:
-              return '0px';
-            case 1:
-              return '0px';
-            case 2:
-              return '75px';
-            default:
-              return '150px';
+          if(zoom <= 1){
+            return '0px';;
+          } else if(zoom <= 2){
+            return '75px';
+          } else {
+            return '150px';
           }
         case "medium":
-          switch(zoom){
-            case -2:
-              return '0px';
-            case -1:
-              return '50px';
-            case 0:
-              return '100px';
-            case 1:
-              return '100px';
-            case 2:
-              return '150px';
-            default:
-              return '150px';
-          }  
+          if(zoom <= -2){
+            return '0px';
+          } else if(zoom <= -1){
+            return '100px';
+          } else if(zoom <= 1){
+            return '100px';
+          } else {
+            return '150px';
+          }
         case "large":
-          switch(zoom){
-            case -2:
-              return '0px';
-            case -1:
-              return '80px';
-            case 0:
-              return '100px';
-            case 1:
-              return '150px';
-            case 2:
-              return '150px';
-            default:
-              return '150px';
-          }      
+          if(zoom <= -2){
+            return '0px';
+          } else if(zoom <= -1){
+            return '80px';
+          } else if(zoom <= 0){
+            return '100px';
+          } else {
+            return '150px';
+          }   
       }
   }
 
@@ -1449,6 +1423,7 @@ const Dornn = () => {
   }
 
   function fixMarkerIcons(map){
+
     var markerList = [];
     map.eachLayer(function(layer) {
         if (layer instanceof L.Marker) {
@@ -1482,7 +1457,7 @@ const Dornn = () => {
 
     if(!target){
       //something went wrong. raise an error? and return
-
+      console.log('SOMETHING WENT WRONG WHEN TRYING TO FOCUS SHAPE ? ' + name);
       return;
     }
 
@@ -1498,9 +1473,12 @@ const Dornn = () => {
     setSuperEntityVisible(false);
     //setSubentityVisible(true)? - we don't know how this works yet
 
+    console.log(mapRef);
+    mapRef.options.zoomSnap = 0;
+
     mapRef.flyToBounds(target.getBounds(), {
-      paddingTopLeft: [0, 0], //! These values seem to cause major issues on mobile. They likely need to be derived from screen size or use vw/vh?
-      paddingBottomRight: [650, 160],
+      paddingTopLeft: [25, 25], //! These values seem to cause major issues on mobile. They likely need to be derived from screen size or use vw/vh?
+      paddingBottomRight: [600, 225],
       duration: 1.5
     });
 
@@ -1592,8 +1570,11 @@ const Dornn = () => {
                     <MapContainer 
                       ref={setMapRef} 
                       center={[1024, 2048]} 
-                      zoom={-2} 
+                      zoom={-1.5} 
                       minZoom={-2}
+                      zoomSnap={0.5}
+                      zoomDelta={0.5}
+                      wheelPxPerZoomLevel={120}
                       dragging={true} 
                       keyboardPanDelta={200}
                       zoomControl={true} 
@@ -1642,10 +1623,10 @@ const Dornn = () => {
                   { (changelogOpen) ? <div className="settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" style={{'color':'white','fontFamily' : 'Grenze Gotisch'}}>
                       <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'white','fontFamily' : 'Grenze Gotisch'}}>Maplog!</h>
                       <p className='pb-2  px-5 text-slate-500'>
-                        ver. 1.1
+                        ver. 1.2
                       </p>
                       <p className="inline-block pt-5 pb-0  px-5 map-info-content" style={{'text-align':'left'}}>
-                        The map is currently being reworked from the ground up. This has broken a lot of the functionality from 1.0. The following features no longer work:
+                        The map is currently being reworked from the ground up. This has broken a lot of the functionality from 1.0. The following features no longer work the way they used to:
                         <br/><br/>
                         <ul >
                           <li>Landmass Selection & their bios</li>
@@ -1676,13 +1657,10 @@ const Dornn = () => {
                         content phase. Here's a rapid-fire overview:
                         <br/><br/>
                         <ul >
-                          <li>A "Navigation" tray under the map which lists a hierarchical, searchable view of super-entities, entities, sub-entities and internal entities. Selecting an entry will fly to it.</li>
                           <li>Subentities! Also, aggregate territories will, at the proper zoom level, show traced subdivisions of their contents.</li>
-                          <li>A detail panel for each sup/en/sub/int entry!</li>
                           <li>Selectable pins for cities and settlements!</li>
                           <li>An overlay that allows for more sensible control of these views and provides contextual information about what they represent and how they work.</li>
                           <li>Reintroducing the Regions view as an extension of these political shapes! (landmasses -> regions)</li>
-                          <li>Internal entities! The rendering and control process for this is a headache, so it's slotted for last.</li>
                           <li>Performance improvements - this will probably have to be rebuilt at some point to accommodate an outsized number of shapes, subshapes and pins.</li>
                         </ul>
                         <br/>
