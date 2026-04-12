@@ -246,7 +246,7 @@ const Dornn = () => {
   
   function goBack(){ //Revert all popover properties and return to origin. Rename function!
     setFocused(null); 
-    mapRef.flyTo([1200, 2350], -2);
+    mapRef.flyTo([1200, 2350], -1.5);
     setChangelogOpen(false);
 
     mapRef.addLayer(mapBackgroundGroup.current);
@@ -1556,7 +1556,7 @@ const Dornn = () => {
 
               <div id='content-main'>
                 <img className="m-auto w-full sm:w-1/2 pt-5" src="../../world_banner.png" alt="The World - Also Known as The Measured Extent of the Dornnian Midlands"/>
-                <div className="mapcontent relative">
+                <div className="mapcontent relative" style={{'z-index':'0'}}>
                   
                   {/*<img className="" src="../../whiteout-blank-site.png" useMap="#dornnmap" alt="This is a full-scale linked map of the Dornnian Midlands. It is not navigable by screen reader, so you will instead use the following links to access the information you're looking for. This map is divided into several regions which will be read through in sequence."/>*/}
                   { focused && !markerFocused ? <div className="map-selection-header text-center overflow-y-auto"> { /* !REFACTOR NEEDED! */}
@@ -1566,7 +1566,7 @@ const Dornn = () => {
                     </p>
                     </div> : null 
                   }
-                  <div className="map" ref={mapContainerRef}>
+                  <div className="map" ref={mapContainerRef} style={{'z-index':'0'}}>
                     <MapContainer 
                       ref={setMapRef} 
                       center={[1024, 2048]} 
@@ -1683,7 +1683,7 @@ const Dornn = () => {
                         <div style={{'margin-right':'12px'}}>
                         {
                             focused.summaryProperties.bubbles.map(bubble => {
-                              return (<div className='circle tooltip' style={{'background-color':bubble.color, 'margin-left':'12px', 'margin-right':'12px', 'margin-top':'6px'}}><span className='tooltiptext tooltipbottom !text-sm'>{bubble.text}</span></div>)
+                              return (<div className='circle tooltip' style={{'background-color':bubble.color, 'margin-left':'12px', 'margin-right':'12px', 'margin-top':'6px'}}><span className='tooltiptext tooltiptop !text-sm'>{bubble.text}</span></div>)
                             })
                         }
                         </div> 
@@ -1695,7 +1695,7 @@ const Dornn = () => {
                         </div>
                       </button>
                     </div>
-                    <p style={{'color':'grey', 'font-size':'14px'}}>
+                    <p className="px-10" style={{'color':'grey', 'font-size':'14px'}}>
                       {focused.eyecatchFacts}
                     </p>
                     <p className="inline-block pt-5 pb-0  px-10 map-info-content">
