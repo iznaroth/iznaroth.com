@@ -2131,3 +2131,28 @@ const bubbleFrameworkRelevance = [
   {"color":"#949494", "text":"Dharshav lacks substantial data on this territory's access to and exploitation of resources, trade participation and infrastructure."},
   {"color":"#000000", "text":"This territory does not participate in any kind of import, export or known production."}
 ]
+
+//Placeholder!
+export const dharshavPost = {
+  "name":"Dharshav",
+  "nameColor": {
+    "hex":"#bd882d",
+  },
+  "subtitle":"That's Us!",
+  "content":`The second largest printing-fort in all the Midlands. We made this! 
+  <br/><br/>
+  Your patronage is much appreciated. Consult the codex for host-body maintenace best practices. Keep in mind, it must be fed, hydrated and healthy
+  for your map to function as intended!
+  <br/><br/>
+  Dharshav was founded sometime in the early Human Age (c.517) by Immecan exiles of Senn, shortly after that nation-state acceded to a core seat on the Midland Council (V). In the ensuing purges, many indepentent archival interests and 
+  Midlands Historical Archive (M.H.A.) sympathizers fled to Qaril, hoping to establish a more robust archival organization beyond the political perils of the heartlands. Since then, it has served
+  as a foundational contributor to the pursuit and retention of knowledge across the Midlands. Our agents are studious, discreet and always accurate. We hope you will continue to work with us! 
+  <br/><br/>
+  Contributions to the Dharshavi archive can be freely made at any time.  
+  `
+}
+
+//Placeholder
+export const settlementCoordinates = new Map([
+  ["Dharshav", [1385, 1267]],
+])

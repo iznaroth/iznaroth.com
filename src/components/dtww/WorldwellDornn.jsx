@@ -7,7 +7,7 @@ import {React,  ReactDOM, useState, useEffect, useCallback, useRef, useMemo } fr
 import { MapContainer, ImageOverlay, Marker, Popup, Polygon, Polyline, useMap, useMapEvents, useMapEvent, Rectangle, FeatureGroup, LayerGroup, LayersControl, GeoJSON, SVGOverlay } from 'react-leaflet'
 import { CRS, icon, map, marker } from 'leaflet'
 import { graphcms, QUERY_MAPENTRY, QUERY_SETTLEMENTENTRY, QUERY_ENTITY_1, QUERY_ENTITY_2} from '../../graphql/Queries';
-import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, history, entityLabelCounts, entityLabelSizes, territoryIcons} from './DornnMapConstants';
+import { dolwynd, anterros, northsea, argov, iorstav, dorrim, cantoc, molog, ferveirn, rhomi, lannoch, morna, vaic, akkvalt, salir, dors, crovon, mosmoga, kamdag, agos, ghommilil, pagedesc, realms, inhabitants, history, entityLabelCounts, entityLabelSizes, territoryIcons, dharshavPost, settlementCoordinates} from './DornnMapConstants';
 import unified from './svg_cutouts_unified.json';
 import superentityShapes from './superentity_shapes.json';
 import entityShapes from './entity_shapes.json';
@@ -50,6 +50,8 @@ const Dornn = () => {
   const [markerClass, setMarkerClass] = useState(0);
   const [wakeupDone, setWakeupDone] = useState(false);
   const [showIndevPopup, setShowIndevPopup] = useState(true);
+  const [showConfigurationPane, setShowConfigurationPane] = useState(false);
+  const [showBorders, setShowBorders] = useState(true); //! PROBLEMATIC IMPL. - This should not awaken at true, but we need the layer loaded to cache critical data, which is bad.
   const [changelogOpen, setChangelogOpen] = useState(false);
   const [mapRef, setMapRef] = useState(null);
 
@@ -246,7 +248,7 @@ const Dornn = () => {
   
   function goBack(){ //Revert all popover properties and return to origin. Rename function!
     setFocused(null); 
-    mapRef.flyTo([1200, 2350], -1.5);
+    mapRef.flyTo([1200, 2050], -1.5);
     setChangelogOpen(false);
 
     mapRef.addLayer(mapBackgroundGroup.current);
@@ -267,11 +269,10 @@ const Dornn = () => {
 
   function closeSettlementPopup(){ //Full-fo
     setMarkerFocused(false)
-    map.flyTo([256, 534], 0.4)
+    mapRef.flyTo([1200, 2050], -1.5);
     setSelectedSettlement(null)
 
-    map.dragging.enable();
-    map.zoom.enable();
+    mapRef.dragging.enable();
   }
 
   function selectCapitalPopout(){
@@ -754,9 +755,8 @@ const Dornn = () => {
     
   }, [])
 
-  async function selectPoligridPin(which, centered, targetMarkerClass) {
-    
-    const post = settlements.find((post) => post.name === settlement_handles_ordered[which])
+  async function selectPoligridPin(post, centered, targetMarkerClass) {
+    console.log('test');
     setCentered(centered);
     
     setSelectedSettlement(post);
@@ -765,10 +765,10 @@ const Dornn = () => {
     setMarkerClass(-1);
 
     if(marker){
-      mapContainerRef.current.scrollIntoView()
+      mapContainerRef.current.scrollIntoView();
 
-      var ssOffsetX
-      var ssOffsetY
+      var ssOffsetX;
+      var ssOffsetY;
 
       if(window.innerWidth > 625){
         ssOffsetX = 15
@@ -779,12 +779,15 @@ const Dornn = () => {
       }
 
       setMarkerFocused(true);
-      const position = [markerPositions[which][0] + ssOffsetY, markerPositions[which][1] + ssOffsetX] //offset for setup. TODO pick box disp side based on proximity to edge
-      map.flyTo(position, 3)
+
+      const position = settlementCoordinates.get(post.name) ?? [0, 0]; 
+      position[1] = position[1] + 35; //offset 35px 
+      position[0] = position[0] - 1;
+      console.log(position);
+      mapRef.flyTo(position, 2);
     
       setMarkerClass(targetMarkerClass);
-      map.dragging.disable();
-      map.zoom.disable();
+      mapRef.dragging.disable();
     }
   }
 
@@ -1153,6 +1156,7 @@ const Dornn = () => {
         if(!firstLoadComplete){
           setFirstLoadComplete(true);
           setEntityVisible(false);
+          setShowBorders(false);
         }
       }
     }, [entityShapes]);
@@ -1445,6 +1449,20 @@ const Dornn = () => {
     setChangelogOpen(true);
   }
 
+  function openConfigurationPane(){
+    setShowConfigurationPane(true);
+  }
+
+  function closeConfigurationPane(){
+    setShowConfigurationPane(false);
+  }
+
+  function togglePoliticalView(){
+    console.log('show borders');
+    console.log(showBorders);
+    setShowBorders(!showBorders);
+  }
+
   function toggleNav(e){
     e.target.parentNode.parentNode.parentNode.classList.toggle('expanded');
   }
@@ -1460,6 +1478,25 @@ const Dornn = () => {
       console.log('SOMETHING WENT WRONG WHEN TRYING TO FOCUS SHAPE ? ' + name);
       return;
     }
+
+    //you need to be able to see borders for this view. We may cache it so goBack rewinds to prior state.
+    if(!showBorders){
+      setShowBorders(true);
+    }
+
+    if(changelogOpen){
+      setChangelogOpen(false);
+    }
+
+    if(showIndevPopup){
+      setShowIndevPopup(false);
+    }
+
+    if(markerFocused){
+      closeSettlementPopup();
+    }
+
+    mapContainerRef.current.scrollIntoView();
 
     mapRef._container.classList.toggle('leaflet-container-focused');
 
@@ -1588,26 +1625,28 @@ const Dornn = () => {
                         <LandmassLayer/>
                       </LayerGroup>
                       <MapEventHandler />
-                      {entityVisible ? (
-                        <>
-                          { !focused ? (
-                          <LayerGroup ref={setEntityMarkerGroup}>
+                      {showBorders ? 
+                        (<>{entityVisible ? (
+                          <>
+                            { !focused ? (
+                            <LayerGroup ref={setEntityMarkerGroup}>
+                            </LayerGroup>
+                            ) : <></>}
+                            <LayerGroup ref={entityLayerGroup}>
+                              <EntityLayerComponent />
+                            </LayerGroup>
+                          </>
+                        ) : <></>}
+                        {superEntityVisible ? (
+                          <LayerGroup ref={superentityLayerGroup}>
+                            <SuperEntityLayerComponent />
                           </LayerGroup>
-                          ) : <></>}
-                          <LayerGroup ref={entityLayerGroup}>
-                            <EntityLayerComponent />
-                          </LayerGroup>
-                        </>
-                      ) : <></>}
-                      {superEntityVisible ? (
-                        <LayerGroup ref={superentityLayerGroup}>
-                          <SuperEntityLayerComponent />
-                        </LayerGroup>
-                      ) : <></>}
+                        ) : <></>}</>) : <></>
+                      }
                     </MapContainer>
                   </div>
                   { showIndevPopup ? 
-                    <div style={{'position':'absolute', 'display':'flex', 'left':'10%'}}>
+                    <div style={{'position':'absolute', 'display':'flex', 'left':'5%'}}>
                       <div style={{'width':'50%','position':'relative'}}>
                         <img src="../../map_indev_panel.png"></img>
                       </div>
@@ -1618,6 +1657,60 @@ const Dornn = () => {
                         <img src="../../close_popup.png" style={{'max-width':'100%'}}></img>
                       </button>
                     </div> : null }
+
+                  {!focused ? (<>{ (showConfigurationPane) ? 
+                    <div style={{
+                      'position':'absolute',
+                      'right':'1%',
+                      'top':'3%',
+                      'background-color':'black',
+                      'border':'3px solid white',
+                      'padding':'6px'
+                    }}>
+                      <div style={{
+                        'width':'fit-content', 
+                        'margin':'auto', 
+                        'font-family':'Grenze Gotisch', 
+                        'color':'white', 
+                        'font-size':'36px', 
+                        'padding-top':'6px',
+                        'padding-left':'32px',
+                        'padding-right':'32px'
+                      }}> Configuration </div>
+                      <div style={{
+                        'height':'12px', 
+                        'border-top':'2px dashed white', 
+                        'margin-left':'24px', 
+                        'margin-right':'24px', 
+                        'margin-top':'6px'
+                      }}></div>
+                      <div style={{
+                        'display':'flex', 
+                        'margin':'6px', 
+                        'align-items':'center',
+                        'justify-content':'center'
+                      }}>
+                        <label class="switch" style={{'margin-top':'0px'}}>
+                          <input type="checkbox" checked={showBorders} onChange={togglePoliticalView}/>
+                          <span class="slider"></span>
+                        </label>
+                        <p style={{
+                          'height':'20px', 
+                          'line-height':'20px',
+                          'text-align':'center',
+                          'color':'#bbbbbb',
+                          'font-family':'IM Fell DW Pica',
+                          'font-size':'20px', 
+                          'padding-left':'12px'
+                        }}>Territory Borders</p>
+                      </div>
+                      <button style={{'width':'fit-content','margin':'auto','display':'block'}} className='py-2 map-return' onClick={closeConfigurationPane}>CLOSE</button>
+                    </div> : 
+                    <div style={{'position':'absolute', 'display':'flex', 'right':'1%', 'top':'3%', 'flex-direction':'row-reverse'}}>
+                      <button onClick={openConfigurationPane} style={{'width':'50%'}}>
+                        <img src="../../settings_toggle.png" style={{'max-width':'100%'}}></img>
+                      </button>
+                    </div> }</>) : <></>}                  
 
                   {/* MAP INFO PANELS */}
                   { (changelogOpen) ? <div className="settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" style={{'color':'white','fontFamily' : 'Grenze Gotisch'}}>
@@ -1688,10 +1781,13 @@ const Dornn = () => {
                         }
                         </div> 
                        ) : <></>} 
-                      <button style={{'color': 'white', 'border':'2px solid #3d3d3d', 'border-radius':'6px'}}>
+                      <button style={{'color': 'white', 'border': focused.summaryProperties ? '2px solid #3d3d3d' : 'none', 'border-radius':'6px'}}>
                         <div style={{'display':'flex'}}>
-                          <img style={{'max-height':'35px', 'padding-left':'8px'}} src="../../crown_icon.png"/>
-                          <p style={{'line-height':'35px', 'color':'white', 'font-size':'14px', 'text-align':'center', 'padding-left':'12px', 'padding-right':'12px'}}>{focused.summaryProperties?.capital}</p>
+                          <img style={{'max-height':'35px', 'padding-left':'8px', 'padding-right':'8px'}} src={focused.summaryProperties ? "../../crown_icon.png" : "../../danger_icon.png"}/>
+                          { focused.summaryProperties ? 
+                            (<p style={{'line-height':'35px', 'color':'white', 'font-size':'14px', 'text-align':'center', 'padding-right':'12px'}}>{focused.summaryProperties?.capital}</p>)
+                            : <></>
+                          }
                         </div>
                       </button>
                     </div>
@@ -1774,6 +1870,7 @@ const Dornn = () => {
                     </div> :  null }
                   
                 </div>
+                <div style={{'display':'block', 'margin':'auto', 'padding-top':'18px', 'padding-bottom':'32px', 'width':'fit-content', 'color':'#a8a8a8', 'fontFamily' : 'Grenze Gotisch', 'font-size':'18px'}}>This map was compiled and charted by the gracious agents of the neutral printing-fort <b style={{'color':'#c58e30', 'border-bottom':'2px dotted #bd882d'}} onClick={() => selectPoligridPin(dharshavPost, false, 1)}>"Dharshav"</b><br/>For any assistance in commanding or reorienting the host-body of your map, please see <b style={{'color':'#c7c7c7', 'border-bottom':'2px dotted #f1f1f1'}}>here.</b></div>
               </div>
             </div>
       </div>
@@ -1790,8 +1887,7 @@ const Dornn = () => {
         </div>
       </div>
       <div className="expand-container">
-        <div className="content">
-          <p style={{'text-align':'center', 'padding-top':'8px'}}>( -- this section is a work in progress! click at your own peril! --)</p>
+        <div className="content" style={{'margin-top':'12px'}}>
           {superentityShapes.map(se => {
             return (
               <details style={{'width':'100%', 'margin-bottom':'18px'}}>
