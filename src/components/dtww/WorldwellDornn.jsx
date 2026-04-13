@@ -780,7 +780,7 @@ const Dornn = () => {
 
       setMarkerFocused(true);
 
-      const position = settlementCoordinates.get(post.name) ?? [0, 0]; 
+      const position = [...settlementCoordinates.get(post.name)] ?? [0, 0]; //dont grab the reference!
       position[1] = position[1] + 35; //offset 35px 
       position[0] = position[0] - 1;
       console.log(position);
@@ -1870,7 +1870,7 @@ const Dornn = () => {
                     </div> :  null }
                   
                 </div>
-                <div style={{'display':'block', 'margin':'auto', 'padding-top':'18px', 'padding-bottom':'32px', 'width':'fit-content', 'color':'#a8a8a8', 'fontFamily' : 'Grenze Gotisch', 'font-size':'18px'}}>This map was compiled and charted by the gracious agents of the neutral printing-fort <b style={{'color':'#c58e30', 'border-bottom':'2px dotted #bd882d'}} onClick={() => selectPoligridPin(dharshavPost, false, 1)}>"Dharshav"</b><br/>For any assistance in commanding or reorienting the host-body of your map, please see <b style={{'color':'#c7c7c7', 'border-bottom':'2px dotted #f1f1f1'}}>here.</b></div>
+                <div style={{'display':'block', 'margin':'auto', 'padding-top':'18px', 'padding-bottom':'32px', 'width':'fit-content', 'color':'#a8a8a8', 'fontFamily' : 'Grenze Gotisch', 'font-size':'18px', 'text-align':'center'}}>This map was compiled and charted by the gracious agents of the neutral printing-fort <b style={{'color':'#c58e30', 'border-bottom':'2px dotted #bd882d'}} onClick={() => selectPoligridPin(dharshavPost, false, 1)}>"Dharshav"</b><br/>For any assistance in commanding or reorienting the host-body of your map, please see <b style={{'color':'#c7c7c7', 'border-bottom':'2px dotted #f1f1f1'}}>here.</b></div>
               </div>
             </div>
       </div>
