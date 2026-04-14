@@ -1817,7 +1817,7 @@ const Dornn = () => {
                       { markerClass == 0 ? <div className='animatedPin animatedPinCapital'></div> : null }
                       { markerClass == 1 ? <div className='animatedPin animatedPinFortress'></div> : null }
                       { markerClass == 2 ? <div className='animatedPin animatedPinUnknown'></div> : null }
-                      <div className={centered ? "settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" : "settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto"}>
+                      <div style={{'overflow-y':'auto'}} className={centered ? "settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" : "settlement bg-black border-4 border-white absolute map-info text-center overflow-y-auto"}>
                       <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color': selectedSettlement.nameColor.hex, 'fontFamily' : headerFont}}>{selectedSettlement.name}</h>
                       <p>
                         <i>
