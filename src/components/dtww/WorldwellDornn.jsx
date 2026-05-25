@@ -248,6 +248,29 @@ const Dornn = () => {
   
   function goBack(){ //Revert all popover properties and return to origin. Rename function!
     setFocused(null); 
+    //mapRef.flyTo([1200, 2050], -1.5);
+    mapRef.zoomOut();
+    setChangelogOpen(false);
+
+    mapRef.addLayer(mapBackgroundGroup.current);
+     
+    mapRef.dragging.enable();
+    //mapRef.zoom.enable();
+    mapRef.scrollWheelZoom.enable();
+    mapRef._container.classList.toggle('leaflet-container-focused');
+    mapRef.options.zoomSnap = 0.5;
+
+    if(mapRef.getZoom() >= 0){
+      setEntityVisible(true);
+      setSuperEntityVisible(false);
+    } else {
+      setEntityVisible(false);
+      setSuperEntityVisible(true);
+    }
+  }
+
+  function returnToOrigin(){ //Revert all popover properties and return to origin. Rename function!
+    setFocused(null); 
     mapRef.flyTo([1200, 2050], -1.5);
     setChangelogOpen(false);
 
@@ -1471,6 +1494,7 @@ const Dornn = () => {
 
   const [awaitingZoom, setAwaitingZoom] = useState(true);
   function flyToGeoShape(name){
+    console.log(name);
     let target = entityLayerCache.current.get(name);
 
     if(!target){
@@ -1797,17 +1821,40 @@ const Dornn = () => {
                     <p className="inline-block pt-5 pb-0  px-10 map-info-content">
                     {focused.content}
                     </p>
-                    <br/><br/>
-                    <div className="grid-box">
-                      <button className="grid-item-bordered">Demographics & Culture</button>
-                      <button className="grid-item-bordered">Geography & Climate</button>
-                      <button className="grid-item-bordered">History</button>
-                      <button className="grid-item-bordered">Economy</button>                       
-                      <button className="grid-item-bordered">Government & Politics</button>
-                      <button className="grid-item-bordered">Settlements & Landmarks</button>
-                      <button className="grid-item-bordered">Foreign Relations</button>
+                    <div style={{'display':'flex','justify-content':'center','align-items':'center'}}>
+                      <div style={{'border-top':'2px solid #242424','width':'70%','margin-top':'25px', 'margin-bottom':'25px'}}></div>
                     </div>
-                    <button className='py-5 map-return' onClick={goBack}>GO BACK</button>
+                    { focused.settlementsLandmarks ? 
+                      <>
+                        <h1 className="focus-panel-header">- Settlements and Landmarks -</h1>
+                        <br/>
+                        <div style={{'display':'flex', 'flex-wrap':'wrap', 'justify-content':'center', 'margin-left':'10%','margin-right':'10%'}}>
+                        { focused.settlementsLandmarks.settlements.map(ele => {
+                          return (
+                            <div style={{'flex-basis':'50%'}}>
+                              <button style={{'color': 'white', 'border': '2px solid #3d3d3d', 'border-radius':'6px', 'width':'200px'}}>
+                                <div style={{'display':'flex'}}>
+                                  <img style={{'max-height':'35px', 'padding-left':'8px', 'padding-right':'8px'}} src={"../../fort_icon.png"}/>
+                                  <p style={{'line-height':'35px', 'color':'white', 'font-size':'14px', 'text-align':'center', 'padding-right':'12px'}}>{ele.name}</p>
+                                </div>
+                              </button>
+                            </div>
+                          )
+                        })}
+                        </div>
+                      </> 
+                      : null
+                    }
+                    <div className="grid-box">
+                      { focused.demographicsCulture ? <button className="grid-item-bordered">Demographics & Culture</button> : null }
+                      { focused.geography ? <button className="grid-item-bordered">Geography & Climate</button> : null }
+                      { focused.entityHistory ? <button className="grid-item-bordered">History</button> : null }
+                      { focused.economy ?  <button className="grid-item-bordered">Economy</button> : null }                       
+                      { focused.governmentPolitics ? <button className="grid-item-bordered">Government & Politics</button> : null }
+                      { focused.foreignRelations ? <button className="grid-item-bordered">Foreign Relations</button> : null }
+                    </div>
+                    <button className='py-5 map-return w-99' onClick={goBack}>GO BACK</button>
+                    <button className='map-return w-99' onClick={returnToOrigin}>RETURN TO ORIGIN</button>
                     </div> :  null 
                   }
 

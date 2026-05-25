@@ -919,6 +919,15 @@ a:hover {
   padding: 12px
 }
 
+.focus-panel-header{
+  font-family: 'Grenze Gotisch';
+  font-size: 2rem;
+  color: white;
+  margin: auto;
+  text-align: center;
+  width: 99%;
+}
+
 
 #subtitle-tiny {
   font-size: 1.0rem;
