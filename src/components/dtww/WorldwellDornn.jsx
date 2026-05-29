@@ -79,6 +79,10 @@ const Dornn = () => {
   const [superEntityVisible, setSuperEntityVisible] = useState(true);
 
 
+  window.addEventListener('resize', function() {
+    // Optional: Re-run zoom logic or fitBounds here
+    mapRef.invalidateSize(); 
+  });
 
   //fits the boundaries of the map to the viewport to the best of its ability
   function mapWakeup(mapInstance){
@@ -1740,49 +1744,25 @@ const Dornn = () => {
                   { (changelogOpen) ? <div className="settlement-centered bg-black border-4 border-white absolute map-info text-center overflow-y-auto" style={{'color':'white','fontFamily' : 'Grenze Gotisch'}}>
                       <h className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'white','fontFamily' : 'Grenze Gotisch'}}>Maplog!</h>
                       <p className='pb-2  px-5 text-slate-500'>
-                        ver. 1.2
+                        ver. 1.3
                       </p>
                       <p className="inline-block pt-5 pb-0  px-5 map-info-content" style={{'text-align':'left'}}>
-                        The map is currently being reworked from the ground up. This has broken a lot of the functionality from 1.0. The following features no longer work the way they used to:
-                        <br/><br/>
-                        <ul >
-                          <li>Landmass Selection & their bios</li>
-                          <li>Political Entity selections and their bios</li>
-                        </ul>
-                        <br/>
-                        This is mostly due to a broad-scope reevaluation of how these features ought to work and what they convey. The preexisting descriptors for landmasses were overly-pithy
-                        and not really useful for any kind of play or expansion of setting. Similarly, while amusing, the political entities were a disorganized jumble of cities, states and organizations that
-                        often failed to distinguish the binding between their formal titles and the pin they were linked to.
-                        <br/><br/>
-                        ...and so, I'm redoing it! There's a fancy new mode that allows you to view the map subdivided by CONTROL or REGION. The first, CONTROL, describes the various landholding 
-                        entities of Dornn. It has three levels of detail and one unusual conditional view, of which two are already implemented:
-                        <br/><br/>
-                        <ul >
-                          <li>SUPERENTITIES are alliances and other agreements between landholding entities, so they unify all common territories into one shape.</li>
-                          <li>ENTITIES are *any* kind of landholding organization of people (the distinctions between their types will come later)</li>
-                          <li>SUBENTITIES are administrative divisions of entity territories.</li>
-                          <li>INTERNAL ENTITIES are non-landholding organizations that can operate within and sometimes beyond the borders of the entity which they reside in.</li>
-                        </ul>
-                        <br/>
-                        Currently, the map supports those first two layers. At base, it shows SUPERENTITIES, and beyond a certain zoom, it will break these entities into their constituent ENTITIES. 
-                        This is a very early-alpha version of the feature, so expect (and report!) bad performance and weird behavior. Lots of bugs. No real interactivity at this time.
-                        <br/><br/>
+                        Entity interaction works, mostly. No mobile support yet. A lot of content is also missing - bios will slowly filter in over the next year or so, barring any intense bursts of inspiration.
+                        You can use the tray under the map to quickly navigate to specific political entities. The 'capital' button which appears below each entity's flag in the focus view works, but most capitals have no content,
+                        so you won't find many working ones quite yet. A lot of fluff to say "hey, I did all my backend homework, sorry the content is a little threadbare!" Also, this view is very unpolished. A lot of the colors, spacing, label behavior
+                        and other styling choices are very...err...bad.
                       </p>
                       <h className="inline-block text-4xl pt-5 pb-5 map-info-header" style={{'color':'white','fontFamily' : 'IM Fell DW Pica'}}>What's Next?</h>
                       <p className="inline-block pt-5 pb-0  px-5 map-info-content" style={{'text-align':'left'}}>
-                        A lot of stuff is on the way. Most of this work was foundational (the ability to project and control arbitrary shapes on the map was a hard-fought feature :L) and so now, I get to move into the 
-                        content phase. Here's a rapid-fire overview:
-                        <br/><br/>
-                        <ul >
-                          <li>Subentities! Also, aggregate territories will, at the proper zoom level, show traced subdivisions of their contents.</li>
-                          <li>Selectable pins for cities and settlements!</li>
-                          <li>An overlay that allows for more sensible control of these views and provides contextual information about what they represent and how they work.</li>
-                          <li>Reintroducing the Regions view as an extension of these political shapes! (landmasses -> regions)</li>
-                          <li>Performance improvements - this will probably have to be rebuilt at some point to accommodate an outsized number of shapes, subshapes and pins.</li>
+                        A few things, in the following order:
+                        <ul>
+                        <li>LOTS MORE CONTENT! Political entity bios, additional context (political structure, major figures, culture, geography, the works.) Capitals and other settlements, too.</li>
+                        <li>Subentities, or "states and territories" - still working out the view on this (if it'll work at hi-zoom or only when selected) but many map entities have subsegments of relevance.</li>
+                        <li>City pins will display on the map when an entity is selected.</li>
+                        <li>The "Codex" at the bottom of the screen, which will surface definitions for a variety of currently-contextless terms you'll stumble across on the map, as well as critical information for the Down the Worldwell TTRPG eventually.</li>
+                        <li>A region toggle, which swaps out the political entity view for a geographic/cultural region one. This is where landmarks will go, though entities can list landmarks and allow for viewhopping.</li>
+                        <li>Hooks for the eventual character creator.</li>
                         </ul>
-                        <br/>
-                        Stay tuned!
-                        <br/><br/>
                       </p>
                       <button className='py-5 map-return' onClick={goBack}>GO BACK</button>
                     </div> :  null 
@@ -1917,7 +1897,7 @@ const Dornn = () => {
                     </div> :  null }
                   
                 </div>
-                <div style={{'display':'block', 'margin':'auto', 'padding-top':'18px', 'padding-bottom':'32px', 'width':'fit-content', 'color':'#a8a8a8', 'fontFamily' : 'Grenze Gotisch', 'font-size':'18px', 'text-align':'center'}}>This map was compiled and charted by the gracious agents of the neutral printing-fort <b style={{'color':'#c58e30', 'border-bottom':'2px dotted #bd882d'}} onClick={() => selectPoligridPin(dharshavPost, false, 1)}>"Dharshav"</b><br/>For any assistance in commanding or reorienting the host-body of your map, please see <b style={{'color':'#c7c7c7', 'border-bottom':'2px dotted #f1f1f1'}}>here.</b></div>
+                <div style={{'display':'block', 'margin':'auto', 'padding-top':'18px', 'padding-bottom':'32px', 'width':'fit-content', 'color':'#a8a8a8', 'fontFamily' : 'Grenze Gotisch', 'font-size':'18px', 'text-align':'center'}}>This map was compiled and charted by the gracious agents of the neutral printing-fort <b style={{'color':'#c58e30', 'border-bottom':'2px dotted #bd882d'}} onClick={() => selectPoligridPin(dharshavPost, false, 1)}>"Dharshav"</b><br/>For any assistance in commanding or reorienting the host-body of your map, please see <a href="#codex" style={{'color':'#c7c7c7', 'border-bottom':'2px dotted #f1f1f1'}}>here.</a></div>
               </div>
             </div>
       </div>
@@ -1984,7 +1964,7 @@ const Dornn = () => {
               <img className="vertical-decoration bottom" src="../../horizontally-centered-vertical-decoration.png"></img>
 
 
-              <div className="bio-container">
+              <div className="bio-container" id="codex">
                 <img id="what-header" className="" src="../../what_is_this.png"/>
                 <h2 className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'white','fontFamily' : 'Grenze Gotisch', 'text-align':'center','width':'100%'}}>COMING SOON</h2>
                 <h4 className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{'color':'gray','fontFamily' : 'Grenze Gotisch', 'text-align':'center','width':'100%', 'padding-bottom':'8vh'}}>The Codex will contain a living glossary of setting terms by generic category and allow for cross-site linking.</h4>
