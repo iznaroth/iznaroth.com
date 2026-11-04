@@ -11,7 +11,7 @@ AI DISCLOSURE: I have intermittently utilized the public, free tiers of Gemini a
 I do my best to tag any generated or highly-edited code blocks with the following header, as well as include a brief explanation of whether or not I have done a close review of their content, security and coherence:
 
 ```javascript
-/* 🤖 Beep-boop. This passage was written in part or whole by an LLM.
+/* 🤖 Beep-boop. This block was written in part or whole by an LLM.
 MODEL: ---------
 REVIEW STATUS: Reviewed by iznaroth on --/--/----
 */
