@@ -16,10 +16,6 @@ const WorldwellCharacters = ({blogContent}) => {
   return (
     <div className='min-h-screen' style={{'backgroundImage': 'url(../../terrain_bg_tile.png)'}}>
       {/* */}
-
-      
-
-
       <section id="logo" className="wwlogo">
         <img
             className="m-auto lg:w-2/5 md:w-3/5 sm:w-4/5"
@@ -27,7 +23,6 @@ const WorldwellCharacters = ({blogContent}) => {
             src="../../dtww.png"
             />
       </section>
-
       <section id="navbar" className="">
         <div className="navbar wwnavbar">
             <a href="/">
@@ -43,17 +38,11 @@ const WorldwellCharacters = ({blogContent}) => {
             <a href="/dtww/assembly"><img src="../../assembly.png"/></a>
         </div>
       </section>
-
       <div className="dark-background">
-         <div className="mid-border">
-            
-
-
-              <div className="container">
-
-              <img className="mx-auto align-top pt-64 pb-64 w-4/6" src="../../unfinished.png"/>
-                
-              </div>
+        <div className="mid-border">
+          <div className="container">
+            <img className="mx-auto align-top pt-64 pb-64 w-4/6" src="../../unfinished.png"/>
+          </div>
       </div>
     </div>
       

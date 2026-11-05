@@ -1,0 +1,649 @@
+{
+    "mapSubentities": [
+        {
+            "parentEntity":"Glassblood",
+            "name": "Dyrit",
+            "paintingColor":"#3b717d"
+        },
+        {
+            "parentEntity":"Glassblood",
+            "name": "Palis",
+            "paintingColor":"#ab653c"
+        },
+        {
+            "parentEntity":"Glassblood",
+            "name": "Rona",
+            "paintingColor":"#369c2d"
+        },
+        {
+            "parentEntity":"Glassblood",
+            "name": "Laar",
+            "paintingColor":"#262a99"
+        },
+        {
+            "parentEntity":"Glassblood",
+            "name": "Paxta",
+            "paintingColor":"#9e208f"
+        },
+        {
+            "parentEntity":"Britchoff",
+            "name": "Bodellan",
+            "paintingColor":"#d6461a"
+        },
+        {
+            "parentEntity":"Britchoff",
+            "name": "Ardensherr",
+            "paintingColor":"#d6b41a"
+        },
+        {
+            "parentEntity":"Britchoff",
+            "name": "Damonsherr",
+            "paintingColor":"#9ed61a"
+        },
+        {
+            "parentEntity":"Britchoff",
+            "name": "Lough",
+            "paintingColor":"#36d61a"
+        },
+        {
+            "parentEntity":"Britchoff",
+            "name": "Elgin-or-Past-Post",
+            "paintingColor":"#1ad6a4"
+        },
+        {
+            "parentEntity":"Britchoff",
+            "name": "Pardich",
+            "paintingColor":"#266ead"
+        },
+        {
+            "parentEntity":"Britchoff",
+            "name": "Sloke",
+            "paintingColor":"#8c1d96"
+        },
+        {
+            "parentEntity":"Britchoff",
+            "name": "Leerish",
+            "paintingColor":"#6126ad"
+        },
+        {
+            "parentEntity":"Crux",
+            "name": "State of Galangis",
+            "paintingColor":"#6126ad"
+        },
+        {
+            "parentEntity":"Crux",
+            "name": "State of Normonne",
+            "paintingColor":"#606629"
+        },
+        {
+            "parentEntity":"Crux",
+            "name": "State of Vas Vairra",
+            "paintingColor":"#2da15b"
+        },
+        {
+            "parentEntity":"Crux",
+            "name": "Laktan Territory",
+            "paintingColor":"#8c1d96"
+        },
+        {
+            "parentEntity":"Drairin",
+            "name": "Greel",
+            "paintingColor":"#9e2350"
+        },
+        {
+            "parentEntity":"Drairin",
+            "name": "Le'ev",
+            "paintingColor":"#77228c"
+        },
+        {
+            "parentEntity":"Drairin",
+            "name": "Erati",
+            "paintingColor":"#2b6487"
+        },
+        {
+            "parentEntity":"Drairin",
+            "name": "Aban",
+            "paintingColor":"#349e2b"
+        },
+        {
+            "parentEntity":"Drairin",
+            "name": "Trion",
+            "paintingColor":"#96641e"
+        },
+        {
+            "parentEntity":"Southern Shab Council",
+            "name": "Shab Solus",
+            "paintingColor":"#753d36"
+        },
+        {
+            "parentEntity":"Southern Shab Council",
+            "name": "Shab Serene",
+            "paintingColor":"#33692e"
+        },
+        {
+            "parentEntity":"Southern Shab Council",
+            "name": "Shab Sindon",
+            "paintingColor":"#352a69"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Noorland",
+            "paintingColor":"#352a69"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Make",
+            "paintingColor":"#53996b"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Osje",
+            "paintingColor":"#76a158"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Kaskeskann",
+            "paintingColor":"#878550"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Evve",
+            "paintingColor":"#b88461"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Matseye",
+            "paintingColor":"#9e2219"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Jajjos",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Nellis",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Vitlind",
+            "paintingColor":"#7e1fab"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "North Wyndland",
+            "paintingColor":"#5d30a1"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Wyndland",
+            "paintingColor":"#5747a6"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Casburg",
+            "paintingColor":"#213575"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Farwell",
+            "paintingColor":"#445f6e"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Solsald",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Dramm",
+            "paintingColor":"#2e8774"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Loveward",
+            "paintingColor":"#47a820"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Doormaker",
+            "paintingColor":"#2f7a47"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Free Cities of Gho-a-Ghonna",
+            "paintingColor":"#6cad1c"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Mercantile State Alag",
+            "paintingColor":"#b5b019"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Mercantile State Baen",
+            "paintingColor":"#bf8219"
+        },
+        {
+            "parentEntity":"Wyndish Union",
+            "name": "Mercantile State Cora",
+            "paintingColor":"#ed4213"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "Administrative District of Karlestal",
+            "paintingColor":"#352a69"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "Qentt",
+            "paintingColor":"#53996b"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "Thnnala'chaila",
+            "paintingColor":"#76a158"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "Insirra",
+            "paintingColor":"#878550"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "Elleq",
+            "paintingColor":"#b88461"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "Balumbaldach",
+            "paintingColor":"#9e2219"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "South Stale",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "North Stale",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "Larague",
+            "paintingColor":"#7e1fab"
+        },
+        {
+            "parentEntity":"Councilholds",
+            "name": "Na Nilsin Nau",
+            "paintingColor":"#5d30a1"
+        },
+        {
+            "parentEntity":"Bandlow",
+            "name": "Stratum Loorlaila",
+            "paintingColor":"#445f6e"
+        },
+        {
+            "parentEntity":"Bandlow",
+            "name": "Stratum Nasmoneem",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Bandlow",
+            "name": "Stratum Charaik",
+            "paintingColor":"#2e8774"
+        },
+        {
+            "parentEntity":"Bandlow",
+            "name": "Stratum Gorossa",
+            "paintingColor":"#47a820"
+        },
+        {
+            "parentEntity":"Bandlow",
+            "name": "Stratum Asis-his",
+            "paintingColor":"#2f7a47"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Frozen Arc",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Skyfragment",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Goliath Sect",
+            "paintingColor":"#7e1fab"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Great Transmission",
+            "paintingColor":"#5d30a1"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Vigil Star",
+            "paintingColor":"#5747a6"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Throatstone",
+            "paintingColor":"#213575"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Harrheart",
+            "paintingColor":"#445f6e"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Silverthigh",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Deadbone",
+            "paintingColor":"#2e8774"
+        },
+        {
+            "parentEntity":"Northern Jawbone",
+            "name": "Northern Territory",
+            "paintingColor":"#47a820"
+        },
+        {
+            "parentEntity":"Ilvor-Ilvindal",
+            "name": "Delyria",
+            "paintingColor":"#47a820"
+        },
+        {
+            "parentEntity":"Ilvor-Ilvindal",
+            "name": "Lanaarda",
+            "paintingColor":"#2e8774"
+        },
+        {
+            "parentEntity":"Ilvor-Ilvindal",
+            "name": "Casthada",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Vaxassa Xaoxavas",
+            "name": "Hezzar's Pit",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Vaxassa Xaoxavas",
+            "name": "Longlimb",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Vaxassa Xaoxavas",
+            "name": "Wallstalker",
+            "paintingColor":"#7e1fab"
+        },
+        {
+            "parentEntity":"Vaxassa Xaoxavas",
+            "name": "Caparaxinanna",
+            "paintingColor":"#5d30a1"
+        },
+        {
+            "parentEntity":"Vaxassa Xaoxavas",
+            "name": "Vaults of the Comprehensor",
+            "paintingColor":"#5747a6"
+        },
+        {
+            "parentEntity":"Vaxassa Xaoxavas",
+            "name": "Wisp",
+            "paintingColor":"#213575"
+        },
+        {
+            "parentEntity":"Vaxassa Xaoxavas",
+            "name": "Towlegs",
+            "paintingColor":"#445f6e"
+        },
+        {
+            "parentEntity":"Vaxassa Xaoxavas",
+            "name": "Third Mouth",
+            "paintingColor":"#2e8774"
+        },
+        {
+            "parentEntity":"Wahlrect",
+            "name": "Wallast",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Wahlrect",
+            "name": "Walloch",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Wahlrect",
+            "name": "Wallaen",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Wahlrect",
+            "name": "Wallest",
+            "paintingColor":"#7e1fab"
+        },
+        {
+            "parentEntity":"Wahlrect",
+            "name": "Nae-wall",
+            "paintingColor":"#5747a6"
+        },
+        {
+            "parentEntity":"Wahlrect",
+            "name": "Nei-wall",
+            "paintingColor":"#5d30a1"
+        },
+        {
+            "parentEntity":"Hei Kophkatos",
+            "name": "Tharsslak",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Hei Kophkatos",
+            "name": "Lannslak",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Hei Kophkatos",
+            "name": "Falis Disjoint",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Northsea Confederacy",
+            "name": "Bodsland",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Northsea Confederacy",
+            "name": "Silcopse",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Northsea Confederacy",
+            "name": "Farmyndin",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Northsea Confederacy",
+            "name": "Usosostisa",
+            "paintingColor":"#7e1fab"
+        },
+        {
+            "parentEntity":"Northsea Confederacy",
+            "name": "Uka Lavanaa",
+            "paintingColor":"#5d30a1"
+        },
+        {
+            "parentEntity":"Northsea Confederacy",
+            "name": "Vanaaran",
+            "paintingColor":"#5747a6"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Qulan",
+            "paintingColor":"#213575"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Wunther",
+            "paintingColor":"#445f6e"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Rhaka-Khomorra",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Kutirnin",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Bilgunn",
+            "paintingColor":"#7e1fab"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Ordered Isle",
+            "paintingColor":"#5d30a1"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Verricun",
+            "paintingColor":"#5747a6"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Karfilli",
+            "paintingColor":"#213575"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Mydria",
+            "paintingColor":"#445f6e"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Kanden",
+            "paintingColor":"#2e8774"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Shin-Tur",
+            "paintingColor":"#47a820"
+        },
+        {
+            "parentEntity":"Deilān Federation",
+            "name": "Daloshan",
+            "paintingColor":"#b5b019"
+        },
+        {
+            "parentEntity":"Isles of Security",
+            "name": "Dzomolech",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Isles of Security",
+            "name": "Szimmhart",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Isles of Security",
+            "name": "Wyrnden",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Isles of Security",
+            "name": "Lomming",
+            "paintingColor":"#7e1fab"
+        },
+        {
+            "parentEntity":"Isles of Security",
+            "name": "Inmarie",
+            "paintingColor":"#5d30a1"
+        },
+        {
+            "parentEntity":"Isles of Security",
+            "name": "Jaeswohl",
+            "paintingColor":"#5747a6"
+        },
+        {
+            "parentEntity":"Isles of Security",
+            "name": "Bouchezel",
+            "paintingColor":"#213575"
+        },
+        {
+            "parentEntity":"Draid",
+            "name": "New Morgant",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Draid",
+            "name": "Ashdome",
+            "paintingColor":"#445f6e"
+        },
+        {
+            "parentEntity":"Draid",
+            "name": "Monspine",
+            "paintingColor":"#2e8774"
+        },
+        {
+            "parentEntity":"Draid",
+            "name": "Foundry",
+            "paintingColor":"#47a820"
+        },
+        {
+            "parentEntity":"Isles of Contentment",
+            "name": "Maxinimus",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Isles of Contentment",
+            "name": "Fosstinoch",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Isles of Contentment",
+            "name": "Entumembra",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Ganai",
+            "name": "Olaolashashana",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Ganai",
+            "name": "Yenan",
+            "paintingColor":"#8a2838"
+        },
+        {
+            "parentEntity":"Citadel Governatorates",
+            "name": "Aurel",
+            "paintingColor":"#226285"
+        },
+        {
+            "parentEntity":"Citadel Governatorates",
+            "name": "Karzyndn",
+            "paintingColor":"#873e7a"
+        },
+        {
+            "parentEntity":"Citadel Governatorates",
+            "name": "Dorfurth",
+            "paintingColor":"#7e1fab"
+        },
+        {
+            "parentEntity":"Citadel Governatorates",
+            "name": "Holgundur",
+            "paintingColor":"#5d30a1"
+        }
+    ]
+}

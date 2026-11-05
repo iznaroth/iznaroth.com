@@ -497,6 +497,20 @@ a:hover {
     margin: 0 auto;
 }
 
+.map-nav-drawer {
+  width: 70vw;
+  background-color: black;
+  margin: 0 auto;
+  padding: 1em;
+  min-height: auto;
+
+  border: 6px solid #ffffff;
+  border-top: none !important;
+  height: 100%;
+  padding: 6px;
+  margin: 0 auto;
+}
+
 @media (min-width: 625px) {
 	.map-spec {
     min-width: 80vw;
@@ -790,6 +804,16 @@ a:hover {
   vertical-align: top;
 }
 
+.content {
+  max-height: 0;
+  overflow: auto;
+  transition: max-height 0.5s ease-out; /* Smooth transition */
+}
+
+.expand-container.expanded .content {
+  max-height: 45vh; /* A value large enough to fit all content */
+}
+
 /* DTWW WORLD SUBPAGE IMAGES */
 
 #huge-header{
@@ -866,7 +890,6 @@ a:hover {
 
 #poligrid-link{
   flex-basis: 50%;
-  font-family: "IM Fell DW Pica";
   font-size: 1.5rem;
   margin: auto;
   text-align: center;
@@ -1170,6 +1193,10 @@ h1.default {
   font-size: var(--label-font-size-large);
 }
 
+.label-width-universal{
+  width: min-content;
+}
+
 .label-width-small{
   width: var(--label-width-small);
 }
@@ -1268,8 +1295,7 @@ h1.default {
 }
 
 .enclave{
-  font-family: 'Rediviva', serif !important;
-  font-optical-sizing: auto;
+  font-family: "Cormorant Unicase", serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -1279,6 +1305,20 @@ h1.default {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
+}
+
+.frontier{
+  font-family: "IM Fell DW Pica", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.subentity{
+  font-family: "Times New Roman";
+  font-weight: 400;
+  font-style: normal;
+  font-size: 24px;
+  letter-spacing: 2px;
 }
 
 /*.frontier{

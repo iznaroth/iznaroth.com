@@ -2,6 +2,149 @@
   "data": {
     "settlementInfos": [
       {
+        "id": "cmmzaulcoowd707llihedvkmn",
+        "name": "Ras Thadra",
+        "nameColor": {
+          "hex": "#5a6fa0"
+        },
+        "labelColor": {
+          "hex": "#283146"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmzatyi7mhlb07jyc8piwg0w",
+        "name": "Promise of Violence",
+        "nameColor": {
+          "hex": "#74af7a"
+        },
+        "labelColor": {
+          "hex": "#416345"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmzate7vonxf07lariondj03",
+        "name": "Wrack",
+        "nameColor": {
+          "hex": "#bd7b7b"
+        },
+        "labelColor": {
+          "hex": "#724c4c"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmzasw0bou0x07lluwp9uhty",
+        "name": "Moment-Mender",
+        "nameColor": {
+          "hex": "#b872b0"
+        },
+        "labelColor": {
+          "hex": "#74496f"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmuoixai4zon07lab4m4gfm1",
+        "name": "Nine-Five-Templehouse",
+        "nameColor": {
+          "hex": "#9e9abb"
+        },
+        "labelColor": {
+          "hex": "#626072"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmuoif1i4krz07k0gxmj9gih",
+        "name": "Zero-Zero-Misery",
+        "nameColor": {
+          "hex": "#bd1818"
+        },
+        "labelColor": {
+          "hex": "#770303"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmuohjxa4yte07la6zxv3r7s",
+        "name": "Old Salt",
+        "nameColor": {
+          "hex": "#bbbbbb"
+        },
+        "labelColor": {
+          "hex": "#815757"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmuogpji4j9607lhs2sautm0",
+        "name": "Llanyderas",
+        "nameColor": {
+          "hex": "#58b481"
+        },
+        "labelColor": {
+          "hex": "#3d7a58"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmuog4gs4p1h06lgimk2kpk7",
+        "name": "Unfinished Citadel",
+        "nameColor": {
+          "hex": "#555555"
+        },
+        "labelColor": {
+          "hex": "#dfdfdf"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
+        "id": "cmmuoejv34in207lhedguxfxz",
+        "name": "Bataue Qaue",
+        "nameColor": {
+          "hex": "#e0649a"
+        },
+        "labelColor": {
+          "hex": "#aa3668"
+        },
+        "mapSuperentity": {
+          "name": "INDEPENDENTS"
+        }
+      },
+      {
+        "id": "cmmuodeyz4wix07lap8h8274n",
+        "name": "Devastated Ragammoç",
+        "nameColor": {
+          "hex": "#e96750"
+        },
+        "labelColor": {
+          "hex": "#b34f3e"
+        },
+        "mapSuperentity": {
+          "name": "ESOTERICS"
+        }
+      },
+      {
         "id": "cmmmyueqavzl007k0su3petys",
         "name": "Hollow Eye",
         "nameColor": {
@@ -840,7 +983,7 @@
           "hex": "#3d3d3d"
         },
         "labelColor": {
-          "hex": "#000000"
+          "hex": "#f0f0f0"
         },
         "mapSuperentity": {
           "name": "INDEPENDENTS"
@@ -1299,6 +1442,45 @@
         },
         "mapSuperentity": {
           "name": "SALÍRAN DYNASTIES"
+        }
+      },
+      {
+        "id": "cmlzljz9e4ns108k2dxgldtqd",
+        "name": "Sar-sal-Salír",
+        "nameColor": {
+          "hex": "#bc40cd"
+        },
+        "labelColor": {
+          "hex": "#762881"
+        },
+        "mapSuperentity": {
+          "name": "SALÍRAN DYNASTIES"
+        }
+      },
+      {
+        "id": "cmlzlj2v34ngm07k1upn4w7ql",
+        "name": "Longmarsh",
+        "nameColor": {
+          "hex": "#6f6081"
+        },
+        "labelColor": {
+          "hex": "#393242"
+        },
+        "mapSuperentity": {
+          "name": "DRAIDIC PACT"
+        }
+      },
+      {
+        "id": "cmlzlii6p4n8907k10fm1vkeq",
+        "name": "Atrophykos",
+        "nameColor": {
+          "hex": "#a5d260"
+        },
+        "labelColor": {
+          "hex": "#6b883f"
+        },
+        "mapSuperentity": {
+          "name": "DRAIDIC PACT"
         }
       }
     ]

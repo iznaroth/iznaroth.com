@@ -718,6 +718,7 @@ const Dornn = () => {
       <img className="mx-auto align-top pt-64 pb-64 w-4/6" src="../../unfinished.png"/>
     </div>
     {/*
+    
     <p id="text-center-83">
     The Dornnian Midlands have changed hands about as many times as you’d expect, burdened by the spasms, expansions and contractions of mortal whim. In the Seasons of Stagnation, the receding Empires of Men have left room for old hands to resume their work; the shape of the map has begun to take on a familiar form.
     <br /> <br />
@@ -725,7 +726,7 @@ const Dornn = () => {
     </p>
 
     
-
+    
      
 
     <div id="politic-box">
@@ -1266,6 +1267,7 @@ const Dornn = () => {
   //------------------------[MAP LAYER UTILS]------------------------------
 
   function getParentFontClass(parent){
+    console.log(parent);
     switch(parent){
       case 'MIDLAND COUNCIL (XII)':
         return 'midland';
@@ -1467,6 +1469,11 @@ const Dornn = () => {
   function openChangelog(){
     console.log('open changelog');
     setChangelogOpen(true);
+  }
+
+  function toggleNav(e){
+    console.log(e);
+    e.target.parentNode.parentNode.parentNode.classList.toggle('expanded');
   }
   
 
@@ -1692,7 +1699,33 @@ const Dornn = () => {
       </div>
     </div>
 
+    <div className="map-nav-drawer">
+      <div style={{'display':'flex','justify-content':'center'}}>
+        <img style={{'width':'20%'}} src="../../nav_divider_l.png"></img>
+        <h1 style={{'color':'white','text-align':'center', 'fontFamily' : 'Grenze Gotisch'}}> - Navigation  - </h1>
+        <img style={{'width':'20%'}} src="../../nav_divider_r.png"></img>
+      </div>
+      <div className="expand-container">
+        <div className="content">
+          <p style={{'text-align':'center', 'padding-top':'8px'}}>( -- this section is a work in progress! click at your own peril! --)</p>
+          <div id="poli-grid-box">
+            {superentityShapes.map(se => {
+              return (<>
+                <button id="poligrid-link" className={getParentFontClass(se.name)} style={{'color':se.nameColor.hex}}>{se.name}</button>
+              </>)
+            })}
+          </div>
+        </div>
+        <div style={{'display':'flex','justify-content':'center'}}>
+          <button style={{'width':'5%'}} onClick={toggleNav}>
+            <img src="../../down_arrow.png" style={{'max-width':'100%'}}></img>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div className='blog-footer' />
+
 
 
     <section id="navbar" className="">

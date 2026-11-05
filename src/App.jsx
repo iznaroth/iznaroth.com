@@ -23,6 +23,7 @@ import WorldwellSpecies from './components/dtww/WorldwellSpecies'
 import WorldwellMapTestroom from './components/dtww/WorldwellMapTestroom'
 import { graphcms, QUERY_POSTLIST, QUERY_SLUG_CATEGORIES, QUERY_DEVLOG, QUERY_WORLDWELL } from './graphql/Queries';
 import WorldwellCharacters from './components/dtww/WorldwellCharacters';
+import MapTest from './components/dtww/MapTest';
 
 
 function App() {
@@ -138,6 +139,13 @@ function App() {
           <Route path = "/dtww/test" element = {
             <Fragment>
               <WorldwellMapTestroom />
+            </Fragment>
+          }>
+          </Route>
+
+          <Route path = "/dtww/test-new" element = {
+            <Fragment>
+              <MapTest />
             </Fragment>
           }>
           </Route>
