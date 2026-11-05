@@ -1188,10 +1188,12 @@ h1.default {
 
 :root{
   --label-font-size-small: 0px;
+  --label-font-size-regular: 0px;
   --label-font-size-medium: 0px;
   --label-font-size-large: 0px;
 
   --label-width-small: 0px;
+  --label-width-regular: 0px;
   --label-width-medium: 0px;
   --label-width-large: 0px;
 }
@@ -1205,8 +1207,6 @@ h1.default {
   box-shadow: none !important;
   padding: 0 !important; /* Adjust padding if necessary */
   white-space: normal;
-  width: 150px;
-  max-width: 150px;
 }
 
 .superentity-label{
@@ -1217,6 +1217,10 @@ h1.default {
   font-size: var(--label-font-size-small);
 }
 
+.map-label-regular{
+  font-size: var(--label-font-size-regular);
+}
+
 .map-label-medium{
   font-size: var(--label-font-size-medium);
 }
@@ -1225,8 +1229,16 @@ h1.default {
   font-size: var(--label-font-size-large);
 }
 
+.label-width-universal{
+  width: min-content;
+}
+
 .label-width-small{
   width: var(--label-width-small);
+}
+
+.label-width-regular{
+  width: var(--label-width-regular);
 }
 
 .label-width-medium{
