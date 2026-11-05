@@ -129,7 +129,7 @@ const Dornn = () => {
     setOpacities(setterArray); //this function is primarily to wedge missed mouseover / mouseout collisions - instead of just wiping out it neutrals all entries on deselect just in case.
   }
 
-  //INIT!
+  //INIT! This is the wakeup data tuning function.
   var markerPlaced = useRef(new Map());
   useEffect(() => {
     /*
@@ -1497,6 +1497,9 @@ const Dornn = () => {
   // --------------------[INFORMATIONAL UTILITY & WIKI]----------------------------
 
   const [awaitingZoom, setAwaitingZoom] = useState(true);
+
+  /* Fly to an entity shape and switch to focus mode. 
+  Note that styling changes for the shape are driven by conditional properties, see EntityLayerComponent for handling. */
   function flyToGeoShape(name){
     console.log(name);
     let target = entityLayerCache.current.get(name);
@@ -1524,10 +1527,13 @@ const Dornn = () => {
       closeSettlementPopup();
     }
 
+    //ensure the viewport is actually in view
     mapContainerRef.current.scrollIntoView();
 
+    //small viewport sizing rig
     mapRef._container.classList.toggle('leaflet-container-focused');
 
+    //disable the background, changing the coloration of all borders
     mapRef.removeLayer(mapBackgroundGroup.current);
 
     setFocused(entityFocusEntries.current.get(name));
@@ -1548,6 +1554,32 @@ const Dornn = () => {
     });
 
     setAwaitingZoom(true);
+
+    //is it dumber to add a map of bound keys holding shape-data, or to stow it as a property elsewhere? CURRENT
+    //we could try and store the shapeData on entityFocusEntries by uploading it to hygraph (which might be better, but it would massively)
+    //increase our CMS query footprint.
+
+    //Alternatives are more awkward. A json file that composes all objects with their keys and then ties them together is probably fine.
+    //The rendering flow is simple - there's a conditionally rendered SUBENTITY layer that 
+    //shares the same coordinate space as all the other layers,
+    //is only rendered when focused, and
+    //only points to a variable holding the current relevant shapes.
+
+    //architecturally, I think that trying to unify ALL entity data under one single object [[ENTITY]] 
+    //and purge unused trash state from this file will improve maintainability significantly.
+    //but it might be *better* to keep it separate for now rather than continuing the erratic habit of
+    //random assignment. so:
+
+    /* 
+      1. Fix the map workshop so that it composes shape data into a keyed object OR exports it into a file we can stitch by hand.
+      2. In the init, we add state that works it into a map.
+      3. In the flyTo, we retrieve the shapeData from this map and bind it to the layer.
+      4. The shapeData should be styled to a thinner border width. 
+      5. We also need to generate labels, so there needs to be a strategy for the creation and destruction of them as well.
+      6. Label positions are manually constructed. you *can* algorithmically intuit the centroid of any polygon, but since it also needs to be relative to the global coordinate system, it's a touch
+      easier to just use the workshop: compose a list of all needed names, generate labels, drag them to their positions, then export as a map of names to coords.
+    */
+
 
     
 
