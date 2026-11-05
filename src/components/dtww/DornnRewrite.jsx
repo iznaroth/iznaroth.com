@@ -7,6 +7,13 @@ import { graphcms, QUERY_ENTITY_1, QUERY_ENTITY_2 } from '../../graphql/Queries'
 import { territoryIcons, settlementCoordinates, dharshavPost } from './DornnMapConstants';
 import { cls, parentFontClass } from './mapUtils';
 import { SUBENTITY_PANE, SubentityOutlines, SubentityLabels } from './subentities';
+import { MarkerLayer } from './mapMarkers';
+import { REGION_PANE, hasRegions, RegionLayer, RegionLabels } from './regions';
+import { layerFlags } from './viewRules';
+import { markerLabel, markerPinClass, markerCentered } from './markerTypes';
+import { toHtml, fetchCmsMarkers } from './markerContent';
+import { topOf, entityNameOf, pushMarker, backFrom } from './focusStack';
+import markerData from './marker_data.json'; // from the editor's "SAVE MARKERS FOR MAIN PAGE" -> { markers: [...] }
 import unified from './svg_cutouts_unified.json';
 import superentityShapes from './superentity_shapes.json';
 import entityShapes from './entity_shapes.json';
@@ -40,6 +47,12 @@ const SUBENTITY_MIN_ZOOM_DEFAULT = Infinity;
 const SUBENTITY_MIN_ZOOM = new Map([
   // ['Some Subentity', 1.5],
 ]);
+
+// With geographic regions on too, political fills drop to this so the region tint stays readable underneath.
+const COMBINED_POLITICAL_FILL = 0.1;
+// true: keep region labels even once entity labels are showing (by default they give way at zoom 0).
+const REGION_LABELS_ALWAYS = false;
+const CONFIG_LABEL_STYLE = { height: '20px', lineHeight: '20px', textAlign: 'center', color: '#bbbbbb', fontFamily: DW_FONT, fontSize: '20px', paddingLeft: '12px' };
 
 const LANDMASS_STYLE = { color: '#000000', weight: 2, opacity: 1, fillColor: '#ffffff', fillOpacity: 1.0 };
 // Subentity outline/label styling (alphas, font curve, fit) lives in ./subentities -> DEFAULT_SUBENTITY_STYLE.
@@ -226,7 +239,7 @@ const LandmassLayer = memo(function LandmassLayer() {
 });
 
 // Entity fills + borders. While one entity is focused the others dim; clicking selects.
-const EntityLayer = memo(function EntityLayer({ focusedName, onSelect }) {
+const EntityLayer = memo(function EntityLayer({ focusedName, onSelect, outlineOnly = false }) {
   const map = useMap();
   return (
     <FeatureGroup>
@@ -234,18 +247,20 @@ const EntityLayer = memo(function EntityLayer({ focusedName, onSelect }) {
         if (!entity.aggregatedShape) return null;
         const dim = !!focusedName && focusedName !== entity.name;
         const striped = entity.superentityName === 'ESOTERICS';
+        const faint = dim || outlineOnly; // stripes: dimmed when another entity is focused or a region tint sits underneath
         const style = {
           color: entity.color, fillColor: entity.color,
-          weight: dim ? 1 : 3, opacity: dim ? 0.2 : 1, fillOpacity: dim ? 0.05 : 0.6,
+          weight: dim ? 1 : 3, opacity: dim ? 0.2 : 1,
+          fillOpacity: dim ? 0.05 : outlineOnly ? COMBINED_POLITICAL_FILL : 0.6,
         };
         return (
           <GeoJSON
-            // striped layers get a dim-specific pattern at creation, so they remount when dim changes
-            key={striped ? `${entity.name}:${dim}` : entity.name}
+            // striped layers get a pattern at creation, so they remount when it changes
+            key={striped ? `${entity.name}:${faint}` : entity.name}
             data={entity.aggregatedShape}
             className="mapclass"
             style={() => style}
-            onEachFeature={striped ? (feature, layer) => applyStripes(map, feature, layer, dim) : undefined}
+            onEachFeature={striped ? (feature, layer) => applyStripes(map, feature, layer, faint) : undefined}
             eventHandlers={{ click: () => { if (!focusedName) onSelect(entity.name); } }}
           />
         );
@@ -254,17 +269,17 @@ const EntityLayer = memo(function EntityLayer({ focusedName, onSelect }) {
   );
 });
 
-const SuperEntityLayer = memo(function SuperEntityLayer() {
+const SuperEntityLayer = memo(function SuperEntityLayer({ outlineOnly = false }) {
   const map = useMap();
   return (
     <FeatureGroup>
       {superentityShapes.map(se => se.aggregatedShape && (
         <GeoJSON
-          key={se.name}
+          key={se.name === 'ESOTERICS' ? `${se.name}:${outlineOnly}` : se.name}
           data={se.aggregatedShape}
           className="mapclass"
-          style={() => ({ color: se.color.hex, fillColor: se.color.hex, weight: 3, opacity: 1, fillOpacity: 0.6 })}
-          onEachFeature={se.name === 'ESOTERICS' ? (feature, layer) => applyStripes(map, feature, layer) : undefined}
+          style={() => ({ color: se.color.hex, fillColor: se.color.hex, weight: 3, opacity: 1, fillOpacity: outlineOnly ? COMBINED_POLITICAL_FILL : 0.6 })}
+          onEachFeature={se.name === 'ESOTERICS' ? (feature, layer) => applyStripes(map, feature, layer, outlineOnly) : undefined}
         />
       ))}
     </FeatureGroup>
@@ -311,6 +326,63 @@ const Heading = ({ className, style, children }) => (
   <span role="heading" aria-level={2} className={className} style={style}>{children}</span>
 );
 
+// ----- markers (cities & landmarks) -----
+// Placement (position, type, parent entity) comes from the editor's marker_data.json. Prose comes from the CMS,
+// joined by name the way entities are (see markerContent.js); the editor's blurb/passage are only a fallback.
+const markers = markerData.markers;
+
+// Out of entity focus a marker shows once the map zoom reaches its minimum:
+//   marker.minZoom (field in marker_data.json)  ->  MARKER_MIN_ZOOM override below  ->  default.
+// Infinity = "only while its parent entity is focused". (Same rule as subentities; use 0 or more.)
+const MARKER_MIN_ZOOM_DEFAULT = Infinity;
+const MARKER_MIN_ZOOM = new Map([
+  // ['Some Capital', 1.5],
+]);
+const markerMinZoom = m => m.minZoom ?? MARKER_MIN_ZOOM.get(m.name) ?? MARKER_MIN_ZOOM_DEFAULT;
+const markerVisible = (m, zoom, focusedName) => (focusedName ? m.parentEntity === focusedName : zoom >= markerMinZoom(m));
+
+const MARKER_ZOOM_BOOST = 1; // in the info panel flow, a major marker is flown to this many zoom levels above the entity's framed view (marker.zoom overrides)
+const POPOUT_ZOOM = 2;       // out of focus, it is flown here, exactly as Dharshav is
+const POPUP_PADDING = { topLeft: FOCUS_PADDING.paddingTopLeft, bottomRight: FOCUS_PADDING.paddingBottomRight };
+
+// What the info panel / popout shows. CMS posts (Dharshav) and markers are normalized to the same shape:
+// { key, name, subtitle, color, html, centered?, pinClass?, fontClass? }. `html` is shown as HTML, as Dharshav's content is.
+const postView = (post, centered, pinClass) => ({
+  key: post.name, name: post.name, subtitle: post.subtitle, color: post.nameColor.hex,
+  html: post.content, centered, pinClass,
+});
+
+// `post` is the marker's normalized CMS entry, if there is one; the marker's own text is the fallback.
+const markerView = (marker, post) => {
+  const parent = entityByName.get(marker.parentEntity);
+  return {
+    key: marker.id,
+    name: post?.name || marker.name,
+    subtitle: post?.subtitle || markerLabel(marker),
+    color: post?.color ?? parent?.color ?? '#ffffff',
+    fontClass: parentFontClass(parent?.superentityName),
+    html: toHtml(post?.html || marker.content || marker.blurb || ''),
+    centered: markerCentered(marker),
+    pinClass: markerPinClass(marker),
+  };
+};
+
+// Info panel flow: framed like an entity, shifted left so the point clears the right-hand panel.
+function flyToPoint(map, latlng, zoom) {
+  const shift = L.point(FOCUS_PADDING.paddingBottomRight).subtract(L.point(FOCUS_PADDING.paddingTopLeft)).divideBy(2);
+  map.flyTo(map.unproject(map.project(latlng, zoom).add(shift), zoom), zoom, { duration: 1.2 });
+}
+
+// Popout flow (Dharshav's): the animated pin is a fixed screen overlay, so the point is flown to just off-center.
+function flyToPopout(map, position) {
+  map.flyTo([position[0] - 1, position[1] + 35], POPOUT_ZOOM);
+  map.dragging.disable();
+}
+
+const ViewContent = ({ view }) => (
+  <div className="inline-block pt-5 pb-0 px-5 map-info-content" dangerouslySetInnerHTML={{ __html: view.html }} />
+);
+
 // ---------------------------------------------------------------------------------------------
 // Page
 // ---------------------------------------------------------------------------------------------
@@ -318,23 +390,49 @@ const Heading = ({ className, style, children }) => (
 const Dornn = () => {
   const mapContainerRef = useRef(null);
   const cmsEntries = useRef(new Map()); // entity name -> CMS entry (flag, bio, settlements, ...)
+  const cmsMarkers = useRef(new Map()); // marker name -> normalized CMS entry (see markerContent.js)
   const focusLock = useRef(null);       // release function for the current zoom/pan lock, if any
+  const stackRef = useRef([]);          // latest focus stack, readable from event handlers
 
   const [map, setMap] = useState(null);
   const [zoom, setZoom] = useState(INITIAL_VIEW.zoom);
-  const [focused, setFocused] = useState(null);       // CMS entry (or fallback) of the focused entity
-  const [settlement, setSettlement] = useState(null); // { post, centered, pinClass }
+  // Focus stack: [{ type: 'entity', name }, { type: 'marker', view }]. "Go back" pops it (rules in focusStack.js).
+  const [stack, setStack] = useState([]);
+  const [cmsVersion, setCmsVersion] = useState(0);         // bumps when CMS entity data arrives
+  const [markersReady, setMarkersReady] = useState(false); // markers appear once the fly-in has finished
   const [showBorders, setShowBorders] = useState(false);
+  const [showRegions, setShowRegions] = useState(false);
   const [showConfigurationPane, setShowConfigurationPane] = useState(false);
   const [changelogOpen, setChangelogOpen] = useState(false);
   const [showIndevPopup, setShowIndevPopup] = useState(true);
   const [navExpanded, setNavExpanded] = useState(false);
 
-  const focusedName = focused?.name ?? null;
+  const commitStack = useCallback(next => { stackRef.current = next; setStack(next); }, []);
+
+  const focusedName = entityNameOf(stack);
+  const focused = useMemo(
+    () => (focusedName ? cmsEntries.current.get(focusedName) ?? fallbackFocus(focusedName) : null),
+    [focusedName, cmsVersion],
+  );
+  // A marker on top of the stack shows in the right-hand info panel if an entity is focused beneath it,
+  // and as the left-hand popout (with the animated pin) when nothing is focused.
+  const activeView = topOf(stack)?.type === 'marker' ? topOf(stack).view : null;
+  const panelView = focused ? activeView : null;
+  const popoutView = focused ? null : activeView;
+  // Markers shown now, with the CMS blurb (if any) applied for the popover.
+  const visibleMarkers = useMemo(
+    () => markers.filter(m => markerVisible(m, zoom, focusedName)).map(m => {
+      const blurb = cmsMarkers.current.get(m.name)?.blurb;
+      return blurb ? { ...m, blurb } : m;
+    }),
+    [zoom, focusedName, cmsVersion],
+  );
 
   // Layer visibility is derived, not toggled: entities at zoom >= 0 (or any zoom while focused), supers below.
-  const entitiesOn = !!focused || zoom >= 0;
-  const supersOn = !focused && zoom < 0;
+  // Political and geographic layers are independent switches (see viewRules.js for the four resulting views).
+  const { entitiesOn, supersOn, regionsOn, regionLabelsOn } = layerFlags({
+    showBorders, showRegions, focused: !!focused, zoom, regionLabelsAlways: REGION_LABELS_ALWAYS,
+  });
   const visibleSubs = useMemo(
     () => subentities.filter(sub => subVisible(sub, zoom, focusedName)),
     [zoom, focusedName],
@@ -347,10 +445,22 @@ const Dornn = () => {
       .then(results => {
         if (cancelled) return;
         results.forEach(res => res.mapEntities.forEach(e => cmsEntries.current.set(e.name, e)));
-        // if an entity was focused before the CMS arrived, upgrade it to the real entry
-        setFocused(cur => (cur ? cmsEntries.current.get(cur.name) ?? cur : cur));
+        setCmsVersion(v => v + 1); // re-derive `focused` in case an entity was focused before the CMS arrived
       })
       .catch(err => console.error('Failed to load entity CMS data', err));
+    return () => { cancelled = true; };
+  }, []);
+
+  // Marker prose: its own query and its own error handling, so it can't affect the entity data above.
+  useEffect(() => {
+    let cancelled = false;
+    fetchCmsMarkers(graphcms)
+      .then(list => {
+        if (cancelled || !list.length) return;
+        list.forEach(post => cmsMarkers.current.set(post.name, post));
+        setCmsVersion(v => v + 1);
+      })
+      .catch(err => console.error('Failed to load marker CMS data', err));
     return () => { cancelled = true; };
   }, []);
 
@@ -378,18 +488,19 @@ const Dornn = () => {
     setShowBorders(true); // borders are needed for this view
     setChangelogOpen(false);
     setShowIndevPopup(false);
-    setSettlement(null);
-    setFocused(cmsEntries.current.get(name) ?? fallbackFocus(name));
+    commitStack([{ type: 'entity', name }]); // focusing an entity always starts a fresh stack
+    setMarkersReady(false);
 
     mapContainerRef.current?.scrollIntoView();
     releaseFocusLock();
     setFocusMode(map, true); // must precede flyToBounds: it unlocks fractional zoom
     map.flyToBounds(bounds, { ...FOCUS_PADDING, duration: 1.5 });
     focusLock.current = lockToBounds(map, bounds); // after the fly starts, so it waits for *this* fly's end
-  }, [map, releaseFocusLock]);
+    map.once('moveend', () => setMarkersReady(true)); // registered after the lock, so the lock is engaged first
+  }, [map, releaseFocusLock, commitStack]);
 
   const exitFocus = useCallback(flyHome => {
-    setFocused(null);
+    commitStack([]);
     setChangelogOpen(false);
     releaseFocusLock();
     setFocusMode(map, false);
@@ -399,26 +510,52 @@ const Dornn = () => {
     } else {
       map.zoomOut();
     }
-  }, [map, releaseFocusLock]);
+  }, [map, releaseFocusLock, commitStack]);
 
-  const openSettlement = useCallback((post, centered, pinClass) => {
-    const base = settlementCoordinates.get(post.name);
-    if (!map || !base) return;
+  // The popout (Dharshav's flow): a post or marker opened with no entity focused. The pin overlay sits left of the panel.
+  const openPopout = useCallback((view, position) => {
+    if (!map || !position) return;
     mapContainerRef.current?.scrollIntoView();
-    setFocused(null);
     setChangelogOpen(false);
     releaseFocusLock();
     setFocusMode(map, false);
-    setSettlement({ post, centered, pinClass });
-    map.flyTo([base[0] - 1, base[1] + 35], 2); // shifted so the pin sits left of the panel
-    map.dragging.disable();
-  }, [map, releaseFocusLock]);
+    commitStack(pushMarker([], view));
+    flyToPopout(map, position);
+  }, [map, releaseFocusLock, commitStack]);
 
-  const closeSettlement = useCallback(() => {
-    setSettlement(null);
-    map.flyTo(HOME_VIEW.center, HOME_VIEW.zoom);
+  // The footer "Dharshav" link.
+  const openSettlement = useCallback(
+    (post, centered, pinClass) => openPopout(postView(post, centered, pinClass), settlementCoordinates.get(post.name)),
+    [openPopout],
+  );
+
+  // A major marker was clicked. Out of entity focus it opens the popout exactly as Dharshav does. With an entity
+  // focused it goes on top of that entity (info panel), replacing any marker already open.
+  const focusMarker = useCallback(marker => {
+    if (!map) return;
+    const view = markerView(marker, cmsMarkers.current.get(marker.name));
+    if (!entityNameOf(stackRef.current)) {
+      openPopout(view, marker.position);
+      return;
+    }
+    commitStack(pushMarker(stackRef.current, view));
+    // while the entity lock is on, getMinZoom() is the entity's framed zoom
+    flyToPoint(map, marker.position, marker.zoom ?? Math.max(map.getZoom(), map.getMinZoom() + MARKER_ZOOM_BOOST));
+  }, [map, commitStack, openPopout]);
+
+  const goBack = useCallback(() => {
+    if (!map) return;
+    const { next, then, entity } = backFrom(stackRef.current);
+    if (then === 'none') return;
+    if (then === 'exit') { exitFocus(false); return; }
+    commitStack(next);
+    if (then === 'entity') {
+      map.flyToBounds(getEntityBounds(entity), { ...FOCUS_PADDING, duration: 1.2 }); // back to the framed entity; the lock stays on
+    } else {
+      map.flyTo(HOME_VIEW.center, HOME_VIEW.zoom); // popout: back to the origin, as before
     map.dragging.enable();
-  }, [map]);
+    }
+  }, [map, commitStack, exitFocus]);
 
   return (
     <div className="worldwell min-h-screen" style={{ backgroundImage: 'url(../../terrain_bg_tile.png)' }}>
@@ -449,7 +586,7 @@ const Dornn = () => {
               <img className="m-auto w-full sm:w-1/2 pt-5" src="../../world_banner.png" alt="The World - Also Known as The Measured Extent of the Dornnian Midlands" />
 
               <div className="mapcontent relative" style={{ zIndex: 0 }}>
-                {focused && !settlement && (
+                {focused && (
                   <div className="map-selection-header text-center overflow-y-auto">
                     <Heading
                       className={`inline-block text-7xl pt-5 pb-5 map-info-header ${parentFontClass(focused.mapSuperentity?.name)}`}
@@ -482,19 +619,27 @@ const Dornn = () => {
                   >
                     <ZoomWatcher onZoom={setZoom} />
 
-                    <Pane name={LANDMASS_PANE} style={{ zIndex: 399 }}>
+                    <Pane name={LANDMASS_PANE} style={{ zIndex: 390 }}>
                       {!focused && <LandmassLayer />}
                     </Pane>
 
-                    {showBorders && entitiesOn && <EntityLayer focusedName={focusedName} onSelect={focusEntity} />}
-                    {showBorders && supersOn && <SuperEntityLayer />}
+                    <Pane name={REGION_PANE} style={{ zIndex: 395 }}>
+                      {regionsOn && <RegionLayer tint={showBorders} />}
+                    </Pane>
+
+                    {showBorders && entitiesOn && <EntityLayer focusedName={focusedName} onSelect={focusEntity} outlineOnly={regionsOn} />}
+                    {showBorders && supersOn && <SuperEntityLayer outlineOnly={regionsOn} />}
 
                     <Pane name={SUBENTITY_PANE} style={{ zIndex: 450 }}>
                       {showBorders && <SubentityOutlines subs={visibleSubs} />}
                     </Pane>
 
+                    {regionLabelsOn && <RegionLabels zoom={zoom} />}
                     {showBorders && entitiesOn && !focused && <EntityLabels />}
                     {showBorders && <SubentityLabels subs={visibleSubs} zoom={zoom} />}
+                    {showBorders && (!focused || markersReady) && (
+                      <MarkerLayer markers={visibleMarkers} activeId={activeView?.key} onSelect={focusMarker} popupPadding={POPUP_PADDING} />
+                    )}
                   </MapContainer>
                 </div>
 
@@ -527,6 +672,15 @@ const Dornn = () => {
                         Territory Borders
                       </p>
                     </div>
+                    {hasRegions && (
+                      <div style={{ display: 'flex', margin: '6px', alignItems: 'center', justifyContent: 'center' }}>
+                        <label className="switch" style={{ marginTop: '0px' }}>
+                          <input type="checkbox" checked={showRegions} onChange={() => setShowRegions(v => !v)} />
+                          <span className="slider" />
+                        </label>
+                        <p style={CONFIG_LABEL_STYLE}>Geographic Regions</p>
+                      </div>
+                    )}
                     <button style={{ width: 'fit-content', margin: 'auto', display: 'block' }} className="py-2 map-return" onClick={() => setShowConfigurationPane(false)}>
                       CLOSE
                     </button>
@@ -567,8 +721,8 @@ const Dornn = () => {
                 )}
 
                 {/* FOCUSED ENTITY PANEL */}
-                {settlement?.centered && !focused && <div className="mapBlocker bg-black absolute" />}
-                {focused && !settlement && (
+                {popoutView?.centered && <div className="mapBlocker bg-black absolute" />}
+                {focused && !activeView && (
                   <div className="map-info text-center overflow-y-auto">
                     {focused.flagEmblem?.url ? (
                       <img style={{ height: '20%', display: 'block', margin: '32px auto 0' }} alt="Down the Worldwell" src="../../demo_flag.png" />
@@ -648,20 +802,36 @@ const Dornn = () => {
                   </div>
                 )}
 
-                {/* SETTLEMENT PANEL with lefthand pin */}
-                {settlement && !focused && (
+                {/* MARKER INFO: right-hand panel when an entity is focused beneath it */}
+                {panelView && (
+                  <div className="map-info text-center overflow-y-auto">
+                    <Heading
+                      className={`inline-block text-6xl pt-5 pb-5 map-info-header ${panelView.fontClass ?? ''}`}
+                      style={{ color: panelView.color }}
+                    >
+                      {panelView.name}
+                    </Heading>
+                    {panelView.subtitle && <p><i>{panelView.subtitle}</i></p>}
+                    <ViewContent view={panelView} />
+                    <button className="py-5 map-return w-99" onClick={goBack}>GO BACK</button>
+                    <button className="map-return w-99" onClick={() => exitFocus(true)}>RETURN TO ORIGIN</button>
+                  </div>
+                )}
+
+                {/* POPOUT with lefthand pin: a marker or post opened with nothing focused */}
+                {popoutView && (
                   <div>
-                    {PIN_CLASSES[settlement.pinClass] && <div className={`animatedPin ${PIN_CLASSES[settlement.pinClass]}`} />}
+                    {PIN_CLASSES[popoutView.pinClass] && <div className={`animatedPin ${PIN_CLASSES[popoutView.pinClass]}`} />}
                     <div
                       style={{ overflowY: 'auto' }}
-                      className={`${settlement.centered ? 'settlement-centered' : 'settlement'} bg-black border-4 border-white absolute map-info text-center overflow-y-auto`}
+                      className={`${popoutView.centered ? 'settlement-centered' : 'settlement'} bg-black border-4 border-white absolute map-info text-center overflow-y-auto`}
                     >
-                      <Heading className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{ color: settlement.post.nameColor.hex, fontFamily: DW_FONT }}>
-                        {settlement.post.name}
+                      <Heading className="inline-block text-6xl pt-5 pb-5 map-info-header" style={{ color: popoutView.color, fontFamily: DW_FONT }}>
+                        {popoutView.name}
                       </Heading>
-                      <p><i>{settlement.post.subtitle}</i></p>
-                      <div className="inline-block pt-5 pb-0 px-5 map-info-content" dangerouslySetInnerHTML={{ __html: settlement.post.content }} />
-                      <button className="py-5 map-return" onClick={closeSettlement}>GO BACK</button>
+                      <p><i>{popoutView.subtitle}</i></p>
+                      <ViewContent view={popoutView} />
+                      <button className="py-5 map-return" onClick={goBack}>GO BACK</button>
                     </div>
                   </div>
                 )}

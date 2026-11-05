@@ -1430,3 +1430,47 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+.map-popover .leaflet-popup-content-wrapper {
+  background: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 0;
+}
+.map-popover .leaflet-popup-content { margin: 0; }
+.map-popover .leaflet-popup-tip-container { display: none; }  
+.map-popover.leaflet-popup { margin-bottom: 6px; }             
+
+.map-popover__box {
+  background: #000;
+  color: #fff;
+  border: 3px solid #fff;  
+  padding: 8px 12px;
+  text-align: left;
+}
+.map-popover__title { font-size: 16px; margin-bottom: 4px; }
+.map-popover__text  { font-size: 13px; line-height: 1.35; }
+
+.map-popover__tail {
+  width: 12px;
+  height: 12px;
+  margin: -8px auto 0;
+  background: #000;
+  border-right: 3px solid #fff;
+  border-bottom: 3px solid #fff;
+  transform: rotate(45deg);
+}
+
+.map-marker { 
+  cursor: pointer; 
+}
+
+.map-marker:hover { 
+  filter: brightness(1.25); 
+}
+
+.map-marker--active { 
+  filter: drop-shadow(0 0 6px #e8b84a); 
+}  
+
+.map-marker--major { }       
