@@ -6,18 +6,12 @@ Originally made with create-react-app! Now we do vite here.
 
 ***
 
-AI DISCLOSURE: I have intermittently utilized the public, free tiers of Gemini and Claude to advise on architecture and de-bloat my code. I do not allow it to make changes on its own, and I generally resist utilizing directly-generated code in production/main when possible, though you may see larger blocks of evidently generative code in other branches. 
+NO-AI DISCLOSURE: No written, audiovisual, design/structural, or otherwise "expressive" content has been generated or modified by AI in any way whatsoever (that includes this passage! :P ). 
 
-No written, audiovisual, or otherwise "expressive" content has been generated or modified by AI in any way whatsoever (that includes this passage! :P ). I will only ever use AI to act as an additional opinion on code and minor velocity aide.
+I briefly utilized the free tier of Claude for code analysis, debugging/refining, and tool generation, specifically on the map portion of the DtWW subsite (/dtww/dornn) during November of 2026. Prior to that, I had intermittently used the embedded Google Gemini popup to try and debug issues with PixiOverlay on the same page. No other portions of the site have any AI-adjacent code. 
 
-I do my best to tag any generated or highly-edited code blocks with the following header, as well as include a brief explanation of whether or not I have done a close review of their content, security and coherence:
+My opinion on using LLMs for code assistance and generation is mixed, and while the original update to this README last week premeditated a longer-term leveraging of these tools,  I'm no longer interested in that sort of development workflow. I will not be using GenAI tools to assist in development for the foreseeable future. If this changes for *any reason*, incidents will be included in this disclosure.
 
-```javascript
-/* 🤖 Beep-boop. This block was written in part or whole by an LLM.
-MODEL: ---------
-REVIEW STATUS: Reviewed by iznaroth on --/--/----
-*/
-```
+It's not possible to "un-ring the bell", so to speak, so the code which was partially generated or altered by AI will not be removed from this project in a meaningful capacity. This disclosure is included in part to allow any users to make an informed decision on using the site!
 
-If a code block that was originally generated has been fully reviewed and substantially edited, the generative disclosure will be removed. You can search the repository's history to get an idea of this process.
 
