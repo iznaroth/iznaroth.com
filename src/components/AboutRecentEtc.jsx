@@ -47,7 +47,7 @@ const About = ({ blogContent, devlogContent }) => {
             <br className="hidden lg:inline-block" />
           </h1>
           <div className='blogList-stubs-wrap'>
-            {blogContent.map((blog) => (
+            {blogContent.slice(0,2).map((blog) => (
               <BlogShorthand blogContent={blog} postOrDevlog={true}  />
             ))}
           </div>
