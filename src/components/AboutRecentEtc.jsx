@@ -17,11 +17,11 @@ const About = ({ blogContent, devlogContent }) => {
             <br className="hidden lg:inline-block" />
           </h1>
           <p className="mb-8 leading-relaxed lg:px-8 text-black">
-            Hello there!
+            Hello there!!!
             <br /><br />
             It's a little bit unfinished, I know. I love you for stopping by anyways. Welcome!!
             <br /><br />
-            I'm 'iznaroth' (or whatever else you probably know me by). I try to make stuff (mostly games and books), fail, and then reconcile my failures by writing and crying about the things I'm sluggishly working towards.
+            I'm 'iznaroth' (or whatever else you probably know me by). I try to make stuff (mostly games and books), fail, and then reconcile my failures by writing and crying about the things I'm "making"!
             I am a fundamentally impractical creature. Here's some of the stuff I continue to work on fruitlessly:
             <br /><br />
             <ul>
@@ -32,10 +32,11 @@ const About = ({ blogContent, devlogContent }) => {
               <li><b>= Doloman Epoch,</b> an utterly harebrained 6-player co-opera-competitive deckbuilder set in a diseased and bizarre interstellar empire, the Ca-or Inwheel</li>
               <li><b>= Mad-Manic Magi-Mechanics (M4),</b> a scatterbrained tech mod for Minecraft involving a lot of market manipulation and outsider influence</li>
               <li><b>= The Interior,</b> a strict semi-novelesque resource manager about a defunct Surveyor-class starship regaining operation ten thousand years after the Royal Domain's collapse</li>
+              <li><b>= Between the Branches,</b> a short singleplayer adventure about a woman returning to her flooded hometown in search of a book she lost as a child.</li>
             </ul>
             <br/><br/>
-            The feeble structure of this site is currently incapable of accommodating comments, so if you want to get in touch, please send me an
-            email at iznaroth@gmail.com. If you have my Discord, that's probably a better option. 
+            This clumsy, ugly, horribly-unfinished site does not support comments, so if you want to get in touch, please send me an
+            email at iznaroth@gmail.com. If you have my Discord, that's probably a better option! 
             <br/><br/>
             – iznaroth
           </p>
@@ -55,14 +56,16 @@ const About = ({ blogContent, devlogContent }) => {
               A Lay of the Land
             <br className="hidden lg:inline-block" />
           </h1>
-          <p className="mb-8 leading-relaxed lg:px-8 text-center"><i className="!text-center text-slate-700">...or Frontier Incompletes as of (2/24/26) - 429 days! wow!!!</i></p>
+          <p className="mb-8 leading-relaxed lg:px-8 text-center"><i className="!text-center text-slate-700">...or Frontier Incompletes as of (11/26/26) - 275 days! oh no!!!!!!</i></p>
           <p className="mb-8 leading-relaxed lg:px-8 text-black text-left text-sm">
-          I am alive! Seriously!
+          Hi...
           <br/><br/>
-          The claws of practicality are setting in. Doesn't that suck? I'm trying to focus on Down the Worldwell right now, so there are a few big site updates sloooooowly coming together. I'd also like to
-          make some headway on Foundations and M4 this year, but I'll keep the details for the big "end-of-year" post I'm now two full months late to. Deadlines? No idea what you're talking about.
+          It's been a little while! :P
           <br/><br/>
-          So it goes. Seeya later!
+          Some thing happened, some things didn't. You knooooow how it goooooes. I've mostly spent the latter half of this year working on M4, DtWW, and a secret third thing you have to guess! Of those three,
+          only DtWW will see substantial progress...check the subsite! I promise it'll be cool!!
+          <br/><br/>
+          That's all. 2027 is gonna be my year!!! peeeaaaaaceee!!
           </p>
         </div>
       </div>
